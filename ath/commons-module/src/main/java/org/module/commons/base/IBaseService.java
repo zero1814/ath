@@ -9,7 +9,7 @@ import com.alibaba.fastjson.JSONObject;
  * 作者: zhy<br>
  * 时间: 2016年7月27日 上午9:41:19
  */
-public interface BaseService<T extends BaseModel, DTO extends BaseDto> {
+public interface IBaseService<T extends BaseModel, DTO extends BaseDto> {
 
 	/**
 	 * 

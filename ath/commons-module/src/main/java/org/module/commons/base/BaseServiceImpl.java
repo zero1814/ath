@@ -21,7 +21,7 @@ import com.alibaba.fastjson.JSONObject;
  * @param <M>
  */
 public class BaseServiceImpl<T extends BaseModel, M extends BaseMapper<T, DTO>, DTO extends BaseDto> extends BaseClass
-		implements BaseService<T, DTO> {
+		implements IBaseService<T, DTO> {
 
 	@Autowired
 	private M mapper;
@@ -33,7 +33,7 @@ public class BaseServiceImpl<T extends BaseModel, M extends BaseMapper<T, DTO>, 
 	 * 
 	 * @param entity
 	 * @return
-	 * @see cn.com.ath.service.BaseService#insertSelective(cn.com.ath.model.BaseModel)
+	 * @see cn.com.ath.service.IBaseService#insertSelective(cn.com.ath.model.BaseModel)
 	 */
 	@Override
 	public JSONObject insertSelective(T entity) {
@@ -71,7 +71,7 @@ public class BaseServiceImpl<T extends BaseModel, M extends BaseMapper<T, DTO>, 
 	 * 
 	 * @param entity
 	 * @return
-	 * @see cn.com.ath.service.BaseService#updateByCode(cn.com.ath.model.BaseModel)
+	 * @see cn.com.ath.service.IBaseService#updateByCode(cn.com.ath.model.BaseModel)
 	 */
 	@Override
 	public JSONObject updateByCode(T entity) {
@@ -103,7 +103,7 @@ public class BaseServiceImpl<T extends BaseModel, M extends BaseMapper<T, DTO>, 
 	 * 
 	 * @param entity
 	 * @return
-	 * @see cn.com.ath.service.BaseService#selectByEntity(cn.com.ath.model.BaseModel)
+	 * @see cn.com.ath.service.IBaseService#selectByEntity(cn.com.ath.model.BaseModel)
 	 */
 	@Override
 	public T selectByEntity(T entity) {
@@ -117,7 +117,7 @@ public class BaseServiceImpl<T extends BaseModel, M extends BaseMapper<T, DTO>, 
 	 * 
 	 * @param code
 	 * @return
-	 * @see cn.com.ath.service.BaseService#deleteByCode(java.lang.String)
+	 * @see cn.com.ath.service.IBaseService#deleteByCode(java.lang.String)
 	 */
 	@Override
 	public JSONObject deleteByCode(String code) {
@@ -146,7 +146,7 @@ public class BaseServiceImpl<T extends BaseModel, M extends BaseMapper<T, DTO>, 
 	 * 
 	 * @param code
 	 * @return
-	 * @see cn.com.ath.service.BaseService#selectByCode(java.lang.String)
+	 * @see cn.com.ath.service.IBaseService#selectByCode(java.lang.String)
 	 */
 	@Override
 	public T selectByCode(String code) {
@@ -160,7 +160,7 @@ public class BaseServiceImpl<T extends BaseModel, M extends BaseMapper<T, DTO>, 
 	 * 
 	 * @param dto
 	 * @return
-	 * @see cn.com.ath.service.BaseService#findEntityToPage(cn.com.ath.dto.BaseDto)
+	 * @see cn.com.ath.service.IBaseService#findEntityToPage(cn.com.ath.dto.BaseDto)
 	 */
 	@Override
 	public JSONObject findEntityToPage(DTO dto) {
