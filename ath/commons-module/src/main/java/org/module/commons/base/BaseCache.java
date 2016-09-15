@@ -9,4 +9,12 @@ package org.module.commons.base;
  */
 public abstract class BaseCache {
 
+	/**
+	 * 
+	 * 方法: initCache <br>
+	 * 描述: 系统初始化缓存方法 <br>
+	 * 作者: zhy<br>
+	 * 时间: 2016年9月15日 下午7:21:34
+	 */
+	public abstract void initCache();
 }
