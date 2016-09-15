@@ -1,4 +1,4 @@
-package org.flow.module;
+package org.module.flow;
 
 /**
  * Hello world!

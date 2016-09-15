@@ -1,4 +1,4 @@
-package org.flow.module;
+package org.module.flow;
 
 import junit.framework.Test;
 import junit.framework.TestCase;
