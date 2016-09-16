@@ -8,8 +8,8 @@
 		<artifactId>ath</artifactId>
 		<version>0.0.1-SNAPSHOT</version>
 	</parent>
-	<artifactId>commons-module</artifactId>
-	<name>commons-module</name>
+	<artifactId>system-module</artifactId>
+	<name>system-module</name>
 	<url>http://maven.apache.org</url>
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
