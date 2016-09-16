@@ -1,2 +1,26 @@
 # ath
 开发个人项目ath
+commons-module
+核心模块，包含相关基础类及公共类
+cache-module
+缓存模块，处理系统所有缓存信息
+flow-module
+工作流模块，开发设置工作流相关
+hadoop-module
+大数据信息模块，用于信息数据分析
+lucene-module
+全文检索模块，用于设置开发全文搜索功能
+activity-module
+活动模块，开发系统的活动相关
+order-module
+订单模块，开发系统的订单相关
+product-module
+商品模块，开发系统的商品相关
+system-module
+系统模块，开发系统相关，如系统监控等
+user-module
+用户模块，开发系统的用户相关
+report-module
+报表模块，开发系统的报表相关
+log-module
+日志模块，开发系统的日志相关
