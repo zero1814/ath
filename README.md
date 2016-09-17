@@ -10,6 +10,8 @@ hadoop-module
 大数据信息模块，用于信息数据分析
 lucene-module
 全文检索模块，用于设置开发全文搜索功能
+mq-module
+消息队列模块，用于设置消息队列相关
 activity-module
 活动模块，开发系统的活动相关
 order-module
