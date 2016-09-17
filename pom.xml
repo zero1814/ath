@@ -23,6 +23,7 @@
 		<module>lucene-module</module>
 		<module>log-module</module>
     <module>mq-module</module>
+    <module>file-module</module>
   </modules>
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
