@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 
+	文件上传配置
+	type:文件上传类型
+	path:文件存储路径
+	max:文件上传最大值
+ -->
+<files>
+	<file name="document">
+		<type>doc,docx,xls,xlsx</type>
+		<path>/file/docments/</path>
+		<max>20</max>
+	</file>
+	<file name="img">
+		<type>jpg,png</type>
+		<path>/file/images/</path>
+		<max>20</max>
+	</file>
+</files>

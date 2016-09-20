@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 
 	<groupId>cn.com</groupId>
@@ -22,9 +23,9 @@
 		<module>system-module</module>
 		<module>lucene-module</module>
 		<module>log-module</module>
-    <module>mq-module</module>
-    <module>file-module</module>
-  </modules>
+		<module>mq-module</module>
+		<module>file-module</module>
+	</modules>
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<!-- jar版本 -->
@@ -40,6 +41,7 @@
 		<ehcache.version>2.10.2</ehcache.version>
 		<fastjson.version>1.2.16</fastjson.version>
 		<poi.version>3.14</poi.version>
+		<dom4j.version>1.6.1</dom4j.version>
 	</properties>
 
 	<dependencies>
@@ -219,7 +221,12 @@
 			<artifactId>poi-excelant</artifactId>
 			<version>${poi.version}</version>
 		</dependency>
-
+		<!-- xml解析 -->
+		<dependency>
+			<groupId>dom4j</groupId>
+			<artifactId>dom4j</artifactId>
+			<version>${dom4j.version}</version>
+		</dependency>
 	</dependencies>
 	<build>
 		<finalName>${project.name}</finalName>
