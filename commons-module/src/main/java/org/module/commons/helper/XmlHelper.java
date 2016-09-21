@@ -1,4 +1,4 @@
-package org.module.commons.util;
+package org.module.commons.helper;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -21,19 +21,19 @@ import org.w3c.dom.NodeList;
  * 作者: zhy<br>
  * 时间: 2016年9月19日 下午10:13:59
  */
-public class XmlUtil extends BaseClass {
+public class XmlHelper extends BaseClass {
 
 	private String path;
 
-	private static XmlUtil self;
+	private static XmlHelper self;
 
-	public XmlUtil(String path) {
+	public XmlHelper(String path) {
 		this.path = path;
 	}
 
-	public static XmlUtil getInstance(String path) {
+	public static XmlHelper getInstance(String path) {
 		if (self == null) {
-			self = new XmlUtil(path);
+			self = new XmlHelper(path);
 		}
 		return self;
 	}
