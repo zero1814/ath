@@ -16,7 +16,7 @@ import org.w3c.dom.NodeList;
 
 /**
  * 
- * 类: XmlUtil <br>
+ * 类: XmlHelper <br>
  * 描述: xml文件相关操作 <br>
  * 作者: zhy<br>
  * 时间: 2016年9月19日 下午10:13:59
