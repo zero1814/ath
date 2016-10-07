@@ -21,7 +21,7 @@ public class RedisUtil extends BaseClass {
 
 	private static RedisUtil self;
 
-	public RedisUtil instance() {
+	public static RedisUtil instance() {
 		if (self == null) {
 			self = new RedisUtil();
 		}

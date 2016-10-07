@@ -29,7 +29,7 @@
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<!-- jar版本 -->
-		<spring.version>4.3.1.RELEASE</spring.version>
+		<spring.version>4.2.8.RELEASE</spring.version>
 		<mybatis.version>3.3.1</mybatis.version>
 		<mybatis-spring.version>1.2.4</mybatis-spring.version>
 		<mysql.version>5.1.38</mysql.version>
@@ -42,6 +42,7 @@
 		<fastjson.version>1.2.16</fastjson.version>
 		<poi.version>3.14</poi.version>
 		<dom4j.version>1.6.1</dom4j.version>
+		<activemq.version>5.7.0</activemq.version>
 	</properties>
 
 	<dependencies>
@@ -64,6 +65,11 @@
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-test</artifactId>
+			<version>${spring.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-jms</artifactId>
 			<version>${spring.version}</version>
 		</dependency>
 		<!-- mybatis -->
@@ -226,6 +232,18 @@
 			<groupId>dom4j</groupId>
 			<artifactId>dom4j</artifactId>
 			<version>${dom4j.version}</version>
+		</dependency>
+		<!-- mq -->
+		<!-- activemq -->
+		<dependency>
+			<groupId>org.apache.activemq</groupId>
+			<artifactId>activemq-spring</artifactId>
+			<version>5.14.0</version>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.activemq</groupId>
+			<artifactId>activemq-core</artifactId>
+			<version>${activemq.version}</version>
 		</dependency>
 	</dependencies>
 	<build>
