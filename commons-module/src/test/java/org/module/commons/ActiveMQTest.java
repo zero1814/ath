@@ -1,11 +1,11 @@
-package org.module.mq;
+package org.module.commons;
 
 import javax.jms.Destination;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.module.commons.base.BaseTest;
-import org.module.mq.helper.ProducerHelper;
+import org.module.commons.helper.ProducerHelper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.test.context.ContextConfiguration;

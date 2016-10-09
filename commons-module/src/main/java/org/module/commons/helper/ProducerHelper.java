@@ -1,4 +1,4 @@
-package org.module.mq.helper;
+package org.module.commons.helper;
 
 import javax.jms.Destination;
 import javax.jms.JMSException;
