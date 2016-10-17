@@ -6,7 +6,7 @@ http://www.springframework.org/schema/beans/spring-beans-4.3.xsd
 http://www.springframework.org/schema/context
 http://www.springframework.org/schema/context/spring-context-4.3.xsd">
 	<context:property-placeholder
-		location="classpath:properties/activemq.properties"
+		location="classpath:properties/config.activemq.properties"
 		ignore-unresolvable="true" />
 	<!-- 真正可以产生Connection的ConnectionFactory，由对应的 JMS服务厂商提供 -->
 	<bean id="targetConnectionFactory" class="org.apache.activemq.spring.ActiveMQConnectionFactory">
