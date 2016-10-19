@@ -1,6 +1,6 @@
 package org.module.commons.base;
 
-import org.module.commons.util.SpringCtxUtil;
+import org.module.commons.util.SpringUtil;
 import org.springframework.beans.BeansException;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextAware;
@@ -16,7 +16,7 @@ public class BaseTest implements ApplicationContextAware {
 
 	@Override
 	public void setApplicationContext(ApplicationContext context) throws BeansException {
-		SpringCtxUtil.setApplicationContext(context);
+		SpringUtil.setApplicationContext(context);
 	}
 
 }
