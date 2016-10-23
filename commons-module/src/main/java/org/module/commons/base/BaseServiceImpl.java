@@ -4,10 +4,10 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
+import org.module.commons.result.EntityResult;
+import org.module.commons.result.PageResult;
 import org.module.commons.util.DateUtil;
 import org.springframework.beans.factory.annotation.Autowired;
-
-import com.alibaba.fastjson.JSONObject;
 
 /**
  * 
@@ -29,14 +29,14 @@ public class BaseServiceImpl<T extends BaseModel, M extends BaseMapper<T, DTO>, 
 	/**
 	 * 
 	 * 方法: insertSelective <br>
-	 * 描述: TODO
 	 * 
 	 * @param entity
 	 * @return
 	 * @see cn.com.ath.service.IBaseService#insertSelective(cn.com.ath.model.BaseModel)
 	 */
 	@Override
-	public JSONObject insertSelective(T entity) {
+	public EntityResult<T> insertSelective(T entity) {
+		EntityResult<T> result = new EntityResult<T>();
 		if (entity.getUuid() == null || "".equals(entity.getUuid())) {
 			entity.setUuid(UUID.randomUUID().toString().replace("-", ""));
 		}
@@ -46,111 +46,127 @@ public class BaseServiceImpl<T extends BaseModel, M extends BaseMapper<T, DTO>, 
 		entity.setUpdateUser(entity.getCreateUser());
 		entity.setUpdateTime(entity.getCreateTime());
 
-		JSONObject obj = new JSONObject();
 		try {
-			int result = mapper.insertSelective(entity);
-			if (result > 0) {
-				obj.put("code", 0);
-				obj.put("msg", "添加成功");
+			int flag = mapper.insertSelective(entity);
+			if (flag > 0) {
+				result.setCode(0);
+				result.setMessage("添加成功");
+				result.setEntity(entity);
 			} else {
-				obj.put("code", 0);
-				obj.put("msg", "添加失败");
+				result.setCode(-1);
+				result.setMessage("添加失败");
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
-			obj.put("code", -1);
-			obj.put("msg", "添加错误，请联系管理员");
+			result.setCode(-1);
+			result.setMessage("添加失败，错误原因:" + e.getMessage());
 		}
-		return obj;
+		return result;
 	}
 
 	/**
 	 * 
 	 * 方法: updateByCode <br>
-	 * 描述: TODO
 	 * 
 	 * @param entity
 	 * @return
 	 * @see cn.com.ath.service.IBaseService#updateByCode(cn.com.ath.model.BaseModel)
 	 */
 	@Override
-	public JSONObject updateByCode(T entity) {
+	public EntityResult<T> updateByCode(T entity) {
+		EntityResult<T> result = new EntityResult<T>();
 		if (entity.getUpdateTime() == null || "".equals(entity.getUpdateTime())) {
 			entity.setUpdateTime(DateUtil.getSysDateTime());
 		}
-		JSONObject obj = new JSONObject();
 		try {
-			int result = mapper.updateByCode(entity);
-			if (result > 0) {
-				obj.put("code", 0);
-				obj.put("msg", "编辑成功");
+			int flag = mapper.updateByCode(entity);
+			if (flag > 0) {
+				result.setCode(0);
+				result.setMessage("编辑成功");
 			} else {
-				obj.put("code", 0);
-				obj.put("msg", "编辑失败");
+				result.setCode(-1);
+				result.setMessage("编辑失败");
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
-			obj.put("code", -1);
-			obj.put("msg", "编辑错误，请联系管理员");
+			result.setCode(-1);
+			result.setMessage("编辑错误，错误原因:" + e.getMessage());
 		}
-		return obj;
+		return result;
 	}
 
 	/**
 	 * 
 	 * 方法: selectByEntity <br>
-	 * 描述: TODO
 	 * 
 	 * @param entity
 	 * @return
 	 * @see cn.com.ath.service.IBaseService#selectByEntity(cn.com.ath.model.BaseModel)
 	 */
 	@Override
-	public T selectByEntity(T entity) {
-		return mapper.selectByEntity(entity);
+	public EntityResult<T> selectByEntity(T entity) {
+		EntityResult<T> result = new EntityResult<T>();
+		T entity_ = mapper.selectByEntity(entity);
+		if (entity_ != null) {
+			result.setCode(0);
+			result.setMessage("查询成功");
+			result.setEntity(entity_);
+		} else {
+			result.setCode(-1);
+			result.setMessage("查询失败");
+		}
+		return result;
 	}
 
 	/**
 	 * 
 	 * 方法: deleteByCode <br>
-	 * 描述: TODO
 	 * 
 	 * @param code
 	 * @return
 	 * @see cn.com.ath.service.IBaseService#deleteByCode(java.lang.String)
 	 */
 	@Override
-	public JSONObject deleteByCode(String code) {
-		JSONObject obj = new JSONObject();
+	public BaseResult deleteByCode(String code) {
+		BaseResult result = new BaseResult();
 		try {
-			int result = mapper.deleteByCode(code);
-			if (result >= 0) {
-				obj.put("code", 0);
-				obj.put("msg", "删除成功");
+			int flag = mapper.deleteByCode(code);
+			if (flag >= 0) {
+				result.setCode(0);
+				result.setMessage("删除成功");
 			} else {
-				obj.put("code", -1);
-				obj.put("msg", "删除失败");
+				result.setCode(-1);
+				result.setMessage("删除失败");
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
-			obj.put("code", -1);
-			obj.put("msg", "删除错误，请联系管理员");
+			result.setCode(-1);
+			result.setMessage("删除失败，失败原因：" + e.getMessage());
 		}
-		return obj;
+		return result;
 	}
 
 	/**
 	 * 
 	 * 方法: selectByCode <br>
-	 * 描述: TODO
 	 * 
 	 * @param code
 	 * @return
 	 * @see cn.com.ath.service.IBaseService#selectByCode(java.lang.String)
 	 */
 	@Override
-	public T selectByCode(String code) {
-		return mapper.selectByCode(code);
+	public EntityResult<T> selectByCode(String code) {
+		EntityResult<T> result = new EntityResult<T>();
+		T entity = mapper.selectByCode(code);
+		if (entity != null) {
+			result.setCode(0);
+			result.setMessage("查询成功");
+			result.setEntity(entity);
+		} else {
+			result.setCode(-1);
+			result.setMessage("查询失败");
+		}
+		return result;
 	}
 
 	/**
@@ -163,17 +179,26 @@ public class BaseServiceImpl<T extends BaseModel, M extends BaseMapper<T, DTO>, 
 	 * @see cn.com.ath.service.IBaseService#findEntityToPage(cn.com.ath.dto.BaseDto)
 	 */
 	@Override
-	public JSONObject findEntityToPage(DTO dto) {
-		dto.setStart(dto.getPageIndex() * dto.getPageSize());
-		List<T> list = mapper.findEntityAll(dto);
-		if (list == null || list.size() <= 0) {
-			list = new ArrayList<T>();
+	public PageResult<T> findEntityToPage(DTO dto) {
+		PageResult<T> result = new PageResult<T>();
+		try {
+			dto.setStart(dto.getPageIndex() * dto.getPageSize());
+			List<T> list = mapper.findEntityAll(dto);
+			if (list == null || list.size() <= 0) {
+				list = new ArrayList<T>();
+			}
+			int total = mapper.findEntityAllCount(dto);
+			result.setCode(0);
+			result.setMessage("获取分页数据成功");
+			result.setData(list);
+			result.setTotal(total);
+		} catch (Exception e) {
+			e.printStackTrace();
+			result.setCode(-1);
+			result.setMessage("获取分页信息失败，失败原因：" + e.getMessage());
+			getLogger().logError(this.getClass(), e.getMessage());
 		}
-		int total = mapper.findEntityAllCount(dto);
-		JSONObject obj = new JSONObject();
-		obj.put("data", list);
-		obj.put("total", total);
-		return obj;
+		return result;
 	}
 
 }

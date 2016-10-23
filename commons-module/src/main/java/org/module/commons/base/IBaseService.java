@@ -1,6 +1,8 @@
 package org.module.commons.base;
 
-import com.alibaba.fastjson.JSONObject;
+import org.module.commons.result.EntityResult;
+import org.module.commons.result.PageResult;
+
 
 /**
  * 
@@ -21,7 +23,7 @@ public interface IBaseService<T extends BaseModel, DTO extends BaseDto> {
 	 * @param entity
 	 * @return
 	 */
-	JSONObject insertSelective(T entity);
+	EntityResult<T> insertSelective(T entity);
 
 	/**
 	 * 
@@ -33,7 +35,7 @@ public interface IBaseService<T extends BaseModel, DTO extends BaseDto> {
 	 * @param entity
 	 * @return
 	 */
-	JSONObject updateByCode(T entity);
+	EntityResult<T> updateByCode(T entity);
 
 	/**
 	 * 
@@ -45,7 +47,7 @@ public interface IBaseService<T extends BaseModel, DTO extends BaseDto> {
 	 * @param code
 	 * @return
 	 */
-	JSONObject deleteByCode(String code);
+	BaseResult deleteByCode(String code);
 
 	/**
 	 * 
@@ -57,7 +59,7 @@ public interface IBaseService<T extends BaseModel, DTO extends BaseDto> {
 	 * @param pk
 	 * @return
 	 */
-	T selectByCode(String code);
+	EntityResult<T> selectByCode(String code);
 
 	/**
 	 * 
@@ -69,7 +71,7 @@ public interface IBaseService<T extends BaseModel, DTO extends BaseDto> {
 	 * @param entity
 	 * @return
 	 */
-	T selectByEntity(T entity);
+	EntityResult<T> selectByEntity(T entity);
 
 	/**
 	 * 
@@ -81,5 +83,5 @@ public interface IBaseService<T extends BaseModel, DTO extends BaseDto> {
 	 * @param dto
 	 * @return
 	 */
-	JSONObject findEntityToPage(DTO dto);
+	PageResult<T> findEntityToPage(DTO dto);
 }
