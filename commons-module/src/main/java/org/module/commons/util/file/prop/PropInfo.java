@@ -1,4 +1,4 @@
-package org.module.commons.helper.prop;
+package org.module.commons.util.file.prop;
 
 /**
  * 

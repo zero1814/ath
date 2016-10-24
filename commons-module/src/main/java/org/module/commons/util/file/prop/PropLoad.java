@@ -1,4 +1,4 @@
-package org.module.commons.helper.prop;
+package org.module.commons.util.file.prop;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -18,7 +18,7 @@ import org.module.commons.map.MStringMap;
  * 作者: zhy<br>
  * 时间: 2016年9月22日 下午10:37:56
  */
-public class LoadProp {
+public class PropLoad {
 
 	/**
 	 * 
@@ -30,7 +30,7 @@ public class LoadProp {
 	 * @param path
 	 * @return
 	 */
-	public MStringMap loadProperties(String path) {
+	public static MStringMap loadProperties(String path) {
 		MStringMap map = new MStringMap();
 		FileInputStream fis = null;
 		try {
