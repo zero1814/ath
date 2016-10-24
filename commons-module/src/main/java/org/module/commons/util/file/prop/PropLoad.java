@@ -9,7 +9,10 @@ import java.util.Iterator;
 import org.apache.commons.configuration.PropertiesConfiguration;
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.lang3.StringUtils;
+import org.module.commons.base.BaseClass;
+import org.module.commons.helper.IoHelper;
 import org.module.commons.map.MStringMap;
+import org.springframework.core.io.Resource;
 
 /**
  * 
@@ -18,7 +21,18 @@ import org.module.commons.map.MStringMap;
  * 作者: zhy<br>
  * 时间: 2016年9月22日 下午10:37:56
  */
-public class PropLoad {
+public class PropLoad extends BaseClass {
+
+	private static PropLoad self;
+
+	public static PropLoad instance() {
+		if (self == null) {
+			synchronized (PropLoad.class) {
+				self = new PropLoad();
+			}
+		}
+		return self;
+	}
 
 	/**
 	 * 
@@ -30,7 +44,7 @@ public class PropLoad {
 	 * @param path
 	 * @return
 	 */
-	public static MStringMap loadProperties(String path) {
+	private MStringMap loadProperties(String path) {
 		MStringMap map = new MStringMap();
 		FileInputStream fis = null;
 		try {
@@ -91,6 +105,32 @@ public class PropLoad {
 					e.printStackTrace();
 				}
 			}
+		}
+		return map;
+	}
+
+	/**
+	 * 
+	 * 方法: getData <br>
+	 * 描述: 根据类型查询配置文件内容信息 <br>
+	 * 作者: zhy<br>
+	 * 时间: 2016年10月24日 上午10:50:57
+	 * 
+	 * @param type
+	 * @return
+	 */
+	public MStringMap getData(String type) {
+		MStringMap map = null;
+		try {
+			getLogger().logInfo("开始读取info配置文件");
+			Resource[] resources = IoHelper.upResources("classpath*:properties/" + type + "/*.properties");
+			for (int i = 0; i < resources.length; i++) {
+				map = loadProperties(resources[i].getFile().getParent());
+			}
+			getLogger().logInfo("读取info配置文件结束");
+		} catch (IOException e) {
+			e.printStackTrace();
+			getLogger().logError("读取info配置文件报错");
 		}
 		return map;
 	}
