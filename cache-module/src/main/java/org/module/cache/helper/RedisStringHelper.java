@@ -7,6 +7,7 @@ import org.module.commons.annotation.Inject;
 import redis.clients.jedis.JedisCluster;
 
 public class RedisStringHelper implements BaseHelper {
+
 	@Inject
 	private JedisCluster cluster;
 

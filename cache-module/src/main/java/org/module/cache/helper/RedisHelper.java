@@ -18,9 +18,9 @@ public class RedisHelper extends BaseClass {
 	@Inject
 	private JedisCluster cluster;
 
-	public BaseHelper helper;
+	public static BaseHelper helper;
 
-	public BaseHelper instance(Redis type) {
+	public static BaseHelper instance(Redis type) {
 		if (helper == null) {
 			if (type == Redis.String) {
 				helper = new RedisStringHelper();
