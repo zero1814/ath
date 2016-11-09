@@ -18,6 +18,8 @@ public class FileHandler extends BaseClass {
 	public FileHandler(String type) {
 		if (type.equals(FileType.DOC)) {
 
+		}else if(type.equals(FileType.DOCX)){
+			
 		}
 	}
 }
