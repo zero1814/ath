@@ -3,10 +3,11 @@ package org.module.cache.helper;
 import java.util.List;
 
 import org.module.commons.annotation.Inject;
+import org.module.commons.base.BaseClass;
 
 import redis.clients.jedis.JedisCluster;
 
-public class RedisStringHelper implements BaseHelper {
+public class RedisStringHelper extends BaseClass {
 
 	@Inject
 	private JedisCluster cluster;

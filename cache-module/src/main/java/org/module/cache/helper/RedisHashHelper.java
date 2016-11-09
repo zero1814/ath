@@ -4,10 +4,11 @@ import java.util.List;
 import java.util.Map;
 
 import org.module.commons.annotation.Inject;
+import org.module.commons.base.BaseClass;
 
 import redis.clients.jedis.JedisCluster;
 
-public class RedisHashHelper implements BaseHelper {
+public class RedisHashHelper extends BaseClass {
 
 	@Inject
 	private JedisCluster cluster;
