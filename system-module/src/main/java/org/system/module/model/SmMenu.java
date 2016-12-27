@@ -21,8 +21,9 @@ public class SmMenu extends BaseModel {
 	@ModelExplain(name = "name", description = "菜单名称")
 	@Column(name = "name", property = "name", jdbcType = "VARCHAR", length = 20, comment = "菜单名称", isNull = false)
 	private String name;
-	@Column(name = "url", property = "url", jdbcType = "VARCHAR", length = 100, comment = "菜单链接地址")
+
 	@ModelExplain(name = "url", description = "菜单链接地址")
+	@Column(name = "url", property = "url", jdbcType = "VARCHAR", length = 100, comment = "菜单链接地址")
 	private String url;
 	@ModelExplain(name = "flagAble", description = "是否可用 0 可用 1 不可用", defaultVal = "0")
 	@Column(name = "flag_able", property = "flagAble", jdbcType = "int", length = 2, comment = "是否可用 0 可用 1 不可用", defaultVal = "0")

@@ -1,5 +1,6 @@
 package org.system.module.model;
 
+import org.module.commons.annotation.ModelExplain;
 import org.module.commons.base.BaseModel;
 
 /**
@@ -14,14 +15,17 @@ public class SmDefine extends BaseModel {
 	/**
 	 * 参数编码
 	 */
+	@ModelExplain(name = "code", description = "参数编码")
 	private String code;
 	/**
 	 * 父级编码
 	 */
+	@ModelExplain(name = "parentCode", description = "父级编码")
 	private String parentCode;
 	/**
 	 * 参数名称
 	 */
+	@ModelExplain(name = "name", description = "参数名称")
 	private String name;
 
 	public String getCode() {
