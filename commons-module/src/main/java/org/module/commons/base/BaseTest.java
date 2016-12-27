@@ -18,5 +18,4 @@ public class BaseTest implements ApplicationContextAware {
 	public void setApplicationContext(ApplicationContext context) throws BeansException {
 		SpringUtil.setApplicationContext(context);
 	}
-
 }

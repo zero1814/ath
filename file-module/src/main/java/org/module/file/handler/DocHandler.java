@@ -5,8 +5,6 @@ import java.io.IOException;
 import java.util.List;
 
 import org.apache.poi.xwpf.usermodel.XWPFDocument;
-import org.apache.poi.xwpf.usermodel.XWPFParagraph;
-import org.apache.poi.xwpf.usermodel.XWPFRun;
 import org.module.file.model.DocModel;
 
 public class DocHandler {

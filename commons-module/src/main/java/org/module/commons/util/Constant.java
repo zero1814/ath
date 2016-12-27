@@ -10,8 +10,19 @@ package org.module.commons.util;
 public class Constant {
 
 	/**
-	 * properties配置文件存储位置
+	 * =================编码前缀 start=======================
 	 */
-	public static final String PropPath = "";
-	public static final String ImgPath = "";
+	/**
+	 * 菜单编码前缀
+	 */
+	public static final String SmMenu = "SM";
+	/**
+	 * 角色编码前缀
+	 */
+	public static final String SmRole = "SR";
+
+	/**
+	 * 系统参数前缀
+	 */
+	public static final String SmDefine = "SD";
 }
