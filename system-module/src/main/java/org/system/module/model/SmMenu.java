@@ -1,8 +1,7 @@
 package org.system.module.model;
 
-import org.module.commons.annotation.ModelExplain;
-import org.module.commons.annotation.db.Column;
-import org.module.commons.annotation.db.Table;
+import org.module.commons.annotation.model.AttributeExplain;
+import org.module.commons.annotation.model.ModelExplain;
 import org.module.commons.base.BaseModel;
 
 /**
@@ -12,22 +11,27 @@ import org.module.commons.base.BaseModel;
  * 作者: zhy<br>
  * 时间: 2016年12月27日 上午9:33:14
  */
-@Table(name = "sm_menu", database = "systemodule", comment = "系统菜单表")
+@ModelExplain(name = "系统菜单类", description = "设置系统相关菜单信息")
 public class SmMenu extends BaseModel {
 
-	@ModelExplain(name = "parentCode", description = "父级编码")
-	@Column(name = "parent_code", property = "parentCode", length = 50, jdbcType = "VARCHAR", comment = "父级编码")
+	@AttributeExplain(name = "code", isNull = false, description = "菜单编码")
+	private String code;
+	@AttributeExplain(name = "parentCode", description = "父级编码")
 	private String parentCode;
-	@ModelExplain(name = "name", description = "菜单名称")
-	@Column(name = "name", property = "name", jdbcType = "VARCHAR", length = 20, comment = "菜单名称", isNull = false)
+	@AttributeExplain(name = "name", isNull = false, description = "菜单名称")
 	private String name;
-
-	@ModelExplain(name = "url", description = "菜单链接地址")
-	@Column(name = "url", property = "url", jdbcType = "VARCHAR", length = 100, comment = "菜单链接地址")
+	@AttributeExplain(name = "url", description = "菜单链接地址")
 	private String url;
-	@ModelExplain(name = "flagAble", description = "是否可用 0 可用 1 不可用", defaultVal = "0")
-	@Column(name = "flag_able", property = "flagAble", jdbcType = "int", length = 2, comment = "是否可用 0 可用 1 不可用", defaultVal = "0")
+	@AttributeExplain(name = "flagAble", defaultVal = "0", description = "是否可用 0 可用 1 不可用")
 	private String flagAble;
+
+	public String getCode() {
+		return code;
+	}
+
+	public void setCode(String code) {
+		this.code = code;
+	}
 
 	public String getParentCode() {
 		return parentCode;

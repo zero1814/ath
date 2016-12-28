@@ -1,4 +1,4 @@
-package org.module.commons.annotation;
+package org.module.commons.annotation.model;
 
 /**
  * 
@@ -31,14 +31,4 @@ public @interface ModelExplain {
 	 */
 	public String description() default "";
 
-	/**
-	 * 
-	 * 方法: defaultVal <br>
-	 * 描述: 属性默认值 <br>
-	 * 作者: zhy<br>
-	 * 时间: 2016年12月27日 上午9:38:54
-	 * 
-	 * @return
-	 */
-	public String defaultVal() default "";
 }
