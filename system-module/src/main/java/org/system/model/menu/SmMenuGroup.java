@@ -1,16 +1,16 @@
-package org.system.model.server;
+package org.system.model.menu;
 
 import org.module.commons.annotation.model.AttributeExplain;
 import org.module.commons.annotation.model.ModelExplain;
 import org.module.commons.base.BaseModel;
 
-@ModelExplain(name = "系统服务器分组", description = "系统服务器分组")
-public class SmServerGroup extends BaseModel {
+@ModelExplain(name = "系统菜单组", description = "")
+public class SmMenuGroup extends BaseModel {
 
-	@AttributeExplain(name = "code", isNull = false, description = "组编码")
+	@AttributeExplain(name = "菜单组编码", isNull = false)
 	private String code;
 
-	@AttributeExplain(name = "name", isNull = false, description = "组名称")
+	@AttributeExplain(name = "菜单组名称;", isNull = false)
 	private String name;
 
 	public String getCode() {

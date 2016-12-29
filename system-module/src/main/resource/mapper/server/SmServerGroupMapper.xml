@@ -1,57 +1,90 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="org.system.mapper.server.SmServerGroupMapper">
-	<resultMap id="BaseResultMap" type="org.system.model.SmServerGroup">
+<mapper namespace="org.system.mapper.server.SmServerMapper">
+	<resultMap id="BaseResultMap" type="org.system.model.server.SmServer">
 		<id column="id" property="id" jdbcType="INTEGER" />
 		<result column="uid" property="uid" jdbcType="VARCHAR" />
 		<result column="code" property="code" jdbcType="VARCHAR" />
 		<result column="name" property="name" jdbcType="VARCHAR" />
+		<result column="ip" property="ip" jdbcType="VARCHAR" />
+		<result column="group_code" property="groupCode" jdbcType="VARCHAR" />
 		<result column="create_user" property="createUser" jdbcType="VARCHAR" />
 		<result column="create_time" property="createTime" jdbcType="VARCHAR" />
 		<result column="update_user" property="updateUser" jdbcType="VARCHAR" />
 		<result column="update_time" property="updateTime" jdbcType="VARCHAR" />
+		<result column="description" property="description" jdbcType="LONGVARCHAR" />
 	</resultMap>
 	<sql id="Base_Column_List">
-		id, uid, code, name, create_user,
-		DATE_FORMAT(create_time,'%Y-%m-%d') AS create_time, update_user,
-		DATE_FORMAT(update_time,'%Y-%m-%d') AS update_time
+		id, uid, code, name, ip, group_code,description,
+		create_user,
+		create_time,
+		update_user, update_time
 	</sql>
 	<select id="selectByCode" resultMap="BaseResultMap"
-		parameterType="java.lang.String">
+		parameterType="java.lang.Integer">
 		select
 		<include refid="Base_Column_List" />
-		from sm_server_group
-		where `code` = #{code,jdbcType=VARCHAR}
+		from sm_server
+		where id = #{id,jdbcType=INTEGER}
 	</select>
-	<delete id="deleteByCode" parameterType="java.lang.String">
-		delete from
-		sm_server_group
-		where `code` = #{code,jdbcType=VARCHAR}
+	<delete id="deleteByCode" parameterType="java.lang.Integer">
+		delete from sm_server
+		where id = #{id,jdbcType=INTEGER}
 	</delete>
-	<insert id="insertSelective" parameterType="org.system.model.SmServerGroup">
-		insert into sm_server_group
+	<insert id="insertSelective" parameterType="org.system.model.server.SmServer">
+		insert into sm_server
 		<trim prefix="(" suffix=")" suffixOverrides=",">
 			uid,
 			`code`,
 			`name`,
+			ip,
+			group_code,
 			create_user,
 			create_time,
 			update_user,
 			update_time,
+			<if test="description != null">
+				description,
+			</if>
 		</trim>
 		<trim prefix="values (" suffix=")" suffixOverrides=",">
-			#{id,jdbcType=INTEGER},
-			#{uid,jdbcType=VARCHAR},
-			#{code,jdbcType=VARCHAR},
-			#{name,jdbcType=VARCHAR},
-			#{createUser,jdbcType=VARCHAR},
-			#{createTime,jdbcType=VARCHAR},'%Y-%m-%d %H:%i:%s'),
-			#{updateUser,jdbcType=VARCHAR},
-			#{updateTime,jdbcType=VARCHAR},'%Y-%m-%d %H:%i:%s'),
+			<if test="id != null">
+				#{id,jdbcType=INTEGER},
+			</if>
+			<if test="uid != null">
+				#{uid,jdbcType=VARCHAR},
+			</if>
+			<if test="code != null">
+				#{code,jdbcType=VARCHAR},
+			</if>
+			<if test="name != null">
+				#{name,jdbcType=VARCHAR},
+			</if>
+			<if test="ip != null">
+				#{ip,jdbcType=VARCHAR},
+			</if>
+			<if test="groupCode != null">
+				#{groupCode,jdbcType=VARCHAR},
+			</if>
+			<if test="createUser != null">
+				#{createUser,jdbcType=VARCHAR},
+			</if>
+			<if test="createTime != null">
+				#{createTime,jdbcType=VARCHAR},
+			</if>
+			<if test="updateUser != null">
+				#{updateUser,jdbcType=VARCHAR},
+			</if>
+			<if test="updateTime != null">
+				#{updateTime,jdbcType=VARCHAR},
+			</if>
+			<if test="description != null">
+				#{description,jdbcType=LONGVARCHAR},
+			</if>
 		</trim>
 	</insert>
-	<update id="updateByPrimaryKeySelective" parameterType="org.system.model.SmServerGroup">
-		update sm_server_group
+	<update id="updateByCode" parameterType="org.system.model.server.SmServer">
+		update sm_server
 		<set>
 			<if test="uid != null">
 				uid = #{uid,jdbcType=VARCHAR},
@@ -62,12 +95,26 @@
 			<if test="name != null">
 				name = #{name,jdbcType=VARCHAR},
 			</if>
+			<if test="ip != null">
+				ip = #{ip,jdbcType=VARCHAR},
+			</if>
+			<if test="groupCode != null">
+				group_code = #{groupCode,jdbcType=VARCHAR},
+			</if>
+			<if test="createUser != null">
+				create_user = #{createUser,jdbcType=VARCHAR},
+			</if>
+			<if test="createTime != null">
+				create_time = #{createTime,jdbcType=VARCHAR},
+			</if>
 			<if test="updateUser != null">
 				update_user = #{updateUser,jdbcType=VARCHAR},
 			</if>
 			<if test="updateTime != null">
-				update_time = #{updateTime,jdbcType=VARCHAR},'%Y-%m-%d
-				%H:%i:%s'),
+				update_time = #{updateTime,jdbcType=VARCHAR},
+			</if>
+			<if test="description != null">
+				description = #{description,jdbcType=LONGVARCHAR},
 			</if>
 		</set>
 		where `code` = #{code,jdbcType=VARCHAR}
