@@ -3,7 +3,7 @@ package org.module.commons.annotation.model;
 /**
  * 
  * 类: ModelExplain <br>
- * 描述: model属性说明 <br>
+ * 描述: model类描述 <br>
  * 作者: zhy<br>
  * 时间: 2016年12月27日 上午9:35:47
  */
