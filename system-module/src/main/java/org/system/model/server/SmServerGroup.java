@@ -1,4 +1,4 @@
-package org.system.module.model.server;
+package org.system.model.server;
 
 import java.util.Date;
 

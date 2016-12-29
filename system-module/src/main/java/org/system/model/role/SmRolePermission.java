@@ -1,4 +1,4 @@
-package org.system.module.model.role;
+package org.system.model.role;
 
 import java.util.Date;
 

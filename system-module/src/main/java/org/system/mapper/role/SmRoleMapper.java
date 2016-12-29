@@ -1,6 +1,6 @@
-package org.system.module.mapper.role;
+package org.system.mapper.role;
 
-import org.system.module.model.role.SmRole;
+import org.system.model.role.SmRole;
 
 public interface SmRoleMapper {
     /**

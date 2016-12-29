@@ -1,6 +1,6 @@
-package org.system.module.mapper;
+package org.system.mapper;
 
-import org.system.module.model.SmDefine;
+import org.system.model.SmDefine;
 
 public interface SmDefineMapper {
     /**

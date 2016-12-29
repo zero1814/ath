@@ -1,4 +1,4 @@
-package org.system.module.model.menu;
+package org.system.model.menu;
 
 import java.util.Date;
 

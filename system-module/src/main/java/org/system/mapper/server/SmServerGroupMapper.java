@@ -1,6 +1,6 @@
-package org.system.module.mapper.server;
+package org.system.mapper.server;
 
-import org.system.module.model.server.SmServerGroup;
+import org.system.model.server.SmServerGroup;
 
 public interface SmServerGroupMapper {
     /**

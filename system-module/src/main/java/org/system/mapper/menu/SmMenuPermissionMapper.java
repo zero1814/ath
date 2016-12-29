@@ -1,6 +1,6 @@
-package org.system.module.mapper.menu;
+package org.system.mapper.menu;
 
-import org.system.module.model.menu.SmMenuPermission;
+import org.system.model.menu.SmMenuPermission;
 
 public interface SmMenuPermissionMapper {
     /**
