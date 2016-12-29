@@ -1,8 +1,8 @@
 package org.system.model.server;
 
-import org.module.commons.annotation.model.AttributeExplain;
-import org.module.commons.annotation.model.ModelExplain;
-import org.module.commons.base.BaseModel;
+import org.commons.annotation.model.AttributeExplain;
+import org.commons.annotation.model.ModelExplain;
+import org.commons.base.BaseModel;
 
 @ModelExplain(name = "系统服务器分组", description = "系统服务器分组")
 public class SmServerGroup extends BaseModel {

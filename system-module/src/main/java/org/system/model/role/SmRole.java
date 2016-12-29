@@ -1,8 +1,8 @@
 package org.system.model.role;
 
-import org.module.commons.annotation.model.AttributeExplain;
-import org.module.commons.annotation.model.ModelExplain;
-import org.module.commons.base.BaseModel;
+import org.commons.annotation.model.AttributeExplain;
+import org.commons.annotation.model.ModelExplain;
+import org.commons.base.BaseModel;
 
 @ModelExplain(name = "系统角色", description = "系统角色维护")
 public class SmRole extends BaseModel {

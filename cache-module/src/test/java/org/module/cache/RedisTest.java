@@ -1,9 +1,9 @@
 package org.module.cache;
 
+import org.cache.helper.RedisStringHelper;
+import org.commons.base.BaseTest;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.module.cache.helper.RedisStringHelper;
-import org.module.commons.base.BaseTest;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 

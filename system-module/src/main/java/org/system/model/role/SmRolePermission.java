@@ -1,8 +1,8 @@
 package org.system.model.role;
 
-import org.module.commons.annotation.model.AttributeExplain;
-import org.module.commons.annotation.model.ModelExplain;
-import org.module.commons.base.BaseModel;
+import org.commons.annotation.model.AttributeExplain;
+import org.commons.annotation.model.ModelExplain;
+import org.commons.base.BaseModel;
 
 @ModelExplain(name = "角色权限关系", description = "角色权限维护")
 public class SmRolePermission extends BaseModel {

@@ -1,6 +1,6 @@
 package org.system.mapper.menu;
 
-import org.module.commons.base.BaseMapper;
+import org.commons.base.BaseMapper;
 import org.system.dto.SmMenuDto;
 import org.system.model.menu.SmMenu;
 

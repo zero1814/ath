@@ -1,8 +1,8 @@
 package org.system.model.menu;
 
-import org.module.commons.annotation.model.AttributeExplain;
-import org.module.commons.annotation.model.ModelExplain;
-import org.module.commons.base.BaseModel;
+import org.commons.annotation.model.AttributeExplain;
+import org.commons.annotation.model.ModelExplain;
+import org.commons.base.BaseModel;
 
 @ModelExplain(name = "系统菜单维护", description = "维护系统相关菜单信息")
 public class SmMenu extends BaseModel {
