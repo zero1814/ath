@@ -1,4 +1,4 @@
-package org.commons.annotation.model;
+package org.commons.annotation.obj;
 
 /**
  * 
@@ -7,7 +7,7 @@ package org.commons.annotation.model;
  * 作者: zhy<br>
  * 时间: 2016年12月27日 上午9:35:47
  */
-public @interface ModelExplain {
+public @interface ObjectExplain {
 
 	/**
 	 * 

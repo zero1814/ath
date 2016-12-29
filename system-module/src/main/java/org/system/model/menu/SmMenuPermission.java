@@ -1,5 +1,6 @@
 package org.system.model.menu;
 
+import org.commons.base.BaseModel;
 
 /**
  * 
@@ -8,8 +9,8 @@ package org.system.model.menu;
  * 作者: zhy<br>
  * 时间: 2016年12月29日 下午1:00:15
  */
-public class SmMenuPermission {
-	
+public class SmMenuPermission extends BaseModel {
+
 	private String code;
 
 	private String menuCode;
@@ -29,6 +30,5 @@ public class SmMenuPermission {
 	public void setMenuCode(String menuCode) {
 		this.menuCode = menuCode;
 	}
-	
-	
+
 }

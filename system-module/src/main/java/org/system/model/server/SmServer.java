@@ -1,10 +1,10 @@
 package org.system.model.server;
 
-import org.commons.annotation.model.AttributeExplain;
-import org.commons.annotation.model.ModelExplain;
+import org.commons.annotation.obj.AttributeExplain;
+import org.commons.annotation.obj.ObjectExplain;
 import org.commons.base.BaseModel;
 
-@ModelExplain(name = "系统服务器维护", description = "系统服务器维护")
+@ObjectExplain(name = "系统服务器维护", description = "系统服务器维护")
 public class SmServer extends BaseModel {
 
 	@AttributeExplain(name = "code", isNull = false, description = "服务器编码")

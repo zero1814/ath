@@ -1,4 +1,4 @@
-package org.commons.annotation.model;
+package org.commons.annotation.obj;
 
 /**
  * 

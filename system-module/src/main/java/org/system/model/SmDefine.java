@@ -1,10 +1,10 @@
 package org.system.model;
 
-import org.commons.annotation.model.AttributeExplain;
-import org.commons.annotation.model.ModelExplain;
+import org.commons.annotation.obj.AttributeExplain;
+import org.commons.annotation.obj.ObjectExplain;
 import org.commons.base.BaseModel;
 
-@ModelExplain(name = "系统参数", description = "设置系统相关参数")
+@ObjectExplain(name = "系统参数", description = "设置系统相关参数")
 public class SmDefine extends BaseModel {
 
 	@AttributeExplain(name = "code", isNull = false, description = "参数编码")

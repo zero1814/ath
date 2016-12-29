@@ -1,10 +1,10 @@
 package org.system.model.server;
 
-import org.commons.annotation.model.AttributeExplain;
-import org.commons.annotation.model.ModelExplain;
+import org.commons.annotation.obj.AttributeExplain;
+import org.commons.annotation.obj.ObjectExplain;
 import org.commons.base.BaseModel;
 
-@ModelExplain(name = "系统服务器分组", description = "系统服务器分组")
+@ObjectExplain(name = "系统服务器分组", description = "系统服务器分组")
 public class SmServerGroup extends BaseModel {
 
 	@AttributeExplain(name = "code", isNull = false, description = "组编码")
