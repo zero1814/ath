@@ -12,11 +12,11 @@ public class RootResult {
 	/**
 	 * 消息编码
 	 */
-	private Integer code;
+	private Integer code = 0;
 	/**
 	 * 消息信息
 	 */
-	private String message;
+	private String message = "";
 
 	public Integer getCode() {
 		return code;

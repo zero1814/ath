@@ -15,7 +15,7 @@
      http://www.springframework.org/schema/aop/spring-aop-4.2.xsd"
 	default-lazy-init="true">
 	<tx:annotation-driven />
-	<context:component-scan base-package="cn.com.ath.controller" />
+	<context:component-scan base-package="org.module.controller" />
 	<!-- 注解支持 -->
 	<context:annotation-config />
 	<!--避免IE执行AJAX时，返回JSON出现下载文件 -->
