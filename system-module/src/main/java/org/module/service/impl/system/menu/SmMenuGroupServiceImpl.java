@@ -1,12 +1,12 @@
 package org.module.service.impl.system.menu;
 
-import org.jvnet.hk2.annotations.Service;
 import org.module.commons.annotation.obj.ObjectExplain;
 import org.module.commons.base.BaseServiceImpl;
 import org.module.dto.system.menu.SmMenuGroupDto;
 import org.module.mapper.system.menu.SmMenuGroupMapper;
 import org.module.model.system.menu.SmMenuGroup;
 import org.module.service.system.menu.ISmMenuGroupService;
+import org.springframework.stereotype.Service;
 
 /**
  * 
