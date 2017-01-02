@@ -32,6 +32,6 @@ public class CodeHelper {
 	 * @return
 	 */
 	public static String getUniqueCode(String prefix) {
-		return prefix + UniqueIdUtil.getInstance();
+		return prefix + UniqueIdUtil.getInstance().nextId();
 	}
 }
