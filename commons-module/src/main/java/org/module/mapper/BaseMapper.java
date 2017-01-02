@@ -1,17 +1,20 @@
-package org.module.commons.base;
+package org.module.mapper;
 
-import org.module.commons.result.EntityResult;
-import org.module.commons.result.PageResult;
+import java.util.List;
 
+import org.module.dto.BaseDto;
+import org.module.model.BaseModel;
 
 /**
  * 
- * 类: IBaseService <br>
- * 描述: 业务逻辑处理接口基类 <br>
+ * 类: BaseMapper <br>
+ * 描述: 数据库访问接口基类 <br>
  * 作者: zhy<br>
- * 时间: 2016年7月27日 上午9:41:19
+ * 时间: 2016年7月27日 上午9:35:41
+ * 
+ * @param <T>
  */
-public interface IBaseService<T extends BaseModel, DTO extends BaseDto> {
+public interface BaseMapper<T extends BaseModel, DTO extends BaseDto> {
 
 	/**
 	 * 
@@ -23,7 +26,7 @@ public interface IBaseService<T extends BaseModel, DTO extends BaseDto> {
 	 * @param entity
 	 * @return
 	 */
-	EntityResult<T> insertSelective(T entity);
+	int insertSelective(T entity);
 
 	/**
 	 * 
@@ -35,7 +38,7 @@ public interface IBaseService<T extends BaseModel, DTO extends BaseDto> {
 	 * @param entity
 	 * @return
 	 */
-	EntityResult<T> updateByCode(T entity);
+	int updateByCode(T entity);
 
 	/**
 	 * 
@@ -47,19 +50,19 @@ public interface IBaseService<T extends BaseModel, DTO extends BaseDto> {
 	 * @param code
 	 * @return
 	 */
-	BaseResult deleteByCode(String code);
+	int deleteByCode(String code);
 
 	/**
 	 * 
 	 * 方法: selectByPrimaryKey <br>
-	 * 描述: 根据主键查询现有对象 <br>
+	 * 描述: 根据编码查询现有对象 <br>
 	 * 作者: zhy<br>
 	 * 时间: 2016年8月1日 下午1:38:02
 	 * 
-	 * @param pk
+	 * @param code
 	 * @return
 	 */
-	EntityResult<T> selectByCode(String code);
+	T selectByCode(String code);
 
 	/**
 	 * 
@@ -71,17 +74,28 @@ public interface IBaseService<T extends BaseModel, DTO extends BaseDto> {
 	 * @param entity
 	 * @return
 	 */
-	EntityResult<T> selectByEntity(T entity);
+	T selectByEntity(T entity);
 
 	/**
 	 * 
-	 * 方法: findEntityToPage <br>
-	 * 描述: 数据分页 <br>
+	 * 方法: findEntityAll <br>
+	 * 描述: 根据对象属性查询所有对象 <br>
 	 * 作者: zhy<br>
-	 * 时间: 2016年8月31日 上午10:01:09
+	 * 时间: 2016年8月1日 下午1:38:35
 	 * 
-	 * @param dto
 	 * @return
 	 */
-	PageResult<T> findEntityToPage(DTO dto);
+	List<T> findEntityAll(DTO dto);
+
+	/**
+	 * 
+	 * 方法: findEntityAllCount <br>
+	 * 描述: 根据对象属性查询所有对象总数 <br>
+	 * 作者: zhy<br>
+	 * 时间: 2016年8月1日 下午1:39:53
+	 * 
+	 * @param entity
+	 * @return
+	 */
+	int findEntityAllCount(DTO dto);
 }

@@ -1,8 +1,8 @@
 package org.module.mapper.system.menu;
 
 import org.module.commons.annotation.obj.ObjectExplain;
-import org.module.commons.base.BaseMapper;
 import org.module.dto.system.menu.SmMenuGroupDto;
+import org.module.mapper.BaseMapper;
 import org.module.model.system.menu.SmMenuGroup;
 
 /**

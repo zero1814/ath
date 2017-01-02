@@ -1,12 +1,18 @@
-package org.module.commons.base;
+package org.module.service.impl;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
+import org.module.commons.base.BaseClass;
+import org.module.commons.base.BaseResult;
 import org.module.commons.result.EntityResult;
 import org.module.commons.result.PageResult;
 import org.module.commons.util.DateUtil;
+import org.module.dto.BaseDto;
+import org.module.mapper.BaseMapper;
+import org.module.model.BaseModel;
+import org.module.service.IBaseService;
 import org.springframework.beans.factory.annotation.Autowired;
 
 /**
@@ -45,7 +51,6 @@ public class BaseServiceImpl<T extends BaseModel, M extends BaseMapper<T, DTO>, 
 		}
 		entity.setUpdateUser(entity.getCreateUser());
 		entity.setUpdateTime(entity.getCreateTime());
-
 		try {
 			int flag = mapper.insertSelective(entity);
 			if (flag > 0) {

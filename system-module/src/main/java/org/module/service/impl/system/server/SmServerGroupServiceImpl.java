@@ -1,10 +1,10 @@
 package org.module.service.impl.system.server;
 
 import org.module.commons.annotation.obj.ObjectExplain;
-import org.module.commons.base.BaseServiceImpl;
 import org.module.dto.system.server.SmServerGroupDto;
 import org.module.mapper.system.server.SmServerGroupMapper;
 import org.module.model.system.server.SmServerGroup;
+import org.module.service.impl.BaseServiceImpl;
 import org.module.service.system.server.ISmServerGroupService;
 
 /**

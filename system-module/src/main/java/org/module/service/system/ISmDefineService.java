@@ -1,9 +1,9 @@
 package org.module.service.system;
 
 import org.module.commons.annotation.obj.ObjectExplain;
-import org.module.commons.base.IBaseService;
 import org.module.dto.system.SmDefineDto;
 import org.module.model.system.SmDefine;
+import org.module.service.IBaseService;
 
 /**
  * 

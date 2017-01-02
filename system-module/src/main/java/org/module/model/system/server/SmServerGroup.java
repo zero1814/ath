@@ -2,7 +2,7 @@ package org.module.model.system.server;
 
 import org.module.commons.annotation.obj.AttributeExplain;
 import org.module.commons.annotation.obj.ObjectExplain;
-import org.module.commons.base.BaseModel;
+import org.module.model.BaseModel;
 
 @ObjectExplain(name = "系统服务器分组", description = "系统服务器分组")
 public class SmServerGroup extends BaseModel {

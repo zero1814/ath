@@ -1,7 +1,7 @@
 package org.module.dto.system.menu;
 
 import org.module.commons.annotation.obj.ObjectExplain;
-import org.module.commons.base.BaseDto;
+import org.module.dto.BaseDto;
 
 /**
  * 

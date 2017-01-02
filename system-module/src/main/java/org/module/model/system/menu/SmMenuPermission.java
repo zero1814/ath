@@ -1,6 +1,6 @@
 package org.module.model.system.menu;
 
-import org.module.commons.base.BaseModel;
+import org.module.model.BaseModel;
 
 /**
  * 

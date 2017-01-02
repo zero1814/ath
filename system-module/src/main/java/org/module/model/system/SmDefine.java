@@ -2,7 +2,7 @@ package org.module.model.system;
 
 import org.module.commons.annotation.obj.AttributeExplain;
 import org.module.commons.annotation.obj.ObjectExplain;
-import org.module.commons.base.BaseModel;
+import org.module.model.BaseModel;
 
 @ObjectExplain(name = "系统参数", description = "设置系统相关参数")
 public class SmDefine extends BaseModel {

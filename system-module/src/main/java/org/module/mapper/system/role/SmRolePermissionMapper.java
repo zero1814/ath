@@ -1,8 +1,8 @@
 package org.module.mapper.system.role;
 
 import org.module.commons.annotation.obj.ObjectExplain;
-import org.module.commons.base.BaseMapper;
 import org.module.dto.system.role.SmRolePermissionDto;
+import org.module.mapper.BaseMapper;
 import org.module.model.system.role.SmRolePermission;
 
 /**

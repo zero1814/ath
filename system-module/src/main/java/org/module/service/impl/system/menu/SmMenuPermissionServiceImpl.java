@@ -1,10 +1,10 @@
 package org.module.service.impl.system.menu;
 
 import org.module.commons.annotation.obj.ObjectExplain;
-import org.module.commons.base.BaseServiceImpl;
 import org.module.dto.system.menu.SmMenuPermissionDto;
 import org.module.mapper.system.menu.SmMenuPermissionMapper;
 import org.module.model.system.menu.SmMenuPermission;
+import org.module.service.impl.BaseServiceImpl;
 import org.module.service.system.menu.ISmMenuPermissionService;
 
 /**

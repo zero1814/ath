@@ -2,7 +2,7 @@ package org.module.model.system.menu;
 
 import org.module.commons.annotation.obj.AttributeExplain;
 import org.module.commons.annotation.obj.ObjectExplain;
-import org.module.commons.base.BaseModel;
+import org.module.model.BaseModel;
 
 @ObjectExplain(name = "系统菜单组", description = "")
 public class SmMenuGroup extends BaseModel {

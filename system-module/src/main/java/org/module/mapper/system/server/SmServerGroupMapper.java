@@ -1,8 +1,8 @@
 package org.module.mapper.system.server;
 
 import org.module.commons.annotation.obj.ObjectExplain;
-import org.module.commons.base.BaseMapper;
 import org.module.dto.system.server.SmServerGroupDto;
+import org.module.mapper.BaseMapper;
 import org.module.model.system.server.SmServerGroup;
 
 /**

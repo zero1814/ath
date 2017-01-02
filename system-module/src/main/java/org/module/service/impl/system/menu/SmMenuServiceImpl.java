@@ -1,10 +1,10 @@
 package org.module.service.impl.system.menu;
 
 import org.module.commons.annotation.obj.ObjectExplain;
-import org.module.commons.base.BaseServiceImpl;
 import org.module.dto.system.menu.SmMenuDto;
 import org.module.mapper.system.menu.SmMenuMapper;
 import org.module.model.system.menu.SmMenu;
+import org.module.service.impl.BaseServiceImpl;
 import org.module.service.system.menu.ISmMenuService;
 
 /**

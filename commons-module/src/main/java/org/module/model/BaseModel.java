@@ -1,4 +1,4 @@
-package org.module.commons.base;
+package org.module.model;
 
 /**
  * 
