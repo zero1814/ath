@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 
 	<groupId>cn.com</groupId>
@@ -10,22 +11,9 @@
 	<name>ath</name>
 	<url>http://maven.apache.org</url>
 	<modules>
-		<module>flow-module</module>
 		<module>commons-module</module>
-		<module>cache-module</module>
-		<module>report-module</module>
-		<module>hadoop-module</module>
-		<module>order-module</module>
-		<module>activity-module</module>
-		<module>product-module</module>
-		<module>user-module</module>
 		<module>system-module</module>
-		<module>lucene-module</module>
-		<module>log-module</module>
-		<module>mq-module</module>
-		<module>file-module</module>
-    <module>db-module</module>
-  </modules>
+	</modules>
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<!-- jar版本 -->
