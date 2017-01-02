@@ -56,7 +56,7 @@ http://www.springframework.org/schema/aop/spring-aop-4.2.xsd">
 		scope="prototype">
 		<property name="patterns">
 			<list>
-				<value>cn.com.ath.service.*</value>
+				<value>org.module.service.*</value>
 			</list>
 		</property>
 	</bean>
@@ -65,7 +65,7 @@ http://www.springframework.org/schema/aop/spring-aop-4.2.xsd">
 		<property name="mapperLocations" value="classpath:mappers/**/*.xml" />
 	</bean>
 	<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
-		<property name="basePackage" value="cn.com.ath.mapper" />
+		<property name="basePackage" value="org.module.mapper" />
 		<property name="sqlSessionFactoryBeanName" value="sqlSessionFactory" />
 	</bean>
 	<bean id="sqlSessionTemplate" class="org.mybatis.spring.SqlSessionTemplate">
