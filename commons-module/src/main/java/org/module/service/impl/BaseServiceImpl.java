@@ -43,8 +43,8 @@ public class BaseServiceImpl<T extends BaseModel, M extends BaseMapper<T, DTO>, 
 	@Override
 	public EntityResult<T> insertSelective(T entity) {
 		EntityResult<T> result = new EntityResult<T>();
-		if (entity.getUuid() == null || "".equals(entity.getUuid())) {
-			entity.setUuid(UUID.randomUUID().toString().replace("-", ""));
+		if (entity.getUid() == null || "".equals(entity.getUid())) {
+			entity.setUid(UUID.randomUUID().toString().replace("-", ""));
 		}
 		if (entity.getCreateTime() == null || "".equals(entity.getCreateTime())) {
 			entity.setCreateTime(DateUtil.getSysDateTime());

@@ -11,7 +11,7 @@ public class BaseModel {
 
 	private Integer id;
 
-	private String uuid;
+	private String uid;
 
 	private String createUser;
 
@@ -29,12 +29,12 @@ public class BaseModel {
 		this.id = id;
 	}
 
-	public String getUuid() {
-		return uuid;
+	public String getUid() {
+		return uid;
 	}
 
-	public void setUuid(String uuid) {
-		this.uuid = uuid;
+	public void setUid(String uid) {
+		this.uid = uid;
 	}
 
 	public String getCreateUser() {

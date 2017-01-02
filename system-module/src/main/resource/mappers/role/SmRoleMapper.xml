@@ -53,10 +53,10 @@
 			<if test="flagAble != null">
 				#{flagAble,jdbcType=INTEGER},
 			</if>
-			#{createUser,jdbcType=VARCHAR},
-			#{createTime,jdbcType=VARCHAR},'%Y-%m-%d %H:%i:%s'),
-			#{updateUser,jdbcType=VARCHAR},
-			#{updateTime,jdbcType=VARCHAR},'%Y-%m-%d %H:%i:%s'),
+	#{createUser,jdbcType=VARCHAR},
+	STR_TO_DATE(#{createTime,jdbcType=VARCHAR},'%Y-%m-%d %H:%i:%s'),
+	#{updateUser,jdbcType=VARCHAR},
+	STR_TO_DATE(#{updateTime,jdbcType=VARCHAR},'%Y-%m-%d %H:%i:%s'),
 			<if test="intro != null">
 				#{intro,jdbcType=LONGVARCHAR},
 			</if>
@@ -72,7 +72,7 @@
 				flag_able = #{flagAble,jdbcType=INTEGER},
 			</if>
 			update_user = #{updateUser,jdbcType=VARCHAR},
-			update_time = #{updateTime,jdbcType=VARCHAR},'%Y-%m-%d %H:%i:%s'),
+			update_time = STR_TO_DATE(#{updateTime,jdbcType=VARCHAR},'%Y-%m-%d %H:%i:%s'),
 			<if test="intro != null">
 				intro = #{intro,jdbcType=LONGVARCHAR},
 			</if>

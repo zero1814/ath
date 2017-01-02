@@ -70,9 +70,9 @@
 				#{flagAble,jdbcType=INTEGER},
 			</if>
 			#{createUser,jdbcType=VARCHAR},
-			#{createTime,jdbcType=VARCHAR},'%Y-%m-%d %H:%i:%s'),
+			STR_TO_DATE(#{createTime,jdbcType=VARCHAR},'%Y-%m-%d %H:%i:%s'),
 			#{updateUser,jdbcType=VARCHAR},
-			#{updateTime,jdbcType=VARCHAR},'%Y-%m-%d %H:%i:%s'),
+			STR_TO_DATE(#{updateTime,jdbcType=VARCHAR},'%Y-%m-%d %H:%i:%s'),
 		</trim>
 	</insert>
 	<update id="updateByCode" parameterType="org.module.model.system.menu.SmMenu">

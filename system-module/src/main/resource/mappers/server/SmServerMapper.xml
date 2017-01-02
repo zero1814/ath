@@ -53,9 +53,9 @@
 			#{ip,jdbcType=VARCHAR},
 			#{type,jdbcType=VARCHAR},
 			#{createUser,jdbcType=VARCHAR},
-			#{createTime,jdbcType=VARCHAR},
+			STR_TO_DATE(#{createTime,jdbcType=VARCHAR},'%Y-%m-%d %H:%i:%s'),
 			#{updateUser,jdbcType=VARCHAR},
-			#{updateTime,jdbcType=VARCHAR},
+			STR_TO_DATE(#{updateTime,jdbcType=VARCHAR},'%Y-%m-%d %H:%i:%s'),
 			<if test="description != null">
 				#{description,jdbcType=LONGVARCHAR},
 			</if>
@@ -64,12 +64,6 @@
 	<update id="updateByCode" parameterType="org.module.model.system.server.SmServer">
 		update sm_server
 		<set>
-			<if test="uid != null">
-				uid = #{uid,jdbcType=VARCHAR},
-			</if>
-			<if test="code != null">
-				`code` = #{code,jdbcType=VARCHAR},
-			</if>
 			<if test="name != null and name != ''">
 				`name` = #{name,jdbcType=VARCHAR},
 			</if>
@@ -79,12 +73,9 @@
 			<if test="type != null">
 				type = #{type,jdbcType=VARCHAR},
 			</if>
-			<if test="updateUser != null">
-				update_user = #{updateUser,jdbcType=VARCHAR},
-			</if>
-			<if test="updateTime != null">
-				update_time = #{updateTime,jdbcType=VARCHAR},
-			</if>
+			update_user = #{updateUser,jdbcType=VARCHAR},
+			update_time =
+			STR_TO_DATE(#{updateTime,jdbcType=VARCHAR},'%Y-%m-%d %H:%i:%s'),
 			<if test="description != null">
 				description = #{description,jdbcType=LONGVARCHAR},
 			</if>

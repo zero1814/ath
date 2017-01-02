@@ -48,36 +48,15 @@
 			</if>
 		</trim>
 		<trim prefix="values (" suffix=")" suffixOverrides=",">
-			<if test="id != null">
-				#{id,jdbcType=INTEGER},
-			</if>
-			<if test="uid != null">
-				#{uid,jdbcType=VARCHAR},
-			</if>
-			<if test="code != null">
-				#{code,jdbcType=VARCHAR},
-			</if>
-			<if test="name != null">
-				#{name,jdbcType=VARCHAR},
-			</if>
-			<if test="ip != null">
-				#{ip,jdbcType=VARCHAR},
-			</if>
-			<if test="groupCode != null">
-				#{groupCode,jdbcType=VARCHAR},
-			</if>
-			<if test="createUser != null">
-				#{createUser,jdbcType=VARCHAR},
-			</if>
-			<if test="createTime != null">
-				#{createTime,jdbcType=VARCHAR},
-			</if>
-			<if test="updateUser != null">
-				#{updateUser,jdbcType=VARCHAR},
-			</if>
-			<if test="updateTime != null">
-				#{updateTime,jdbcType=VARCHAR},
-			</if>
+			#{uid,jdbcType=VARCHAR},
+			#{code,jdbcType=VARCHAR},
+			#{name,jdbcType=VARCHAR},
+			#{ip,jdbcType=VARCHAR},
+			#{groupCode,jdbcType=VARCHAR},
+			#{createUser,jdbcType=VARCHAR},
+			STR_TO_DATE(#{updateTime,jdbcType=VARCHAR},'%Y-%m-%d %H:%i:%s'),
+			#{updateUser,jdbcType=VARCHAR},
+			STR_TO_DATE(#{updateTime,jdbcType=VARCHAR},'%Y-%m-%d %H:%i:%s'),
 			<if test="description != null">
 				#{description,jdbcType=LONGVARCHAR},
 			</if>
@@ -86,12 +65,6 @@
 	<update id="updateByCode" parameterType="org.module.model.system.server.SmServer">
 		update sm_server
 		<set>
-			<if test="uid != null">
-				uid = #{uid,jdbcType=VARCHAR},
-			</if>
-			<if test="code != null">
-				code = #{code,jdbcType=VARCHAR},
-			</if>
 			<if test="name != null">
 				name = #{name,jdbcType=VARCHAR},
 			</if>
@@ -101,18 +74,9 @@
 			<if test="groupCode != null">
 				group_code = #{groupCode,jdbcType=VARCHAR},
 			</if>
-			<if test="createUser != null">
-				create_user = #{createUser,jdbcType=VARCHAR},
-			</if>
-			<if test="createTime != null">
-				create_time = #{createTime,jdbcType=VARCHAR},
-			</if>
-			<if test="updateUser != null">
-				update_user = #{updateUser,jdbcType=VARCHAR},
-			</if>
-			<if test="updateTime != null">
-				update_time = #{updateTime,jdbcType=VARCHAR},
-			</if>
+			update_user = #{updateUser,jdbcType=VARCHAR},
+			update_time =
+			STR_TO_DATE(#{updateTime,jdbcType=VARCHAR},'%Y-%m-%d %H:%i:%s'),
 			<if test="description != null">
 				description = #{description,jdbcType=LONGVARCHAR},
 			</if>

@@ -38,7 +38,7 @@
 		#{roleCode,jdbcType=VARCHAR},
 		#{permissionCode,jdbcType=VARCHAR},
 		#{createUser,jdbcType=VARCHAR},
-		#{createTime,jdbcType=VARCHAR},'%Y-%m-%d %H:%i:%s')
+		STR_TO_DATE(#{createTime,jdbcType=VARCHAR},'%Y-%m-%d %H:%i:%s')
 		)
 	</insert>
 </mapper>

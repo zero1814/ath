@@ -47,9 +47,9 @@
 			#{code,jdbcType=VARCHAR},
 			#{menuCode,jdbcType=VARCHAR},
 			#{createUser,jdbcType=VARCHAR},
-			#{createTime,jdbcType=VARCHAR},'%Y-%m-%d %H:%i:%s'),
+			STR_TO_DATE(#{createTime,jdbcType=VARCHAR},'%Y-%m-%d %H:%i:%s'),
 			#{updateUser,jdbcType=VARCHAR},
-			#{updateTime,jdbcType=VARCHAR},'%Y-%m-%d %H:%i:%s'),
+			STR_TO_DATE(#{updateTime,jdbcType=VARCHAR},'%Y-%m-%d %H:%i:%s'),
 			#{setting,jdbcType=LONGVARCHAR},
 		</trim>
 	</insert>

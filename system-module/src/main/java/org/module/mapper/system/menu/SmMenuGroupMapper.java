@@ -14,4 +14,14 @@ import org.module.model.system.menu.SmMenuGroup;
  */
 @ObjectExplain(name = "系统菜单组数据库访问接口", description = "对于systemmodudel库的sm_menu_group表进行数据库操作")
 public interface SmMenuGroupMapper extends BaseMapper<SmMenuGroup, SmMenuGroupDto> {
+	/**
+	 * 
+	 * 方法: insertSelective <br>
+	 * 描述: TODO
+	 * 
+	 * @param entity
+	 * @return
+	 * @see org.module.mapper.BaseMapper#insertSelective(org.module.model.BaseModel)
+	 */
+	int insertSelective(SmMenuGroup entity);
 }
