@@ -61,8 +61,7 @@
 			</if>
 			update_user = #{updateUser,jdbcType=VARCHAR},
 			update_time =
-			#{updateTime,jdbcType=VARCHAR},'%Y-%m-%d
-			%H:%i:%s'),
+			STR_TO_DATE(#{updateTime,jdbcType=VARCHAR},'%Y-%m-%d %H:%i:%s'),
 			<if test="setting != null">
 				setting = #{setting,jdbcType=LONGVARCHAR},
 			</if>

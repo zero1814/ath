@@ -16,12 +16,40 @@ public class SmMenuGroupTest {
 	@Autowired
 	private ISmMenuGroupService service;
 
-	@Test
 	public void insert() {
-		SmMenuGroup entity = new SmMenuGroup();
-		entity.setCode(CodeHelper.getUniqueCode("SM"));
-		entity.setName("用户相关");
-		entity.setCreateUser("admin");
-		System.out.println(service.insertSelective(entity));
+		SmMenuGroup system = new SmMenuGroup();
+		system.setCode(CodeHelper.getUniqueCode("SM"));
+		system.setName("系统相关");
+		system.setCreateUser("admin");
+		service.insertSelective(system);
+
+		SmMenuGroup product = new SmMenuGroup();
+		product.setCode(CodeHelper.getUniqueCode("SM"));
+		product.setName("商品相关");
+		product.setCreateUser("admin");
+		service.insertSelective(product);
+
+		SmMenuGroup seller = new SmMenuGroup();
+		seller.setCode(CodeHelper.getUniqueCode("SM"));
+		seller.setName("商户相关");
+		seller.setCreateUser("admin");
+		service.insertSelective(seller);
+
+		SmMenuGroup order = new SmMenuGroup();
+		order.setCode(CodeHelper.getUniqueCode("SM"));
+		order.setName("订单相关");
+		order.setCreateUser("admin");
+		service.insertSelective(order);
+
+		SmMenuGroup activity = new SmMenuGroup();
+		activity.setCode(CodeHelper.getUniqueCode("SM"));
+		activity.setName("活动相关");
+		activity.setCreateUser("admin");
+		service.insertSelective(activity);
+	}
+
+	@Test
+	public void delete() {
+		service.deleteByCode("SM816070848015233024");
 	}
 }
