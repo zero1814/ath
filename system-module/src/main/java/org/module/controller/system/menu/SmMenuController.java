@@ -2,7 +2,10 @@ package org.module.controller.system.menu;
 
 import org.module.dto.system.menu.SmMenuDto;
 import org.module.model.system.menu.SmMenu;
+import org.module.result.DataResult;
 import org.module.result.RootResult;
+import org.module.service.system.menu.ISmMenuService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -20,6 +23,9 @@ import com.alibaba.fastjson.JSONArray;
 @RequestMapping("system/menu/")
 public class SmMenuController {
 
+	@Autowired
+	private ISmMenuService service;
+
 	/**
 	 * 
 	 * 方法: index <br>
@@ -31,7 +37,7 @@ public class SmMenuController {
 	 */
 	@RequestMapping("index")
 	public String index() {
-		return null;
+		return "jsp/system/menu/index";
 	}
 
 	/**
@@ -45,8 +51,8 @@ public class SmMenuController {
 	 * @return
 	 */
 	@RequestMapping("data")
-	public JSONArray data(SmMenuDto dto) {
-		return null;
+	public DataResult data(SmMenuDto dto) {
+		return service.findDataAll(dto);
 	}
 
 	/**

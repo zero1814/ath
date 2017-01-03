@@ -2,7 +2,7 @@ package org.module.result;
 
 /**
  * 
- * 类: BaseResult <br>
+ * 类: RootResult <br>
  * 描述: 处理结果基类 <br>
  * 作者: zhy<br>
  * 时间: 2016年9月17日 下午5:22:04

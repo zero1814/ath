@@ -16,6 +16,7 @@ public class SmMenuGroupTest {
 	@Autowired
 	private ISmMenuGroupService service;
 
+	@Test
 	public void insert() {
 		SmMenuGroup system = new SmMenuGroup();
 		system.setCode(CodeHelper.getUniqueCode("SM"));
@@ -48,7 +49,6 @@ public class SmMenuGroupTest {
 		service.insertSelective(activity);
 	}
 
-	@Test
 	public void delete() {
 		service.deleteByCode("SM816070848015233024");
 	}

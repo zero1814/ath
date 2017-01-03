@@ -9,6 +9,7 @@ import org.module.commons.util.DateUtil;
 import org.module.dto.BaseDto;
 import org.module.mapper.BaseMapper;
 import org.module.model.BaseModel;
+import org.module.result.DataResult;
 import org.module.result.EntityResult;
 import org.module.result.PageResult;
 import org.module.result.RootResult;
@@ -177,15 +178,14 @@ public class BaseServiceImpl<T extends BaseModel, M extends BaseMapper<T, DTO>, 
 	/**
 	 * 
 	 * 方法: findEntityToPage <br>
-	 * 描述: TODO
 	 * 
 	 * @param dto
 	 * @return
 	 * @see cn.com.ath.service.IBaseService#findEntityToPage(cn.com.ath.dto.BaseDto)
 	 */
 	@Override
-	public PageResult<T> findEntityToPage(DTO dto) {
-		PageResult<T> result = new PageResult<T>();
+	public PageResult findEntityToPage(DTO dto) {
+		PageResult result = new PageResult();
 		try {
 			dto.setStart(dto.getPageIndex() * dto.getPageSize());
 			List<T> list = mapper.findEntityAll(dto);
@@ -202,6 +202,25 @@ public class BaseServiceImpl<T extends BaseModel, M extends BaseMapper<T, DTO>, 
 			result.setCode(-1);
 			result.setMessage("获取分页信息失败，失败原因：" + e.getMessage());
 			getLogger().logError(this.getClass(), e.getMessage());
+		}
+		return result;
+	}
+
+	@Override
+	public DataResult findDataAll(DTO dto) {
+		DataResult result = new DataResult();
+		try {
+			List<T> list = mapper.findEntityAll(dto);
+			if (list != null && list.size() > 0) {
+				result.setData(list);
+			} else {
+				result.setCode(-1);
+				result.setMessage("获取列表为空");
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+			result.setCode(-1);
+			result.setMessage("获取列表错误");
 		}
 		return result;
 	}

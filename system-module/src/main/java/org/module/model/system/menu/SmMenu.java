@@ -12,10 +12,13 @@ public class SmMenu extends BaseModel {
 
 	@AttributeExplain(name = "parentCode", description = "菜单父级编码")
 	private String parentCode;
+	@AttributeExplain(name = "parentName", description = "菜单父级名称")
+	private String parentName;
 
 	@AttributeExplain(name = "groupCode", isNull = false, description = "菜单组编码")
 	private String groupCode;
-
+	@AttributeExplain(name = "groupName", isNull = false, description = "菜单组名称")
+	private String groupName;
 	@AttributeExplain(name = "name", isNull = false, description = "菜单名称")
 	private String name;
 
@@ -24,6 +27,22 @@ public class SmMenu extends BaseModel {
 
 	@AttributeExplain(name = "flagAble", description = "菜单是否可用 0 可用 1不可用", defaultVal = "0")
 	private Integer flagAble;
+
+	public String getParentName() {
+		return parentName;
+	}
+
+	public void setParentName(String parentName) {
+		this.parentName = parentName;
+	}
+
+	public String getGroupName() {
+		return groupName;
+	}
+
+	public void setGroupName(String groupName) {
+		this.groupName = groupName;
+	}
 
 	public String getCode() {
 		return code;

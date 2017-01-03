@@ -6,18 +6,14 @@ import org.module.model.BaseModel;
 
 /**
  * 
- * 类: PageResult <br>
- * 描述: 分页结果集 <br>
+ * 类: BaseResult <br>
+ * 描述: 数据集合处理结果 <br>
  * 作者: zhy<br>
- * 时间: 2016年10月24日 上午7:33:55
- * 
- * @param <T>
+ * 时间: 2016年9月17日 下午5:22:04
  */
-public class PageResult extends RootResult {
+public class DataResult extends RootResult {
 
 	private List<? extends BaseModel> data;
-
-	private Integer total;
 
 	public List<? extends BaseModel> getData() {
 		return data;
@@ -25,14 +21,6 @@ public class PageResult extends RootResult {
 
 	public void setData(List<? extends BaseModel> data) {
 		this.data = data;
-	}
-
-	public Integer getTotal() {
-		return total;
-	}
-
-	public void setTotal(Integer total) {
-		this.total = total;
 	}
 
 }

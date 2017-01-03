@@ -2,10 +2,10 @@ package org.module.service;
 
 import org.module.dto.BaseDto;
 import org.module.model.BaseModel;
+import org.module.result.DataResult;
 import org.module.result.EntityResult;
 import org.module.result.PageResult;
 import org.module.result.RootResult;
-
 
 /**
  * 
@@ -86,5 +86,17 @@ public interface IBaseService<T extends BaseModel, DTO extends BaseDto> {
 	 * @param dto
 	 * @return
 	 */
-	PageResult<T> findEntityToPage(DTO dto);
+	PageResult findEntityToPage(DTO dto);
+	
+	
+	/**
+	 * 
+	 * 方法: findDataAll <br>
+	 * 描述: 查询数据集合 <br>
+	 * 作者: zhy<br>
+	 * 时间: 2017年1月1日 下午5:47:10
+	 * @param dto
+	 * @return
+	 */
+	DataResult findDataAll(DTO dto);
 }
