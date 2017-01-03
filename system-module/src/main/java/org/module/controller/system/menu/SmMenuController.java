@@ -1,6 +1,7 @@
 package org.module.controller.system.menu;
 
-import org.module.model.system.menu.SmMenuGroup;
+import org.module.dto.system.menu.SmMenuDto;
+import org.module.model.system.menu.SmMenu;
 import org.module.result.RootResult;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -18,40 +19,109 @@ import com.alibaba.fastjson.JSONArray;
 @Controller
 @RequestMapping("system/menu/")
 public class SmMenuController {
+
+	/**
+	 * 
+	 * 方法: index <br>
+	 * 描述: 列表页 <br>
+	 * 作者: zhy<br>
+	 * 时间: 2017年1月3日 上午9:12:50
+	 * 
+	 * @return
+	 */
 	@RequestMapping("index")
 	public String index() {
 		return null;
 	}
 
+	/**
+	 * 
+	 * 方法: data <br>
+	 * 描述: ajax数据加载 <br>
+	 * 作者: zhy<br>
+	 * 时间: 2017年1月3日 上午9:12:56
+	 * 
+	 * @param dto
+	 * @return
+	 */
 	@RequestMapping("data")
-	public JSONArray data() {
+	public JSONArray data(SmMenuDto dto) {
 		return null;
 	}
 
+	/**
+	 * 
+	 * 方法: addIndex <br>
+	 * 描述: 数据添加页面 <br>
+	 * 作者: zhy<br>
+	 * 时间: 2017年1月3日 上午9:13:04
+	 * 
+	 * @return
+	 */
 	@RequestMapping("addindex")
 	public String addIndex() {
 		return null;
 	}
 
+	/**
+	 * 
+	 * 方法: add <br>
+	 * 描述: ajax添加 <br>
+	 * 作者: zhy<br>
+	 * 时间: 2017年1月3日 上午9:13:12
+	 * 
+	 * @param entity
+	 * @return
+	 */
 	@RequestMapping("add")
 	@ResponseBody
-	public RootResult add(SmMenuGroup entity) {
+	public RootResult add(SmMenu entity) {
 		RootResult result = new RootResult();
 		return result;
 	}
 
+	/**
+	 * 
+	 * 方法: editIndex <br>
+	 * 描述: 修改页 <br>
+	 * 作者: zhy<br>
+	 * 时间: 2017年1月3日 上午9:13:24
+	 * 
+	 * @param code
+	 * @return
+	 */
 	@RequestMapping("editindex")
 	public String editIndex(String code) {
 		return null;
 	}
 
+	/**
+	 * 
+	 * 方法: edit <br>
+	 * 描述: ajax修改 <br>
+	 * 作者: zhy<br>
+	 * 时间: 2017年1月3日 上午9:13:31
+	 * 
+	 * @param entity
+	 * @return
+	 */
 	@RequestMapping("edit")
 	@ResponseBody
-	public RootResult edit(SmMenuGroup entity) {
+	public RootResult edit(SmMenu entity) {
 		RootResult result = new RootResult();
 		return result;
 	}
 
+	/**
+	 * 
+	 * 方法: delete <br>
+	 * 描述: ajax删除 <br>
+	 * 作者: zhy<br>
+	 * 时间: 2017年1月3日 上午9:13:38
+	 * 
+	 * @param code
+	 * @return
+	 */
 	@RequestMapping("del")
 	@ResponseBody
 	public RootResult delete(String code) {
