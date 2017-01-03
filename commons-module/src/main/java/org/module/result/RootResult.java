@@ -1,4 +1,4 @@
-package org.module.commons.base;
+package org.module.result;
 
 /**
  * 
@@ -7,7 +7,7 @@ package org.module.commons.base;
  * 作者: zhy<br>
  * 时间: 2016年9月17日 下午5:22:04
  */
-public class BaseResult {
+public class RootResult {
 
 	/**
 	 * 消息编码

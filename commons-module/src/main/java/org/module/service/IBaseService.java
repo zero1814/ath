@@ -1,10 +1,10 @@
 package org.module.service;
 
-import org.module.commons.base.BaseResult;
-import org.module.commons.result.EntityResult;
-import org.module.commons.result.PageResult;
 import org.module.dto.BaseDto;
 import org.module.model.BaseModel;
+import org.module.result.EntityResult;
+import org.module.result.PageResult;
+import org.module.result.RootResult;
 
 
 /**
@@ -50,7 +50,7 @@ public interface IBaseService<T extends BaseModel, DTO extends BaseDto> {
 	 * @param code
 	 * @return
 	 */
-	BaseResult deleteByCode(String code);
+	RootResult deleteByCode(String code);
 
 	/**
 	 * 

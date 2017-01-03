@@ -1,6 +1,4 @@
-package org.module.commons.result;
-
-import org.module.commons.base.BaseResult;
+package org.module.result;
 
 /**
  * 
@@ -10,7 +8,7 @@ import org.module.commons.base.BaseResult;
  * 时间: 2016年10月24日 上午7:33:41
  * @param <T>
  */
-public class EntityResult<T> extends BaseResult {
+public class EntityResult<T> extends RootResult {
 
 	private T entity;
 

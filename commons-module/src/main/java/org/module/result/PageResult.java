@@ -1,8 +1,6 @@
-package org.module.commons.result;
+package org.module.result;
 
 import java.util.List;
-
-import org.module.commons.base.BaseResult;
 
 /**
  * 
@@ -12,7 +10,7 @@ import org.module.commons.base.BaseResult;
  * 时间: 2016年10月24日 上午7:33:55
  * @param <T>
  */
-public class PageResult<T> extends BaseResult {
+public class PageResult<T> extends RootResult {
 
 	private List<T> data;
 

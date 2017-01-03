@@ -5,13 +5,13 @@ import java.util.List;
 import java.util.UUID;
 
 import org.module.commons.base.BaseClass;
-import org.module.commons.base.BaseResult;
-import org.module.commons.result.EntityResult;
-import org.module.commons.result.PageResult;
 import org.module.commons.util.DateUtil;
 import org.module.dto.BaseDto;
 import org.module.mapper.BaseMapper;
 import org.module.model.BaseModel;
+import org.module.result.EntityResult;
+import org.module.result.PageResult;
+import org.module.result.RootResult;
 import org.module.service.IBaseService;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -132,8 +132,8 @@ public class BaseServiceImpl<T extends BaseModel, M extends BaseMapper<T, DTO>, 
 	 * @see cn.com.ath.service.IBaseService#deleteByCode(java.lang.String)
 	 */
 	@Override
-	public BaseResult deleteByCode(String code) {
-		BaseResult result = new BaseResult();
+	public RootResult deleteByCode(String code) {
+		RootResult result = new RootResult();
 		try {
 			int flag = mapper.deleteByCode(code);
 			if (flag >= 0) {
