@@ -5,7 +5,7 @@ import org.module.model.BaseModel;
 /**
  * 
  * 类: SmMenuPermission <br>
- * 描述: TODO <br>
+ * 描述: 菜单权限 <br>
  * 作者: zhy<br>
  * 时间: 2016年12月29日 下午1:00:15
  */

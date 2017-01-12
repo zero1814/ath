@@ -87,14 +87,14 @@ public interface IBaseService<T extends BaseModel, DTO extends BaseDto> {
 	 * @return
 	 */
 	PageResult findEntityToPage(DTO dto);
-	
-	
+
 	/**
 	 * 
 	 * 方法: findDataAll <br>
 	 * 描述: 查询数据集合 <br>
 	 * 作者: zhy<br>
 	 * 时间: 2017年1月1日 下午5:47:10
+	 * 
 	 * @param dto
 	 * @return
 	 */
