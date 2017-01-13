@@ -1,5 +1,7 @@
 package org.module.model.system.menu;
 
+import java.util.List;
+
 import org.module.commons.annotation.obj.AttributeExplain;
 import org.module.commons.annotation.obj.ObjectExplain;
 import org.module.model.BaseModel;
@@ -40,6 +42,18 @@ public class SmMenu extends BaseModel {
 	@AttributeExplain(name = "flagAble", description = "菜单是否可用 0 可用 1不可用", defaultVal = "0")
 	@JSONField(name = "flag_able")
 	private Integer flagAble;
+
+	@AttributeExplain(name = "childMenu", description = "子级分类", defaultVal = "")
+	@JSONField(name = "child_menu")
+	private List<SmMenu> childMenu;
+
+	public List<SmMenu> getChildMenu() {
+		return childMenu;
+	}
+
+	public void setChildMenu(List<SmMenu> childMenu) {
+		this.childMenu = childMenu;
+	}
 
 	public String getParentName() {
 		return parentName;

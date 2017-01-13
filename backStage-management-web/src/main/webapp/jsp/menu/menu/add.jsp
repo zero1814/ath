@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ include file="/jsp/commons/form/header.jsp"%>
+<%@ include file="/jsp/commons/header.jsp"%>
 <div class="row">
 	<div class="ibox float-e-margins">
 		<div class="ibox-title">
@@ -51,4 +51,4 @@
 		</div>
 	</div>
 </div>
-<%@ include file="/jsp/commons/form/footer.jsp"%>
+<%@ include file="/jsp/commons/footer.jsp"%>

@@ -16,7 +16,7 @@
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 	</properties>
 	<dependencies>
-		<dependency>
+		<dependency> 
 			<groupId>cn.com</groupId>
 			<artifactId>commons-module</artifactId>
 			<version>0.0.1-SNAPSHOT</version>

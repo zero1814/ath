@@ -13,4 +13,30 @@ import org.module.dto.BaseDto;
 @ObjectExplain(name = "系统菜单数据库访问接口参数", description = "对于systemmodudel库的sm_menu表进行数据库操作的参数")
 public class SmMenuDto extends BaseDto {
 
+	/**
+	 * 分组编码
+	 */
+	private String groupCode;
+
+	/**
+	 * 父级编码
+	 */
+	private String parentCode;
+
+	public String getGroupCode() {
+		return groupCode;
+	}
+
+	public void setGroupCode(String groupCode) {
+		this.groupCode = groupCode;
+	}
+
+	public String getParentCode() {
+		return parentCode;
+	}
+
+	public void setParentCode(String parentCode) {
+		this.parentCode = parentCode;
+	}
+
 }

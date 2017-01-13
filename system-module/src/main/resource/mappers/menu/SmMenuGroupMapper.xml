@@ -60,4 +60,8 @@
 		</set>
 		where `code` = #{code,jdbcType=VARCHAR}
 	</update>
+	<select id="findEntityAll" resultMap="BaseResultMap">
+		select `code`,`name` from
+		sm_menu_group
+	</select>
 </mapper>

@@ -17,5 +17,5 @@ public interface ISmMenuService extends IBaseService<SmMenu, SmMenuDto> {
 	 * @param flag
 	 * @return
 	 */
-	public int updateFlagAble(String userCode,String code, Integer flag);
+	public int updateFlagAble(String userCode, String code, Integer flag);
 }

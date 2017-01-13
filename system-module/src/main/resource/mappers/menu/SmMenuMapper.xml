@@ -103,8 +103,22 @@
 		</set>
 		where `code` = #{code,jdbcType=VARCHAR}
 	</update>
-	<select id="findDataAll" parameterType="org.module.dto.system.menu.SmMenuDto"
+	<select id="findEntityAll" parameterType="org.module.dto.system.menu.SmMenuDto"
 		resultMap="BaseResultMap">
-		select `code`,`name` from sm_menu
+		select
+		`code`,
+		`name`,
+		parent_code,
+		url
+		from sm_menu
+		<where>
+			flag_able = 0
+			<if test="groupCode != null and groupCode != ''">
+				AND group_code = #{groupCode,jdbcType=VARCHAR}
+			</if>
+			<if test="parentCode != null and parentCode != ''">
+				AND parent_code = #{parentCode,jdbcType=VARCHAR}
+			</if>
+		</where>
 	</select>
 </mapper>

@@ -1,9 +1,13 @@
 package org.system.module;
 
+import java.util.List;
+
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.module.commons.helper.CodeHelper;
+import org.module.dto.system.menu.SmMenuDto;
 import org.module.model.system.menu.SmMenu;
+import org.module.result.DataResult;
 import org.module.service.system.menu.ISmMenuService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
@@ -20,20 +24,20 @@ public class SmMenuTest {
 	public void insert() {
 		SmMenu menu = new SmMenu();
 		menu.setCode(CodeHelper.getUniqueCode("SM"));
-		menu.setGroupCode("SM815497549271003136");
+		menu.setGroupCode("SM819750822417002496");
 		menu.setName("菜单管理");
 		menu.setCreateUser("admin");
 		service.insertSelective(menu);
 		SmMenu group = new SmMenu();
 		group.setCode(CodeHelper.getUniqueCode("SM"));
-		group.setParentCode("SM816073348684443648");
+		group.setParentCode(menu.getCode());
 		group.setName("菜单组管理");
 		group.setGroupCode("SM815497549271003136");
 		group.setCreateUser("admin");
 		service.insertSelective(group);
 		SmMenu menu1 = new SmMenu();
 		menu1.setCode(CodeHelper.getUniqueCode("SM"));
-		menu1.setParentCode("SM816073348684443648");
+		menu1.setParentCode(menu.getCode());
 		menu1.setName("菜单管理");
 		menu1.setGroupCode("SM815497549271003136");
 		menu1.setCreateUser("admin");
@@ -52,5 +56,10 @@ public class SmMenuTest {
 
 	public void delete() {
 		service.deleteByCode("SM816073743460724736");
+	}
+	
+	public void findDataAll(){
+		DataResult result = service.findDataAll(new SmMenuDto());
+		System.out.println(result.getData().size());
 	}
 }

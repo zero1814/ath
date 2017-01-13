@@ -1,6 +1,7 @@
 /**
  * 公共函数
  */
+
 $(document).ready(function() {
 	// MetsiMenu
 	$('#side-menu').metisMenu();
