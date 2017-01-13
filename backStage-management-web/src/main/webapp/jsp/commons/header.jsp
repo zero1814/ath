@@ -11,11 +11,10 @@
 <head>
 <base href="<%=basePath%>">
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<link href="assets/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet">
+<link href="assets/plugins/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet">
 <link href="assets/font/font-awesome/4.7.0/css/font-awesome.css" rel="stylesheet">
 <link href="assets/commons/css/animate.css" rel="stylesheet">
 <link href="assets/commons/css/style.css?v=1.0.0" rel="stylesheet">
-<link href="assets/bootstrap/plugins/fileinput/css/fileinput.css" media="all" rel="stylesheet" type="text/css" />
 </head>
 <body class="fixed-sidebar full-height-layout gray-bg" style="overflow:hidden">
 	<div id="wrapper">

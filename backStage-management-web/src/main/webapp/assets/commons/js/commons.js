@@ -3,9 +3,10 @@
  */
 
 $(document).ready(function() {
+	Nav.init();
 	// MetsiMenu
-	$('#side-menu').metisMenu();
-
+	//$('#side-menu').metisMenu();
+	setTimeout("$('#side-menu').metisMenu()",500);
 	// 打开右侧边栏
 	$('.right-sidebar-toggle').click(function() {
 		$('#right-sidebar').toggleClass('sidebar-open');

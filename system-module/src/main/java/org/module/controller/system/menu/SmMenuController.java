@@ -64,7 +64,7 @@ public class SmMenuController {
 	 */
 	@RequestMapping("addindex")
 	public String addIndex() {
-		return null;
+		return "jsp/menu/menu/add";
 	}
 
 	/**
