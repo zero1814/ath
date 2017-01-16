@@ -4,14 +4,15 @@
 <div class="row">
 	<div class="ibox float-e-margins">
 		<div class="ibox-title">
-			<h5>新增菜单</h5>
+			<h5>编辑菜单</h5>
 		</div>
 		<div class="ibox-content">
 			<form class="form-horizontal" method="post">
+				<input type="hidden" name="code" id="code" value="${menu.code }" />
 				<div class="form-group">
 					<label class="col-sm-3 control-label">菜单名称：</label>
 					<div class="col-sm-8">
-						<input id="name" name="name" minlength="2" type="text"
+						<input id="name" name="name" type="text" value="${menu.name }"
 							class="form-control">
 					</div>
 				</div>
@@ -45,6 +46,12 @@
 							<option value="0">可用</option>
 							<option value="1">不可用</option>
 						</select>
+					</div>
+				</div>
+				<div class="form-group">
+					<div class="col-sm-3"></div>
+					<div class="col-sm-8" style="text-align: center;">
+						<a class="btn btn-primary">保存</a> <a class="btn btn-white">取消</a>
 					</div>
 				</div>
 			</form>

@@ -1,7 +1,5 @@
 package org.system.module;
 
-import java.util.List;
-
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.module.commons.helper.CodeHelper;
@@ -24,7 +22,7 @@ public class SmMenuTest {
 	public void insert() {
 		SmMenu menu = new SmMenu();
 		menu.setCode(CodeHelper.getUniqueCode("SM"));
-		menu.setGroupCode("SM819750822417002496");
+		menu.setGroupCode("SM815497549271003136");
 		menu.setName("菜单管理");
 		menu.setCreateUser("admin");
 		service.insertSelective(menu);
@@ -45,20 +43,20 @@ public class SmMenuTest {
 	}
 
 	public void update() {
-		 SmMenu menu1 = new SmMenu();
-		 menu1.setCode("SM816073743460724736");
-		 menu1.setParentCode("");
-		 menu1.setName("菜单管理01");
-		 menu1.setGroupCode("");
-		 menu1.setUpdateUser("system");
-		 service.updateByCode(menu1);
+		SmMenu menu1 = new SmMenu();
+		menu1.setCode("SM816073743460724736");
+		menu1.setParentCode("");
+		menu1.setName("菜单管理01");
+		menu1.setGroupCode("");
+		menu1.setUpdateUser("system");
+		service.updateByCode(menu1);
 	}
 
 	public void delete() {
 		service.deleteByCode("SM816073743460724736");
 	}
-	
-	public void findDataAll(){
+
+	public void findDataAll() {
 		DataResult result = service.findDataAll(new SmMenuDto());
 		System.out.println(result.getData().size());
 	}
