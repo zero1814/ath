@@ -8,7 +8,6 @@
 <script src="assets/plugins/metisMenu/js/metisMenu.min.js"></script>
 <script src="assets/plugins/jquery/plugins/slimscroll/js/jquery.slimscroll.min.js"></script>
 <script src="assets/plugins/layer/layer.js"></script>
-<script src="assets/plugins/sweetalert/js/sweetalert.min.js"></script>
 <script src="assets/commons/js/menu.js"></script>
 <script src="assets/commons/js/commons.js"></script>
 <script src="assets/commons/js/usepublic.js"></script>
