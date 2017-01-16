@@ -100,44 +100,34 @@ var UsePublic = {
 	/**
 	 * layer警告弹出层
 	 */
-	alertLayer : function() {
-
+	alertModal : function(val) {
+		layer.alert(val);
 	},
 	/**
 	 * layer询问弹出层
 	 */
-	confirmLayer : function() {
-
-	},
-	/**
-	 * swal警告弹出层
-	 */
-	alertSwal : function(titleVal, textVal) {
-		swal({
-			title : titleVal,
-			text : textVal
-		});
-	},
-	/**
-	 * swal询问弹出层
-	 */
-	confirmSwal : function(titleVal, textVal, call, recall) {
-		swal({
-			title : titleVal,
-			text : textVal,
-			type : "warning",
-			showCancelButton : true,
-			confirmButtonColor : "#DD6B55",
-			confirmButtonText : "删除",
-			closeOnConfirm : false
-		}, function(isConfirm) {
-			if (isConfirm) {
-				if (call) {
-					if (typeof call == "function") {
-						call();
-					}
+	confirmModal : function(val, call, recall, btn1, btn2) {
+		var affirm = "确认";
+		var close = "取消";
+		if (btn1) {
+			affirm = btn1;
+		}
+		if (btn2) {
+			close = btn2;
+		}
+		layer.confirm(val, {
+			// 按钮
+			btn : [affirm,close]
+		}, function() {
+			// 确认操作
+			if (call) {
+				if (typeof call == "function") {
+					call();
 				}
-			} else if (recall) {
+			}
+		}, function() {
+			// 取消操作
+			if (recall) {
 				if (typeof recall == "function") {
 					recall();
 				}

@@ -9,8 +9,6 @@
 		<div class="ibox-content">
 			<a id="demo1" href="javascript:void(0)" class="btn btn-w-m btn-info">layer警告弹出层</a><br>
 			<a id="demo2" href="javascript:void(0)" class="btn btn-w-m btn-info">layer询问弹出层</a><br>
-			<a id="demo3" href="javascript:void(0)" class="btn btn-w-m btn-info">swal警告弹出层</a><br>
-			<a id="demo4" href="javascript:void(0)" class="btn btn-w-m btn-info">swal询问弹出层</a><br>
 		</div>
 	</div>
 </div>
