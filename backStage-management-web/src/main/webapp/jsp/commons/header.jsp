@@ -19,4 +19,4 @@
 <body class="fixed-sidebar full-height-layout gray-bg" style="overflow:hidden">
 	<div id="wrapper">
 		<nav id="nav" class="navbar-default navbar-static-side" role="navigation"></nav>
-		<div id="page-wrapper" class="gray-bg dashbard-1">
+		<div id="page-wrapper" class="gray-bg">

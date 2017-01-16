@@ -2,6 +2,7 @@ package org.module.service.impl.system.menu;
 
 import java.util.List;
 
+import org.apache.commons.codec.binary.StringUtils;
 import org.module.commons.annotation.obj.ObjectExplain;
 import org.module.dto.system.menu.SmMenuDto;
 import org.module.dto.system.menu.SmMenuGroupDto;
@@ -40,11 +41,13 @@ public class SmMenuGroupServiceImpl extends BaseServiceImpl<SmMenuGroup, SmMenuG
 			for (SmMenuGroup group : list) {
 				SmMenuDto menuDto = new SmMenuDto();
 				menuDto.setGroupCode(group.getCode());
+				menuDto.setParentCode("0");
 				List<SmMenu> menus = menuMapper.findEntityAll(menuDto);
 				if (menus != null && menus.size() > 0) {
 					for (SmMenu menu : menus) {
 						SmMenuDto childMenuDto = new SmMenuDto();
 						childMenuDto.setParentCode(menu.getCode());
+						childMenuDto.setGroupCode(group.getCode());
 						List<SmMenu> childMenus = menuMapper.findEntityAll(childMenuDto);
 						if (childMenus != null && childMenus.size() > 0) {
 							menu.setChildMenu(childMenus);
