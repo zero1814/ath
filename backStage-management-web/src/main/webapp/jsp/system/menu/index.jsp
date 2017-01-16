@@ -1,0 +1,62 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<%@ include file="/jsp/commons/header.jsp"%>
+<div class="row">
+	<div class="ibox float-e-margins">
+		<div class="ibox-title">
+			<h5>新增菜单</h5>
+		</div>
+		<div class="ibox-content">
+			<a id="demo1" href="javascript:void(0)" class="btn btn-w-m btn-info">layer警告弹出层</a><br>
+			<a id="demo2" href="javascript:void(0)" class="btn btn-w-m btn-info">layer询问弹出层</a><br>
+			<a id="demo3" href="javascript:void(0)" class="btn btn-w-m btn-info">swal警告弹出层</a><br>
+			<a id="demo4" href="javascript:void(0)" class="btn btn-w-m btn-info">swal询问弹出层</a><br>
+		</div>
+	</div>
+</div>
+<%@ include file="/jsp/commons/footer.jsp"%>
+<script>
+	$("#demo1").click(function() {
+		layer.alert('layer警告弹出层');
+	});
+	$("#demo2").click(function() {
+		layer.confirm('您是如何看待前端开发？', {
+			//按钮
+			btn : [ '重要', '奇葩' ]
+		}, function() {
+			layer.msg('的确很重要');
+		}, function() {
+			layer.msg('也可以这样', {
+				time : 1000, //20s后自动关闭
+				btn : [ '明白了', '知道了' ]
+			});
+		});
+	});
+
+	$("#demo3").click(function() {
+		swal({
+			title : "提示",
+			text : "删除成功。"
+		});
+	});
+	$("#demo4").click(function() {
+        swal({
+            title: "您确定要删除这条信息吗",
+            text: "删除后将无法恢复，请谨慎操作！",
+            type: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#DD6B55",
+            confirmButtonText: "删除",
+            cancelButtonText: "取消",
+            closeOnConfirm: false,
+            closeOnCancel: false
+        },
+        function (isConfirm) {
+            if (isConfirm) {
+                swal("删除成功！", "您已经永久删除了这条信息。", "success");
+            } else {
+                swal("已取消", "您取消了删除操作！", "error");
+            }
+        });
+	});
+</script>

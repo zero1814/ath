@@ -1,7 +1,6 @@
 /**
  * 公共函数
  */
-
 $(document).ready(function() {
 	Nav.init();
 	// MetsiMenu

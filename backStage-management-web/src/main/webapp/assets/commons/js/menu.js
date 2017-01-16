@@ -6,7 +6,6 @@ var Nav = {
 	title : "随时帮-后台管理",
 	// 首页链接
 	index_href : "index.htm",
-	data : "",
 	/**
 	 * 初始化加载
 	 */
@@ -75,7 +74,7 @@ var Nav = {
 		if (data) {
 			for (var i = 0; i < data.length > 0; i++) {
 				var group = data[i];
-				if (group.menus.length>0) {
+				if (group.menus.length > 0) {
 					html += "<li class=\"hidden-folded padder m-t m-b-sm text-muted text-xs\">";
 					html += "<span class=\"ng-scope\">" + group.name
 							+ "</span>";

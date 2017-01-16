@@ -15,8 +15,9 @@
 <link href="assets/font/font-awesome/4.7.0/css/font-awesome.css" rel="stylesheet">
 <link href="assets/commons/css/animate.css" rel="stylesheet">
 <link href="assets/commons/css/style.css?v=1.0.0" rel="stylesheet">
+<link href="assets/plugins/sweetalert/css/sweetalert.css" rel="stylesheet">
 </head>
 <body class="fixed-sidebar full-height-layout gray-bg" style="overflow:hidden">
 	<div id="wrapper">
 		<nav id="nav" class="navbar-default navbar-static-side" role="navigation"></nav>
-	</div>
+		<div id="page-wrapper" class="gray-bg dashbard-1">
