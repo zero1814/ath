@@ -25,4 +25,8 @@ public class Constant {
 	 * 系统参数前缀
 	 */
 	public static final String SmDefine = "SD";
+	/**
+	 * =================编码前缀 end=======================
+	 */
+
 }

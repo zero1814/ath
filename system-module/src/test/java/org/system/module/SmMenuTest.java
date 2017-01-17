@@ -20,26 +20,7 @@ public class SmMenuTest {
 
 	@Test
 	public void insert() {
-		SmMenu menu = new SmMenu();
-		menu.setCode(CodeHelper.getUniqueCode("SM"));
-		menu.setGroupCode("SM815497549271003136");
-		menu.setName("菜单管理");
-		menu.setCreateUser("admin");
-		service.insertSelective(menu);
-		SmMenu group = new SmMenu();
-		group.setCode(CodeHelper.getUniqueCode("SM"));
-		group.setParentCode(menu.getCode());
-		group.setName("菜单组管理");
-		group.setGroupCode("SM815497549271003136");
-		group.setCreateUser("admin");
-		service.insertSelective(group);
-		SmMenu menu1 = new SmMenu();
-		menu1.setCode(CodeHelper.getUniqueCode("SM"));
-		menu1.setParentCode(menu.getCode());
-		menu1.setName("菜单管理");
-		menu1.setGroupCode("SM815497549271003136");
-		menu1.setCreateUser("admin");
-		service.insertSelective(menu1);
+		
 	}
 
 	public void update() {

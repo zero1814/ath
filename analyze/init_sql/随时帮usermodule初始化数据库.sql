@@ -1,119 +1,141 @@
 /*
 id int primary key AUTO_INCREMENT COMMENT '主键',
-uid varchar(20) not null UNIQUE COMMENT 'uuid',
+uid varchar(50) not null UNIQUE COMMENT 'uuid',
 `code` varchar(50) not null UNIQUE COMMENT '编码',
 create_user varchar(50) not null COMMENT '创建人',
-create_date datetime not null COMMENT '创建时间',
+create_time datetime not null COMMENT '创建时间',
 update_user varchar(50) not null COMMENT '最后修改人',
-update_date datetime datetime not null COMMENT '最后修改时间'
+update_time datetime not null COMMENT '最后修改时间'
 */
-DROP DATA
-IF EXISTS usermodule;
+DROP DATABASE
+IF EXISTS systemmodule;
 
-CREATE DATABASE usermodule;
+CREATE DATABASE systemmodule;
 
-USE usermodule;
+USE systemmodule;
 
 DROP TABLE
-IF EXISTS um_seller_info;
+IF EXISTS sm_define;
 
-CREATE TABLE um_seller_info (
+CREATE TABLE sm_define (
 	id INT PRIMARY KEY AUTO_INCREMENT COMMENT '主键',
-	uid VARCHAR (20) NOT NULL UNIQUE COMMENT 'uuid',
-	`code` VARCHAR (50) NOT NULL UNIQUE COMMENT '用户编码',
+	uid VARCHAR (50) NOT NULL UNIQUE COMMENT 'uuid',
+	`code` VARCHAR (50) NOT NULL UNIQUE COMMENT '参数编码',
+	parent_code VARCHAR (50) DEFAULT '' COMMENT '父级编码',
 	`name` VARCHAR (50) NOT NULL COMMENT '名称',
-	short_name VARCHAR (50) DEFAULT '' COMMENT '简称',
-	icon VARCHAR (100) NOT NULL COMMENT '商标',
-	legal_person VARCHAR (50) NOT NULL COMMENT '法人姓名',
-	principal_name VARCHAR (50) NOT NULL COMMENT '负责人姓名',
-	principal_phone VARCHAR (20) NOT NULL COMMENT '负责人电话',
-	valid_documentation_type VARCHAR (50) NOT NULL COMMENT '有效证件类型编码',
-	documentation_number VARCHAR (50) NOT NULL COMMENT '证件号码',
-	valid_documentation_pic VARCHAR (200) NOT NULL COMMENT '证件照，正反面',
-	telephone VARCHAR (20) NOT NULL COMMENT '座机',
-	mobile_phone VARCHAR (20) NOT NULL COMMENT '联系电话',
-	`status` VARCHAR (50) NOT NULL COMMENT '商户状态',
-	brokerage DECIMAL (2, 2) COMMENT '佣金比例',
-	type VARCHAR (50) NOT NULL COMMENT '商户类型',
-	bank_code VARCHAR (50) NOT NULL COMMENT '开户行银行编码',
-	bank_branch_name VARCHAR (100) NOT NULL COMMENT '开户行支行名称',
-	bank_branch_address VARCHAR (200) NOT NULL COMMENT '开户行支行地址',
-	intro text COMMENT '店面介绍',
-	out_date datetime NOT NULL COMMENT '有效期至',
 	create_user VARCHAR (50) NOT NULL COMMENT '创建人',
-	create_date datetime NOT NULL COMMENT '创建时间',
+	create_time datetime NOT NULL COMMENT '创建时间',
 	update_user VARCHAR (50) NOT NULL COMMENT '最后修改人',
-	update_date datetime datetime NOT NULL COMMENT '最后修改时间'
-) COMMENT '商户表';
+	update_time datetime NOT NULL COMMENT '最后修改时间'
+) COMMENT '系统参数表';
 
 DROP TABLE
-IF EXISTS um_seller_info_extends;
+IF EXISTS sm_menu_group;
 
-CREATE TABLE um_seller_info_extends (
+CREATE TABLE sm_menu_group (
 	id INT PRIMARY KEY AUTO_INCREMENT COMMENT '主键',
-	uid VARCHAR (20) NOT NULL UNIQUE COMMENT 'uuid',
-	`code` VARCHAR (50) NOT NULL UNIQUE COMMENT '用户编码',
-	`name` VARCHAR (50) NOT NULL COMMENT '名称',
-	short_name VARCHAR (50) DEFAULT '' COMMENT '简称',
-	icon VARCHAR (100) NOT NULL COMMENT '商标',
-	legal_person VARCHAR (50) NOT NULL COMMENT '法人姓名',
-	principal_name VARCHAR (50) NOT NULL COMMENT '负责人姓名',
-	principal_phone VARCHAR (20) NOT NULL COMMENT '负责人电话',
-	valid_documentation_type VARCHAR (50) NOT NULL COMMENT '有效证件类型编码',
-	documentation_number VARCHAR (50) NOT NULL COMMENT '证件号码',
-	valid_documentation_pic VARCHAR (200) NOT NULL COMMENT '证件照，正反面',
-	telephone VARCHAR (20) NOT NULL COMMENT '座机',
-	mobile_phone VARCHAR (20) NOT NULL COMMENT '联系电话',
-	`status` VARCHAR (50) NOT NULL COMMENT '商户状态',
-	brokerage DECIMAL (2, 2) COMMENT '佣金比例',
-	type VARCHAR (50) NOT NULL COMMENT '商户类型',
-	bank_code VARCHAR (50) NOT NULL COMMENT '开户行银行编码',
-	bank_branch_name VARCHAR (100) NOT NULL COMMENT '开户行支行名称',
-	bank_branch_address VARCHAR (200) NOT NULL COMMENT '开户行支行地址',
-	intro text COMMENT '店面介绍',
-	out_date datetime NOT NULL COMMENT '有效期至',
-	area_code VARCHAR (50) NOT NULL COMMENT '地区编码',
-	register_address VARCHAR (200) NOT NULL COMMENT '注册地址',
-	current_address VARCHAR (200) NOT NULL COMMENT '现公司地址',
-	contact_address VARCHAR (200) NOT NULL COMMENT '联系地址',
-	registered_capital INT NOT NULL COMMENT '注册资金',
-	registered_capital_currency_type VARCHAR (50) NOT NULL COMMENT '注册资金币种',
-	business_scope text NOT NULL COMMENT '经营范围',
-	business_license_pic VARCHAR (100) NOT NULL COMMENT '营业执照图片',
-	business_license VARCHAR (50) NOT NULL COMMENT '营业执照号',
-	return_address VARCHAR (200) NOT NULL COMMENT '退货地址',
-	return_postcode VARCHAR (10) NOT NULL COMMENT '退货邮编',
-	return_contact_user VARCHAR (20) NOT NULL COMMENT '退货联系人电话',
-	return_contact_telephone VARCHAR (200) NOT NULL COMMENT '退货联系人地址',
-	create_user VARCHAR (50) NOT NULL COMMENT '创建人',
-	create_date datetime NOT NULL COMMENT '创建时间',
-	update_user VARCHAR (50) NOT NULL COMMENT '最后修改人',
-	update_date datetime datetime NOT NULL COMMENT '最后修改时间'
-) COMMENT '商户扩展表';
-
-DROP TABLE
-IF EXISTS um_seller_info_draft CREATE TABLE um_seller_info_draft (
-	id INT PRIMARY KEY AUTO_INCREMENT COMMENT '主键',
-	uid VARCHAR (20) NOT NULL UNIQUE COMMENT 'uuid',
-	`seller_code` VARCHAR (50) NOT NULL UNIQUE COMMENT '商户编码',
-	seller_data text COMMENT '商户信息json存储',
-	create_user VARCHAR (50) NOT NULL COMMENT '创建人',
-	create_date datetime NOT NULL COMMENT '创建时间',
-	update_user VARCHAR (50) NOT NULL COMMENT '最后修改人',
-	update_date datetime datetime NOT NULL COMMENT '最后修改时间'
-) COMMENT '商户草稿箱';
-
-DROP TABLE
-IF EXISTS um_bank_info;
-
-CREATE TABLE um_bank_info (
-	id INT PRIMARY KEY AUTO_INCREMENT COMMENT '主键',
-	uid VARCHAR (20) NOT NULL UNIQUE COMMENT 'uuid',
+	uid VARCHAR (50) NOT NULL UNIQUE COMMENT 'uid',
 	`code` VARCHAR (50) NOT NULL UNIQUE COMMENT '编码',
 	`name` VARCHAR (50) NOT NULL COMMENT '名称',
 	create_user VARCHAR (50) NOT NULL COMMENT '创建人',
-	create_date datetime NOT NULL COMMENT '创建时间',
+	create_time datetime NOT NULL COMMENT '创建时间',
 	update_user VARCHAR (50) NOT NULL COMMENT '最后修改人',
-	update_date datetime datetime NOT NULL COMMENT '最后修改时间'
-) COMMENT '银行';
+	update_time datetime NOT NULL COMMENT '最后修改时间'
+) COMMENT '菜单分组';
 
+DROP TABLE
+IF EXISTS sm_menu;
+
+CREATE TABLE sm_menu (
+	id INT PRIMARY KEY AUTO_INCREMENT COMMENT '主键',
+	uid VARCHAR (50) NOT NULL UNIQUE COMMENT 'uuid',
+	`code` VARCHAR (50) NOT NULL UNIQUE COMMENT '菜单编码',
+	parent_code VARCHAR (50) DEFAULT '0' COMMENT '父级编码',
+	group_code VARCHAR (50) DEFAULT '' COMMENT '',
+	`name` VARCHAR (50) NOT NULL COMMENT '名称',
+	url VARCHAR (100) DEFAULT '' COMMENT '菜单链接地址',
+	icon varchar(50) DEFAULT '' COMMENT '菜单图标',
+	flag_able INT DEFAULT 0 COMMENT '是否可用 0 可用 1 不可用',
+	create_user VARCHAR (50) NOT NULL COMMENT '创建人',
+	create_time datetime NOT NULL COMMENT '创建时间',
+	update_user VARCHAR (50) NOT NULL COMMENT '最后修改人',
+	update_time datetime NOT NULL COMMENT '最后修改时间'
+) COMMENT '系统菜单表';
+
+DROP TABLE
+IF EXISTS sm_menu_permission;
+
+CREATE TABLE sm_menu_permission (
+	id INT PRIMARY KEY AUTO_INCREMENT COMMENT '主键',
+	uid VARCHAR (50) NOT NULL UNIQUE COMMENT 'uuid',
+	`code` VARCHAR (50) NOT NULL UNIQUE COMMENT '菜单权限编码',
+	menu_code VARCHAR (50) NOT NULL COMMENT '菜单编码',
+	setting text COMMENT '菜单权限 json存储，例如:{add:0,end:1,del:0}',
+	create_user VARCHAR (50) NOT NULL COMMENT '创建人',
+	create_time datetime NOT NULL COMMENT '创建时间',
+	update_user VARCHAR (50) NOT NULL COMMENT '最后修改人',
+	update_time datetime NOT NULL COMMENT '最后修改时间'
+) COMMENT '菜单权限表';
+
+DROP TABLE
+IF EXISTS sm_role;
+
+CREATE TABLE sm_role (
+	id INT PRIMARY KEY AUTO_INCREMENT COMMENT '主键',
+	uid VARCHAR (50) NOT NULL UNIQUE COMMENT 'uuid',
+	`code` VARCHAR (50) NOT NULL UNIQUE COMMENT '角色编码',
+	`name` VARCHAR (50) NOT NULL COMMENT '名称',
+	intro text COMMENT '介绍',
+	flag_able INT DEFAULT 0 COMMENT '是否可用 0 可用 1 不可用',
+	create_user VARCHAR (50) NOT NULL COMMENT '创建人',
+	create_time datetime NOT NULL COMMENT '创建时间',
+	update_user VARCHAR (50) NOT NULL COMMENT '最后修改人',
+	update_time datetime NOT NULL COMMENT '最后修改时间'
+) COMMENT '角色表';
+
+DROP TABLE
+IF EXISTS sm_role_permission;
+
+CREATE TABLE sm_role_permission (
+	id INT PRIMARY KEY AUTO_INCREMENT COMMENT '主键',
+	uid VARCHAR (50) NOT NULL UNIQUE COMMENT 'uuid',
+	role_code VARCHAR (50) NOT NULL COMMENT '角色编码',
+	permission_code VARCHAR (50) NOT NULL COMMENT '权限编码',
+	create_user VARCHAR (50) NOT NULL COMMENT '创建人',
+	create_time datetime NOT NULL COMMENT '创建时间',
+	UNIQUE KEY `role_permission` (
+		`role_code`,
+		`permission_code`
+	)
+) COMMENT '角色权限表';
+
+DROP TABLE
+IF EXISTS sm_server_group;
+
+CREATE TABLE sm_server_group (
+	id INT PRIMARY KEY AUTO_INCREMENT COMMENT '主键',
+	uid VARCHAR (50) NOT NULL UNIQUE COMMENT 'uuid',
+	`code` VARCHAR (50) NOT NULL UNIQUE COMMENT '编码',
+	`name` VARCHAR (50) NOT NULL COMMENT '名称',
+	create_user VARCHAR (50) NOT NULL COMMENT '创建人',
+	create_time datetime NOT NULL COMMENT '创建时间',
+	update_user VARCHAR (50) NOT NULL COMMENT '最后修改人',
+	update_time datetime NOT NULL COMMENT '最后修改时间'
+) COMMENT '服务器分类';
+
+DROP TABLE
+IF EXISTS sm_server;
+
+CREATE TABLE sm_server (
+	id INT PRIMARY KEY AUTO_INCREMENT COMMENT '主键',
+	uid VARCHAR (50) NOT NULL UNIQUE COMMENT 'uuid',
+	`code` VARCHAR (50) NOT NULL UNIQUE COMMENT '编码',
+	`name` VARCHAR (50) NOT NULL COMMENT '服务器名称',
+	ip VARCHAR (50) NOT NULL COMMENT '服务器ip地址',
+	group_code VARCHAR (50) NOT NULL COMMENT '服务器分组',
+	description text COMMENT '描述',
+	create_user VARCHAR (50) NOT NULL COMMENT '创建人',
+	create_time datetime NOT NULL COMMENT '创建时间',
+	update_user VARCHAR (50) NOT NULL COMMENT '最后修改人',
+	update_time datetime NOT NULL COMMENT '最后修改时间'
+) COMMENT '系统服务器';
