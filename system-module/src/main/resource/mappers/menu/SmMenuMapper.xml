@@ -11,6 +11,7 @@
 		<result column="group_name" property="groupName" jdbcType="VARCHAR" />
 		<result column="name" property="name" jdbcType="VARCHAR" />
 		<result column="url" property="url" jdbcType="VARCHAR" />
+		<result column="icon" property="icon" jdbcType="VARCHAR" />
 		<result column="flag_able" property="flagAble" jdbcType="INTEGER" />
 		<result column="create_user" property="createUser" jdbcType="VARCHAR" />
 		<result column="create_time" property="createTime" jdbcType="VARCHAR" />
@@ -18,7 +19,7 @@
 		<result column="update_time" property="updateTime" jdbcType="VARCHAR" />
 	</resultMap>
 	<sql id="Base_Column_List">
-		id, uid, `code`, parent_code, group_code, `name`, url,
+		id, uid, `code`, parent_code, group_code, `name`, url,icon,
 		flag_able,
 		create_user, DATE_FORMAT(create_time,'%Y-%m-%d') AS
 		create_time,
@@ -48,6 +49,9 @@
 			</if>
 			group_code,
 			`name`,
+			<if test="url != null">
+				url,
+			</if>
 			<if test="url != null">
 				url,
 			</if>

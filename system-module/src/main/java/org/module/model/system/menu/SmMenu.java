@@ -39,6 +39,10 @@ public class SmMenu extends BaseModel {
 	@JSONField(name = "url")
 	private String url;
 
+	@AttributeExplain(name = "icon", description = "菜单前缀图标")
+	@JSONField(name = "icon")
+	private String icon;
+
 	@AttributeExplain(name = "flagAble", description = "菜单是否可用 0 可用 1不可用", defaultVal = "0")
 	@JSONField(name = "flag_able")
 	private Integer flagAble;
@@ -46,6 +50,14 @@ public class SmMenu extends BaseModel {
 	@AttributeExplain(name = "childMenu", description = "子级分类", defaultVal = "")
 	@JSONField(name = "child_menu")
 	private List<SmMenu> childMenu;
+
+	public String getIcon() {
+		return icon;
+	}
+
+	public void setIcon(String icon) {
+		this.icon = icon;
+	}
 
 	public List<SmMenu> getChildMenu() {
 		return childMenu;
