@@ -49,6 +49,6 @@
 	        </listener-class>  
 	</listener>
 	<welcome-file-list>
-		<welcome-file>system/menu/addindex.htm</welcome-file>
+		<welcome-file>system/menugroup/index.htm</welcome-file>
 	</welcome-file-list>
 </web-app>

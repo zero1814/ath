@@ -12,6 +12,7 @@
 <base href="<%=basePath%>">
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <link href="assets/plugins/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet">
+<link href="assets/plugins/bootstrap/plugins/bootstrap-table/bootstrap-table.min.css" rel="stylesheet">
 <link href="assets/font/font-awesome/4.7.0/css/font-awesome.css" rel="stylesheet">
 <link href="assets/commons/css/animate.css" rel="stylesheet">
 <link href="assets/commons/css/style.css?v=1.0.0" rel="stylesheet">

@@ -3,13 +3,16 @@ package org.system.module;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.module.commons.helper.CodeHelper;
+import org.module.dto.system.menu.SmMenuGroupDto;
 import org.module.model.system.menu.SmMenuGroup;
 import org.module.result.DataResult;
+import org.module.result.PageResult;
 import org.module.service.system.menu.ISmMenuGroupService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
+import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
 
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -19,7 +22,6 @@ public class SmMenuGroupTest {
 	@Autowired
 	private ISmMenuGroupService service;
 
-	@Test
 	public void insert() {
 
 		SmMenuGroup product = new SmMenuGroup();
@@ -66,5 +68,14 @@ public class SmMenuGroupTest {
 	public void getMenu() {
 		DataResult result = service.getMenuData(null);
 		System.out.println(JSONArray.toJSON(result));
+	}
+
+	@Test
+	public void data() {
+		SmMenuGroupDto dto = new SmMenuGroupDto();
+		dto.setPageIndex(0);
+		dto.setPageSize(10);
+		PageResult result = service.findEntityToPage(dto);
+		System.out.println(JSON.toJSON(result));
 	}
 }

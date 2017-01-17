@@ -1,5 +1,7 @@
 package org.module.model;
 
+import com.alibaba.fastjson.annotation.JSONField;
+
 /**
  * 
  * 类: BaseModel <br>
@@ -9,16 +11,22 @@ package org.module.model;
  */
 public class BaseModel {
 
+	@JSONField(name = "id")
 	private Integer id;
 
+	@JSONField(name = "uid")
 	private String uid;
 
+	@JSONField(name = "create_user")
 	private String createUser;
 
+	@JSONField(name = "create_time")
 	private String createTime;
 
+	@JSONField(name = "update_user")
 	private String updateUser;
 
+	@JSONField(name = "update_time")
 	private String updateTime;
 
 	public Integer getId() {

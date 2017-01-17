@@ -187,6 +187,12 @@ public class BaseServiceImpl<T extends BaseModel, M extends BaseMapper<T, DTO>, 
 	public PageResult findEntityToPage(DTO dto) {
 		PageResult result = new PageResult();
 		try {
+			if(dto.getPageIndex() == null){
+				dto.setPageIndex(0);
+			}
+			if(dto.getPageSize() == null){
+				dto.setPageSize(10);
+			}
 			dto.setStart(dto.getPageIndex() * dto.getPageSize());
 			List<T> list = mapper.findEntityAll(dto);
 			if (list == null || list.size() <= 0) {
