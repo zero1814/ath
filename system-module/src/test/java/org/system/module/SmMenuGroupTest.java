@@ -19,12 +19,8 @@ public class SmMenuGroupTest {
 	@Autowired
 	private ISmMenuGroupService service;
 
+	@Test
 	public void insert() {
-		SmMenuGroup system = new SmMenuGroup();
-		system.setCode(CodeHelper.getUniqueCode("SM"));
-		system.setName("系统相关");
-		system.setCreateUser("admin");
-		service.insertSelective(system);
 
 		SmMenuGroup product = new SmMenuGroup();
 		product.setCode(CodeHelper.getUniqueCode("SM"));
@@ -32,30 +28,41 @@ public class SmMenuGroupTest {
 		product.setCreateUser("admin");
 		service.insertSelective(product);
 
-		SmMenuGroup seller = new SmMenuGroup();
-		seller.setCode(CodeHelper.getUniqueCode("SM"));
-		seller.setName("商户相关");
-		seller.setCreateUser("admin");
-		service.insertSelective(seller);
-
 		SmMenuGroup order = new SmMenuGroup();
 		order.setCode(CodeHelper.getUniqueCode("SM"));
 		order.setName("订单相关");
 		order.setCreateUser("admin");
 		service.insertSelective(order);
 
-		SmMenuGroup activity = new SmMenuGroup();
-		activity.setCode(CodeHelper.getUniqueCode("SM"));
-		activity.setName("活动相关");
-		activity.setCreateUser("admin");
-		service.insertSelective(activity);
+		SmMenuGroup user = new SmMenuGroup();
+		user.setCode(CodeHelper.getUniqueCode("SM"));
+		user.setName("用户相关");
+		user.setCreateUser("admin");
+		service.insertSelective(user);
+
+		SmMenuGroup data = new SmMenuGroup();
+		data.setCode(CodeHelper.getUniqueCode("SM"));
+		data.setName("数据相关");
+		data.setCreateUser("admin");
+		service.insertSelective(data);
+
+		SmMenuGroup flow = new SmMenuGroup();
+		flow.setCode(CodeHelper.getUniqueCode("SM"));
+		flow.setName("审批相关");
+		flow.setCreateUser("admin");
+		service.insertSelective(flow);
+
+		SmMenuGroup system = new SmMenuGroup();
+		system.setCode(CodeHelper.getUniqueCode("SM"));
+		system.setName("系统相关");
+		system.setCreateUser("admin");
+		service.insertSelective(system);
 	}
 
 	public void delete() {
 		service.deleteByCode("SM816070848015233024");
 	}
 
-	@Test
 	public void getMenu() {
 		DataResult result = service.getMenuData(null);
 		System.out.println(JSONArray.toJSON(result));
