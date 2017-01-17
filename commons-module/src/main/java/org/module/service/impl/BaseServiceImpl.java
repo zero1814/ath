@@ -187,18 +187,18 @@ public class BaseServiceImpl<T extends BaseModel, M extends BaseMapper<T, DTO>, 
 	public PageResult findEntityToPage(DTO dto) {
 		PageResult result = new PageResult();
 		try {
-			if(dto.getPageIndex() == null){
+			if (dto.getPageIndex() == null) {
 				dto.setPageIndex(0);
 			}
-			if(dto.getPageSize() == null){
+			if (dto.getPageSize() == null) {
 				dto.setPageSize(10);
 			}
 			dto.setStart(dto.getPageIndex() * dto.getPageSize());
-			List<T> list = mapper.findEntityAll(dto);
+			List<T> list = mapper.findEntityAllToPage(dto);
 			if (list == null || list.size() <= 0) {
 				list = new ArrayList<T>();
 			}
-			int total = mapper.findEntityAllCount(dto);
+			int total = mapper.findEntityAllCountToPage(dto);
 			result.setCode(0);
 			result.setMessage("获取分页数据成功");
 			result.setData(list);

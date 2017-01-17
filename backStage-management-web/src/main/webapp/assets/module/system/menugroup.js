@@ -24,11 +24,12 @@ var columns = [ {
 	field : 'update_time',
 	title : '修改时间'
 } ];
-var params = {};
+var params = {pageIndex:0,pageSize:10};
 var MenuGroup = {
 	data : function(table) {
 		var $table = $("#table");
 		var $tool = $("#tools");
+		alert(1);
 		Table.init($table, $tool, dataUrl, params, columns);
 	}
 };

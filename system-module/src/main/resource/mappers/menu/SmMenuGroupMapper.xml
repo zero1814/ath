@@ -13,8 +13,10 @@
 	</resultMap>
 	<sql id="Base_Column_List">
 		id, uid, code, name, create_user,
-		DATE_FORMAT(create_time,'%Y-%m-%d %H:%i:%s') AS create_time, update_user,
-		DATE_FORMAT(update_time,'%Y-%m-%d %H:%i:%s') AS update_time
+		DATE_FORMAT(create_time,'%Y-%m-%d %H:%i:%s') AS create_time,
+		update_user,
+		DATE_FORMAT(update_time,'%Y-%m-%d %H:%i:%s') AS
+		update_time
 	</sql>
 	<select id="selectByCode" resultMap="BaseResultMap"
 		parameterType="java.lang.String">
@@ -60,7 +62,11 @@
 		</set>
 		where `code` = #{code,jdbcType=VARCHAR}
 	</update>
-	<select id="findEntityAll" resultMap="BaseResultMap"
+	<select id="findEntityAll" resultMap="BaseResultMap">
+		select `code`,`name` from
+		sm_menu_group
+	</select>
+	<select id="findEntityAllToPage" resultMap="BaseResultMap"
 		parameterType="org.module.dto.system.menu.SmMenuGroupDto">
 		select
 		<include refid="Base_Column_List" />
@@ -69,7 +75,7 @@
 		limit
 		#{start,jdbcType=INTEGER},#{pageSize,jdbcType=INTEGER}
 	</select>
-	<select id="findEntityAllCount" resultType="java.lang.Integer"
+	<select id="findEntityAllCountToPage" resultType="java.lang.Integer"
 		parameterType="org.module.dto.system.menu.SmMenuGroupDto">
 		select count(1) from
 		sm_menu_group

@@ -1,6 +1,10 @@
 package org.module.controller.system.menu;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.module.dto.system.menu.SmMenuGroupDto;
+import org.module.model.system.menu.SmMenuGroup;
 import org.module.result.DataResult;
 import org.module.result.PageResult;
 import org.module.service.system.menu.ISmMenuGroupService;
@@ -21,10 +25,16 @@ public class SmMenuGroupController {
 		return "jsp/system/menugroup/index";
 	}
 
+	@SuppressWarnings("unchecked")
 	@RequestMapping("data")
 	@ResponseBody
-	public PageResult data(SmMenuGroupDto dto) {
-		return service.findEntityToPage(dto);
+	public List<SmMenuGroup> data(SmMenuGroupDto dto) {
+		PageResult result = service.findEntityToPage(dto);
+		List<SmMenuGroup> list = new ArrayList<SmMenuGroup>();
+		if (result.getCode() == 0) {
+			list = (List<SmMenuGroup>) result.getData();
+		}
+		return list;
 	}
 
 	@RequestMapping("menus")

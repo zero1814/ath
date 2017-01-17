@@ -14,13 +14,14 @@ var Table = {
 	 * url请求参数
 	 */
 	queryParams : {},
-	init : function(table, tool, url, param, columns) {
+	init : function(table, tool, url, params, columns) {
 		/**
 		 * 参数赋值
 		 */
 		Table.url = url;
-		Table.queryParams = param;
 		Table.columns = columns;
+		Table.queryParams = params;
+		alert(2);
 		/**
 		 * 加载数据
 		 */
@@ -28,39 +29,14 @@ var Table = {
 		Table.setEvent(table);
 	},
 	/**
-	 * json初始化数据表
-	 * 
-	 * @param {Object}
-	 *            table
-	 * @param {Object}
-	 *            tool
-	 */
-	setTableToJSON : function(table, tool) {
-		$(table).bootstrapTable({
-			url : "demo/bootstrap_table_test.json",
-			pagination : true,
-			showRefresh : true,
-			showToggle : false,
-			showColumns : true,
-			iconSize : 'outline',
-			height : 550, // 行高，如果没有设置height属性，表格自动根据记录条数觉得表格高度
-			toolbar : $(tool).attr("id"),
-			icons : {
-				refresh : 'glyphicon-repeat',
-				columns : 'glyphicon-list'
-			}
-		});
-	},
-	/**
 	 * url初始化数据表
 	 */
 	setTableToUrl : function(table, tool) {
-		alert(JSON.stringify(table));
 		// 初始化Table
 		$(table).bootstrapTable({
 			url : Table.url, // 请求后台的URL（*）
 			method : 'post', // 请求方式（*）
-			toolbar : $("#tool").attr("id"), // 工具按钮用哪个容器
+			toolbar : $(tool).attr("id"), // 工具按钮用哪个容器
 			striped : true, // 是否显示行间隔色
 			cache : false, // 是否使用缓存，默认为true，所以一般情况下需要设置一下这个属性（*）
 			pagination : true, // 是否显示分页（*）
@@ -86,19 +62,6 @@ var Table = {
 			},
 			columns : Table.columns
 		});
-	},
-	/**
-	 * 获取url请求参数
-	 */
-	queryParams : function(params) {
-		var p = Table.queryParams;
-		// 这里的键的名字和控制器的变量名必须一直，这边改动，控制器也需要改成一样的
-		// 页面大小
-		p.limit = params.limit;
-		// 页码
-		p.offset = params.offset;
-		alert(JSON.stringify(p));
-		return p;
 	},
 	/**
 	 * 加载表格显示列
@@ -182,34 +145,5 @@ var Table = {
 		.on('search.bs.table', function(e, text) {
 			$result.text('Event: search.bs.table');
 		});
-	},
-	/**
-	 * 添加新数据
-	 * 
-	 * @param {Object}
-	 *            url
-	 * @param {Object}
-	 *            formId
-	 */
-	addData : function(url, formId) {
-
-	},
-	/**
-	 * 编辑显示数据
-	 */
-	editData : function() {
-
-	},
-	/**
-	 * 删除数据
-	 */
-	delData : function() {
-
-	},
-	/**
-	 * 删除全部数据
-	 */
-	delDataAll : function() {
-
 	}
 }
