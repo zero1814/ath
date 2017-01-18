@@ -33,7 +33,6 @@
 <script src="assets/module/system/menugroup.js"></script>
 <script type="text/javascript">
 	$(document).ready(function() {
-		alert(0);
 		MenuGroup.data();
 	});
 </script>

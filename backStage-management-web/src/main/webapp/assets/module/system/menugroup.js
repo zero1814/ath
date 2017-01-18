@@ -6,30 +6,34 @@
  */
 var dataUrl = "system/menugroup/data.htm";
 var columns = [ {
+	checkbox : true
+}, {
 	field : 'code',
 	title : '编码'
 }, {
 	field : 'name',
 	title : '名称'
 }, {
-	field : 'create_user',
+	field : 'createUser',
 	title : '创建人'
 }, {
-	field : 'create_time',
+	field : 'createTime',
 	title : '创建时间'
 }, {
-	field : 'update_user',
+	field : 'updateUser',
 	title : '修改人'
 }, {
-	field : 'update_time',
+	field : 'updateTime',
 	title : '修改时间'
 } ];
-var params = {pageIndex:0,pageSize:10};
+var params = {
+	pageIndex : 0,
+	pageSize : 10
+};
 var MenuGroup = {
-	data : function(table) {
+	data : function() {
 		var $table = $("#table");
 		var $tool = $("#tools");
-		alert(1);
 		Table.init($table, $tool, dataUrl, params, columns);
 	}
 };

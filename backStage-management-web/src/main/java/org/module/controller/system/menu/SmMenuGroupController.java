@@ -13,6 +13,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.alibaba.fastjson.JSONObject;
+
 @Controller
 @RequestMapping("system/menugroup")
 public class SmMenuGroupController {
@@ -28,13 +30,17 @@ public class SmMenuGroupController {
 	@SuppressWarnings("unchecked")
 	@RequestMapping("data")
 	@ResponseBody
-	public List<SmMenuGroup> data(SmMenuGroupDto dto) {
+	public JSONObject data(SmMenuGroupDto dto) {
 		PageResult result = service.findEntityToPage(dto);
 		List<SmMenuGroup> list = new ArrayList<SmMenuGroup>();
+		JSONObject obj = new JSONObject();
 		if (result.getCode() == 0) {
 			list = (List<SmMenuGroup>) result.getData();
+			obj.put("total", list.size());
+			obj.put("rows", list);
 		}
-		return list;
+		System.out.println(obj.toJSONString());
+		return obj;
 	}
 
 	@RequestMapping("menus")
