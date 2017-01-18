@@ -7,6 +7,7 @@
 		<result column="code" property="code" jdbcType="VARCHAR" />
 		<result column="parent_code" property="parentCode" jdbcType="VARCHAR" />
 		<result column="parent_name" property="parentName" jdbcType="VARCHAR" />
+		<result column="parent_url" property="parentUrl" jdbcType="VARCHAR" />
 		<result column="group_code" property="groupCode" jdbcType="VARCHAR" />
 		<result column="group_name" property="groupName" jdbcType="VARCHAR" />
 		<result column="name" property="name" jdbcType="VARCHAR" />
@@ -110,18 +111,21 @@
 	<select id="findEntityAll" parameterType="org.module.dto.system.menu.SmMenuDto"
 		resultMap="BaseResultMap">
 		select
-		`code`,
-		`name`,
-		parent_code,
-		url
-		from sm_menu
+		s.`code`,
+		s.`name`,
+		s.url,
+		s.parent_code,
+		(select p.url from sm_menu
+		as p where p.`code` = s.`code`) as parent_url,
+		s.icon
+		from sm_menu as s
 		<where>
-			flag_able = 0
+			s.flag_able = 0
 			<if test="groupCode != null and groupCode != ''">
-				AND group_code = #{groupCode,jdbcType=VARCHAR}
+				AND s.group_code = #{groupCode,jdbcType=VARCHAR}
 			</if>
 			<if test="parentCode != null and parentCode != ''">
-				AND parent_code = #{parentCode,jdbcType=VARCHAR}
+				AND s.parent_code = #{parentCode,jdbcType=VARCHAR}
 			</if>
 		</where>
 	</select>

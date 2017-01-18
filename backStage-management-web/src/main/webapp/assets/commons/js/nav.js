@@ -10,23 +10,24 @@ var Nav = {
 	 * 初始化加载
 	 */
 	init : function() {
+		var data = [];
 		$.ajax({
 			url : "system/menugroup/menus.htm",
 			type : "POST",
 			dataType : "json",
 			success : function(result) {
 				if (result.code == 0) {
-					var data = result.data;
-					var html = Nav.drawNav(data);
+					var html = Nav.drawNav(result.data);
 					$("#nav").html(html);
 				} else {
-					alert(result.message);
+					layer.msg(result.message, "error");
 				}
 			},
 			error : function(error) {
-				alert(JSON.stringify(error));
+				layer.msg(JSON.stringify(error), "error");
 			}
 		});
+		return data;
 	},
 	/**
 	 * 绘制左侧菜单栏
@@ -98,14 +99,14 @@ var Nav = {
 		if (menus) {
 			for (var i = 0; i < menus.length; i++) {
 				var menu = menus[i];
-				var href = "#";
+				var href = "javascript:void(0)";
 				if (menu.url) {
 					href = menu.url;
 				}
 				html += "<li>";
-				html += "<a href=\"" + href + "\">";
+				html += "<a  class=\"J_menuItem\" href=\"" + href + "\">";
 				if (menu.parentCode == '0') {
-					html += "<i class=\"fa fa fa-bar-chart-o\"></i>";
+					html += "<i class=\"fa " + menu.icon + "\"></i>";
 				}
 				html += "<span class=\"nav-label\">" + menu.name + "</span>";
 				if (menu.childMenu) {

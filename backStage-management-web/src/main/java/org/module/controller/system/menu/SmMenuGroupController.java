@@ -39,7 +39,6 @@ public class SmMenuGroupController {
 			obj.put("total", list.size());
 			obj.put("rows", list);
 		}
-		System.out.println(obj.toJSONString());
 		return obj;
 	}
 

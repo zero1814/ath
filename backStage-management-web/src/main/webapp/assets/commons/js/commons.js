@@ -1,24 +1,10 @@
 /**
  * 公共函数
  */
+// 初始化菜单
 $(document).ready(function() {
-	Nav.init();
 	// MetsiMenu
-	setTimeout("$('#side-menu').metisMenu()", 500);
-	// 打开右侧边栏
-	$('.right-sidebar-toggle').click(function() {
-		$('#right-sidebar').toggleClass('sidebar-open');
-	});
-
-	// 固定菜单栏
-	$(function() {
-		$('.sidebar-collapse').slimScroll({
-			height : '100%',
-			railOpacity : 0.9,
-			alwaysVisible : false
-		});
-	});
-
+	$('#side-menu').metisMenu()
 	// 菜单切换
 	$('.navbar-minimalize').click(function() {
 		$("body").toggleClass("mini-navbar");

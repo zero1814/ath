@@ -1,7 +1,9 @@
 package org.module.controller;
 
+import org.module.result.DataResult;
 import org.module.result.index.IndexResult;
 import org.module.service.IndexService;
+import org.module.service.system.menu.ISmMenuGroupService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -11,7 +13,24 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class IndexController {
 
 	@Autowired
+	public ISmMenuGroupService menuGroupService;
+
+	@Autowired
 	private IndexService service;
+
+	@RequestMapping("index")
+	public String index(ModelMap model) {
+		String userCode = "";
+		DataResult result = menuGroupService.getMenuData(userCode);
+		String url = "";
+		if (result.getCode() == 0) {
+			model.addAttribute("menugroups", result.getData());
+			url = "jsp/index";
+		} else {
+			url = "jsp/commons/500";
+		}
+		return url;
+	}
 
 	/**
 	 * 
@@ -24,7 +43,7 @@ public class IndexController {
 	 * @param userCode
 	 * @return
 	 */
-	@RequestMapping("index")
+	@RequestMapping("index2")
 	public String index(ModelMap model, String userCode) {
 		String url = "";
 		IndexResult result = service.init(userCode);
