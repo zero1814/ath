@@ -81,3 +81,9 @@ function SmoothlyMenu() {
 		$('#side-menu').removeAttr('style');
 	}
 }
+
+var Constant={
+		pageNumber:1,
+		pageSize:10,
+		PageSizeArray:[10,20,50,100]
+};
