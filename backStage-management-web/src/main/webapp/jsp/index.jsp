@@ -29,6 +29,24 @@
 			<div class="nav-close"><i class="fa fa-times-circle"></i></div>
             <div class="sidebar-collapse">
                 <ul class="nav" id="side-menu">
+                 <li class="nav-header">
+                     <div class="dropdown profile-element">
+                         <a data-toggle="dropdown" class="dropdown-toggle" href="#">
+                             <span class="clear">
+                                 <span class="block m-t-xs" style="font-size:20px;">
+                                     <i class="fa fa-area-chart"></i>
+                                     <strong class="font-bold">随时帮</strong>
+                                 </span>
+                             </span>
+                         </a>
+                     </div>
+                 </li>
+                 <li>
+                     <a class="J_menuItem" href="index2.htm">
+                         <i class="fa fa-home"></i>
+                         <span class="nav-label">主页</span>
+                     </a>
+                 </li>
 				<c:if test="${fn:length(menugroups)>0}">
 					<c:forEach var="group" items="${menugroups}">
 						<c:choose>
@@ -112,7 +130,6 @@
 		//菜单点击
 		$(".J_menuItem").on('click', function() {
 			var url = $(this).attr('href');
-			alert(url);
 			$("#J_iframe").attr('src', url);
 			return false;
 		});

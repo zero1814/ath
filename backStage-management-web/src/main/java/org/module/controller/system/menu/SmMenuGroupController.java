@@ -36,7 +36,7 @@ public class SmMenuGroupController {
 		JSONObject obj = new JSONObject();
 		if (result.getCode() == 0) {
 			list = (List<SmMenuGroup>) result.getData();
-			obj.put("total", list.size());
+			obj.put("total", result.getTotal());
 			obj.put("rows", list);
 		}
 		return obj;

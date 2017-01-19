@@ -9,14 +9,10 @@ package org.module.dto;
  */
 public class BaseDto {
 
-	private Integer limit;
-	private Integer offset;
-	private Integer pageNumber;
-
 	/**
 	 * 当前页
 	 */
-	private Integer pageIndex;
+	private Integer pageNumber;
 	/**
 	 * 页面显示数据最大数
 	 */
@@ -30,36 +26,12 @@ public class BaseDto {
 	 */
 	private Integer total;
 
-	public Integer getLimit() {
-		return limit;
-	}
-
-	public void setLimit(Integer limit) {
-		this.limit = limit;
-	}
-
-	public Integer getOffset() {
-		return offset;
-	}
-
-	public void setOffset(Integer offset) {
-		this.offset = offset;
-	}
-
 	public Integer getPageNumber() {
 		return pageNumber;
 	}
 
 	public void setPageNumber(Integer pageNumber) {
 		this.pageNumber = pageNumber;
-	}
-
-	public Integer getPageIndex() {
-		return pageIndex;
-	}
-
-	public void setPageIndex(Integer pageIndex) {
-		this.pageIndex = pageIndex;
 	}
 
 	public Integer getPageSize() {
