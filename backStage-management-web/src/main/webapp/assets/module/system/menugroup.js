@@ -28,7 +28,7 @@ var columnsArray = [ {
 } ];
 var MenuGroup = {
 	defaultPageNumber : 1,
-	defaultPageSize : 2,
+	defaultPageSize : 10,
 	defaultPageSizeArray : [10,20,50,100],
 	data : function() {
 		$("#table").bootstrapTable({
