@@ -31,7 +31,7 @@ var MenuGroup = {
 		$("#table").bootstrapTable({
 			url : dataUrl, // 请求后台的URL（*）
 			method : 'get', // 请求方式（*）
-			dataType: "json",
+			dataType : "json",
 			toolbar : $("#tools").attr("id"), // 工具按钮用哪个容器
 			striped : true, // 是否显示行间隔色
 			cache : false, // 是否使用缓存，默认为true，所以一般情况下需要设置一下这个属性（*）
@@ -39,7 +39,7 @@ var MenuGroup = {
 			sortable : true, // 是否启用排序
 			sortOrder : "desc", // 排序方式
 			queryParams : MenuGroup.initDataParam,// 传递参数（*）
-			queryParamsType:"limit",
+			queryParamsType : "limit",
 			sidePagination : "server", // 分页方式：client客户端分页，server服务端分页（*）
 			pageNumber : Constant.pageNumber, // 初始化加载第一页，默认第一页
 			pageSize : Constant.pageSize, // 每页的记录行数（*）
@@ -59,10 +59,19 @@ var MenuGroup = {
 		});
 	},
 	initDataParam : function(params) {
-		var tmp = {
-			pageNumber : params.pageNumber,
-			pageSize : params.limit
-		};
+		var tmp = $("#searchFrm").serialize();
+		if (tmp) {
+			tmp.pageNumber = params.pageNumber;
+			tmp.pageSize = params.limit;
+		} else {
+			tmp = {
+				pageNumber : params.pageNumber,
+				pageSize : params.limit
+			};
+		}
 		return tmp;
+	},
+	search : function() {
+		$('#table').bootstrapTable('refresh');
 	}
 };

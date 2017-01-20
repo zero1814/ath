@@ -4,13 +4,27 @@
 <div class="row">
 	<div class="col-sm-12">
 		<div class="float-e-margins">
-			<div class="btn-group hidden-xs" id="tools" role="group">
-				<button type="button" class="btn btn-outline btn-default">
-					<i class="glyphicon glyphicon-plus" aria-hidden="true"></i>
-				</button>
-				<button type="button" class="btn btn-outline btn-default">
-					<i class="glyphicon glyphicon-trash" aria-hidden="true"></i>
-				</button>
+			<div class=" hidden-xs" id="tools" role="group">
+				<form id="searchFrm" class="form-horizontal" action="">
+					<div class="form-group">
+						<label class="col-sm-3 control-label">编码：</label>
+						<div class="col-sm-3">
+							<input id="code" name="code" class="form-control" type="text">
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="col-sm-3 control-label">名称：</label>
+						<div class="col-sm-3">
+							<input id="name" name="name" class="form-control" type="text">
+						</div>
+					</div>
+				<div class="form-group">
+					<div class="col-sm-3"></div>
+					<div class="col-sm-3" style="text-align: center;">
+						<a href="javascript:void(0)" onclick="MenuGroup.search();" class="btn btn-primary">查询</a>
+					</div>
+				</div>
+				</form>
 			</div>
 			<table id="table" data-height="400" data-mobile-responsive="true">
 				<thead>
