@@ -25,8 +25,16 @@ var columnsArray = [ {
 }, {
 	field : 'updateTime',
 	title : '修改时间'
+}, {
+	field : 'edit_group',
+	title : '编辑'
+}, {
+	field : 'del_group',
+	title : '删除'
 } ];
 var MenuGroup = {
+	addLayer : '',
+	editLayer : '',
 	data : function() {
 		$("#table").bootstrapTable({
 			url : dataUrl, // 请求后台的URL（*）
@@ -73,5 +81,142 @@ var MenuGroup = {
 	},
 	search : function() {
 		$('#table').bootstrapTable('refresh');
+	},
+	/**
+	 * 打开添加页面弹出层
+	 */
+	openAdd : function() {
+		MenuGroup.addLayer = layer.open({
+			// 基本层类型
+			// 0（信息框，默认）1（页面层）2（iframe层）3（加载层）4（tips层）
+			type : 1,
+			// 标题
+			title : "添加菜单组",
+			// 关闭按钮
+			closeBtn : 1,
+			// 宽高
+			area : [ '500px', '300px' ],
+			// 样式类名
+			skin : 'layui-layer-lan',
+			// 是否点击遮罩关闭
+			shadeClose : false,
+			// 内容
+			content : $('#addGroup')
+		});
+	},
+	closeAdd : function() {
+		if (MenuGroup.addLayer) {
+			layer.close(MenuGroup.addLayer);
+		}
+	},
+	add : function() {
+		var param = {
+			name : $("#addName").val()
+		}
+		$.ajax({
+			url : "system/menugroup/add.htm",
+			type : "POST",
+			data : param,
+			success : function(result) {
+				result = JSON.parse(result);
+				if (result.code == 0) {
+					layer.close(MenuGroup.addLayer);
+					layer.alert('添加成功', function(index) {
+						layer.close(index);
+						$('#table').bootstrapTable('refresh');
+					});
+				}
+			},
+			error : function(result) {
+				layer.alert('添加失败');
+			}
+		});
+	},
+	/**
+	 * 打开添加页面弹出层
+	 */
+	openEdit : function(codeVal,nameVal) {
+		$("#editCode").val(codeVal);
+		$("#editName").val(nameVal);
+		MenuGroup.editLayer = layer.open({
+			// 基本层类型
+			// 0（信息框，默认）1（页面层）2（iframe层）3（加载层）4（tips层）
+			type : 1,
+			// 标题
+			title : "编辑菜单组",
+			// 关闭按钮
+			closeBtn : 1,
+			// 宽高
+			area : [ '500px', '300px' ],
+			// 样式类名
+			skin : 'layui-layer-lan',
+			// 是否点击遮罩关闭
+			shadeClose : false,
+			// 内容
+			content : $('#editGroup')
+		});
+	},
+	closeEdit : function() {
+		if (MenuGroup.editLayer) {
+			layer.close(MenuGroup.editLayer);
+		}
+	},
+	edit : function() {
+		layer.confirm('您确定要编辑选中菜单组吗？', {
+			btn : [ '确定', '取消' ]
+		// 按钮
+		}, function() {
+			var param = {
+				code : $("#editCode").val(),
+				name : $("#editName").val()
+			};
+			$.ajax({
+				url : "system/menugroup/edit.htm",
+				type : "POST",
+				data : param,
+				success : function(result) {
+					result = JSON.parse(result);
+					if (result.code == 0) {
+						layer.close(MenuGroup.editLayer);
+						layer.alert('编辑成功', function(index) {
+							layer.close(index);
+							$('#table').bootstrapTable('refresh');
+						});
+					}
+				},
+				error : function(result) {
+					layer.alert('编辑失败');
+				}
+			});
+		}, function() {
+			layer.close(MenuGroup.editLayer);
+		});
+	},
+	del : function(codeVal) {
+		layer.confirm('您确定要删除选中菜单组吗？', {
+			btn : [ '确定', '取消' ]
+		// 按钮
+		}, function() {
+			var param = {
+				code : codeVal
+			}
+			$.ajax({
+				url : "system/menugroup/del.htm",
+				type : "POST",
+				data : param,
+				success : function(result) {
+					result = JSON.parse(result);
+					if (result.code == 0) {
+						layer.alert('删除成功', function(index) {
+							layer.close(index);
+							$('#table').bootstrapTable('refresh');
+						});
+					}
+				},
+				error : function(result) {
+					layer.alert('删除失败');
+				}
+			});
+		});
 	}
 };
