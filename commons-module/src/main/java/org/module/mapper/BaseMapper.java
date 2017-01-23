@@ -54,6 +54,18 @@ public interface BaseMapper<T extends BaseModel, DTO extends BaseDto> {
 
 	/**
 	 * 
+	 * 方法: deleteByCodes <br>
+	 * 描述: 根据编码集合批量删除菜单组 <br>
+	 * 作者: zhy<br>
+	 * 时间: 2017年1月22日 下午3:49:56
+	 * 
+	 * @param codes
+	 * @return
+	 */
+	int deleteByCodes(List<String> codes);
+
+	/**
+	 * 
 	 * 方法: selectByPrimaryKey <br>
 	 * 描述: 根据编码查询现有对象 <br>
 	 * 作者: zhy<br>

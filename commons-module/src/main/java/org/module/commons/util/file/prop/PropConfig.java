@@ -25,7 +25,6 @@ public class PropConfig {
 	public static MStringMap init(String nameSpace) {
 		MStringMap newMap = new MStringMap();
 		MStringMap map = PropLoad.instance().getData("config");
-
 		for (String str : map.getKeys()) {
 			if (StringUtils.contains(str, nameSpace)) {
 				newMap.put(str, map.get(str));

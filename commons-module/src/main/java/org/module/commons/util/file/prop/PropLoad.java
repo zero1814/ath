@@ -85,11 +85,9 @@ public class PropLoad extends BaseClass {
 						}
 						// 本配置指向
 						else if (sTarget.equals("this")) {
-
 						}
 						key = StringUtils.substringAfter(key, "$");
 					}
-
 					if (overWriteFlag || !map.containsKey(key)) {
 						map.put(key, value);
 					}
@@ -120,17 +118,17 @@ public class PropLoad extends BaseClass {
 	 * @return
 	 */
 	public MStringMap getData(String type) {
-		MStringMap map = null;
+		MStringMap map = new MStringMap();
 		try {
-			getLogger().logInfo("开始读取info配置文件");
+			getLogger().logInfo("开始读取properties配置文件");
 			Resource[] resources = IoHelper.upResources("classpath*:properties/" + type + "/*.properties");
 			for (int i = 0; i < resources.length; i++) {
-				map = loadProperties(resources[i].getFile().getParent());
+				map.putAll(loadProperties(resources[i].getFile().getParent()));
 			}
-			getLogger().logInfo("读取info配置文件结束");
+			getLogger().logInfo("读取properties配置文件结束");
 		} catch (IOException e) {
 			e.printStackTrace();
-			getLogger().logError("读取info配置文件报错");
+			getLogger().logError("读取properties配置文件报错,错误原因:" + e.getMessage());
 		}
 		return map;
 	}

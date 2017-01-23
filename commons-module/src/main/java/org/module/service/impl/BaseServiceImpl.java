@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.UUID;
 
 import org.module.commons.base.BaseClass;
+import org.module.commons.helper.PropHelper;
 import org.module.commons.util.DateUtil;
 import org.module.dto.BaseDto;
 import org.module.mapper.BaseMapper;
@@ -154,6 +155,28 @@ public class BaseServiceImpl<T extends BaseModel, M extends BaseMapper<T, DTO>, 
 
 	/**
 	 * 
+	 * 方法: deleteByCodes <br>
+	 * @param codes
+	 * @return 
+	 * @see org.module.service.IBaseService#deleteByCodes(java.util.List)
+	 */
+	@Override
+	public RootResult deleteByCodes(List<String> codes) {
+		RootResult result = new RootResult();
+		if(codes != null && codes.size()>0){
+			int flag = mapper.deleteByCodes(codes);
+			if(flag <0){
+				result.setCode(-1);
+				result.setMessage("编码集合为空");				
+			}
+		}else{
+			result.setCode(-1);
+			result.setMessage("批量删除中编码集合为空");
+		}
+		return result;
+	}
+	/**
+	 * 
 	 * 方法: selectByCode <br>
 	 * 
 	 * @param code
@@ -230,5 +253,4 @@ public class BaseServiceImpl<T extends BaseModel, M extends BaseMapper<T, DTO>, 
 		}
 		return result;
 	}
-
 }

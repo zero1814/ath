@@ -30,6 +30,12 @@
 		sm_menu_group
 		where `code` = #{code,jdbcType=VARCHAR}
 	</delete>
+	<delete id="deleteByCodes" parameterType="list">
+		delete from sm_menu_group where `code` in
+		 <foreach collection="list" item="item" open="(" separator="," close=")"> 
+		 	#{code,jdbcType=VARCHAR}
+		</foreach>
+	</delete>
 	<insert id="insertSelective" parameterType="org.module.model.system.menu.SmMenuGroup">
 		insert into sm_menu_group
 		<trim prefix="(" suffix=")" suffixOverrides=",">

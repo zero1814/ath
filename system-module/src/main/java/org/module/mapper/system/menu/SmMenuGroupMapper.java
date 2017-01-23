@@ -1,5 +1,6 @@
 package org.module.mapper.system.menu;
 
+
 import org.module.commons.annotation.obj.ObjectExplain;
 import org.module.dto.system.menu.SmMenuGroupDto;
 import org.module.mapper.BaseMapper;
@@ -14,4 +15,5 @@ import org.module.model.system.menu.SmMenuGroup;
  */
 @ObjectExplain(name = "系统菜单组数据库访问接口", description = "对于systemmodudel库的sm_menu_group表进行数据库操作")
 public interface SmMenuGroupMapper extends BaseMapper<SmMenuGroup, SmMenuGroupDto> {
+
 }

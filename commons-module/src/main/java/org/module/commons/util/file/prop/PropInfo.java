@@ -18,18 +18,16 @@ public class PropInfo {
 	 * 描述: 根据命名空间获取所有该配置文件的内容 <br>
 	 * 作者: zhy<br>
 	 * 时间: 2016年10月24日 下午2:07:56
+	 * 
 	 * @param nameSpace
 	 * @return
 	 */
-	public static MStringMap init(String nameSpace) {
-		MStringMap newMap = new MStringMap();
+	public static String getValue(String key) {
+		String value = "";
 		MStringMap map = PropLoad.instance().getData("info");
-
-		for (String str : map.getKeys()) {
-			if (StringUtils.contains(str, nameSpace)) {
-				newMap.put(str, map.get(str));
-			}
+		if(StringUtils.isNoneBlank(map.get(key))){
+			value = map.get(key);
 		}
-		return newMap;
+		return value;
 	}
 }

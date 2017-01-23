@@ -15,7 +15,6 @@ import org.module.service.system.menu.ISmMenuGroupService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.alibaba.fastjson.JSONArray;
 
 /**
  * 

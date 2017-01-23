@@ -73,7 +73,7 @@ public class SmMenuGroupTest {
 	@Test
 	public void data() {
 		SmMenuGroupDto dto = new SmMenuGroupDto();
-		dto.setPageIndex(0);
+		dto.setPageNumber(1);
 		dto.setPageSize(10);
 		PageResult result = service.findEntityToPage(dto);
 		System.out.println(JSON.toJSON(result));

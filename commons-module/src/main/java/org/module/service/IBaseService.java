@@ -1,5 +1,7 @@
 package org.module.service;
 
+import java.util.List;
+
 import org.module.dto.BaseDto;
 import org.module.model.BaseModel;
 import org.module.result.DataResult;
@@ -51,6 +53,18 @@ public interface IBaseService<T extends BaseModel, DTO extends BaseDto> {
 	 * @return
 	 */
 	RootResult deleteByCode(String code);
+
+	/**
+	 * 
+	 * 方法: deleteByCodes <br>
+	 * 描述: 根据编码集合批量删除菜单组 <br>
+	 * 作者: zhy<br>
+	 * 时间: 2017年1月22日 下午3:49:56
+	 * 
+	 * @param codes
+	 * @return
+	 */
+	RootResult deleteByCodes(List<String> codes);
 
 	/**
 	 * 
