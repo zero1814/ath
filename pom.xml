@@ -13,6 +13,7 @@
 		<module>commons-module</module>
 		<module>system-module</module>
     <module>backStage-management-web</module>
+    <module>cache-module</module>
   </modules>
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
