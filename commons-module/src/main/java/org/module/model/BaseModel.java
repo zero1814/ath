@@ -1,6 +1,5 @@
 package org.module.model;
 
-
 /**
  * 
  * 类: BaseModel <br>
@@ -13,6 +12,8 @@ public class BaseModel {
 	private Integer id;
 
 	private String uid;
+
+	private String code;
 
 	private String createUser;
 
@@ -36,6 +37,14 @@ public class BaseModel {
 
 	public void setUid(String uid) {
 		this.uid = uid;
+	}
+
+	public String getCode() {
+		return code;
+	}
+
+	public void setCode(String code) {
+		this.code = code;
 	}
 
 	public String getCreateUser() {

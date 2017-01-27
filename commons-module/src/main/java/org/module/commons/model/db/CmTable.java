@@ -1,0 +1,36 @@
+package org.module.commons.model.db;
+
+import org.module.model.BaseModel;
+
+public class CmTable extends BaseModel {
+	private String name;
+
+	private String comment;
+
+	private String dbCode;
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public String getComment() {
+		return comment;
+	}
+
+	public void setComment(String comment) {
+		this.comment = comment;
+	}
+
+	public String getDbCode() {
+		return dbCode;
+	}
+
+	public void setDbCode(String dbCode) {
+		this.dbCode = dbCode;
+	}
+
+}
