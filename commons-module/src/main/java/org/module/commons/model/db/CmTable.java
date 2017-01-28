@@ -1,13 +1,18 @@
 package org.module.commons.model.db;
 
+import java.util.Date;
+
 import org.module.model.BaseModel;
 
 public class CmTable extends BaseModel {
+
 	private String name;
 
 	private String comment;
 
 	private String dbCode;
+
+	private String engine;
 
 	public String getName() {
 		return name;
@@ -31,6 +36,14 @@ public class CmTable extends BaseModel {
 
 	public void setDbCode(String dbCode) {
 		this.dbCode = dbCode;
+	}
+
+	public String getEngine() {
+		return engine;
+	}
+
+	public void setEngine(String engine) {
+		this.engine = engine;
 	}
 
 }
