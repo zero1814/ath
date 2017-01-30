@@ -1,7 +1,5 @@
 package org.module.commons.model.db;
 
-import java.util.Date;
-
 import org.module.model.BaseModel;
 
 public class CmTable extends BaseModel {

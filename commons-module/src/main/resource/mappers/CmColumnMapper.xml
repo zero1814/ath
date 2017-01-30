@@ -8,6 +8,8 @@
 		<result column="name" property="name" jdbcType="VARCHAR" />
 		<result column="type_code" property="typeCode" jdbcType="VARCHAR" />
 		<result column="length" property="length" jdbcType="INTEGER" />
+		<result column="default_value" property="defaultValue"
+			jdbcType="VARCHAR" />
 		<result column="comment" property="comment" jdbcType="VARCHAR" />
 		<result column="table_code" property="tableCode" jdbcType="VARCHAR" />
 		<result column="create_user" property="createUser" jdbcType="VARCHAR" />
@@ -16,9 +18,10 @@
 		<result column="update_time" property="updateTime" jdbcType="VARCHAR" />
 	</resultMap>
 	<sql id="Base_Column_List">
-		id, uid, code, name, type_code, length, comment,
+		id, uid, code, name, type_code, length,default_value,
+		comment,
 		table_code,
-		create_user, create_time,
+		create_user, create_time, 
 		update_user, update_time
 	</sql>
 	<select id="selectByCode" resultMap="BaseResultMap"

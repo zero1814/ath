@@ -10,9 +10,19 @@ public class CmColumn extends BaseModel {
 
 	private Integer length;
 
+	private String defaultValue;
+
 	private String comment;
 
 	private String tableCode;
+
+	public String getDefaultValue() {
+		return defaultValue;
+	}
+
+	public void setDefaultValue(String defaultValue) {
+		this.defaultValue = defaultValue;
+	}
 
 	public String getName() {
 		return name;
