@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="org.module.mapper.commons.db.CmIndexTypeMapper">
-	<resultMap id="BaseResultMap" type="org.module.commons.model.db.CmIndexType">
+	<resultMap id="BaseResultMap" type="org.module.model.commons.db.CmIndexType">
 		<id column="id" property="id" jdbcType="INTEGER" />
 		<result column="uid" property="uid" jdbcType="VARCHAR" />
 		<result column="code" property="code" jdbcType="VARCHAR" />
@@ -27,7 +27,7 @@
 		delete from cm_index_type
 		where `code` = #{code,jdbcType=VARCHAR}
 	</delete>
-	<insert id="insert" parameterType="org.module.commons.model.db.CmIndexType">
+	<insert id="insert" parameterType="org.module.model.commons.db.CmIndexType">
 		insert into cm_index_type (uid, code,
 		name, en_name, create_user,
 		create_time, update_user, update_time
@@ -38,7 +38,7 @@
 		#{createTime,jdbcType=TIMESTAMP}, #{updateUser,jdbcType=VARCHAR}, #{updateTime,jdbcType=TIMESTAMP}
 		)
 	</insert>
-	<update id="updateByCode" parameterType="org.module.commons.model.db.CmIndexType">
+	<update id="updateByCode" parameterType="org.module.model.commons.db.CmIndexType">
 		update cm_index_type
 		<set>
 			<if test="name != null">
