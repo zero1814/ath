@@ -40,7 +40,7 @@ public class CmDatabase extends BaseModel {
 
 	private String filters;
 
-	private String desc;
+	private String comment;
 
 	public String getName() {
 		return name;
@@ -186,12 +186,12 @@ public class CmDatabase extends BaseModel {
 		this.filters = filters;
 	}
 
-	public String getDesc() {
-		return desc;
+	public String getComment() {
+		return comment;
 	}
 
-	public void setDesc(String desc) {
-		this.desc = desc;
+	public void setComment(String comment) {
+		this.comment = comment;
 	}
 
 }

@@ -1,6 +1,6 @@
 package org.module.mapper.commons.db;
 
-import org.module.commons.model.db.CmColumn;
+import org.module.model.commons.db.CmColumn;
 
 public interface CmColumnMapper {
     /**

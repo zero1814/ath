@@ -8,7 +8,7 @@
 		<result column="name" property="name" jdbcType="VARCHAR" />
 		<result column="en_name" property="enName" jdbcType="VARCHAR" />
 		<result column="url" property="url" jdbcType="VARCHAR" />
-		<result column="username" property="username" jdbcType="VARCHAR" />
+		<result column="USErname" property="username" jdbcType="VARCHAR" />
 		<result column="password" property="password" jdbcType="VARCHAR" />
 		<result column="initial_size" property="initialSize" jdbcType="INTEGER" />
 		<result column="max_active" property="maxActive" jdbcType="INTEGER" />
@@ -31,14 +31,14 @@
 		<result column="log_abandoned" property="logAbandoned"
 			jdbcType="INTEGER" />
 		<result column="filters" property="filters" jdbcType="VARCHAR" />
+		<result column="comment" property="comment" jdbcType="VARCHAR" />
 		<result column="create_user" property="createUser" jdbcType="VARCHAR" />
 		<result column="create_time" property="createTime" jdbcType="VARCHAR" />
 		<result column="update_user" property="updateUser" jdbcType="VARCHAR" />
 		<result column="update_time" property="updateTime" jdbcType="VARCHAR" />
-		<result column="desc" property="desc" jdbcType="LONGVARCHAR" />
 	</resultMap>
 	<sql id="Base_Column_List">
-		id, uid, code, name, en_name, url, username, password,
+		id, uid, code, name, en_name, url, USErname, password,
 		initial_size,
 		max_active,
 		min_idle, max_wait, test_on_borrow,
@@ -47,8 +47,8 @@
 		time_between_eviction_runs_millis,
 		min_evictable_idle_time_millis, remove_abandoned,
 		remove_abandoned_timeout, log_abandoned,
-		filters, create_user,
-		create_time, update_user, update_time,`desc`
+		filters, comment, create_user,
+		create_time, update_user, update_time
 	</sql>
 	<select id="selectByCode" resultMap="BaseResultMap"
 		parameterType="java.lang.String">
@@ -58,37 +58,19 @@
 		where `code` = #{code,jdbcType=VARCHAR}
 	</select>
 	<delete id="deleteByCode" parameterType="java.lang.String">
-		delete from
-		cm_database
+		delete from cm_database
 		where `code` = #{code,jdbcType=VARCHAR}
 	</delete>
 	<insert id="insertSelective" parameterType="org.module.model.commons.db.CmDatabase">
 		insert into cm_database
 		<trim prefix="(" suffix=")" suffixOverrides=",">
-			<if test="id != null">
-				id,
-			</if>
-			<if test="uid != null">
-				uid,
-			</if>
-			<if test="code != null">
-				code,
-			</if>
-			<if test="name != null">
-				name,
-			</if>
-			<if test="enName != null">
-				en_name,
-			</if>
-			<if test="url != null">
-				url,
-			</if>
-			<if test="username != null">
-				username,
-			</if>
-			<if test="password != null">
-				password,
-			</if>
+			uid,
+			`code`,
+			`name`,
+			en_name,
+			`url`,
+			username,
+			password,
 			<if test="initialSize != null">
 				initial_size,
 			</if>
@@ -128,47 +110,22 @@
 			<if test="filters != null">
 				filters,
 			</if>
-			<if test="createUser != null">
-				create_user,
+			<if test="comment != null">
+				comment,
 			</if>
-			<if test="createTime != null">
-				create_time,
-			</if>
-			<if test="updateUser != null">
-				update_user,
-			</if>
-			<if test="updateTime != null">
-				update_time,
-			</if>
-			<if test="desc != null">
-				`desc`,
-			</if>
+			create_user,
+			create_time,
+			update_user,
+			update_time,
 		</trim>
 		<trim prefix="values (" suffix=")" suffixOverrides=",">
-			<if test="id != null">
-				#{id,jdbcType=INTEGER},
-			</if>
-			<if test="uid != null">
-				#{uid,jdbcType=VARCHAR},
-			</if>
-			<if test="code != null">
-				#{code,jdbcType=VARCHAR},
-			</if>
-			<if test="name != null">
-				#{name,jdbcType=VARCHAR},
-			</if>
-			<if test="enName != null">
-				#{enName,jdbcType=VARCHAR},
-			</if>
-			<if test="url != null">
-				#{url,jdbcType=VARCHAR},
-			</if>
-			<if test="username != null">
-				#{username,jdbcType=VARCHAR},
-			</if>
-			<if test="password != null">
-				#{password,jdbcType=VARCHAR},
-			</if>
+			#{uid,jdbcType=VARCHAR},
+			#{code,jdbcType=VARCHAR},
+			#{name,jdbcType=VARCHAR},
+			#{enName,jdbcType=VARCHAR},
+			#{url,jdbcType=VARCHAR},
+			#{username,jdbcType=VARCHAR},
+			#{password,jdbcType=VARCHAR},
 			<if test="initialSize != null">
 				#{initialSize,jdbcType=INTEGER},
 			</if>
@@ -208,21 +165,13 @@
 			<if test="filters != null">
 				#{filters,jdbcType=VARCHAR},
 			</if>
-			<if test="createUser != null">
-				#{createUser,jdbcType=VARCHAR},
+			<if test="comment != null">
+				#{comment,jdbcType=VARCHAR},
 			</if>
-			<if test="createTime != null">
-				#{createTime,jdbcType=VARCHAR},
-			</if>
-			<if test="updateUser != null">
-				#{updateUser,jdbcType=VARCHAR},
-			</if>
-			<if test="updateTime != null">
-				#{updateTime,jdbcType=VARCHAR},
-			</if>
-			<if test="desc != null">
-				#{desc,jdbcType=LONGVARCHAR},
-			</if>
+			#{createUser,jdbcType=VARCHAR},
+			#{createTime,jdbcType=VARCHAR},
+			#{updateUser,jdbcType=VARCHAR},
+			#{updateTime,jdbcType=VARCHAR},
 		</trim>
 	</insert>
 	<update id="updateByCode" parameterType="org.module.model.commons.db.CmDatabase">
@@ -238,7 +187,7 @@
 				url = #{url,jdbcType=VARCHAR},
 			</if>
 			<if test="username != null">
-				username = #{username,jdbcType=VARCHAR},
+				USErname = #{username,jdbcType=VARCHAR},
 			</if>
 			<if test="password != null">
 				password = #{password,jdbcType=VARCHAR},
@@ -285,12 +234,12 @@
 			<if test="filters != null">
 				filters = #{filters,jdbcType=VARCHAR},
 			</if>
+			<if test="comment != null">
+				comment = #{comment,jdbcType=VARCHAR},
+			</if>
 			update_user = #{updateUser,jdbcType=VARCHAR},
 			update_time =
 			#{updateTime,jdbcType=VARCHAR},
-			<if test="desc != null">
-				`desc` = #{desc,jdbcType=LONGVARCHAR},
-			</if>
 		</set>
 		where `code` = #{code,jdbcType=VARCHAR}
 	</update>

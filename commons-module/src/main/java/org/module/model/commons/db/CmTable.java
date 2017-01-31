@@ -10,6 +10,8 @@ public class CmTable extends BaseModel {
 
 	private String dbCode;
 
+	private String dbName;
+
 	private String engine;
 
 	public String getName() {
@@ -34,6 +36,14 @@ public class CmTable extends BaseModel {
 
 	public void setDbCode(String dbCode) {
 		this.dbCode = dbCode;
+	}
+
+	public String getDbName() {
+		return dbName;
+	}
+
+	public void setDbName(String dbName) {
+		this.dbName = dbName;
 	}
 
 	public String getEngine() {

@@ -1,5 +1,6 @@
 package org.module.model.commons.db;
 
+
 import org.module.model.BaseModel;
 
 public class CmColumn extends BaseModel {
@@ -8,21 +9,19 @@ public class CmColumn extends BaseModel {
 
 	private String typeCode;
 
-	private Integer length;
-
-	private String defaultValue;
+	private String typeName;
 
 	private String comment;
 
+	private String defaultValue;
+
 	private String tableCode;
 
-	public String getDefaultValue() {
-		return defaultValue;
-	}
+	private String tableName;
 
-	public void setDefaultValue(String defaultValue) {
-		this.defaultValue = defaultValue;
-	}
+	private String dbCode;
+
+	private String dbName;
 
 	public String getName() {
 		return name;
@@ -40,12 +39,12 @@ public class CmColumn extends BaseModel {
 		this.typeCode = typeCode;
 	}
 
-	public Integer getLength() {
-		return length;
+	public String getTypeName() {
+		return typeName;
 	}
 
-	public void setLength(Integer length) {
-		this.length = length;
+	public void setTypeName(String typeName) {
+		this.typeName = typeName;
 	}
 
 	public String getComment() {
@@ -56,12 +55,44 @@ public class CmColumn extends BaseModel {
 		this.comment = comment;
 	}
 
+	public String getDefaultValue() {
+		return defaultValue;
+	}
+
+	public void setDefaultValue(String defaultValue) {
+		this.defaultValue = defaultValue;
+	}
+
 	public String getTableCode() {
 		return tableCode;
 	}
 
 	public void setTableCode(String tableCode) {
 		this.tableCode = tableCode;
+	}
+
+	public String getTableName() {
+		return tableName;
+	}
+
+	public void setTableName(String tableName) {
+		this.tableName = tableName;
+	}
+
+	public String getDbCode() {
+		return dbCode;
+	}
+
+	public void setDbCode(String dbCode) {
+		this.dbCode = dbCode;
+	}
+
+	public String getDbName() {
+		return dbName;
+	}
+
+	public void setDbName(String dbName) {
+		this.dbName = dbName;
 	}
 
 }

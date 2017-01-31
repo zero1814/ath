@@ -9,6 +9,6 @@ import org.module.dto.BaseDto;
  * 作者: zhy<br>
  * 时间: 2017年1月28日 下午5:37:02
  */
-public class CmIndexTypeDto extends BaseDto{
+public class CmTableConstraintsTypeDto extends BaseDto{
 
 }

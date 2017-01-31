@@ -1,6 +1,6 @@
 package org.module.mapper.commons.db;
 
-import org.module.commons.model.db.CmTable;
+import org.module.model.commons.db.CmTable;
 
 public interface CmTableMapper {
     /**

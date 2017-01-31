@@ -25,7 +25,7 @@
 		</javaTypeResolver>
 
 		<!-- 生成实体类地址 -->
-		<javaModelGenerator targetPackage="org.module.commons.model.db"
+		<javaModelGenerator targetPackage="org.module.model.commons.db"
 			targetProject="src">
 			<!-- 是否在当前路径下新加一层schema] -->
 			<property name="enableSubPackages" value="false" />
@@ -63,11 +63,11 @@
 			enableCountByExample="false" enableDeleteByExample="false"
 			enableSelectByExample="false" enableUpdateByExample="false">
 		</table>
-		<table tableName="cm_index_type" domainObjectName="CmIndexType"
+		<table tableName="cm_table_constraints_type" domainObjectName="CmTableConstraintsType"
 			enableCountByExample="false" enableDeleteByExample="false"
 			enableSelectByExample="false" enableUpdateByExample="false">
 		</table>
-		<table tableName="cm_index" domainObjectName="CmIndex"
+		<table tableName="cm_table_constraints" domainObjectName="CmTableConstraints"
 			enableCountByExample="false" enableDeleteByExample="false"
 			enableSelectByExample="false" enableUpdateByExample="false">
 		</table>
