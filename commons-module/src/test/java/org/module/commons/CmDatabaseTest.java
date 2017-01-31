@@ -20,13 +20,14 @@ public class CmDatabaseTest {
 	@Autowired
 	private ICmDatabaseService service;
 
+	@Test
 	public void insert() {
 		CmDatabase entity = new CmDatabase();
 		entity.setCode(CodeHelper.getUniqueCode("CM"));
-		entity.setName("系统模块");
-		entity.setEnName("systemmodule");
+		entity.setName("核心模块");
+		entity.setEnName("commonsmodule");
 		entity.setUrl(
-				"jdbc:mysql://localhost:3306/systemmodule?useUnicode=true&characterEncoding=UTF-8&zeroDateTimeBehavior=convertToNull");
+				"jdbc:mysql://localhost:3306/commonsmodule?useUnicode=true&characterEncoding=UTF-8&zeroDateTimeBehavior=convertToNull");
 		entity.setCreateUser("admin");
 		entity.setUsername("root");
 		entity.setPassword("");
@@ -46,15 +47,13 @@ public class CmDatabaseTest {
 		service.updateByCode(entity);
 	}
 
-	
 	public void selCode() {
 		EntityResult<CmDatabase> result = service.selectByCode("CM826021920959885312");
 		System.out.println(JSON.toJSON(result));
 
 	}
-	
-	@Test
-	public void del(){
+
+	public void del() {
 		RootResult result = service.deleteByCode("CM826021920959885312");
 		System.out.println(JSON.toJSON(result));
 	}

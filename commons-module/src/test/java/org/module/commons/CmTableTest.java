@@ -20,17 +20,18 @@ public class CmTableTest {
 	@Autowired
 	private ICmTableService service;
 
-	
+	@Test
 	public void insert() {
 		CmTable entity = new CmTable();
 		entity.setCode(CodeHelper.getUniqueCode("CM"));
-		entity.setName("商品表");
+		entity.setName("数据表");
 		entity.setCreateUser("admin");
-		entity.setDbCode("CM");
+		entity.setDbCode("CM826465545455923200");
+		entity.setDbName("commonsmodule");
 		service.insertSelective(entity);
 	}
-	
-	public void update(){
+
+	public void update() {
 		CmTable entity = new CmTable();
 		entity.setCode("CM826029142397939712");
 		entity.setName("商品表-改");
@@ -38,15 +39,14 @@ public class CmTableTest {
 		entity.setDbCode("DB");
 		service.updateByCode(entity);
 	}
-	
-	public void selCode(){
+
+	public void selCode() {
 		String code = "CM826029142397939712";
 		EntityResult<CmTable> result = service.selectByCode(code);
 		System.out.println(JSON.toJSON(result));
 	}
 
-	@Test
-	public void del(){
+	public void del() {
 		String code = "CM826029142397939712";
 		RootResult result = service.deleteByCode(code);
 		System.out.println(JSON.toJSON(result));
