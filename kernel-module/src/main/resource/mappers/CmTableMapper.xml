@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="org.module.mapper.kernel.db.CmTableMapper">
+	<resultMap id="BaseResultMap" type="org.module.model.kernel.db.CmTable">
+		<id column="id" property="id" jdbcType="INTEGER" />
+		<result column="uid" property="uid" jdbcType="VARCHAR" />
+		<result column="code" property="code" jdbcType="VARCHAR" />
+		<result column="name" property="name" jdbcType="VARCHAR" />
+		<result column="comment" property="comment" jdbcType="VARCHAR" />
+		<result column="db_code" property="dbCode" jdbcType="VARCHAR" />
+		<result column="db_name" property="dbName" jdbcType="VARCHAR" />
+		<result column="engine" property="engine" jdbcType="VARCHAR" />
+		<result column="create_user" property="createUser" jdbcType="VARCHAR" />
+		<result column="create_time" property="createTime" jdbcType="VARCHAR" />
+		<result column="update_user" property="updateUser" jdbcType="VARCHAR" />
+		<result column="update_time" property="updateTime" jdbcType="VARCHAR" />
+	</resultMap>
+	<sql id="Base_Column_List">
+		id, uid, code, name, comment, db_code, db_name, engine,
+		create_user,
+		create_time,
+		update_user, update_time
+	</sql>
+	<select id="selectByCode" resultMap="BaseResultMap"
+		parameterType="java.lang.String">
+		select
+		<include refid="Base_Column_List" />
+		from cm_table
+		where `code` = #{code,jdbcType=VARCHAR}
+	</select>
+	<delete id="deleteByCode" parameterType="java.lang.String">
+		delete from cm_table
+		where `code` = #{code,jdbcType=VARCHAR}
+	</delete>
+	<insert id="insertSelective" parameterType="org.module.model.kernel.db.CmTable">
+		insert into cm_table
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			uid,
+			`code`,
+			`name`,
+			<if test="comment != null">
+				comment,
+			</if>
+			db_code,
+			db_name,
+			<if test="engine != null">
+				engine,
+			</if>
+			create_user,
+			create_time,
+			update_user,
+			update_time,
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			#{uid,jdbcType=VARCHAR},
+			#{code,jdbcType=VARCHAR},
+			#{name,jdbcType=VARCHAR},
+			<if test="comment != null">
+				#{comment,jdbcType=VARCHAR},
+			</if>
+			#{dbCode,jdbcType=VARCHAR},
+			#{dbName,jdbcType=VARCHAR},
+			<if test="engine != null">
+				#{engine,jdbcType=VARCHAR},
+			</if>
+			#{createUser,jdbcType=VARCHAR},
+			#{createTime,jdbcType=VARCHAR},
+			#{updateUser,jdbcType=VARCHAR},
+			#{updateTime,jdbcType=VARCHAR},
+		</trim>
+	</insert>
+	<update id="updateByPrimaryKeySelective" parameterType="org.module.model.kernel.db.CmTable">
+		update cm_table
+		<set>
+			<if test="name != null">
+				name = #{name,jdbcType=VARCHAR},
+			</if>
+			<if test="comment != null">
+				comment = #{comment,jdbcType=VARCHAR},
+			</if>
+			<if test="dbCode != null">
+				db_code = #{dbCode,jdbcType=VARCHAR},
+			</if>
+			<if test="dbName != null">
+				db_name = #{dbName,jdbcType=VARCHAR},
+			</if>
+			<if test="engine != null">
+				engine = #{engine,jdbcType=VARCHAR},
+			</if>
+			update_user = #{updateUser,jdbcType=VARCHAR},
+			update_time =
+			#{updateTime,jdbcType=VARCHAR},
+		</set>
+		where `code` = #{code,jdbcType=VARCHAR}
+	</update>
+</mapper>
