@@ -250,7 +250,7 @@
 		TABLE_SCHEMA,TABLE_NAME,`ENGINE`,CREATE_TIME,IFNULL(UPDATE_TIME,'')
 		AS
 		UPDATE_TIME,TABLE_COMMENT from information_schema.`TABLES` where
-		TABLE_SCHEMA = #{tableName,jdbcType=VARCHAR};
+		TABLE_SCHEMA = #{name,jdbcType=VARCHAR}
 	</select>
 	<!-- 根据数据库名称和数据表名称查询数据表所有列信息 2017-02-01 zhy -->
 	<select id="findColumnByTable" parameterType="org.module.dto.kernel.db.CmDatabaseDto"

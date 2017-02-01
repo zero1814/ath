@@ -1,10 +1,9 @@
 package org.module.service.kernel.db;
 
-import java.util.List;
 
-import org.module.commons.map.MDataMap;
 import org.module.dto.kernel.db.CmDatabaseDto;
 import org.module.model.kernel.db.CmDatabase;
+import org.module.result.DataMapResult;
 import org.module.service.IBaseService;
 
 /**
@@ -26,7 +25,7 @@ public interface ICmDatabaseService extends IBaseService<CmDatabase, CmDatabaseD
 	 * @param dto
 	 * @return
 	 */
-	List<MDataMap> findTableByDb(CmDatabaseDto dto);
+	DataMapResult findTableByDb(CmDatabaseDto dto);
 
 	/**
 	 * 
@@ -38,5 +37,5 @@ public interface ICmDatabaseService extends IBaseService<CmDatabase, CmDatabaseD
 	 * @param dto
 	 * @return
 	 */
-	List<MDataMap> findColumnByTable(CmDatabaseDto dto);
+	DataMapResult findColumnByTable(CmDatabaseDto dto);
 }

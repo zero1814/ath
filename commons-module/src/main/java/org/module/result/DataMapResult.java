@@ -4,7 +4,7 @@ import java.util.List;
 
 import org.module.commons.map.MDataMap;
 
-public class DataMapResult {
+public class DataMapResult extends RootResult{
 
 	private List<MDataMap> data;
 

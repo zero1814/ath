@@ -1,8 +1,12 @@
 package org.module.kernel;
 
+import java.util.List;
+
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.module.commons.helper.CodeHelper;
+import org.module.commons.map.MDataMap;
+import org.module.dto.kernel.db.CmDatabaseDto;
 import org.module.model.kernel.db.CmDatabase;
 import org.module.result.EntityResult;
 import org.module.result.RootResult;
@@ -20,14 +24,13 @@ public class CmDatabaseTest {
 	@Autowired
 	private ICmDatabaseService service;
 
-	@Test
 	public void insert() {
 		CmDatabase entity = new CmDatabase();
 		entity.setCode(CodeHelper.getUniqueCode("CM"));
 		entity.setName("核心模块");
-		entity.setEnName("commonsmodule");
+		entity.setEnName("kernelmodule");
 		entity.setUrl(
-				"jdbc:mysql://localhost:3306/commonsmodule?useUnicode=true&characterEncoding=UTF-8&zeroDateTimeBehavior=convertToNull");
+				"jdbc:mysql://localhost:3306/kernelmodule?useUnicode=true&characterEncoding=UTF-8&zeroDateTimeBehavior=convertToNull");
 		entity.setCreateUser("admin");
 		entity.setUsername("root");
 		entity.setPassword("");
@@ -60,10 +63,16 @@ public class CmDatabaseTest {
 	
 	
 	public void findTableByDb(){
-		
+		CmDatabaseDto dto = new CmDatabaseDto();
+		dto.setName("kernelmodule");
+		System.out.println(JSON.toJSON(service.findTableByDb(dto)));
 	}
-	
+
+	@Test
 	public void findColumnByTable(){
-		
+		CmDatabaseDto dto = new CmDatabaseDto();
+		dto.setName("kernelmodule");
+		dto.setTableName("cm_table");
+		System.out.println(JSON.toJSON(service.findColumnByTable(dto)));		
 	}
 }

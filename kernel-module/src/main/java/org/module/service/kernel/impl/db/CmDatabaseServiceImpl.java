@@ -8,6 +8,7 @@ import org.module.commons.map.MDataMap;
 import org.module.dto.kernel.db.CmDatabaseDto;
 import org.module.mapper.kernel.db.CmDatabaseMapper;
 import org.module.model.kernel.db.CmDatabase;
+import org.module.result.DataMapResult;
 import org.module.service.impl.BaseServiceImpl;
 import org.module.service.kernel.db.ICmDatabaseService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -38,7 +39,8 @@ public class CmDatabaseServiceImpl extends BaseServiceImpl<CmDatabase, CmDatabas
 	 * @return
 	 */
 	@Override
-	public List<MDataMap> findTableByDb(CmDatabaseDto dto) {
+	public DataMapResult findTableByDb(CmDatabaseDto dto) {
+		DataMapResult result = new DataMapResult();
 		List<MDataMap> data = new ArrayList<MDataMap>();
 		try {
 			List<Map<String, Object>> list = mapper.findTableByDb(dto);
@@ -47,11 +49,17 @@ public class CmDatabaseServiceImpl extends BaseServiceImpl<CmDatabase, CmDatabas
 					MDataMap m = new MDataMap(map);
 					data.add(m);
 				}
+			}else{
+				result.setCode(-1);
+				result.setMessage("数据库表为空");
 			}
 		} catch (Exception e) {
+			result.setCode(-1);
+			result.setMessage(e.getMessage());
 			e.printStackTrace();
 		}
-		return data;
+		result.setData(data);
+		return result;
 	}
 
 	/**
@@ -65,7 +73,8 @@ public class CmDatabaseServiceImpl extends BaseServiceImpl<CmDatabase, CmDatabas
 	 * @return
 	 */
 	@Override
-	public List<MDataMap> findColumnByTable(CmDatabaseDto dto) {
+	public DataMapResult findColumnByTable(CmDatabaseDto dto) {
+		DataMapResult result = new DataMapResult();
 		List<MDataMap> data = new ArrayList<MDataMap>();
 		try {
 			List<Map<String, Object>> list = mapper.findColumnByTable(dto);
@@ -74,11 +83,17 @@ public class CmDatabaseServiceImpl extends BaseServiceImpl<CmDatabase, CmDatabas
 					MDataMap m = new MDataMap(map);
 					data.add(m);
 				}
+			}else{
+				result.setCode(-1);
+				result.setMessage("表字段为空");
 			}
 		} catch (Exception e) {
+			result.setCode(-1);
+			result.setMessage(e.getMessage());
 			e.printStackTrace();
 		}
-		return data;
+		result.setData(data);
+		return result;
 	}
 
 }
