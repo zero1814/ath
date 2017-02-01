@@ -69,7 +69,7 @@
 			#{updateTime,jdbcType=VARCHAR},
 		</trim>
 	</insert>
-	<update id="updateByPrimaryKeySelective" parameterType="org.module.model.kernel.db.CmTable">
+	<update id="updateByCode" parameterType="org.module.model.kernel.db.CmTable">
 		update cm_table
 		<set>
 			<if test="name != null">
