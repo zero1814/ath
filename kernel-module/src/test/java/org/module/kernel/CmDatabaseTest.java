@@ -57,4 +57,13 @@ public class CmDatabaseTest {
 		RootResult result = service.deleteByCode("CM826021920959885312");
 		System.out.println(JSON.toJSON(result));
 	}
+	
+	
+	public void findTableByDb(){
+		
+	}
+	
+	public void findColumnByTable(){
+		
+	}
 }

@@ -243,4 +243,32 @@
 		</set>
 		where `code` = #{code,jdbcType=VARCHAR}
 	</update>
+	<!-- 根据数据库名称获取数据库所有数据表信息 2017-02-01 zhy -->
+	<select id="findTableByDb" parameterType="org.module.dto.kernel.db.CmDatabaseDto"
+		resultType="map">
+		select
+		TABLE_SCHEMA,TABLE_NAME,`ENGINE`,CREATE_TIME,IFNULL(UPDATE_TIME,'')
+		AS
+		UPDATE_TIME,TABLE_COMMENT from information_schema.`TABLES` where
+		TABLE_SCHEMA = #{tableName,jdbcType=VARCHAR};
+	</select>
+	<!-- 根据数据库名称和数据表名称查询数据表所有列信息 2017-02-01 zhy -->
+	<select id="findColumnByTable" parameterType="org.module.dto.kernel.db.CmDatabaseDto"
+		resultType="map">
+		SELECT
+		COLUMN_NAME,
+		IS_NULLABLE,
+		DATA_TYPE,
+		COLUMN_TYPE,
+		COLUMN_DEFAULT,
+		COLUMN_KEY,
+		COLUMN_COMMENT
+		FROM
+		information_schema.`COLUMNS`
+		WHERE
+		TABLE_NAME =
+		#{tableName,jdbcType=VARCHAR}
+		AND TABLE_SCHEMA =
+		#{name,jdbcType=VARCHAR}
+	</select>
 </mapper>
