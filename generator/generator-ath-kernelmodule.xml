@@ -15,7 +15,7 @@
 
 		<!-- jdbc连接 -->
 		<jdbcConnection driverClass="com.mysql.jdbc.Driver"
-			connectionURL="jdbc:mysql://127.0.0.1:3306/commonsmodule" userId="root"
+			connectionURL="jdbc:mysql://127.0.0.1:3306/kernelmodule" userId="root"
 			password="" />
 
 		<!-- 类型转换 -->
@@ -25,7 +25,7 @@
 		</javaTypeResolver>
 
 		<!-- 生成实体类地址 -->
-		<javaModelGenerator targetPackage="org.module.model.commons.db"
+		<javaModelGenerator targetPackage="org.module.model.kernel.db"
 			targetProject="src">
 			<!-- 是否在当前路径下新加一层schema] -->
 			<property name="enableSubPackages" value="false" />
@@ -41,7 +41,7 @@
 		</sqlMapGenerator>
 
 		<!-- 生成mapxml对应client，也就是接口dao -->
-		<javaClientGenerator targetPackage="org.module.mapper.commons.db"
+		<javaClientGenerator targetPackage="org.module.mapper.kernel.db"
 			targetProject="src" type="XMLMAPPER">
 			<!-- 是否在当前路径下新加一层schema,eg：fase -->
 			<property name="enableSubPackages" value="false" />
