@@ -39,12 +39,19 @@
 		</property>
 	</bean>
 	<!-- 对模型视图名称的解析，即在模型视图名称添加前后缀 -->
-	<bean
+	<bean id="jspViewResolver"
 		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
 		<property name="viewClass"
 			value="org.springframework.web.servlet.view.JstlView" />
 		<property name="prefix" value="/"></property>
 		<property name="suffix" value=".jsp"></property>
+	</bean>
+	<bean id="ftlViewResolver"
+		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+		<property name="viewClass"
+			value="org.springframework.web.servlet.view.JstlView" />
+		<property name="prefix" value="/"></property>
+		<property name="suffix" value=".ftl"></property>
 	</bean>
 	<!-- 文件上传限制 -->
 	<bean id="multipartResolver"
