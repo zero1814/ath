@@ -271,4 +271,22 @@
 		AND TABLE_SCHEMA =
 		#{name,jdbcType=VARCHAR}
 	</select>
+	<!-- 修改表名 -->
+	<update id="renameTableName" parameterType="map">
+		alter TABLE ${name} rename to ${rename};
+	</update>
+	<!-- 为表添加新字段 -->
+	<update id="addColumn" parameterType="map">
+		alter TABLE ${tableName} ADD COLUMN test1 varchar(10) DEFAULT '' comment '测试';
+	</update>
+	<!-- 修改表现有字段 -->
+	<update id="editColumn"></update>
+	<!-- 删除现有表字段 -->
+	<update id="delColumn"></update>
+	<!-- 为表添加索引约束 -->
+	<update id="addConstraint"></update>
+	<!-- 修改表现有索引约束 -->
+	<update id="editConstraint"></update>
+	<!-- 删除表现有索引约束 -->
+	<update id="delConstraint"></update>
 </mapper>
