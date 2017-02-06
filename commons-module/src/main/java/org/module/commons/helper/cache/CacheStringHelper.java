@@ -4,16 +4,16 @@ import com.google.inject.Inject;
 
 import redis.clients.jedis.JedisCluster;
 
-public class CacheStrHelper {
+public class CacheStringHelper {
 
 	@Inject
 	private JedisCluster cluster;
 
-	private static CacheStrHelper self;
+	private static CacheStringHelper self;
 
-	public static CacheStrHelper instance() {
+	public static CacheStringHelper instance() {
 		if (self == null) {
-			self = new CacheStrHelper();
+			self = new CacheStringHelper();
 		}
 		return self;
 	}
@@ -61,5 +61,23 @@ public class CacheStrHelper {
 	 */
 	public void delCache(String key) {
 		cluster.del(key);
+	}
+
+	/**
+	 * 
+	 * 方法: getCacheValue <br>
+	 * 描述: 获取缓存值信息 <br>
+	 * 作者: zhy<br>
+	 * 时间: 2017年2月6日 下午5:45:53
+	 * 
+	 * @param key
+	 * @return
+	 */
+	public String getCacheValue(String key) {
+		String value = "";
+		if (cluster.exists(key)) {
+			value = cluster.get(key);
+		}
+		return value;
 	}
 }
