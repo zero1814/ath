@@ -1,0 +1,65 @@
+package org.module.commons.helper.cache;
+
+import com.google.inject.Inject;
+
+import redis.clients.jedis.JedisCluster;
+
+public class CacheStrHelper {
+
+	@Inject
+	private JedisCluster cluster;
+
+	private static CacheStrHelper self;
+
+	public static CacheStrHelper instance() {
+		if (self == null) {
+			self = new CacheStrHelper();
+		}
+		return self;
+	}
+
+	/**
+	 * 
+	 * 方法: addCache <br>
+	 * 描述: 添加缓存 <br>
+	 * 作者: zhy<br>
+	 * 时间: 2017年2月6日 下午5:19:34
+	 * 
+	 * @param key
+	 * @param value
+	 */
+	public void addCache(String key, String value) {
+		cluster.set(key, value);
+		cluster.sadd(key, value);
+	}
+
+	/**
+	 * 
+	 * 方法: editValue <br>
+	 * 描述: 编辑缓存 <br>
+	 * 作者: zhy<br>
+	 * 时间: 2017年2月6日 下午5:19:48
+	 * 
+	 * @param key
+	 * @param value
+	 */
+	public void editCache(String key, String value) {
+		if (cluster.exists(key)) {
+			cluster.del(key);
+		}
+		cluster.sadd(key, value);
+	}
+
+	/**
+	 * 
+	 * 方法: delCache <br>
+	 * 描述: 删除缓存 <br>
+	 * 作者: zhy<br>
+	 * 时间: 2017年2月6日 下午5:20:22
+	 * 
+	 * @param key
+	 */
+	public void delCache(String key) {
+		cluster.del(key);
+	}
+}
