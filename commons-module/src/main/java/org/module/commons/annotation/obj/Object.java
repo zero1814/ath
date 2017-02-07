@@ -7,7 +7,7 @@ package org.module.commons.annotation.obj;
  * 作者: zhy<br>
  * 时间: 2016年12月27日 上午9:35:47
  */
-public @interface ObjectExplain {
+public @interface Object {
 
 	/**
 	 * 

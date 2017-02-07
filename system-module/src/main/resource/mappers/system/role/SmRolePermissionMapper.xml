@@ -36,7 +36,6 @@
 			create_time,
 		</trim>
 		<trim prefix="values (" suffix=")" suffixOverrides=",">
-			#{id,jdbcType=INTEGER},
 			#{uid,jdbcType=VARCHAR},
 			#{roleCode,jdbcType=VARCHAR},
 			#{menuPermissionCode,jdbcType=VARCHAR},

@@ -19,39 +19,17 @@ public @interface Column {
 	 * @return
 	 */
 	public String name() default "";
+	
 
 	/**
 	 * 
-	 * 方法: property <br>
-	 * 描述: 列对应java类属性 <br>
+	 * 方法: isNull <br>
+	 * 描述: 是否允许为空 <br>
 	 * 作者: zhy<br>
-	 * 时间: 2016年12月27日 上午10:06:06
-	 * 
+	 * 时间: 2017年2月7日 下午9:01:00
 	 * @return
 	 */
-	public String property() default "";
-
-	/**
-	 * 
-	 * 方法: jdbcType <br>
-	 * 描述: 列jdbc类型 <br>
-	 * 作者: zhy<br>
-	 * 时间: 2016年12月27日 上午10:06:32
-	 * 
-	 * @return
-	 */
-	public String jdbcType() default "";
-
-	/**
-	 * 
-	 * 方法: length <br>
-	 * 描述: 数据表字段长度 <br>
-	 * 作者: zhy<br>
-	 * 时间: 2016年12月27日 上午10:16:32
-	 * 
-	 * @return
-	 */
-	public int length() default 0;
+	public boolean isNull() default true;
 
 	/**
 	 * 
@@ -62,29 +40,7 @@ public @interface Column {
 	 * 
 	 * @return
 	 */
-	public String defaultVal() default "";
-
-	/**
-	 * 
-	 * 方法: key <br>
-	 * 描述: 列索引 <br>
-	 * 作者: zhy<br>
-	 * 时间: 2016年12月27日 上午10:06:54
-	 * 
-	 * @return
-	 */
-	public String key() default "";
-
-	/**
-	 * 
-	 * 方法: isNull <br>
-	 * 描述: 是否允许为空 <br>
-	 * 作者: zhy<br>
-	 * 时间: 2016年12月27日 上午10:15:12
-	 * 
-	 * @return
-	 */
-	public boolean isNull() default true;
+	public String defaultValue() default "";
 
 	/**
 	 * 

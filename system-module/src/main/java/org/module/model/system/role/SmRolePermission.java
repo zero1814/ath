@@ -1,11 +1,21 @@
 package org.module.model.system.role;
 
+import org.module.commons.annotation.db.Column;
+import org.module.commons.annotation.db.Table;
+import org.module.commons.annotation.obj.Attribute;
+import org.module.commons.annotation.obj.Object;
 import org.module.model.BaseModel;
 
+@Table(database = "systemmodule", name = "sm_role_permission", comment = "角色权限表")
+@Object(name = "角色权限配置", description = "配置角色访问权限")
 public class SmRolePermission extends BaseModel {
 
+	@Column(name = "role_code", comment = "角色编码", isNull = false)
+	@Attribute(name = "roleCode", description = "角色编码", isNull = false)
 	private String roleCode;
 
+	@Column(name = "menu_permission_code", comment = "菜单权限编码", isNull = false)
+	@Attribute(name = "menuPermissionCode", description = "菜单权限编码", isNull = false)
 	private String menuPermissionCode;
 
 	public String getRoleCode() {

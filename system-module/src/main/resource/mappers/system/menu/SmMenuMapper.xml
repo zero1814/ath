@@ -7,6 +7,7 @@
 		<result column="code" property="code" jdbcType="VARCHAR" />
 		<result column="parent_code" property="parentCode" jdbcType="VARCHAR" />
 		<result column="group_code" property="groupCode" jdbcType="VARCHAR" />
+		<result column="group_name" property="groupName" jdbcType="VARCHAR" />
 		<result column="name" property="name" jdbcType="VARCHAR" />
 		<result column="url" property="url" jdbcType="VARCHAR" />
 		<result column="icon" property="icon" jdbcType="VARCHAR" />
@@ -120,4 +121,49 @@
 		</set>
 		where `code`=#{code,jdbcType=VARCHAR}
 	</update>
+	<select id="findEntityAllToPage" resultMap="BaseResultMap"
+		parameterType="org.module.dto.system.menu.SmMenuDto">
+		SELECT
+		sm.`code`,
+		sm.`name`,
+		smg.`name` AS group_name,
+		sm.create_user,
+		DATE_FORMAT(sm.create_time,'%Y-%m-%d %H:%i:%s') as create_time,
+		sm.update_user,
+		DATE_FORMAT(sm.update_time,'%Y-%m-%d %H:%i:%s') as
+		update_time
+		FROM
+		sm_menu AS sm
+		LEFT JOIN sm_menu_group AS smg ON
+		sm.group_code = smg.`code`
+		<where>
+			sm.is_deleted = 0
+			<if test="name != null and name != ''">
+				and where sm.`name` like
+				CONCAT('%',#{name,jdbcType=VARCHAR},'%')
+			</if>
+		</where>
+		limit #{start,jdbcType=INTEGER},#{pageSize,jdbcType=INTEGER}
+	</select>
+	<select id="findEntityAllCountToPage" resultType="java.lang.Integer"
+		parameterType="org.module.dto.system.menu.SmMenuDto">
+		SELECT
+		count(1)
+		FROM
+		sm_menu AS sm
+		LEFT JOIN sm_menu_group AS smg ON
+		sm.group_code = smg.`code`
+		<where>
+			sm.is_deleted = 0
+			<if test="name != null and name != ''">
+				and where sm.`name` like
+				CONCAT('%',#{name,jdbcType=VARCHAR},'%')
+			</if>
+		</where>
+	</select>
+	<select id="findEntityAll" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from sm_menu
+	</select>
 </mapper>

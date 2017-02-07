@@ -6,6 +6,7 @@
 		<result column="uid" property="uid" jdbcType="VARCHAR" />
 		<result column="code" property="code" jdbcType="VARCHAR" />
 		<result column="menu_code" property="menuCode" jdbcType="VARCHAR" />
+		<result column="menu_name" property="menuName" jdbcType="VARCHAR" />
 		<result column="name" property="name" jdbcType="VARCHAR" />
 		<result column="create_user" property="createUser" jdbcType="VARCHAR" />
 		<result column="create_time" property="createTime" jdbcType="VARCHAR" />
@@ -15,8 +16,11 @@
 	</resultMap>
 	<sql id="Base_Column_List">
 		id, uid, code, menu_code, name,description, create_user,
-		create_time,
-		update_user, update_time
+		DATE_FORMAT(create_time,'%Y-%m-%d
+		%H:%i:%s') as create_time,
+		update_user,
+		DATE_FORMAT(update_time,'%Y-%m-%d %H:%i:%s') as
+		update_time
 	</sql>
 	<select id="selectByCode" resultMap="BaseResultMap"
 		parameterType="java.lang.String">
@@ -79,4 +83,58 @@
 		</set>
 		where `code`=#{code,jdbcType=VARCHAR}
 	</update>
+	<select id="findEntityAllToPage" resultMap="BaseResultMap"
+		parameterType="org.module.dto.system.menu.SmMenuPermissionDto">
+		SELECT
+		smp.`code`,
+		smp.`name`,
+		sm.`name` AS menu_name,
+		sm.create_user,
+		DATE_FORMAT(sm.create_time,'%Y-%m-%d %H:%i:%s') as
+		create_time,
+		sm.update_user,
+		DATE_FORMAT(sm.update_time,'%Y-%m-%d
+		%H:%i:%s') as
+		update_time,
+		smp.description
+		FROM
+		sm_menu_permission AS smp
+		LEFT JOIN
+		sm_menu AS sm ON
+		smp.menu_code = sm.`code`
+		<where>
+			sm.is_deleted=0
+			<if test="menuCode != null">
+				and smp.menu_code = #{menuCode,jdbcType=VARCHAR}
+			</if>
+			<if test="menuCode != null">
+				and smp.menu_code = #{menuCode,jdbcType=VARCHAR}
+			</if>
+		</where>
+		limit #{start,jdbcType=INTEGER},#{pageSize,jdbcType=INTEGER}
+	</select>
+	<select id="findEntityAllCountToPage" resultType="java.lang.Integer"
+		parameterType="org.module.dto.system.menu.SmMenuPermissionDto">
+		SELECT
+		count(1)
+		FROM
+		sm_menu_permission AS smp
+		LEFT JOIN
+		sm_menu AS sm ON
+		smp.menu_code = sm.`code`
+		<where>
+			sm.is_deleted=0
+			<if test="menuCode != null">
+				and smp.menu_code = #{menuCode,jdbcType=VARCHAR}
+			</if>
+			<if test="menuCode != null">
+				and smp.menu_code = #{menuCode,jdbcType=VARCHAR}
+			</if>
+		</where>
+	</select>
+	<select id="findEntityAll" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from sm_menu_permission
+	</select>
 </mapper>

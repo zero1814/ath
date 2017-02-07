@@ -60,7 +60,7 @@
 			%H:%i:%s'),
 		</trim>
 	</insert>
-	<update id="updateByPrimaryKeySelective" parameterType="org.module.model.system.SmDefine">
+	<update id="updateByCode" parameterType="org.module.model.system.SmDefine">
 		update sm_define
 		<set>
 			<if test="parentCode != null">

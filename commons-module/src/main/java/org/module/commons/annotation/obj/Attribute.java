@@ -7,7 +7,7 @@ package org.module.commons.annotation.obj;
  * 作者: zhy<br>
  * 时间: 2016年12月29日 上午7:43:32
  */
-public @interface AttributeExplain {
+public @interface Attribute {
 
 	/**
 	 * 
@@ -22,17 +22,12 @@ public @interface AttributeExplain {
 
 	/**
 	 * 
-	 * 方法: defaultVal <br>
-	 * 描述: 默认值 <br>
+	 * 方法: isNull <br>
+	 * 描述: 是否允许为空 <br>
 	 * 作者: zhy<br>
-	 * 时间: 2016年12月29日 上午7:44:20
+	 * 时间: 2017年2月7日 下午9:01:00
 	 * 
 	 * @return
-	 */
-	public String defaultVal() default "";
-
-	/**
-	 * 是否为空
 	 */
 	public boolean isNull() default true;
 
@@ -46,4 +41,15 @@ public @interface AttributeExplain {
 	 * @return
 	 */
 	public String description() default "";
+
+	/**
+	 * 
+	 * 方法: defaultValue <br>
+	 * 描述: 默认值 <br>
+	 * 作者: zhy<br>
+	 * 时间: 2017年2月7日 下午8:51:47
+	 * 
+	 * @return
+	 */
+	public String defaultValue() default "";
 }
