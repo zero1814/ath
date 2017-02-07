@@ -22,8 +22,7 @@
 <link href="assets/commons/css/animate.css" rel="stylesheet">
 <link href="assets/commons/css/style.css?v=1.0.0" rel="stylesheet">
 <script type="text/javascript">
-	var basePath = "<%=basePath%>
-	";
+	var basePath = "<%=basePath%>";
 </script>
 </head>
 <body class="fixed-sidebar full-height-layout gray-bg"

@@ -15,7 +15,7 @@ public class IndexController {
 	@RequestMapping("index")
 	public String index(ModelMap model) {
 		model.addAttribute("menugroups", service.getMenus());
-		return "jsp/";
+		return "jsp/index";
 	}
 
 	@RequestMapping("indexdata")
