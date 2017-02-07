@@ -1,10 +1,12 @@
 package org.module.commons.helper.cache;
 
+import org.module.commons.base.BaseClass;
+
 import com.google.inject.Inject;
 
 import redis.clients.jedis.JedisCluster;
 
-public class CacheStringHelper {
+public class CacheStringHelper extends BaseClass {
 
 	@Inject
 	private JedisCluster cluster;

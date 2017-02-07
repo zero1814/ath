@@ -68,6 +68,20 @@ public class CacheHashHelper extends BaseClass {
 
 	/**
 	 * 
+	 * 方法: delCache <br>
+	 * 描述: 删除缓存hash指定值 <br>
+	 * 作者: zhy<br>
+	 * 时间: 2017年2月7日 上午8:40:13
+	 * 
+	 * @param key
+	 * @param field
+	 */
+	public void delCache(String key, String... field) {
+		cluster.hdel(key, field);
+	}
+
+	/**
+	 * 
 	 * 方法: getCacheValue <br>
 	 * 描述: 获取缓存值 <br>
 	 * 作者: zhy<br>
@@ -79,7 +93,7 @@ public class CacheHashHelper extends BaseClass {
 	 */
 	public String getCacheValue(String key, String field) {
 		String val = "";
-		if (cluster.exists(key)) {
+		if (cluster.hexists(key, field)) {
 			val = cluster.hget(key, field);
 		}
 		return val;
