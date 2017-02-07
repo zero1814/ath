@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="org.module.mapper.system.menu.SmMenuPermissionMapper">
+	<resultMap id="BaseResultMap" type="org.module.model.system.menu.SmMenuPermission">
+		<id column="id" property="id" jdbcType="INTEGER" />
+		<result column="uid" property="uid" jdbcType="VARCHAR" />
+		<result column="code" property="code" jdbcType="VARCHAR" />
+		<result column="menu_code" property="menuCode" jdbcType="VARCHAR" />
+		<result column="name" property="name" jdbcType="VARCHAR" />
+		<result column="create_user" property="createUser" jdbcType="VARCHAR" />
+		<result column="create_time" property="createTime" jdbcType="VARCHAR" />
+		<result column="update_user" property="updateUser" jdbcType="VARCHAR" />
+		<result column="update_time" property="updateTime" jdbcType="VARCHAR" />
+		<result column="description" property="description" jdbcType="LONGVARCHAR" />
+	</resultMap>
+	<sql id="Base_Column_List">
+		id, uid, code, menu_code, name,description, create_user,
+		create_time,
+		update_user, update_time
+	</sql>
+	<select id="selectByCode" resultMap="BaseResultMap"
+		parameterType="java.lang.String">
+		select
+		<include refid="Base_Column_List" />
+		from sm_menu_permission
+		where `code`=#{code,jdbcType=VARCHAR}
+	</select>
+	<delete id="deleteByCode" parameterType="java.lang.String">
+		delete from
+		sm_menu_permission
+		where `code`=#{code,jdbcType=VARCHAR}
+	</delete>
+	<insert id="insertSelective" parameterType="org.module.model.system.menu.SmMenuPermission">
+		insert into sm_menu_permission
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			uid,
+			`code`,
+			menu_code,
+			`name`,
+			create_user,
+			create_time,
+			update_user,
+			update_time,
+			<if test="description != null">
+				description,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			#{uid,jdbcType=VARCHAR},
+			#{code,jdbcType=VARCHAR},
+			#{menuCode,jdbcType=VARCHAR},
+			#{name,jdbcType=VARCHAR},
+			#{createUser,jdbcType=VARCHAR},
+			STR_TO_DATE(#{createTime,jdbcType=VARCHAR},'%Y-%m-%d
+			%H:%i:%s'),
+			#{updateUser,jdbcType=VARCHAR},
+			STR_TO_DATE(#{updateTime,jdbcType=VARCHAR},'%Y-%m-%d
+			%H:%i:%s'),
+			<if test="description != null">
+				#{description,jdbcType=LONGVARCHAR},
+			</if>
+		</trim>
+	</insert>
+	<update id="updateByCode" parameterType="org.module.model.system.menu.SmMenuPermission">
+		update sm_menu_permission
+		<set>
+			<if test="menuCode != null">
+				menu_code = #{menuCode,jdbcType=VARCHAR},
+			</if>
+			<if test="name != null">
+				name = #{name,jdbcType=VARCHAR},
+			</if>
+			update_user = #{updateUser,jdbcType=VARCHAR},
+			update_time =
+			STR_TO_DATE(#{updateTime,jdbcType=VARCHAR},'%Y-%m-%d %H:%i:%s'),
+			<if test="description != null">
+				description = #{description,jdbcType=LONGVARCHAR},
+			</if>
+		</set>
+		where `code`=#{code,jdbcType=VARCHAR}
+	</update>
+</mapper>
