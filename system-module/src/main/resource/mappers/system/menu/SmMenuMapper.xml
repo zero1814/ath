@@ -166,4 +166,14 @@
 		<include refid="Base_Column_List" />
 		from sm_menu
 	</select>
+	<select id="findEntityAllForGroup" resultMap="BaseResultMap" parameterType="org.module.dto.system.menu.SmMenuDto">
+		select
+		<include refid="Base_Column_List" />
+		from sm_menu
+		<where>
+			flag_able = 0
+			and is_deleted = 0
+			and group_code = #{groupCode,jdbcType=VARCHAR}
+		</where>
+	</select>	
 </mapper>

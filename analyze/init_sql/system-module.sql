@@ -22,7 +22,7 @@ CREATE TABLE sm_define (
 	id INT PRIMARY KEY AUTO_INCREMENT COMMENT '主键',
 	uid VARCHAR (50) NOT NULL UNIQUE COMMENT 'uuid',
 	`code` VARCHAR (50) NOT NULL UNIQUE COMMENT '参数编码',
-	parent_code VARCHAR (50) DEFAULT '' COMMENT '父级编码',
+	parent_code VARCHAR (50) DEFAULT '0' COMMENT '父级编码',
 	`name` VARCHAR (50) NOT NULL COMMENT '名称',
 	create_user VARCHAR (50) NOT NULL COMMENT '创建人',
 	create_time datetime NOT NULL COMMENT '创建时间',
@@ -52,7 +52,7 @@ CREATE TABLE sm_menu (
 	uid VARCHAR (50) NOT NULL COMMENT 'uuid',
 	`code` VARCHAR (50) NOT NULL UNIQUE COMMENT '菜单编码',
 	parent_code VARCHAR (50) DEFAULT '0' COMMENT '父级编码',
-	group_code VARCHAR (50) DEFAULT '' COMMENT '',
+	group_code VARCHAR (50) DEFAULT '' COMMENT '菜单组编码',
 	`name` VARCHAR (50) NOT NULL COMMENT '名称',
 	url VARCHAR (100) DEFAULT '' COMMENT '菜单链接地址',
 	icon VARCHAR (50) DEFAULT '' COMMENT '菜单图标',
@@ -65,7 +65,7 @@ CREATE TABLE sm_menu (
 ) COMMENT '系统菜单表';
 
 DROP TABLE
-IF EXISTS sm_menu_authority;
+IF EXISTS sm_menu_permission;
 
 CREATE TABLE sm_menu_permission (
 	id INT PRIMARY KEY AUTO_INCREMENT COMMENT '主键',
@@ -78,7 +78,7 @@ CREATE TABLE sm_menu_permission (
 	create_time datetime NOT NULL COMMENT '创建时间',
 	update_user VARCHAR (50) NOT NULL COMMENT '最后修改人',
 	update_time datetime NOT NULL COMMENT '最后修改时间'
-) COMMENT '菜单角色关系表';
+) COMMENT '菜单权限表';
 
 DROP TABLE
 IF EXISTS sm_role;

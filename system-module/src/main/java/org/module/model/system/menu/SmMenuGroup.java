@@ -1,5 +1,7 @@
 package org.module.model.system.menu;
 
+import java.util.List;
+
 import org.module.commons.annotation.db.Column;
 import org.module.commons.annotation.db.Table;
 import org.module.commons.annotation.obj.Attribute;
@@ -13,6 +15,17 @@ public class SmMenuGroup extends BaseModel {
 	@Column(name = "name", comment = "名称", isNull = false)
 	@Attribute(name = "name", description = "名称", isNull = false)
 	private String name;
+
+	@Attribute(name = "menus", description = "菜单组下的所有菜单信息")
+	private List<SmMenu> menus;
+
+	public List<SmMenu> getMenus() {
+		return menus;
+	}
+
+	public void setMenus(List<SmMenu> menus) {
+		this.menus = menus;
+	}
 
 	public String getName() {
 		return name;
