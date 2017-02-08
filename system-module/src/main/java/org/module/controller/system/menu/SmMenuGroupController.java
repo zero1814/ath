@@ -1,5 +1,7 @@
 package org.module.controller.system.menu;
 
+import java.util.ArrayList;
+
 import org.module.commons.helper.CodeHelper;
 import org.module.dto.system.menu.SmMenuGroupDto;
 import org.module.model.system.menu.SmMenuGroup;
@@ -10,6 +12,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+
+import com.alibaba.fastjson.JSONObject;
 
 @Controller
 @RequestMapping("system/menugroup/")
@@ -25,8 +29,17 @@ public class SmMenuGroupController {
 
 	@RequestMapping("data")
 	@ResponseBody
-	public PageResult data(SmMenuGroupDto dto) {
-		return service.findEntityToPage(dto);
+	public JSONObject data(SmMenuGroupDto dto) {
+		JSONObject obj = new JSONObject();
+		PageResult result = service.findEntityToPage(dto);
+		if (result.getCode() == 0) {
+			obj.put("rows", result.getData());
+			obj.put("total", result.getTotal());
+		} else {
+			obj.put("rows", new ArrayList<SmMenuGroup>());
+			obj.put("total", 0);
+		}
+		return obj;
 	}
 
 	@RequestMapping("addindex")

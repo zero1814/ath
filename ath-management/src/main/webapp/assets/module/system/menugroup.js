@@ -26,10 +26,10 @@ var columnsArray = [ {
 	field : 'updateTime',
 	title : '修改时间'
 }, {
-	field : 'edit_group',
+	field : 'editGroup',
 	title : '编辑'
 }, {
-	field : 'del_group',
+	field : 'delGroup',
 	title : '删除'
 } ];
 var MenuGroup = {

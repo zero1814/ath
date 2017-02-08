@@ -68,7 +68,7 @@
 		<include refid="Base_Column_List" />
 		from sm_menu_group
 		<where>
-			<if test="name != null and name!=''">
+			<if test="name != null and name != ''">
 				`name` =#{name,jdbcType=VARCHAR}
 			</if>
 		</where>
@@ -80,7 +80,7 @@
 		count(1)
 		from sm_menu_group
 		<where>
-			<if test="name != null and name!=''">
+			<if test="name != null and name != ''">
 				`name` =#{name,jdbcType=VARCHAR}
 			</if>
 		</where>
