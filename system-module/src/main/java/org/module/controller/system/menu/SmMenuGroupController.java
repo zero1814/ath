@@ -1,5 +1,6 @@
 package org.module.controller.system.menu;
 
+import org.module.commons.helper.CodeHelper;
 import org.module.dto.system.menu.SmMenuGroupDto;
 import org.module.model.system.menu.SmMenuGroup;
 import org.module.result.PageResult;
@@ -36,6 +37,8 @@ public class SmMenuGroupController {
 	@RequestMapping("add")
 	@ResponseBody
 	public RootResult add(SmMenuGroup entity) {
+		entity.setCode(CodeHelper.getUniqueCode("SM"));
+		entity.setCreateUser("admin");
 		return service.insertSelective(entity);
 	}
 
@@ -48,6 +51,7 @@ public class SmMenuGroupController {
 	@RequestMapping("edit")
 	@ResponseBody
 	public RootResult edit(SmMenuGroup entity) {
+		entity.setUpdateUser("admin");
 		return service.updateByCode(entity);
 	}
 

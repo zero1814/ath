@@ -50,7 +50,7 @@
 		</div>
 	</div>
 </div>
-<div id="addGroup" class="ibox col-sm-10" style="margin: 40px;">
+<div id="addGroup" class="ibox col-sm-10" style="margin: 40px;display: none;">
 	<div class="ibox-content">
 		<form id="addFrm" class="form-horizontal" action="">
 			<div class="form-group">
@@ -71,7 +71,7 @@
 		</form>
 	</div>
 </div>
-<div id="editGroup" class="ibox col-sm-10" style="margin: 40px;">
+<div id="editGroup" class="ibox col-sm-10" style="margin: 40px;display: none;">
 	<div class="ibox-content">
 		<form id="editFrm" class="form-horizontal" action="">
 			<input type="hidden" name="editCode" id="editCode" value="">
