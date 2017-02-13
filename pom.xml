@@ -17,6 +17,7 @@
 		<module>kernel-module</module>
 		<module>ath-manage</module>
     <module>ath-management</module>
+    <module>flow-module</module>
   </modules>
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
