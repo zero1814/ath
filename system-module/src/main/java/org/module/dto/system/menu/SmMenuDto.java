@@ -13,6 +13,18 @@ public class SmMenuDto extends BaseDto {
 	@Attribute(name = "groupCode", description = "菜单组编码")
 	private String groupCode;
 
+	@Attribute(name = "parentCode", description = "菜单父级编码")
+	private String parentCode;
+
+	
+	public String getParentCode() {
+		return parentCode;
+	}
+
+	public void setParentCode(String parentCode) {
+		this.parentCode = parentCode;
+	}
+
 	public String getGroupCode() {
 		return groupCode;
 	}

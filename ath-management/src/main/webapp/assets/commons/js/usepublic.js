@@ -96,5 +96,117 @@ var UsePublic = {
 				$(this).attr("checked", false);
 			});
 		}
+	},
+	/**
+	 * 加载表数据
+	 */
+	initData : function(url, param) {
+
+	},
+	/**
+	 * 添加
+	 */
+	add : function(urlVal, paramVal, returnUrlVal) {
+		$.ajax({
+			url : urlVal,
+			type : "POST",
+			data : paramVal,
+			success : function(result) {
+				result = JSON.parse(result);
+				if (result.code == 0) {
+					layer.alert('添加成功', function(index) {
+						layer.close(index);
+						if (returnUrlVal) {
+							window.open("_self", returnUrlVal);
+						}
+					});
+				} else {
+					layer.alert(result.message, function(index) {
+						layer.close(index);
+						if (returnUrlVal) {
+							window.open("_self", returnUrlVal);
+						}
+					});
+				}
+			},
+			error : function(result) {
+				layer.alert('添加失败，失败原因:' + JSON.stringify(result));
+			}
+		});
+	},
+	/**
+	 * 打开编辑页面
+	 */
+	openEditUrl : function(url) {
+		layer.confirm('您确认要编辑选中的数据吗？', {
+			btn : [ '确认', '取消' ]
+		// 按钮
+		}, function() {
+			window.open(url);
+		});
+	},
+	edit : function(urlVal, paramVal, returnUrlVal) {
+		$.ajax({
+			url : urlVal,
+			type : "POST",
+			data : paramVal,
+			success : function(result) {
+				result = JSON.parse(result);
+				if (result.code == 0) {
+					layer.alert('编辑成功', function(index) {
+						layer.close(index);
+						if (returnUrlVal) {
+							window.open("_self", returnUrlVal);
+						}
+					});
+				} else {
+					layer.alert(result.message, function(index) {
+						layer.close(index);
+						if (returnUrlVal) {
+							window.open("_self", returnUrlVal);
+						}
+					});
+				}
+			},
+			error : function(result) {
+				layer.alert('编辑失败，失败原因:' + JSON.stringify(result));
+			}
+		});
+	},
+	/**
+	 * 删除
+	 */
+	del : function(urlVal, paramVal, returnUrlVal) {
+		layer.confirm('您确认要删除选中的数据吗？', {
+			btn : [ '确认', '取消' ]
+		// 按钮
+		}, function() {
+			$.ajax({
+				url : urlVal,
+				type : "POST",
+				data : paramVal,
+				success : function(result) {
+					result = JSON.parse(result);
+					if (result.code == 0) {
+						layer.alert('删除成功', function(index) {
+							layer.close(index);
+							if (returnUrlVal) {
+								window.open("_self", returnUrlVal);
+							}
+						});
+					} else {
+						layer.alert(result.message, function(index) {
+							layer.close(index);
+							if (returnUrlVal) {
+								window.open("_self", returnUrlVal);
+							}
+						});
+					}
+				},
+				error : function(result) {
+					layer.alert('删除失败，失败原因:' + JSON.stringify(result));
+				}
+			});
+		});
 	}
 };

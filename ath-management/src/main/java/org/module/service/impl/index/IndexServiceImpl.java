@@ -34,8 +34,16 @@ public class IndexServiceImpl implements IndexService {
 			for (SmMenuGroup group : groups) {
 				SmMenuDto menuDto = new SmMenuDto();
 				menuDto.setGroupCode(group.getCode());
+				menuDto.setParentCode("0");
 				List<SmMenu> menus = menuMapper.findEntityAllForGroup(menuDto);
 				if (menus != null && menus.size() > 0) {
+					for (SmMenu smMenu : menus) {
+						menuDto.setParentCode(smMenu.getCode());
+						List<SmMenu> childMenus = menuMapper.findEntityAllForGroup(menuDto);
+						if (childMenus != null && childMenus.size() > 0) {
+							smMenu.setChildMenu(childMenus);
+						}
+					}
 					group.setMenus(menus);
 				}
 			}
