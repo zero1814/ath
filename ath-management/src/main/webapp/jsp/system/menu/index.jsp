@@ -55,6 +55,6 @@
 <script src="assets/module/system/menu.js"></script>
 <script type="text/javascript">
 	$(document).ready(function() {
-		MenuGroup.data();
+		Menu.data();
 	});
 </script>

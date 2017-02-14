@@ -30,15 +30,18 @@ var columnsArray = [ {
 	title : '修改时间'
 }, {
 	field : 'editGroup',
-	title : '编辑'
+	title : '编辑',
+	formatter : openEdit
 }, {
 	field : 'delGroup',
-	title : '删除'
+	title : '删除',
+	formatter : openDelLayer
 } ];
-var MenuGroup = {
+var Menu = {
 	addLayer : '',
 	editLayer : '',
 	data : function() {
+		alert();
 		$("#table").bootstrapTable({
 			url : dataUrl, // 请求后台的URL（*）
 			method : 'get', // 请求方式（*）
@@ -49,7 +52,7 @@ var MenuGroup = {
 			pagination : true, // 是否显示分页（*）
 			sortable : true, // 是否启用排序
 			sortOrder : "desc", // 排序方式
-			queryParams : MenuGroup.initDataParam,// 传递参数（*）
+			queryParams : Menu.initDataParam,// 传递参数（*）
 			queryParamsType : "limit",
 			sidePagination : "server", // 分页方式：client客户端分页，server服务端分页（*）
 			pageNumber : 1, // 初始化加载第一页，默认第一页
@@ -91,14 +94,6 @@ var MenuGroup = {
 	openAdd : function() {
 		window.open(addUrl);
 	},
-	/**
-	 * 开发编辑页面
-	 * 
-	 * @param codeVal
-	 */
-	openEdit : function(codeVal) {
-		window.open(editUrl + codeVal);
-	},
 	edit : function() {
 		layer.confirm('您确定要编辑选中菜单组吗？', {
 			btn : [ '确定', '取消' ]
@@ -115,7 +110,7 @@ var MenuGroup = {
 				success : function(result) {
 					result = JSON.parse(result);
 					if (result.code == 0) {
-						layer.close(MenuGroup.editLayer);
+						layer.close(Menu.editLayer);
 						layer.alert('编辑成功', function(index) {
 							layer.close(index);
 							$('#table').bootstrapTable('refresh');
@@ -126,8 +121,6 @@ var MenuGroup = {
 					layer.alert('编辑失败');
 				}
 			});
-		}, function() {
-			layer.close(MenuGroup.editLayer);
 		});
 	},
 	del : function(codeVal) {
@@ -158,3 +151,28 @@ var MenuGroup = {
 		});
 	}
 };
+/**
+ * 开发编辑页面
+ * 
+ * @param codeVal
+ */
+function openEdit(value, row, index) {
+	var codeVal = row.code;
+	var url = editUrl + codeVal;
+	var html = '<a href="' + url + '" class="btn btn-info">编辑</a>';
+	return html;
+}
+/**
+ * 打开删除操作layer
+ * @param value
+ * @param row
+ * @param index
+ * @returns {String}
+ */
+function openDelLayer(value, row, index) {
+	var codeVal = row.code;
+	var url = editUrl + codeVal;
+	var html = '<a href="javascript:void(0)" onclick="Menu.del(\'"'
+			+ codeVal + '"\')" class="btn btn-info">删除</a>';
+	return html;
+}
