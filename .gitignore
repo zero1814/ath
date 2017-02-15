@@ -1,4 +1,2 @@
-pom.properties
-*.class
-pom.xml
-*.prefs
+/*.project
+/.settings

@@ -54,7 +54,7 @@ CREATE TABLE sm_menu (
 	parent_code VARCHAR (50) DEFAULT '0' COMMENT '父级编码',
 	group_code VARCHAR (50) DEFAULT '' COMMENT '菜单组编码',
 	`name` VARCHAR (50) NOT NULL COMMENT '名称',
-	url VARCHAR (100) DEFAULT '' COMMENT '菜单链接地址',
+	page_code VARCHAR (50) DEFAULT '' COMMENT '菜单链接页面编码',
 	icon VARCHAR (50) DEFAULT '' COMMENT '菜单图标',
 	flag_able INT DEFAULT 0 COMMENT '是否可用 0 可用 1 不可用',
 	is_deleted INT DEFAULT 0 COMMENT '是否已删除 0 未删除 1 已删除',
@@ -111,3 +111,95 @@ CREATE TABLE sm_role_permission (
 		menu_permission_code
 	) COMMENT '角色访问菜单权限'
 ) COMMENT '角色权限';
+
+DROP TABLE
+IF EXISTS sm_page;
+
+CREATE TABLE sm_page (
+	id INT PRIMARY KEY AUTO_INCREMENT COMMENT '主键',
+	uid VARCHAR (50) NOT NULL UNIQUE COMMENT 'uuid',
+	`code` VARCHAR (50) NOT NULL UNIQUE COMMENT '编码',
+	`name` VARCHAR (50) NOT NULL COMMENT '名称',
+	url VARCHAR (500) NOT NULL COMMENT '链接地址',
+	description text COMMENT '说明',
+	create_user VARCHAR (50) NOT NULL COMMENT '创建人',
+	create_time datetime NOT NULL COMMENT '创建时间',
+	update_user VARCHAR (50) NOT NULL COMMENT '最后修改人',
+	update_time datetime NOT NULL COMMENT '最后修改时间'
+) COMMENT '页面维护表';
+
+DROP TABLE
+IF EXISTS sm_page_button;
+
+CREATE TABLE sm_page_button (
+	id INT PRIMARY KEY AUTO_INCREMENT COMMENT '主键',
+	uid VARCHAR (50) NOT NULL UNIQUE COMMENT 'uuid',
+	`code` VARCHAR (50) NOT NULL UNIQUE COMMENT '编码',
+	`page_code` VARCHAR (50) NOT NULL COMMENT '页面编码',
+	style_code VARCHAR (50) DEFAULT '' COMMENT '按钮样式',
+	operation VARCHAR (500) COMMENT '按钮操作',
+	create_user VARCHAR (50) NOT NULL COMMENT '创建人',
+	create_time datetime NOT NULL COMMENT '创建时间',
+	update_user VARCHAR (50) NOT NULL COMMENT '最后修改人',
+	update_time datetime NOT NULL COMMENT '最后修改时间'
+) COMMENT '页面按钮表';
+
+DROP TABLE
+IF EXISTS sm_button_area;
+
+CREATE TABLE sm_button_area (
+	id INT PRIMARY KEY AUTO_INCREMENT COMMENT '主键',
+	uid VARCHAR (50) NOT NULL UNIQUE COMMENT 'uuid',
+	`code` VARCHAR (50) NOT NULL UNIQUE COMMENT '编码',
+	`name` VARCHAR (50) NOT NULL COMMENT '名称',
+	create_user VARCHAR (50) NOT NULL COMMENT '创建人',
+	create_time datetime NOT NULL COMMENT '创建时间',
+	update_user VARCHAR (50) NOT NULL COMMENT '最后修改人',
+	update_time datetime NOT NULL COMMENT '最后修改时间'
+) COMMENT '按钮操作区域';
+
+DROP TABLE
+IF EXISTS sm_button_operation_type;
+
+CREATE TABLE sm_button_operation_type (
+	id INT PRIMARY KEY AUTO_INCREMENT COMMENT '主键',
+	uid VARCHAR (50) NOT NULL UNIQUE COMMENT 'uuid',
+	`code` VARCHAR (50) NOT NULL UNIQUE COMMENT '编码',
+	`name` VARCHAR (50) NOT NULL COMMENT '名称',
+	create_user VARCHAR (50) NOT NULL COMMENT '创建人',
+	create_time datetime NOT NULL COMMENT '创建时间',
+	update_user VARCHAR (50) NOT NULL COMMENT '最后修改人',
+	update_time datetime NOT NULL COMMENT '最后修改时间'
+) COMMENT '按钮操作类型';
+
+DROP TABLE
+IF EXISTS sm_button_style;
+
+CREATE TABLE sm_button_style (
+	id INT PRIMARY KEY AUTO_INCREMENT COMMENT '主键',
+	uid VARCHAR (50) NOT NULL UNIQUE COMMENT 'uuid',
+	`code` VARCHAR (50) NOT NULL COMMENT '编码',
+	`name` VARCHAR (50) NOT NULL COMMENT '名称',
+	icon VARCHAR (100) DEFAULT '' COMMENT '图标',
+	style VARCHAR (200) NOT NULL COMMENT '样式',
+	create_user VARCHAR (50) NOT NULL COMMENT '创建人',
+	create_time datetime NOT NULL COMMENT '创建时间',
+	update_user VARCHAR (50) NOT NULL COMMENT '最后修改人',
+	update_time datetime NOT NULL COMMENT '最后修改时间',
+	UNIQUE style_unqiue (`code`, style) COMMENT '样式唯一键约束'
+) COMMENT '按钮样式';
+
+DROP TABLE
+IF EXISTS sm_page_authority;
+
+CREATE TABLE sm_page_authority (
+	id INT PRIMARY KEY AUTO_INCREMENT COMMENT '主键',
+	uid VARCHAR (50) NOT NULL UNIQUE COMMENT 'uuid',
+	`code` VARCHAR (50) NOT NULL UNIQUE COMMENT '编码',
+	page_code VARCHAR (50) NOT NULL COMMENT '页面编码',
+	authority text COMMENT '权限设置 json存储',
+	create_user VARCHAR (50) NOT NULL COMMENT '创建人',
+	create_time datetime NOT NULL COMMENT '创建时间',
+	update_user VARCHAR (50) NOT NULL COMMENT '最后修改人',
+	update_time datetime NOT NULL COMMENT '最后修改时间'
+) COMMENT '页面权限表';
