@@ -27,7 +27,13 @@ public class SmMenu extends BaseModel {
 	@Attribute(name = "name", description = "名称", isNull = false)
 	private String name;
 
-	@Column(name = "url", comment = "访问地址")
+	@Column(name = "page_code", comment = "访问页面编码")
+	@Attribute(name = "pageCode", description = "访问页面编码")
+	private String pageCode;
+
+	@Attribute(name = "pageName", description = "访问页面名称")
+	private String pageName;
+
 	@Attribute(name = "url", description = "访问地址")
 	private String url;
 
@@ -43,7 +49,24 @@ public class SmMenu extends BaseModel {
 	@Attribute(name = "isDeleted", description = "是否已删除", defaultValue = "0")
 	private Integer isDeleted;
 
+	@Attribute(name = "childMenu", description = "子菜单集合")
 	private List<SmMenu> childMenu;
+
+	public String getPageName() {
+		return pageName;
+	}
+
+	public void setPageName(String pageName) {
+		this.pageName = pageName;
+	}
+
+	public String getUrl() {
+		return url;
+	}
+
+	public void setUrl(String url) {
+		this.url = url;
+	}
 
 	public List<SmMenu> getChildMenu() {
 		return childMenu;
@@ -85,12 +108,12 @@ public class SmMenu extends BaseModel {
 		this.name = name;
 	}
 
-	public String getUrl() {
-		return url;
+	public String getPageCode() {
+		return pageCode;
 	}
 
-	public void setUrl(String url) {
-		this.url = url;
+	public void setPageCode(String pageCode) {
+		this.pageCode = pageCode;
 	}
 
 	public String getIcon() {

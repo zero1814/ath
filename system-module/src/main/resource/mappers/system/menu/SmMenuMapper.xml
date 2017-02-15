@@ -9,6 +9,7 @@
 		<result column="group_code" property="groupCode" jdbcType="VARCHAR" />
 		<result column="group_name" property="groupName" jdbcType="VARCHAR" />
 		<result column="name" property="name" jdbcType="VARCHAR" />
+		<result column="page_code" property="pageCode" jdbcType="VARCHAR" />
 		<result column="url" property="url" jdbcType="VARCHAR" />
 		<result column="icon" property="icon" jdbcType="VARCHAR" />
 		<result column="flag_able" property="flagAble" jdbcType="INTEGER" />
@@ -19,11 +20,13 @@
 		<result column="update_time" property="updateTime" jdbcType="VARCHAR" />
 	</resultMap>
 	<sql id="Base_Column_List">
-		id, uid, code, parent_code, group_code, name, url, icon,
+		id, uid, code, parent_code, group_code, name, page_code,
+		icon,
 		flag_able,
 		is_deleted, create_user,
 		DATE_FORMAT(create_time,'%Y-%m-%d
-		%H:%i:%s') as create_time, update_user,
+		%H:%i:%s') as create_time,
+		update_user,
 		DATE_FORMAT(update_time,'%Y-%m-%d %H:%i:%s') as
 		update_time
 	</sql>
@@ -48,8 +51,8 @@
 			</if>
 			group_code,
 			`name`,
-			<if test="url != null">
-				url,
+			<if test="pageCode != null">
+				page_code,
 			</if>
 			<if test="icon != null">
 				icon,
@@ -73,8 +76,8 @@
 			</if>
 			#{groupCode,jdbcType=VARCHAR},
 			#{name,jdbcType=VARCHAR},
-			<if test="url != null">
-				#{url,jdbcType=VARCHAR},
+			<if test="pageCode != null">
+				#{pageCode,jdbcType=VARCHAR},
 			</if>
 			<if test="icon != null">
 				#{icon,jdbcType=VARCHAR},
@@ -103,8 +106,8 @@
 			<if test="name != null">
 				name = #{name,jdbcType=VARCHAR},
 			</if>
-			<if test="url != null">
-				url = #{url,jdbcType=VARCHAR},
+			<if test="pageCode != null">
+				page_code = #{pageCode,jdbcType=VARCHAR},
 			</if>
 			<if test="icon != null">
 				icon = #{icon,jdbcType=VARCHAR},
@@ -127,15 +130,24 @@
 		sm.`code`,
 		sm.`name`,
 		smg.`name` AS group_name,
+		sp.`name` AS
+		page_name,
+		sp.url AS url,
 		sm.create_user,
-		DATE_FORMAT(sm.create_time,'%Y-%m-%d %H:%i:%s') as create_time,
+		DATE_FORMAT(
+		sm.create_time,
+		'%Y-%m-%d %H:%i:%s'
+		) AS create_time,
 		sm.update_user,
-		DATE_FORMAT(sm.update_time,'%Y-%m-%d %H:%i:%s') as
-		update_time
+		DATE_FORMAT(
+		sm.update_time,
+		'%Y-%m-%d %H:%i:%s'
+		) AS update_time
 		FROM
 		sm_menu AS sm
-		LEFT JOIN sm_menu_group AS smg ON
-		sm.group_code = smg.`code`
+		LEFT JOIN sm_menu_group AS smg ON sm.group_code = smg.`code`
+		LEFT JOIN
+		sm_page AS sp ON sm.page_code = sp.`code`
 		<where>
 			sm.is_deleted = 0
 			<if test="name != null and name != ''">
@@ -153,6 +165,8 @@
 		sm_menu AS sm
 		LEFT JOIN sm_menu_group AS smg ON
 		sm.group_code = smg.`code`
+		LEFT JOIN sm_page AS sp ON sm.page_code =
+		sp.`code`
 		<where>
 			sm.is_deleted = 0
 			<if test="name != null and name != ''">
@@ -162,19 +176,47 @@
 		</where>
 	</select>
 	<select id="findEntityAll" resultMap="BaseResultMap">
-		select
-		<include refid="Base_Column_List" />
-		from sm_menu
+		SELECT
+		sm.`code`,
+		sm.`name`,
+		smg.`name` AS group_name,
+		sp.`name` AS page_name,
+		sp.url AS url,
+		sm.create_user,
+		DATE_FORMAT(
+		sm.create_time,
+		'%Y-%m-%d %H:%i:%s'
+		) AS
+		create_time,
+		sm.update_user,
+		DATE_FORMAT(
+		sm.update_time,
+		'%Y-%m-%d
+		%H:%i:%s'
+		) AS update_time
+		sm_menu AS sm
+		LEFT JOIN sm_menu_group AS smg
+		ON sm.group_code = smg.`code`
+		LEFT JOIN sm_page AS sp ON sm.page_code =
+		sp.`code`
 	</select>
-	<select id="findEntityAllForGroup" resultMap="BaseResultMap" parameterType="org.module.dto.system.menu.SmMenuDto">
-		select
-		<include refid="Base_Column_List" />
-		from sm_menu
+	<select id="findEntityAllForGroup" resultMap="BaseResultMap"
+		parameterType="org.module.dto.system.menu.SmMenuDto">
+		SELECT
+		sm.`code`,
+		sm.`name`,
+		sp.url
+		FROM
+		sm_menu AS sm
+		LEFT JOIN sm_page AS
+		sp ON sm.page_code = sp.`code`
 		<where>
 			flag_able = 0
 			and is_deleted = 0
-			and group_code = #{groupCode,jdbcType=VARCHAR}
-			and parent_code = #{parentCode,jdbcType=VARCHAR}
+			and group_code =
+			#{groupCode,jdbcType=VARCHAR}
+			and parent_code =
+			#{parentCode,jdbcType=VARCHAR}
 		</where>
-	</select>	
+	</select>
 </mapper>

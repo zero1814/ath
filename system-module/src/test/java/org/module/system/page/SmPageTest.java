@@ -20,14 +20,22 @@ public class SmPageTest {
 	@Autowired
 	private ISmPageService service;
 
+	@Test
 	public void insert() {
 		SmPage entity = new SmPage();
 		entity.setCode(CodeHelper.getUniqueCode("SP"));
-		entity.setName("按钮样式管理");
-		entity.setUrl("sys/test/index.htm");
+		entity.setName("菜单组管理");
+		entity.setUrl("system/menugroup/index.htm");
 		entity.setCreateUser("admin");
-		entity.setDescription("测试");
+		entity.setDescription("用于管理菜单组信息");
 		service.insertSelective(entity);
+		SmPage entity1 = new SmPage();
+		entity1.setCode(CodeHelper.getUniqueCode("SP"));
+		entity1.setName("菜单管理");
+		entity1.setUrl("system/menu/index.htm");
+		entity1.setCreateUser("admin");
+		entity1.setDescription("用于管理菜单信息");
+		service.insertSelective(entity1);
 	}
 
 	public void edit() {
@@ -45,7 +53,6 @@ public class SmPageTest {
 		System.out.println(JSON.toJSON(result));
 	}
 
-	@Test
 	public void del() {
 		RootResult result = service.deleteByCode("SP831771172612861952");
 		System.out.println(JSON.toJSON(result));

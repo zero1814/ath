@@ -41,7 +41,6 @@ var Menu = {
 	addLayer : '',
 	editLayer : '',
 	data : function() {
-		alert();
 		$("#table").bootstrapTable({
 			url : dataUrl, // 请求后台的URL（*）
 			method : 'get', // 请求方式（*）
@@ -164,6 +163,7 @@ function openEdit(value, row, index) {
 }
 /**
  * 打开删除操作layer
+ * 
  * @param value
  * @param row
  * @param index
@@ -172,7 +172,7 @@ function openEdit(value, row, index) {
 function openDelLayer(value, row, index) {
 	var codeVal = row.code;
 	var url = editUrl + codeVal;
-	var html = '<a href="javascript:void(0)" onclick="Menu.del(\'"'
-			+ codeVal + '"\')" class="btn btn-info">删除</a>';
+	var html = '<a href="javascript:void(0)" onclick="Menu.del(\'"' + codeVal
+			+ '"\')" class="btn btn-info">删除</a>';
 	return html;
 }

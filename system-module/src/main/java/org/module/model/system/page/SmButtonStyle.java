@@ -1,5 +1,6 @@
 package org.module.model.system.page;
 
+import org.module.commons.annotation.db.Column;
 import org.module.commons.annotation.obj.Attribute;
 import org.module.commons.annotation.obj.Object;
 import org.module.model.BaseModel;
@@ -8,12 +9,15 @@ import org.module.model.BaseModel;
 public class SmButtonStyle extends BaseModel {
 
 	@Attribute(name = "名称", isNull = false)
+	@Column(name = "name", comment = "名称", isNull = false)
 	private String name;
 
 	@Attribute(name = "图标")
+	@Column(name = "icon", comment = "图标")
 	private String icon;
 
 	@Attribute(name = "css样式", isNull = false)
+	@Column(name = "style", comment = "css样式", isNull = false)
 	private String style;
 
 	public String getName() {

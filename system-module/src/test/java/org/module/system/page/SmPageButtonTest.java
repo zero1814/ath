@@ -23,7 +23,7 @@ public class SmPageButtonTest {
 	public void insert() {
 		SmPageButton entity = new SmPageButton();
 		entity.setCode(CodeHelper.getUniqueCode("PB"));
-		entity.setPageCode("SP1002");
+		entity.setPageCode("SP831798539125256192");
 		entity.setStyleCode("BS0012312");
 		entity.setOperation("添加");
 		entity.setCreateUser("admin");

@@ -1,5 +1,6 @@
 package org.module.model.system.page;
 
+import org.module.commons.annotation.db.Column;
 import org.module.commons.annotation.obj.Attribute;
 import org.module.commons.annotation.obj.Object;
 import org.module.model.BaseModel;
@@ -8,9 +9,11 @@ import org.module.model.BaseModel;
 public class SmPageAuthority extends BaseModel {
 
 	@Attribute(name = "页面编码", isNull = false)
+	@Column(name = "page_code", comment = "页面编码", isNull = false)
 	private String pageCode;
 
 	@Attribute(name = "操作权限", isNull = false)
+	@Column(name = "authority", comment = "操作权限", isNull = false)
 	private String authority;
 
 	public String getPageCode() {

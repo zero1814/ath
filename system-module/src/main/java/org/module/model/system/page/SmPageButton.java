@@ -1,5 +1,6 @@
 package org.module.model.system.page;
 
+import org.module.commons.annotation.db.Column;
 import org.module.commons.annotation.obj.Attribute;
 import org.module.commons.annotation.obj.Object;
 import org.module.model.BaseModel;
@@ -8,12 +9,15 @@ import org.module.model.BaseModel;
 public class SmPageButton extends BaseModel {
 
 	@Attribute(name = "页面编码", isNull = false)
+	@Column(name = "page_code", comment = "页面编码", isNull = false)
 	private String pageCode;
 
 	@Attribute(name = "样式编码", isNull = false)
+	@Column(name = "style_code", comment = "样式编码", isNull = false)
 	private String styleCode;
 
 	@Attribute(name = "按钮操作", isNull = false)
+	@Column(name = "operation", comment = "按钮操作", isNull = false)
 	private String operation;
 
 	public String getPageCode() {

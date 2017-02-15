@@ -1,5 +1,6 @@
 package org.module.model.system.page;
 
+import org.module.commons.annotation.db.Column;
 import org.module.commons.annotation.obj.Attribute;
 import org.module.commons.annotation.obj.Object;
 import org.module.model.BaseModel;
@@ -8,12 +9,15 @@ import org.module.model.BaseModel;
 public class SmPage extends BaseModel {
 
 	@Attribute(name = "名称", isNull = false)
+	@Column(name = "name", comment = "名称", isNull = false)
 	private String name;
 
-	@Attribute(name = "名称", isNull = false)
+	@Attribute(name = "url", isNull = false)
+	@Column(name = "url", comment = "url", isNull = false)
 	private String url;
 
 	@Attribute(name = "描述")
+	@Column(name = "description", comment = "描述")
 	private String description;
 
 	public String getDescription() {

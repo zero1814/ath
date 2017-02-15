@@ -25,28 +25,28 @@ public class SmMenuTest {
 
 	@Test
 	public void insert() {
-//		SmMenu entity = new SmMenu();
-//		entity.setCode(CodeHelper.getUniqueCode("SM"));
-//		entity.setCreateUser("admin");
-//		entity.setName("菜单管理");
-//		entity.setGroupCode("SM828896376573128704");
-//		service.insertSelective(entity);
 		SmMenu entity = new SmMenu();
 		entity.setCode(CodeHelper.getUniqueCode("SM"));
-		entity.setParentCode("SM828968807920824320");
 		entity.setCreateUser("admin");
-		entity.setName("菜单组管理");
-		entity.setUrl("system/menugroup/index.htm");
-		entity.setGroupCode("SM828896376573128704");
-		service.insertSelective(entity);		
+		entity.setName("菜单管理");
+		entity.setGroupCode("SM831795960148389888");
+		service.insertSelective(entity);
 		SmMenu entity1 = new SmMenu();
 		entity1.setCode(CodeHelper.getUniqueCode("SM"));
-		entity1.setParentCode("SM828968807920824320");
+		entity1.setParentCode(entity.getCode());
 		entity1.setCreateUser("admin");
-		entity1.setName("菜单管理");
-		entity1.setUrl("system/menu/index.htm");
-		entity1.setGroupCode("SM828896376573128704");
-		service.insertSelective(entity1);		
+		entity1.setName("菜单组管理");
+		entity1.setPageCode("SP831798539125256192");
+		entity1.setGroupCode("SM831795960148389888");
+		service.insertSelective(entity1);
+		SmMenu entity2 = new SmMenu();
+		entity2.setCode(CodeHelper.getUniqueCode("SM"));
+		entity2.setParentCode(entity.getCode());
+		entity2.setCreateUser("admin");
+		entity2.setName("菜单管理");
+		entity1.setPageCode("SP831798541604089856");
+		entity2.setGroupCode("SM831795960148389888");
+		service.insertSelective(entity2);
 	}
 
 	public void edit() {
