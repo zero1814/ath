@@ -8,7 +8,8 @@
 		<result column="group_code" property="groupCode" jdbcType="VARCHAR" />
 		<result column="group_name" property="groupName" jdbcType="VARCHAR" />
 		<result column="name" property="name" jdbcType="VARCHAR" />
-		<result column="page_code" property="pageCode" jdbcType="VARCHAR" />
+		<result column="parent_code" property="parentCode" jdbcType="VARCHAR" />
+		<result column="parent_name" property="parentName" jdbcType="VARCHAR" />
 		<result column="url" property="url" jdbcType="VARCHAR" />
 		<result column="icon" property="icon" jdbcType="VARCHAR" />
 		<result column="flag_able" property="flagAble" jdbcType="INTEGER" />
@@ -130,26 +131,26 @@
 		SELECT
 		sm.`code`,
 		sm.`name`,
+		IFNULL(psm.`name`,'--') as parent_name,
 		smg.`name` AS group_name,
 		sm.url AS url,
 		sm.create_user,
 		DATE_FORMAT(
 		sm.create_time,
 		'%Y-%m-%d %H:%i:%s'
-		) AS
-		create_time,
+		) AS create_time,
 		sm.update_user,
 		DATE_FORMAT(
 		sm.update_time,
-		'%Y-%m-%d
-		%H:%i:%s'
+		'%Y-%m-%d %H:%i:%s'
 		) AS update_time
 		FROM
 		sm_menu AS sm
-		LEFT JOIN sm_menu_group AS
-		smg ON sm.group_code = smg.`code`
+		left JOIN sm_menu as psm ON sm.`code`=psm.parent_code
+		LEFT JOIN sm_menu_group AS smg ON sm.group_code = smg.`code`
 		<where>
 			sm.is_deleted = 0
+			and <![CDATA[ sm.create_user <>'system' ]]>
 			<if test="name != null and name != ''">
 				and where sm.`name` like
 				CONCAT('%',#{name,jdbcType=VARCHAR},'%')
@@ -167,6 +168,7 @@
 		sm.group_code = smg.`code`
 		<where>
 			sm.is_deleted = 0
+			and <![CDATA[ sm.create_user <>'system' ]]>
 			<if test="name != null and name != ''">
 				and where sm.`name` like
 				CONCAT('%',#{name,jdbcType=VARCHAR},'%')

@@ -13,8 +13,11 @@ import org.module.model.BaseModel;
 public class SmMenu extends BaseModel {
 
 	@Column(name = "parent_code", comment = "父级编码", defaultValue = "0")
-	@Attribute(name = "parentCode", description = "父级编码", defaultValue = "0")
+	@Attribute(name = "parentCode", description = "上级菜单编码", defaultValue = "0")
 	private String parentCode;
+
+	@Attribute(name = "parentName", description = "上级菜单名称")
+	private String parentName;
 
 	@Column(name = "group_code", comment = "所属菜单组编码", isNull = false)
 	@Attribute(name = "groupCode", description = "所属菜单组编码", isNull = false)
@@ -48,6 +51,14 @@ public class SmMenu extends BaseModel {
 
 	@Attribute(name = "childMenu", description = "子菜单集合")
 	private List<SmMenu> childMenu;
+
+	public String getParentName() {
+		return parentName;
+	}
+
+	public void setParentName(String parentName) {
+		this.parentName = parentName;
+	}
 
 	public String getPageName() {
 		return pageName;

@@ -68,8 +68,9 @@
 		<include refid="Base_Column_List" />
 		from sm_menu_group
 		<where>
+			<![CDATA[ create_user <>'system' ]]>
 			<if test="name != null and name != ''">
-				`name` =#{name,jdbcType=VARCHAR}
+			and	`name` =#{name,jdbcType=VARCHAR}
 			</if>
 		</where>
 		limit #{start,jdbcType=INTEGER},#{pageSize,jdbcType=INTEGER}
@@ -80,8 +81,9 @@
 		count(1)
 		from sm_menu_group
 		<where>
+			<![CDATA[ create_user <>'system' ]]>
 			<if test="name != null and name != ''">
-				`name` =#{name,jdbcType=VARCHAR}
+				and `name` =#{name,jdbcType=VARCHAR}
 			</if>
 		</where>
 	</select>

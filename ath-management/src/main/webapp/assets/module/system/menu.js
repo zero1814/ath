@@ -12,7 +12,13 @@ var columnsArray = [ {
 }, {
 	field : 'name',
 	title : '名称'
+},{
+	field : 'parentName',
+	title : '上级菜单名称'
 }, {
+	field : 'groupName',
+	title : '菜单组名称'
+},{
 	field : 'createUser',
 	title : '创建人'
 }, {
