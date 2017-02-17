@@ -9,7 +9,10 @@ public class SmMenuDto extends BaseDto {
 
 	@Attribute(name = "name", description = "菜单名称")
 	private String name;
-
+	
+	@Attribute(name = "code", description = "菜单名称")
+	private String code;
+	
 	@Attribute(name = "groupCode", description = "菜单组编码")
 	private String groupCode;
 
@@ -17,6 +20,14 @@ public class SmMenuDto extends BaseDto {
 	private String parentCode;
 
 	
+	public String getCode() {
+		return code;
+	}
+
+	public void setCode(String code) {
+		this.code = code;
+	}
+
 	public String getParentCode() {
 		return parentCode;
 	}

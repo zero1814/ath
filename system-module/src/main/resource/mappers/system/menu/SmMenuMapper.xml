@@ -151,8 +151,11 @@
 		<where>
 			sm.is_deleted = 0
 			and <![CDATA[ sm.create_user <>'system' ]]>
+			<if test="code != null and code != ''">
+			and sm.`code` = #{code,jdbcType=VARCHAR}
+			</if>
 			<if test="name != null and name != ''">
-				and where sm.`name` like
+				and sm.`name` like
 				CONCAT('%',#{name,jdbcType=VARCHAR},'%')
 			</if>
 		</where>
@@ -169,8 +172,11 @@
 		<where>
 			sm.is_deleted = 0
 			and <![CDATA[ sm.create_user <>'system' ]]>
+			<if test="code != null and code != ''">
+			and sm.`code` = #{code,jdbcType=VARCHAR}
+			</if>
 			<if test="name != null and name != ''">
-				and where sm.`name` like
+				and sm.`name` like
 				CONCAT('%',#{name,jdbcType=VARCHAR},'%')
 			</if>
 		</where>

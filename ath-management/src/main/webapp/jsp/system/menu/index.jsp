@@ -21,7 +21,7 @@
 					<div class="form-group">
 						<div class="col-sm-3"></div>
 						<div class="col-sm-3" style="text-align: center;">
-							<a href="javascript:void(0)" onclick="MenuGroup.search();"
+							<a href="javascript:void(0)" onclick="Menu.search();"
 								class="btn btn-primary">查询</a>
 						</div>
 					</div>
