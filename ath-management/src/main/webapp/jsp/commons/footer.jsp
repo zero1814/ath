@@ -11,4 +11,13 @@
 <script src="assets/plugins/layer/layer.js"></script>
 <script src="assets/commons/js/commons.js"></script>
 <script src="assets/commons/js/usepublic.js"></script>
+<script src="assets/plugins/icheck/js/icheck.min.js"></script>
+<script>
+$(document).ready(function() {
+	$('.i-checks').iCheck({
+		checkboxClass: 'icheckbox_square-blue',
+		radioClass: 'iradio_square-blue',
+	});
+});
+</script>
 </html>

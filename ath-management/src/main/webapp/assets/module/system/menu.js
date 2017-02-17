@@ -12,13 +12,13 @@ var columnsArray = [ {
 }, {
 	field : 'name',
 	title : '名称'
-},{
+}, {
 	field : 'parentName',
 	title : '上级菜单名称'
 }, {
 	field : 'groupName',
 	title : '菜单组名称'
-},{
+}, {
 	field : 'createUser',
 	title : '创建人'
 }, {
@@ -40,8 +40,6 @@ var columnsArray = [ {
 	formatter : openDelLayer
 } ];
 var Menu = {
-	addLayer : '',
-	editLayer : '',
 	data : function() {
 		$("#table").bootstrapTable({
 			url : "system/menu/data.htm", // 请求后台的URL（*）
@@ -93,17 +91,36 @@ var Menu = {
 	 * 打开添加页面
 	 */
 	openAdd : function() {
-		window.open("_self", "system/menu/addindex.htm");
+		window.open("system/menu/addindex.htm", "_self");
+	},
+	add:function(){
+		var param = $("#addFrm").serialize();
+		$.ajax({
+			url : "system/menu/add.htm",
+			type : "POST",
+			data : param,
+			success : function(result) {
+				result = JSON.parse(result);
+				if (result.code == 0) {
+					layer.alert('添加成功', function(index) {
+						layer.close(index);
+						window.open("system/menu/index.htm","_self");
+					});
+				}else{
+					layer.alert(result.message);
+				}
+			},
+			error : function(result) {
+				layer.alert('添加失败');
+			}
+		});
 	},
 	edit : function() {
 		layer.confirm('您确定要编辑选中菜单组吗？', {
 			btn : [ '确定', '取消' ]
 		// 按钮
 		}, function() {
-			var param = {
-				code : $("#editCode").val(),
-				name : $("#editName").val()
-			};
+			var param = $("#editFrm").serialize();
 			$.ajax({
 				url : "system/menu/edit.htm",
 				type : "POST",
@@ -111,11 +128,12 @@ var Menu = {
 				success : function(result) {
 					result = JSON.parse(result);
 					if (result.code == 0) {
-						layer.close(Menu.editLayer);
 						layer.alert('编辑成功', function(index) {
 							layer.close(index);
-							$('#table').bootstrapTable('refresh');
+							window.open("system/menu/index.htm","_self");
 						});
+					}else{
+						layer.alert(result.message);
 					}
 				},
 				error : function(result) {
@@ -150,6 +168,40 @@ var Menu = {
 				}
 			});
 		});
+	},
+	selParentMenus : function() {
+		var param = {
+			groupCode : $("#groupCode").val()
+		};
+		var parentCode=$("#parentCode_tmp").val();
+		$.ajax({
+			url : "system/menu/getparentmenus.htm",
+			type : "POST",
+			data : param,
+			success : function(result) {
+				result = JSON.parse(result);
+				if (result.code == 0) {
+					var html = "<option value=''>请选择</option>";
+					var data = result.data;
+					if (data.length > 0) {
+						for (var i = 0; i < data.length; i++) {
+							var parentMenu = data[i];
+							html += "<option value='" + parentMenu.code +"'";
+							if(parentCode == parentMenu.code){
+								html +=" selected='selected' ";
+							}
+							html +=" >" + parentMenu.name + "</option>";
+						}
+					}
+					$("#parentCode").html(html);
+				} else {
+					layer.alert(result.message);
+				}
+			},
+			error : function(result) {
+				layer.alert('删除失败');
+			}
+		});
 	}
 };
 /**
@@ -173,7 +225,6 @@ function openEdit(value, row, index) {
  */
 function openDelLayer(value, row, index) {
 	var codeVal = row.code;
-	var html = '<a href="javascript:void(0)" onclick="Menu.del(\'"' + codeVal
-			+ '"\')" class="btn btn-info">删除</a>';
+	var html ="<a href='javascript:void(0)' onclick='Menu.del(\""+codeVal+"\")' class='btn btn-info'>删除</a>";
 	return html;
 }

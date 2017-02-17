@@ -1,16 +1,23 @@
 package org.module.controller.system.menu;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import org.module.commons.annotation.obj.Object;
+import org.module.commons.helper.CodeHelper;
 import org.module.dto.system.menu.SmMenuDto;
+import org.module.dto.system.menu.SmMenuGroupDto;
 import org.module.model.system.menu.SmMenu;
 import org.module.model.system.menu.SmMenuGroup;
+import org.module.result.DataResult;
+import org.module.result.EntityResult;
 import org.module.result.PageResult;
 import org.module.result.RootResult;
+import org.module.service.system.menu.ISmMenuGroupService;
 import org.module.service.system.menu.ISmMenuService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -23,6 +30,8 @@ public class SmMenuController {
 
 	@Autowired
 	private ISmMenuService service;
+	@Autowired
+	private ISmMenuGroupService menuGroupService;
 
 	@RequestMapping("index")
 	public String index() {
@@ -44,26 +53,48 @@ public class SmMenuController {
 		return obj;
 	}
 
+	@SuppressWarnings("unchecked")
 	@RequestMapping("addindex")
-	public String addIndex() {
+	public String addIndex(ModelMap model) {
+		DataResult menuGroupDataResult = menuGroupService.findDataAll(new SmMenuGroupDto());
+		List<SmMenuGroup> groups = new ArrayList<SmMenuGroup>();
+		if (menuGroupDataResult.getCode() == 0) {
+			groups = (List<SmMenuGroup>) menuGroupDataResult.getData();
+		}
+		model.addAttribute("menuGroups", groups);
 		return "jsp/system/menu/add";
 	}
 
 	@RequestMapping("add")
 	@ResponseBody
 	public RootResult add(SmMenu entity) {
+		entity.setCode(CodeHelper.getUniqueCode("SM"));
+		entity.setCreateUser("admin");
 		return service.insertSelective(entity);
 	}
 
+	@SuppressWarnings("unchecked")
 	@RequestMapping("editindex")
-	@ResponseBody
-	public String editIndex() {
+	public String editIndex(ModelMap model, String code) {
+		EntityResult<SmMenu> result = service.selectByCode(code);
+		if (result.getCode() == 0) {
+			model.addAttribute("menu", result.getEntity());
+		} else {
+			model.addAttribute("menu", new SmMenu());
+		}
+		DataResult menuGroupDataResult = menuGroupService.findDataAll(new SmMenuGroupDto());
+		List<SmMenuGroup> groups = new ArrayList<SmMenuGroup>();
+		if (menuGroupDataResult.getCode() == 0) {
+			groups = (List<SmMenuGroup>) menuGroupDataResult.getData();
+		}
+		model.addAttribute("menuGroups", groups);
 		return "jsp/system/menu/edit";
 	}
 
 	@RequestMapping("edit")
 	@ResponseBody
 	public RootResult edit(SmMenu entity) {
+		entity.setUpdateUser("admin");
 		return service.updateByCode(entity);
 	}
 
@@ -71,5 +102,21 @@ public class SmMenuController {
 	@ResponseBody
 	public RootResult del(String code) {
 		return service.deleteByCode(code);
+	}
+
+	/**
+	 * 
+	 * 方法: getMenusByGroup <br>
+	 * 描述: 根据菜单组编码获取对应菜单数据列表 <br>
+	 * 作者: zhy<br>
+	 * 时间: 2017年2月17日 下午5:02:25
+	 * 
+	 * @param dto
+	 * @return
+	 */
+	@RequestMapping("getparentmenus")
+	@ResponseBody
+	public DataResult getMenusByGroup(SmMenuDto dto) {
+		return service.findDataAll(dto);
 	}
 }

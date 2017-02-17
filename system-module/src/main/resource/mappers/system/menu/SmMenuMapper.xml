@@ -193,6 +193,7 @@
 		'%Y-%m-%d
 		%H:%i:%s'
 		) AS update_time
+		from
 		sm_menu
 		AS sm
 		LEFT JOIN sm_menu_group AS smg

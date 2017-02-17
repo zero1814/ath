@@ -16,6 +16,7 @@
 <link href="assets/font/font-awesome/4.7.0/css/font-awesome.css" rel="stylesheet">
 <link href="assets/commons/css/animate.css" rel="stylesheet">
 <link href="assets/commons/css/style.css?v=1.0.0" rel="stylesheet">
+<link href="assets/plugins/icheck/skins/all.css" rel="stylesheet">
 <script type="text/javascript">
 	var basePath = "<%=basePath%>";
 </script>

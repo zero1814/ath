@@ -27,7 +27,7 @@
 					</div>
 				</form>
 				<div>
-					<a onclick="MenuGroup.openAdd();" class="btn btn-info"
+					<a onclick="Menu.openAdd();" class="btn btn-info"
 						href="javascript:void(0)">添加</a> <a class="btn btn-info"
 						href="javascript:void(0)">批量删除</a>
 				</div>
