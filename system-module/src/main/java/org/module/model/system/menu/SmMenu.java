@@ -27,14 +27,11 @@ public class SmMenu extends BaseModel {
 	@Attribute(name = "name", description = "名称", isNull = false)
 	private String name;
 
-	@Column(name = "page_code", comment = "访问页面编码")
-	@Attribute(name = "pageCode", description = "访问页面编码")
-	private String pageCode;
-
 	@Attribute(name = "pageName", description = "访问页面名称")
 	private String pageName;
 
 	@Attribute(name = "url", description = "访问地址")
+	@Column(name = "url", comment = "访问url地址")
 	private String url;
 
 	@Column(name = "icon", comment = "菜单图标")
@@ -106,14 +103,6 @@ public class SmMenu extends BaseModel {
 
 	public void setName(String name) {
 		this.name = name;
-	}
-
-	public String getPageCode() {
-		return pageCode;
-	}
-
-	public void setPageCode(String pageCode) {
-		this.pageCode = pageCode;
 	}
 
 	public String getIcon() {

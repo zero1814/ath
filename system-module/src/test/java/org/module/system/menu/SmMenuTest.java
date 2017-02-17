@@ -27,26 +27,46 @@ public class SmMenuTest {
 	public void insert() {
 		SmMenu entity = new SmMenu();
 		entity.setCode(CodeHelper.getUniqueCode("SM"));
-		entity.setCreateUser("admin");
+		entity.setCreateUser("system");
 		entity.setName("菜单管理");
-		entity.setGroupCode("SM831795960148389888");
+		entity.setGroupCode("SM832415290787622912");
 		service.insertSelective(entity);
 		SmMenu entity1 = new SmMenu();
 		entity1.setCode(CodeHelper.getUniqueCode("SM"));
 		entity1.setParentCode(entity.getCode());
-		entity1.setCreateUser("admin");
+		entity1.setCreateUser("system");
 		entity1.setName("菜单组管理");
-		entity1.setPageCode("SP831798539125256192");
-		entity1.setGroupCode("SM831795960148389888");
+		entity1.setUrl("system/menugroup/index.htm");
+		entity1.setGroupCode("SM832415290787622912");
 		service.insertSelective(entity1);
 		SmMenu entity2 = new SmMenu();
 		entity2.setCode(CodeHelper.getUniqueCode("SM"));
 		entity2.setParentCode(entity.getCode());
-		entity2.setCreateUser("admin");
+		entity2.setCreateUser("system");
 		entity2.setName("菜单管理");
-		entity1.setPageCode("SP831798541604089856");
-		entity2.setGroupCode("SM831795960148389888");
+		entity2.setUrl("system/menu/index.htm");
+		entity2.setGroupCode("SM832415290787622912");
 		service.insertSelective(entity2);
+		SmMenu entity3 = new SmMenu();
+		entity3.setCode(CodeHelper.getUniqueCode("SM"));
+		entity3.setCreateUser("system");
+		entity3.setName("角色管理");
+		entity3.setGroupCode("SM832415290787622912");
+		service.insertSelective(entity3);
+		SmMenu entity4 = new SmMenu();
+		entity4.setCode(CodeHelper.getUniqueCode("SM"));
+		entity4.setParentCode(entity3.getCode());
+		entity4.setCreateUser("system");
+		entity4.setName("角色管理");
+		entity4.setGroupCode("SM832415290787622912");
+		service.insertSelective(entity4);
+		SmMenu entity5 = new SmMenu();
+		entity5.setCode(CodeHelper.getUniqueCode("SM"));
+		entity5.setParentCode(entity3.getCode());
+		entity5.setCreateUser("system");
+		entity5.setName("权限设置");
+		entity5.setGroupCode("SM832415290787622912");
+		service.insertSelective(entity5);
 	}
 
 	public void edit() {
