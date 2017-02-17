@@ -4,7 +4,6 @@
 /**
  * 列表显示字段
  */
-var dataUrl = "system/menugroup/data.htm";
 var columnsArray = [ {
 	checkbox : true
 }, {
@@ -27,17 +26,19 @@ var columnsArray = [ {
 	title : '修改时间'
 }, {
 	field : 'editGroup',
-	title : '编辑'
+	title : '编辑',
+	formatter : openEditMenuGroupLayer
 }, {
 	field : 'delGroup',
-	title : '删除'
+	title : '删除',
+	formatter : openDelMenuGroupLayer
 } ];
 var MenuGroup = {
 	addLayer : '',
 	editLayer : '',
 	data : function() {
 		$("#table").bootstrapTable({
-			url : dataUrl, // 请求后台的URL（*）
+			url : "system/menugroup/data.htm", // 请求后台的URL（*）
 			method : 'get', // 请求方式（*）
 			dataType : "json",
 			toolbar : $("#tools").attr("id"), // 工具按钮用哪个容器
@@ -220,3 +221,26 @@ var MenuGroup = {
 		});
 	}
 };
+/**
+ * 打开菜单组编辑弹出层
+ * @param value
+ * @param row
+ * @param index
+ */
+function openEditMenuGroupLayer(value, row, index) {
+	var html ="<a href='javascript:void(0)' ";
+	html += "class='btn btn-info'  onclick='MenuGroup.openEdit(\""+row.code+"\",\""+row.name+"\");' >";
+	html +="编辑</a>";
+	return html;
+}
+/**
+ * 打开菜单组删除弹出层
+ * @param value
+ * @param row
+ * @param index
+ */
+function openDelMenuGroupLayer(value, row, index){
+	var html = "<a href='javascript:void(0)' class='btn btn-info' onclick='MenuGroup.del(\""+row.code+"\");' >";
+	html +="删除</a>";
+	return html;
+}

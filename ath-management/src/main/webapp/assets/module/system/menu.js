@@ -4,10 +4,6 @@
 /**
  * 列表显示字段
  */
-var dataUrl = "system/menu/data.htm";
-var addUrl = "system/menu/addindex.htm";
-var editUrl = "system/menu/editindex.htm?code=";
-var delUrl = "system/menu/del.htm";
 var columnsArray = [ {
 	checkbox : true
 }, {
@@ -42,7 +38,7 @@ var Menu = {
 	editLayer : '',
 	data : function() {
 		$("#table").bootstrapTable({
-			url : dataUrl, // 请求后台的URL（*）
+			url : "system/menu/data.htm", // 请求后台的URL（*）
 			method : 'get', // 请求方式（*）
 			dataType : "json",
 			toolbar : $("#tools").attr("id"), // 工具按钮用哪个容器
@@ -91,7 +87,7 @@ var Menu = {
 	 * 打开添加页面
 	 */
 	openAdd : function() {
-		window.open(addUrl);
+		window.open("_self", "system/menu/addindex.htm");
 	},
 	edit : function() {
 		layer.confirm('您确定要编辑选中菜单组吗？', {
@@ -157,7 +153,7 @@ var Menu = {
  */
 function openEdit(value, row, index) {
 	var codeVal = row.code;
-	var url = editUrl + codeVal;
+	var url = "system/menu/editindex.htm?code=" + codeVal;
 	var html = '<a href="' + url + '" class="btn btn-info">编辑</a>';
 	return html;
 }
@@ -171,7 +167,6 @@ function openEdit(value, row, index) {
  */
 function openDelLayer(value, row, index) {
 	var codeVal = row.code;
-	var url = editUrl + codeVal;
 	var html = '<a href="javascript:void(0)" onclick="Menu.del(\'"' + codeVal
 			+ '"\')" class="btn btn-info">删除</a>';
 	return html;

@@ -35,7 +35,7 @@ public class SmMenuController {
 		JSONObject obj = new JSONObject();
 		PageResult result = service.findEntityToPage(dto);
 		if (result.getCode() == 0) {
-			obj.put("rows", result.getData());
+			obj.put("rows", result.getRows());
 			obj.put("total", result.getTotal());
 		} else {
 			obj.put("rows", new ArrayList<SmMenuGroup>());
@@ -46,7 +46,7 @@ public class SmMenuController {
 
 	@RequestMapping("addindex")
 	public String addIndex() {
-		return null;
+		return "jsp/system/menu/add";
 	}
 
 	@RequestMapping("add")
@@ -58,7 +58,7 @@ public class SmMenuController {
 	@RequestMapping("editindex")
 	@ResponseBody
 	public String editIndex() {
-		return null;
+		return "jsp/system/menu/edit";
 	}
 
 	@RequestMapping("edit")

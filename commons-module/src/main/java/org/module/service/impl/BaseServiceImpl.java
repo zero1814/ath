@@ -225,7 +225,7 @@ public class BaseServiceImpl<T extends BaseModel, M extends BaseMapper<T, DTO>, 
 			int total = mapper.findEntityAllCountToPage(dto);
 			result.setCode(0);
 			result.setMessage("获取分页数据成功");
-			result.setData(list);
+			result.setRows(list);
 			result.setTotal(total);
 		} catch (Exception e) {
 			e.printStackTrace();

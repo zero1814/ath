@@ -15,16 +15,17 @@ import org.module.model.BaseModel;
  */
 public class PageResult extends RootResult {
 
-	private List<? extends BaseModel> data;
+	private List<? extends BaseModel> rows;
 
 	private Integer total;
 
-	public List<? extends BaseModel> getData() {
-		return data;
+
+	public List<? extends BaseModel> getRows() {
+		return rows;
 	}
 
-	public void setData(List<? extends BaseModel> data) {
-		this.data = data;
+	public void setRows(List<? extends BaseModel> rows) {
+		this.rows = rows;
 	}
 
 	public Integer getTotal() {
