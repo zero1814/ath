@@ -35,6 +35,16 @@
 					</div>
 				</div>
 				<div class="form-group">
+					<label class="col-sm-3 control-label">是否可用：</label>
+					<div class="col-sm-3">
+						<select id="flagAble" name="flagAble" class="form-control">
+							<option value="">请选择</option>
+							<option <c:if test="${menu.flagAble == 0 }">selected="selected"</c:if> value="0">可用</option>
+							<option <c:if test="${menu.flagAble == 1 }">selected="selected"</c:if> value="1">不可用</option>
+						</select>
+					</div>
+				</div>
+				<div class="form-group">
 					<div class="col-sm-8" style="text-align: center;">
 						<a class="btn btn-primary" onclick="Menu.edit();">保存内容</a>
 						<a target="_self" href="system/menu/index.htm" class="btn btn-white">取消</a>

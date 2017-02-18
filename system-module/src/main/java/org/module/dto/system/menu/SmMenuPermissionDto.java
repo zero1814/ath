@@ -8,6 +8,16 @@ public class SmMenuPermissionDto extends BaseDto {
 
 	private String menuCode;
 
+	private Integer flagAble;
+
+	public Integer getFlagAble() {
+		return flagAble;
+	}
+
+	public void setFlagAble(Integer flagAble) {
+		this.flagAble = flagAble;
+	}
+
 	public String getName() {
 		return name;
 	}

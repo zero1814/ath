@@ -21,9 +21,22 @@ public class SmMenuPermission extends BaseModel {
 	@Attribute(name = "name", description = "权限名称", isNull = false)
 	private String name;
 
+	@Column(name = "flag_able", comment = "是否可用 0 可用 1 不可用", defaultValue = "0")
+	@Attribute(name = "flagAble", description = "是否可用 0 可用 1 不可用", defaultValue = "0")
+	private Integer flagAble;
+	
 	@Column(name = "description", comment = "权限描述")
 	@Attribute(name = "description", description = "权限描述")
 	private String description;
+
+
+	public Integer getFlagAble() {
+		return flagAble;
+	}
+
+	public void setFlagAble(Integer flagAble) {
+		this.flagAble = flagAble;
+	}
 
 	public String getMenuName() {
 		return menuName;

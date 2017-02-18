@@ -42,6 +42,7 @@
 	<delete id="deleteByCode" parameterType="java.lang.String">
 		delete from sm_menu
 		where `code`=#{code,jdbcType=VARCHAR}
+		and <![CDATA[ sm.create_user <>'system' ]]>
 	</delete>
 	<insert id="insertSelective" parameterType="org.module.model.system.menu.SmMenu">
 		insert into sm_menu
@@ -131,9 +132,21 @@
 		SELECT
 		sm.`code`,
 		sm.`name`,
-		IFNULL(psm.`name`,'--') as parent_name,
-		smg.`name` AS group_name,
+		IFNULL(
+		(
+		SELECT
+		psm.`name`
+		FROM
+		sm_menu psm
+		WHERE
+		psm.`code` = sm.parent_code
+		),
+		'--'
+		) AS parent_name,
+		smg.`name` AS
+		group_name,
 		sm.url AS url,
+		sm.flag_able,
 		sm.create_user,
 		DATE_FORMAT(
 		sm.create_time,
@@ -146,13 +159,13 @@
 		) AS update_time
 		FROM
 		sm_menu AS sm
-		left JOIN sm_menu as psm ON sm.`code`=psm.parent_code
-		LEFT JOIN sm_menu_group AS smg ON sm.group_code = smg.`code`
+		LEFT JOIN sm_menu_group AS smg ON sm.group_code =
+		smg.`code`
 		<where>
 			sm.is_deleted = 0
-			and <![CDATA[ sm.create_user <>'system' ]]>
+			<!-- and <![CDATA[ sm.create_user <>'system' ]]> -->
 			<if test="code != null and code != ''">
-			and sm.`code` = #{code,jdbcType=VARCHAR}
+				and sm.`code` = #{code,jdbcType=VARCHAR}
 			</if>
 			<if test="name != null and name != ''">
 				and sm.`name` like
@@ -171,9 +184,9 @@
 		sm.group_code = smg.`code`
 		<where>
 			sm.is_deleted = 0
-			and <![CDATA[ sm.create_user <>'system' ]]>
+			<!-- and <![CDATA[ sm.create_user <>'system' ]]> -->
 			<if test="code != null and code != ''">
-			and sm.`code` = #{code,jdbcType=VARCHAR}
+				and sm.`code` = #{code,jdbcType=VARCHAR}
 			</if>
 			<if test="name != null and name != ''">
 				and sm.`name` like
@@ -203,7 +216,8 @@
 		sm_menu
 		AS sm
 		LEFT JOIN sm_menu_group AS smg
-		ON sm.group_code = smg.`code`
+		ON sm.group_code =
+		smg.`code`
 	</select>
 	<select id="findEntityAllForGroup" resultMap="BaseResultMap"
 		parameterType="org.module.dto.system.menu.SmMenuDto">

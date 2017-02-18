@@ -8,6 +8,7 @@
 		<result column="menu_code" property="menuCode" jdbcType="VARCHAR" />
 		<result column="menu_name" property="menuName" jdbcType="VARCHAR" />
 		<result column="name" property="name" jdbcType="VARCHAR" />
+		<result column="flag_able" property="flagAble" jdbcType="INTEGER" />
 		<result column="create_user" property="createUser" jdbcType="VARCHAR" />
 		<result column="create_time" property="createTime" jdbcType="VARCHAR" />
 		<result column="update_user" property="updateUser" jdbcType="VARCHAR" />
@@ -15,11 +16,14 @@
 		<result column="description" property="description" jdbcType="LONGVARCHAR" />
 	</resultMap>
 	<sql id="Base_Column_List">
-		id, uid, code, menu_code, name,description, create_user,
+		id, uid, code, menu_code, name,flag_able,description,
+		create_user,
 		DATE_FORMAT(create_time,'%Y-%m-%d
-		%H:%i:%s') as create_time,
+		%H:%i:%s') as
+		create_time,
 		update_user,
-		DATE_FORMAT(update_time,'%Y-%m-%d %H:%i:%s') as
+		DATE_FORMAT(update_time,'%Y-%m-%d %H:%i:%s')
+		as
 		update_time
 	</sql>
 	<select id="selectByCode" resultMap="BaseResultMap"
@@ -41,6 +45,9 @@
 			`code`,
 			menu_code,
 			`name`,
+			<if test="flagAble != null">
+				flag_able,
+			</if>
 			create_user,
 			create_time,
 			update_user,
@@ -54,6 +61,9 @@
 			#{code,jdbcType=VARCHAR},
 			#{menuCode,jdbcType=VARCHAR},
 			#{name,jdbcType=VARCHAR},
+			<if test="flagAble != null">
+				#{flagAble,jdbcType=INTEGER},
+			</if>
 			#{createUser,jdbcType=VARCHAR},
 			STR_TO_DATE(#{createTime,jdbcType=VARCHAR},'%Y-%m-%d
 			%H:%i:%s'),
@@ -74,6 +84,9 @@
 			<if test="name != null">
 				name = #{name,jdbcType=VARCHAR},
 			</if>
+			<if test="flagAble != null">
+				flag_able = #{flagAble,jdbcType=INTEGER},
+			</if>
 			update_user = #{updateUser,jdbcType=VARCHAR},
 			update_time =
 			STR_TO_DATE(#{updateTime,jdbcType=VARCHAR},'%Y-%m-%d %H:%i:%s'),
@@ -89,11 +102,12 @@
 		smp.`code`,
 		smp.`name`,
 		sm.`name` AS menu_name,
-		sm.create_user,
-		DATE_FORMAT(sm.create_time,'%Y-%m-%d %H:%i:%s') as
+		smp.flag_able,
+		smp.create_user,
+		DATE_FORMAT(smp.create_time,'%Y-%m-%d %H:%i:%s') as
 		create_time,
-		sm.update_user,
-		DATE_FORMAT(sm.update_time,'%Y-%m-%d
+		smp.update_user,
+		DATE_FORMAT(smp.update_time,'%Y-%m-%d
 		%H:%i:%s') as
 		update_time,
 		smp.description
@@ -104,11 +118,12 @@
 		smp.menu_code = sm.`code`
 		<where>
 			sm.is_deleted=0
-			<if test="menuCode != null">
-				and smp.menu_code = #{menuCode,jdbcType=VARCHAR}
+			and smp.menu_code = #{menuCode,jdbcType=VARCHAR}
+			<if test="name != null and name != ''">
+				and smp.name = #{name,jdbcType=VARCHAR}
 			</if>
-			<if test="menuCode != null">
-				and smp.menu_code = #{menuCode,jdbcType=VARCHAR}
+			<if test="flagAble != null">
+				and smp.flag_able = #{flagAble,jdbcType=INTEGER}
 			</if>
 		</where>
 		limit #{start,jdbcType=INTEGER},#{pageSize,jdbcType=INTEGER}
@@ -124,11 +139,12 @@
 		smp.menu_code = sm.`code`
 		<where>
 			sm.is_deleted=0
-			<if test="menuCode != null">
-				and smp.menu_code = #{menuCode,jdbcType=VARCHAR}
+			and smp.menu_code = #{menuCode,jdbcType=VARCHAR}
+			<if test="name != null and name != ''">
+				and smp.name = #{name,jdbcType=VARCHAR}
 			</if>
-			<if test="menuCode != null">
-				and smp.menu_code = #{menuCode,jdbcType=VARCHAR}
+			<if test="flagAble != null">
+				and smp.flag_able = #{flagAble,jdbcType=INTEGER}
 			</if>
 		</where>
 	</select>
@@ -136,5 +152,8 @@
 		select
 		<include refid="Base_Column_List" />
 		from sm_menu_permission
+		<where>
+			flag_able = 0
+		</where>
 	</select>
 </mapper>

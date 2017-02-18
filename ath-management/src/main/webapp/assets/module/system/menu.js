@@ -18,7 +18,11 @@ var columnsArray = [ {
 }, {
 	field : 'groupName',
 	title : '菜单组名称'
-}, {
+},{
+	field : 'flagAble',
+	title : '是否可用',
+	formatter:replaceMenuPermissionFlagAble
+},  {
 	field : 'createUser',
 	title : '创建人'
 }, {
@@ -30,6 +34,10 @@ var columnsArray = [ {
 }, {
 	field : 'updateTime',
 	title : '修改时间'
+},{
+	field : 'menuPermission',
+	title : '权限',
+	formatter : openMenuPermission
 }, {
 	field : 'editGroup',
 	title : '编辑',
@@ -72,7 +80,7 @@ var Menu = {
 		});
 	},
 	initDataParam : function(params) {
-		var tmp = $("#searchFrm").serialize();
+		var tmp=UsePublic.formToJSON($("#searchFrm"));
 		if (tmp) {
 			tmp.pageNumber = params.pageNumber;
 			tmp.pageSize = params.limit;
@@ -204,14 +212,38 @@ var Menu = {
 		});
 	}
 };
+function openMenuPermission(value, row, index) {
+	var html = "";
+	if(row.flagAble == 0){
+		var code = row.code;
+		var url = "system/menu/permission/index.htm?menuCode=" + code;
+		html = '<a href="' + url + '" class="btn btn-info">设置</a>';		
+	}
+	return html;
+}
 /**
- * 开发编辑页面
+ * 替换菜单是否可用文本
+ * 
+ * @param value
+ * @param row
+ * @param index
+ * @returns
+ */
+function replaceMenuPermissionFlagAble(value, row, index) {
+	if (value == 0) {
+		return "可用";
+	} else {
+		return "不可用";
+	}
+}
+/**
+ * 打开编辑页面
  * 
  * @param codeVal
  */
 function openEdit(value, row, index) {
-	var codeVal = row.code;
-	var url = "system/menu/editindex.htm?code=" + codeVal;
+	var code = row.code;
+	var url = "system/menu/editindex.htm?code=" + code;
 	var html = '<a href="' + url + '" class="btn btn-info">编辑</a>';
 	return html;
 }

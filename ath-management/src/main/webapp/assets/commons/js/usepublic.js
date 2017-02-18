@@ -208,5 +208,20 @@ var UsePublic = {
 				}
 			});
 		});
+	},
+	formToJSON:function(fromObj){
+		var tmp = {};
+		var frm = $(fromObj).serializeArray();
+		 $.each(frm, function() {  
+            if (tmp[this.name]) {  
+                if (!tmp[this.name].push) {  
+                    tmp[this.name] = [o[this.name]];  
+                }  
+                tmp[this.name].push(this.value || '');  
+            } else {  
+                tmp[this.name] = this.value || '';  
+            }  
+        });
+		 return tmp;
 	}
 };

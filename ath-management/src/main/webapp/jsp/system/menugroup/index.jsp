@@ -95,7 +95,6 @@
 	</div>
 </div>
 <%@ include file="/jsp/commons/footer.jsp"%>
-<script src="assets/commons/js/table.js"></script>
 <script src="assets/module/system/menugroup.js"></script>
 <script type="text/javascript">
 	$(document).ready(function() {

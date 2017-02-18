@@ -68,7 +68,7 @@ var MenuGroup = {
 		});
 	},
 	initDataParam : function(params) {
-		var tmp = $("#searchFrm").serialize();
+		var tmp=UsePublic.formToJSON($("#searchFrm"));
 		if (tmp) {
 			tmp.pageNumber = params.pageNumber;
 			tmp.pageSize = params.limit;

@@ -14,9 +14,21 @@ public class SmRolePermission extends BaseModel {
 	@Attribute(name = "roleCode", description = "角色编码", isNull = false)
 	private String roleCode;
 
+	@Column(name = "menu_code", comment = "菜单编码", isNull = false)
+	@Attribute(name = "menuCode", description = "菜单编码", isNull = false)
+	private String menuCode;
+
 	@Column(name = "menu_permission_code", comment = "菜单权限编码", isNull = false)
 	@Attribute(name = "menuPermissionCode", description = "菜单权限编码", isNull = false)
 	private String menuPermissionCode;
+
+	public String getMenuCode() {
+		return menuCode;
+	}
+
+	public void setMenuCode(String menuCode) {
+		this.menuCode = menuCode;
+	}
 
 	public String getRoleCode() {
 		return roleCode;
