@@ -13,6 +13,16 @@ var columnsArray = [ {
 	field : 'name',
 	title : '名称'
 }, {
+	field : 'parentName',
+	title : '上级菜单名称'
+}, {
+	field : 'groupName',
+	title : '菜单组名称'
+},{
+	field : 'flagAble',
+	title : '是否可用',
+	formatter:replaceMenuPermissionFlagAble
+},  {
 	field : 'createUser',
 	title : '创建人'
 }, {
@@ -24,6 +34,10 @@ var columnsArray = [ {
 }, {
 	field : 'updateTime',
 	title : '修改时间'
+},{
+	field : 'menuPermission',
+	title : '权限',
+	formatter : openMenuPermission
 }, {
 	field : 'editGroup',
 	title : '编辑',
@@ -33,10 +47,10 @@ var columnsArray = [ {
 	title : '删除',
 	formatter : openDelLayer
 } ];
-var Page = {
+var Menu = {
 	data : function() {
 		$("#table").bootstrapTable({
-			url : "system/page/data.htm", // 请求后台的URL（*）
+			url : "system/menu/data.htm", // 请求后台的URL（*）
 			method : 'get', // 请求方式（*）
 			dataType : "json",
 			toolbar : $("#tools").attr("id"), // 工具按钮用哪个容器
@@ -45,7 +59,7 @@ var Page = {
 			pagination : true, // 是否显示分页（*）
 			sortable : true, // 是否启用排序
 			sortOrder : "desc", // 排序方式
-			queryParams : Page.initDataParam,// 传递参数（*）
+			queryParams : Menu.initDataParam,// 传递参数（*）
 			queryParamsType : "limit",
 			sidePagination : "server", // 分页方式：client客户端分页，server服务端分页（*）
 			pageNumber : 1, // 初始化加载第一页，默认第一页
@@ -66,7 +80,7 @@ var Page = {
 		});
 	},
 	initDataParam : function(params) {
-		var tmp = $("#searchFrm").serialize();
+		var tmp=UsePublic.formToJSON($("#searchFrm"));
 		if (tmp) {
 			tmp.pageNumber = params.pageNumber;
 			tmp.pageSize = params.limit;
@@ -85,16 +99,38 @@ var Page = {
 	 * 打开添加页面
 	 */
 	openAdd : function() {
-		window.open(addUrl);
+		window.open("system/menu/addindex.htm", "_self");
+	},
+	add:function(){
+		var param = $("#addFrm").serialize();
+		$.ajax({
+			url : "system/menu/add.htm",
+			type : "POST",
+			data : param,
+			success : function(result) {
+				result = JSON.parse(result);
+				if (result.code == 0) {
+					layer.alert('添加成功', function(index) {
+						layer.close(index);
+						window.open("system/menu/index.htm","_self");
+					});
+				}else{
+					layer.alert(result.message);
+				}
+			},
+			error : function(result) {
+				layer.alert('添加失败');
+			}
+		});
 	},
 	edit : function() {
 		layer.confirm('您确定要编辑选中菜单组吗？', {
 			btn : [ '确定', '取消' ]
 		// 按钮
 		}, function() {
-			var param = {};
+			var param = $("#editFrm").serialize();
 			$.ajax({
-				url : "system/page/edit.htm",
+				url : "system/menu/edit.htm",
 				type : "POST",
 				data : param,
 				success : function(result) {
@@ -102,8 +138,10 @@ var Page = {
 					if (result.code == 0) {
 						layer.alert('编辑成功', function(index) {
 							layer.close(index);
-							window.open("_self", "system/page/index.htm");
+							window.open("system/menu/index.htm","_self");
 						});
+					}else{
+						layer.alert(result.message);
 					}
 				},
 				error : function(result) {
@@ -121,7 +159,7 @@ var Page = {
 				code : codeVal
 			}
 			$.ajax({
-				url : "system/page/del.htm",
+				url : "system/menu/del.htm",
 				type : "POST",
 				data : param,
 				success : function(result) {
@@ -138,16 +176,74 @@ var Page = {
 				}
 			});
 		});
+	},
+	selParentMenus : function() {
+		var param = {
+			groupCode : $("#groupCode").val()
+		};
+		var parentCode=$("#parentCode_tmp").val();
+		$.ajax({
+			url : "system/menu/getparentmenus.htm",
+			type : "POST",
+			data : param,
+			success : function(result) {
+				result = JSON.parse(result);
+				if (result.code == 0) {
+					var html = "<option value=''>请选择</option>";
+					var data = result.data;
+					if (data.length > 0) {
+						for (var i = 0; i < data.length; i++) {
+							var parentMenu = data[i];
+							html += "<option value='" + parentMenu.code +"'";
+							if(parentCode == parentMenu.code){
+								html +=" selected='selected' ";
+							}
+							html +=" >" + parentMenu.name + "</option>";
+						}
+					}
+					$("#parentCode").html(html);
+				} else {
+					layer.alert(result.message);
+				}
+			},
+			error : function(result) {
+				layer.alert('删除失败');
+			}
+		});
 	}
 };
+function openMenuPermission(value, row, index) {
+	var html = "";
+	if(row.flagAble == 0){
+		var code = row.code;
+		var url = "system/menu/permission/index.htm?menuCode=" + code;
+		html = '<a href="' + url + '" class="btn btn-info">设置</a>';		
+	}
+	return html;
+}
 /**
- * 开发编辑页面
+ * 替换菜单是否可用文本
+ * 
+ * @param value
+ * @param row
+ * @param index
+ * @returns
+ */
+function replaceMenuPermissionFlagAble(value, row, index) {
+	if (value == 0) {
+		return "可用";
+	} else {
+		return "不可用";
+	}
+}
+/**
+ * 打开编辑页面
  * 
  * @param codeVal
  */
 function openEdit(value, row, index) {
-	var codeVal = row.code;
-	var url = "system/page/editindex.htm?code=" + codeVal;
+	var code = row.code;
+	var url = "system/menu/editindex.htm?code=" + code;
 	var html = '<a href="' + url + '" class="btn btn-info">编辑</a>';
 	return html;
 }
@@ -161,8 +257,6 @@ function openEdit(value, row, index) {
  */
 function openDelLayer(value, row, index) {
 	var codeVal = row.code;
-	var url = editUrl + codeVal;
-	var html = '<a href="javascript:void(0)" onclick="Page.del(\'"' + codeVal
-			+ '"\')" class="btn btn-info">删除</a>';
+	var html ="<a href='javascript:void(0)' onclick='Menu.del(\""+codeVal+"\")' class='btn btn-info'>删除</a>";
 	return html;
 }

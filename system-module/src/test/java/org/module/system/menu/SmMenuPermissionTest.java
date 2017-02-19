@@ -43,7 +43,7 @@ public class SmMenuPermissionTest {
 	}
 
 	public void selByCode() {
-		EntityResult<SmMenuPermission> result = service.selectByCode("SMP828916750748741632");
+		EntityResult result = service.selectByCode("SMP828916750748741632");
 		System.out.println(JSON.toJSON(result));
 	}
 

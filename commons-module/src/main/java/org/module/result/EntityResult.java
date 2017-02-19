@@ -1,5 +1,6 @@
 package org.module.result;
 
+
 /**
  * 
  * 类: EntityResult <br>
@@ -8,16 +9,17 @@ package org.module.result;
  * 时间: 2016年10月24日 上午7:33:41
  * @param <T>
  */
-public class EntityResult<T> extends RootResult {
+public class EntityResult extends RootResult {
 
-	private T entity;
+	private Object entity;
 
-	public T getEntity() {
+	public Object getEntity() {
 		return entity;
 	}
 
-	public void setEntity(T entity) {
+	public void setEntity(Object entity) {
 		this.entity = entity;
 	}
 
+	
 }

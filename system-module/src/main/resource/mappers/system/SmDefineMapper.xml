@@ -58,7 +58,7 @@
 			#{updateUser,jdbcType=VARCHAR},
 			STR_TO_DATE(#{updateTime,jdbcType=VARCHAR},'%Y-%m-%d
 			%H:%i:%s'),
-		</trim>
+		</trim>+
 	</insert>
 	<update id="updateByCode" parameterType="org.module.model.system.SmDefine">
 		update sm_define
@@ -75,4 +75,11 @@
 		</set>
 		where `code`=#{code,jdbcType=VARCHAR}
 	</update>
+	<!-- 根据父级编码查询数据集合 -->
+	<select id="findDataByParentCode" resultMap="BaseResultMap" parameterType="java.lang.String">
+		select
+		<include refid="Base_Column_List" />
+		from sm_define
+		where `parent_code`=#{parentCode,jdbcType=VARCHAR}		
+	</select>
 </mapper>

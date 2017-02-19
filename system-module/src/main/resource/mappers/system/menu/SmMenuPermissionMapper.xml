@@ -8,6 +8,10 @@
 		<result column="menu_code" property="menuCode" jdbcType="VARCHAR" />
 		<result column="menu_name" property="menuName" jdbcType="VARCHAR" />
 		<result column="name" property="name" jdbcType="VARCHAR" />
+		<result column="permission_type" property="permissionType"
+			jdbcType="VARCHAR" />
+		<result column="permission_name" property="permissionName"
+			jdbcType="VARCHAR" />
 		<result column="flag_able" property="flagAble" jdbcType="INTEGER" />
 		<result column="create_user" property="createUser" jdbcType="VARCHAR" />
 		<result column="create_time" property="createTime" jdbcType="VARCHAR" />
@@ -16,7 +20,8 @@
 		<result column="description" property="description" jdbcType="LONGVARCHAR" />
 	</resultMap>
 	<sql id="Base_Column_List">
-		id, uid, code, menu_code, name,flag_able,description,
+		id, uid, code, menu_code,
+		name,permission_type,flag_able,description,
 		create_user,
 		DATE_FORMAT(create_time,'%Y-%m-%d
 		%H:%i:%s') as
@@ -45,6 +50,9 @@
 			`code`,
 			menu_code,
 			`name`,
+			<if test="permissionType != null and permissionType != ''">
+				permission_type,
+			</if>
 			<if test="flagAble != null">
 				flag_able,
 			</if>
@@ -61,6 +69,9 @@
 			#{code,jdbcType=VARCHAR},
 			#{menuCode,jdbcType=VARCHAR},
 			#{name,jdbcType=VARCHAR},
+			<if test="permissionType != null and permissionType != ''">
+				#{permissionType,jdbcType=VARCHAR},
+			</if>
 			<if test="flagAble != null">
 				#{flagAble,jdbcType=INTEGER},
 			</if>
@@ -84,6 +95,9 @@
 			<if test="name != null">
 				name = #{name,jdbcType=VARCHAR},
 			</if>
+			<if test="permissionType != null and permissionType != ''">
+				permission_type = #{permissionType,jdbcType=VARCHAR},
+			</if>
 			<if test="flagAble != null">
 				flag_able = #{flagAble,jdbcType=INTEGER},
 			</if>
@@ -102,6 +116,9 @@
 		smp.`code`,
 		smp.`name`,
 		sm.`name` AS menu_name,
+		(select sd.`name`
+		from sm_define as sd where sd.`code`=smp.permission_type) as
+		permission_name,
 		smp.flag_able,
 		smp.create_user,
 		DATE_FORMAT(smp.create_time,'%Y-%m-%d %H:%i:%s') as

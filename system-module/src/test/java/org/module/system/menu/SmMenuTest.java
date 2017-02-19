@@ -78,7 +78,7 @@ public class SmMenuTest {
 	}
 
 	public void selByCode() {
-		EntityResult<SmMenu> result = service.selectByCode("SM828896784997675008");
+		EntityResult result = service.selectByCode("SM828896784997675008");
 		System.out.println(JSON.toJSON(result));
 	}
 

@@ -42,7 +42,7 @@ public class SmRoleTest {
 	}
 
 	public void selByCode() {
-		EntityResult<SmRole> result = service.selectByCode("SR828936528817287168");
+		EntityResult result = service.selectByCode("SR828936528817287168");
 		System.out.println(JSON.toJSON(result));
 	}
 

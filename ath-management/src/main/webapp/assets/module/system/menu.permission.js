@@ -13,9 +13,12 @@ var columnsArray = [ {
 	field : 'name',
 	title : '名称'
 }, {
+	field : 'permissionName',
+	title : '权限类型'
+}, {
 	field : 'flagAble',
 	title : '是否可用',
-	formatter:replaceMenuPermissionFlagAble
+	formatter : replaceMenuPermissionFlagAble
 }, {
 	field : 'createUser',
 	title : '创建人'
@@ -72,7 +75,7 @@ var MenuPermission = {
 		});
 	},
 	initDataParam : function(params) {
-		var tmp=UsePublic.formToJSON($("#searchFrm"));
+		var tmp = UsePublic.formToJSON($("#searchFrm"));
 		if (tmp) {
 			tmp.pageNumber = params.pageNumber;
 			tmp.pageSize = params.limit;
@@ -83,8 +86,8 @@ var MenuPermission = {
 			};
 		}
 		var menuCodeVal = $("#menuCode").val();
-		if(menuCode){
-			tmp.menuCode=menuCodeVal;
+		if (menuCode) {
+			tmp.menuCode = menuCodeVal;
 		}
 		return tmp;
 	},
@@ -121,8 +124,9 @@ var MenuPermission = {
 	add : function() {
 		var param = {
 			name : $("#addName").val(),
+			permissionType : $("#addPermissionType").val(),
 			flagAble : $("#addFlagAble").val(),
-			menuCode:$("#menuCode").val()
+			menuCode : $("#menuCode").val()
 		}
 		$.ajax({
 			url : "system/menu/permission/add.htm",
@@ -146,26 +150,43 @@ var MenuPermission = {
 	/**
 	 * 打开添加页面弹出层
 	 */
-	openEdit : function(codeVal, nameVal,flagAbleVal) {
+	openEdit : function(codeVal) {
 		$("#editCode").val(codeVal);
-		$("#editName").val(nameVal);
-		$("#editFlagAble").val(flagAbleVal);
-		MenuPermission.editLayer = layer.open({
-			// 基本层类型
-			// 0（信息框，默认）1（页面层）2（iframe层）3（加载层）4（tips层）
-			type : 1,
-			// 标题
-			title : "编辑菜单组",
-			// 关闭按钮
-			closeBtn : 1,
-			// 宽高
-			area : [ '500px', '300px' ],
-			// 样式类名
-			skin : 'layui-layer-lan',
-			// 是否点击遮罩关闭
-			shadeClose : false,
-			// 内容
-			content : $('#editMenuPermission')
+		$.ajax({
+			url : "system/menu/permission/detail.htm",
+			type : "POST",
+			data : {code:codeVal},
+			success : function(result) {
+				result = JSON.parse(result);
+				if (result.code == 0) {
+					var obj = result.entity;
+					$("#editName").val(obj.name);
+					$("#editFlagAble").val(obj.flagAble);
+					$("#editPermissionType").val(obj.permissionType);
+					MenuPermission.editLayer = layer.open({
+						// 基本层类型
+						// 0（信息框，默认）1（页面层）2（iframe层）3（加载层）4（tips层）
+						type : 1,
+						// 标题
+						title : "编辑菜单组",
+						// 关闭按钮
+						closeBtn : 1,
+						// 宽高
+						area : [ '500px', '300px' ],
+						// 样式类名
+						skin : 'layui-layer-lan',
+						// 是否点击遮罩关闭
+						shadeClose : false,
+						// 内容
+						content : $('#editMenuPermission')
+					});
+				} else {
+					layer.alert(result.message);
+				}
+			},
+			error : function(result) {
+				layer.alert('添加失败');
+			}
 		});
 	},
 	closeEdit : function() {
@@ -181,8 +202,9 @@ var MenuPermission = {
 			var param = {
 				code : $("#editCode").val(),
 				name : $("#editName").val(),
+				permissionType : $("#editPermissionType").val(),
 				flagAble : $("#editFlagAble").val(),
-				menuCode:$("#menuCode").val()
+				menuCode : $("#menuCode").val()
 			};
 			$.ajax({
 				url : "system/menu/permission/edit.htm",
@@ -261,7 +283,7 @@ function replaceMenuPermissionFlagAble(value, row, index) {
 function openEditMenuPermissionLayer(value, row, index) {
 	var html = "<a href='javascript:void(0)' ";
 	html += "class='btn btn-info'  onclick='MenuPermission.openEdit(\""
-			+ row.code + "\",\"" + row.name + "\","+row.flagAble+");' >";
+			+ row.code + "\",\"" + row.name + "\"," + row.flagAble + ");' >";
 	html += "编辑</a>";
 	return html;
 }

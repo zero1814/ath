@@ -76,7 +76,7 @@ public class SmMenuController {
 	@SuppressWarnings("unchecked")
 	@RequestMapping("editindex")
 	public String editIndex(ModelMap model, String code) {
-		EntityResult<SmMenu> result = service.selectByCode(code);
+		EntityResult result = service.selectByCode(code);
 		if (result.getCode() == 0) {
 			model.addAttribute("menu", result.getEntity());
 		} else {

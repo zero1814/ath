@@ -86,7 +86,7 @@
 		</nav>
 		<div id="page-wrapper" class="gray-bg">
 			<div class="row J_mainContent" id="content-main">
-				<iframe id="J_iframe" width="100%" height="100%" src="system/menugroup/index.htm"
+				<iframe id="J_iframe" width="100%" height="100%" src="system/menu/index.htm"
 					frameborder="0" data-id="system/menugroup/index.htm" seamless></iframe>
 			</div>
 		</div>

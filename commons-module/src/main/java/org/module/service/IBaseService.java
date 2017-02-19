@@ -28,7 +28,7 @@ public interface IBaseService<T extends BaseModel, DTO extends BaseDto> {
 	 * @param entity
 	 * @return
 	 */
-	EntityResult<T> insertSelective(T entity);
+	EntityResult insertSelective(T entity);
 
 	/**
 	 * 
@@ -40,7 +40,7 @@ public interface IBaseService<T extends BaseModel, DTO extends BaseDto> {
 	 * @param entity
 	 * @return
 	 */
-	EntityResult<T> updateByCode(T entity);
+	EntityResult updateByCode(T entity);
 
 	/**
 	 * 
@@ -76,7 +76,7 @@ public interface IBaseService<T extends BaseModel, DTO extends BaseDto> {
 	 * @param pk
 	 * @return
 	 */
-	EntityResult<T> selectByCode(String code);
+	EntityResult selectByCode(String code);
 
 	/**
 	 * 
@@ -88,7 +88,7 @@ public interface IBaseService<T extends BaseModel, DTO extends BaseDto> {
 	 * @param entity
 	 * @return
 	 */
-	EntityResult<T> selectByEntity(T entity);
+	EntityResult selectByEntity(T entity);
 
 	/**
 	 * 

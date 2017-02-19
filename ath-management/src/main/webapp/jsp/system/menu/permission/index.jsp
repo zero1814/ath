@@ -49,7 +49,8 @@
 						<th data-field="state" data-checkbox="true"></th>
 						<th data-field="code">编码</th>
 						<th data-field="name">名称</th>
-						<th data-field="name">是否可用</th>
+						<th data-field="permissionName">权限类型</th>
+						<th data-field="flagAble">是否可用</th>
 						<th data-field="createUser">创建人</th>
 						<th data-field="createTime">创建时间</th>
 						<th data-field="updateUser">修改人</th>
@@ -70,6 +71,17 @@
 				<label class="col-sm-4 control-label">名称：</label>
 				<div class="col-sm-6">
 					<input id="addName" name="addName" type="text" class="form-control">
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="col-sm-4 control-label">权限类型：</label>
+				<div class="col-sm-6">
+					<select id="addPermissionType" name="addPermissionType" class="form-control">
+						<option value="">请选择</option>
+						<c:forEach var="type" items="${permissionType }">
+							<option value="${type.code }">${type.name }</option>
+						</c:forEach>
+					</select>
 				</div>
 			</div>
 			<div class="form-group">
@@ -104,6 +116,17 @@
 				<div class="col-sm-6">
 					<input id="editName" name="editName" type="text"
 						class="form-control">
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="col-sm-4 control-label">权限类型：</label>
+				<div class="col-sm-6">
+					<select id="editPermissionType" name="editPermissionType" class="form-control">
+						<option value="">请选择</option>
+						<c:forEach var="type" items="${permissionType }">
+							<option value="${type.code }">${type.name }</option>
+						</c:forEach>
+					</select>
 				</div>
 			</div>
 			<div class="form-group">

@@ -42,8 +42,8 @@ public class BaseServiceImpl<T extends BaseModel, M extends BaseMapper<T, DTO>, 
 	 * @see cn.com.ath.service.IBaseService#insertSelective(cn.com.ath.model.BaseModel)
 	 */
 	@Override
-	public EntityResult<T> insertSelective(T entity) {
-		EntityResult<T> result = new EntityResult<T>();
+	public EntityResult insertSelective(T entity) {
+		EntityResult result = new EntityResult();
 		if (entity.getUid() == null || "".equals(entity.getUid())) {
 			entity.setUid(UUID.randomUUID().toString().replace("-", ""));
 		}
@@ -79,8 +79,8 @@ public class BaseServiceImpl<T extends BaseModel, M extends BaseMapper<T, DTO>, 
 	 * @see cn.com.ath.service.IBaseService#updateByCode(cn.com.ath.model.BaseModel)
 	 */
 	@Override
-	public EntityResult<T> updateByCode(T entity) {
-		EntityResult<T> result = new EntityResult<T>();
+	public EntityResult updateByCode(T entity) {
+		EntityResult result = new EntityResult();
 		if (entity.getUpdateTime() == null || "".equals(entity.getUpdateTime())) {
 			entity.setUpdateTime(DateUtil.getSysDateTime());
 		}
@@ -110,8 +110,8 @@ public class BaseServiceImpl<T extends BaseModel, M extends BaseMapper<T, DTO>, 
 	 * @see cn.com.ath.service.IBaseService#selectByEntity(cn.com.ath.model.BaseModel)
 	 */
 	@Override
-	public EntityResult<T> selectByEntity(T entity) {
-		EntityResult<T> result = new EntityResult<T>();
+	public EntityResult selectByEntity(T entity) {
+		EntityResult result = new EntityResult();
 		T entity_ = mapper.selectByEntity(entity);
 		if (entity_ != null) {
 			result.setCode(0);
@@ -185,8 +185,8 @@ public class BaseServiceImpl<T extends BaseModel, M extends BaseMapper<T, DTO>, 
 	 * @see cn.com.ath.service.IBaseService#selectByCode(java.lang.String)
 	 */
 	@Override
-	public EntityResult<T> selectByCode(String code) {
-		EntityResult<T> result = new EntityResult<T>();
+	public EntityResult selectByCode(String code) {
+		EntityResult result = new EntityResult();
 		T entity = mapper.selectByCode(code);
 		if (entity != null) {
 			result.setCode(0);
