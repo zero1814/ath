@@ -21,6 +21,7 @@
 	rel="stylesheet">
 <link href="assets/commons/css/animate.css" rel="stylesheet">
 <link href="assets/commons/css/style.css?v=1.0.0" rel="stylesheet">
+<title>随时帮-后台管理</title>
 <script type="text/javascript">
 	var basePath = "<%=basePath%>";
 </script>

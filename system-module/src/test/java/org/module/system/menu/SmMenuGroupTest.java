@@ -1,6 +1,5 @@
 package org.module.system.menu;
 
-
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.module.commons.helper.CodeHelper;
@@ -23,7 +22,6 @@ public class SmMenuGroupTest {
 	@Autowired
 	private ISmMenuGroupService service;
 
-	@Test
 	public void insert() {
 		SmMenuGroup entity = new SmMenuGroup();
 		entity.setCode(CodeHelper.getUniqueCode("SM"));
@@ -60,6 +58,7 @@ public class SmMenuGroupTest {
 		System.out.println(JSON.toJSON(result));
 	}
 
+	@Test
 	public void findMenuByGroup() {
 		DataResult result = service.findDataAll();
 		System.out.println(JSON.toJSON(result));

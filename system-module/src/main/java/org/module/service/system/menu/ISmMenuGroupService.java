@@ -6,6 +6,5 @@ import org.module.result.DataResult;
 import org.module.service.IBaseService;
 
 public interface ISmMenuGroupService extends IBaseService<SmMenuGroup, SmMenuGroupDto> {
-
 	DataResult findDataAll();
 }
