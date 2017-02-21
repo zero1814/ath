@@ -6,8 +6,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.alibaba.fastjson.JSON;
-
 @Controller
 public class IndexController {
 
@@ -17,7 +15,6 @@ public class IndexController {
 	@RequestMapping("index")
 	public String index(ModelMap model) {
 		model.addAttribute("menugroups", service.getMenus());
-		System.out.println(JSON.toJSON(service.getMenus()));
 		return "jsp/index";
 	}
 

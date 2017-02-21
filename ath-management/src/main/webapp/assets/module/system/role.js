@@ -13,16 +13,10 @@ var columnsArray = [ {
 	field : 'name',
 	title : '名称'
 }, {
-	field : 'parentName',
-	title : '上级菜单名称'
-}, {
-	field : 'groupName',
-	title : '菜单组名称'
-},{
 	field : 'flagAble',
 	title : '是否可用',
-	formatter:replaceMenuPermissionFlagAble
-},  {
+	formatter : replaceRolePermissionFlagAble
+}, {
 	field : 'createUser',
 	title : '创建人'
 }, {
@@ -34,23 +28,25 @@ var columnsArray = [ {
 }, {
 	field : 'updateTime',
 	title : '修改时间'
-},{
-	field : 'menuPermission',
-	title : '权限',
-	formatter : openMenuPermission
 }, {
-	field : 'editGroup',
+	field : 'rolePermission',
+	title : '权限',
+	formatter : openRolePermission
+}, {
+	field : 'editRole',
 	title : '编辑',
 	formatter : openEdit
 }, {
-	field : 'delGroup',
+	field : 'delRole',
 	title : '删除',
 	formatter : openDelLayer
 } ];
-var Menu = {
+var Role = {
+	addLayer : '',
+	editLayer : '',
 	data : function() {
 		$("#table").bootstrapTable({
-			url : "system/menu/data.htm", // 请求后台的URL（*）
+			url : "system/role/data.htm", // 请求后台的URL（*）
 			method : 'get', // 请求方式（*）
 			dataType : "json",
 			toolbar : $("#tools").attr("id"), // 工具按钮用哪个容器
@@ -59,7 +55,7 @@ var Menu = {
 			pagination : true, // 是否显示分页（*）
 			sortable : true, // 是否启用排序
 			sortOrder : "desc", // 排序方式
-			queryParams : Menu.initDataParam,// 传递参数（*）
+			queryParams : Role.initDataParam,// 传递参数（*）
 			queryParamsType : "limit",
 			sidePagination : "server", // 分页方式：client客户端分页，server服务端分页（*）
 			pageNumber : 1, // 初始化加载第一页，默认第一页
@@ -80,7 +76,7 @@ var Menu = {
 		});
 	},
 	initDataParam : function(params) {
-		var tmp=UsePublic.formToJSON($("#searchFrm"));
+		var tmp = UsePublic.formToJSON($("#searchFrm"));
 		if (tmp) {
 			tmp.pageNumber = params.pageNumber;
 			tmp.pageSize = params.limit;
@@ -96,15 +92,41 @@ var Menu = {
 		$('#table').bootstrapTable('refresh');
 	},
 	/**
-	 * 打开添加页面
+	 * 打开添加页面弹出层
 	 */
 	openAdd : function() {
-		window.open("system/menu/addindex.htm", "_self");
+		Role.addLayer = layer.open({
+			// 基本层类型
+			// 0（信息框，默认）1（页面层）2（iframe层）3（加载层）4（tips层）
+			type : 1,
+			// 标题
+			title : "添加角色",
+			// 关闭按钮
+			closeBtn : 1,
+			// 宽高
+			area : [ '600px', '400px' ],
+			// 样式类名
+			skin : 'layui-layer-lan',
+			// 是否点击遮罩关闭
+			shadeClose : false,
+			// 内容
+			content : $('#addRole')
+		});
 	},
-	add:function(){
-		var param = $("#addFrm").serialize();
+	closeAdd : function() {
+		if (Role.addLayer) {
+			layer.close(Role.addLayer);
+		}
+	},
+	add : function() {
+		var param = {
+			name : $("#addName").val(),
+			flagAble : $("#addFlagAble").val(),
+			intro : $("#addIntro").val()
+		};
+		layer.close(Role.addLayer);
 		$.ajax({
-			url : "system/menu/add.htm",
+			url : "system/role/add.htm",
 			type : "POST",
 			data : param,
 			success : function(result) {
@@ -112,9 +134,18 @@ var Menu = {
 				if (result.code == 0) {
 					layer.alert('添加成功', function(index) {
 						layer.close(index);
-						window.open("system/menu/index.htm","_self");
+						layer.confirm('您是否要为角色添加权限？', {
+							btn : [ '确定', '取消' ]
+						// 按钮
+						}, function() {
+							window.open("system/role/permission/index.htm",
+									"_self");
+						});
+					}, function() {
+						layer.close(index);
+						$('#table').bootstrapTable('refresh');
 					});
-				}else{
+				} else {
 					layer.alert(result.message);
 				}
 			},
@@ -123,14 +154,69 @@ var Menu = {
 			}
 		});
 	},
+	/**
+	 * 打开添加页面弹出层
+	 */
+	openEdit : function(codeVal) {
+		$("#editCode").val(codeVal);
+		$.ajax({
+			url : "system/role/detail.htm",
+			type : "POST",
+			data : {
+				code : codeVal
+			},
+			success : function(result) {
+				result = JSON.parse(result);
+				if(result.code == 0){
+					var obj = result.entity;
+					$("#editName").val(obj.name);
+					$("#editFlagAble").val(obj.flagAble);
+					$("#editIntro").val(obj.intro);
+					Role.editLayer = layer.open({
+						// 基本层类型
+						// 0（信息框，默认）1（页面层）2（iframe层）3（加载层）4（tips层）
+						type : 1,
+						// 标题
+						title : "编辑角色",
+						// 关闭按钮
+						closeBtn : 1,
+						// 宽高
+						area : [ '600px', '400px' ],
+						// 样式类名
+						skin : 'layui-layer-lan',
+						// 是否点击遮罩关闭
+						shadeClose : false,
+						// 内容
+						content : $('#editRole')
+					});
+				}else{
+					layer.alert(result.code+":"+result.message);
+				}
+			},
+			error : function(result) {
+				layer.alert('编辑失败');
+			}
+		});
+	},
+	closeEdit : function() {
+		if (Role.editLayer) {
+			layer.close(Role.editLayer);
+		}
+	},
 	edit : function() {
-		layer.confirm('您确定要编辑选中菜单组吗？', {
+		layer.confirm('您确定要编辑选中角色吗？', {
 			btn : [ '确定', '取消' ]
 		// 按钮
 		}, function() {
-			var param = $("#editFrm").serialize();
+			var param = {
+				code : $("#editCode").val(),
+				name : $("#editName").val(),
+				flagAble : $("#editFlagAble").val(),
+				intro : $("#editIntro").val()
+			};
+			layer.close(Role.editLayer);
 			$.ajax({
-				url : "system/menu/edit.htm",
+				url : "system/role/edit.htm",
 				type : "POST",
 				data : param,
 				success : function(result) {
@@ -138,9 +224,9 @@ var Menu = {
 					if (result.code == 0) {
 						layer.alert('编辑成功', function(index) {
 							layer.close(index);
-							window.open("system/menu/index.htm","_self");
+							$('#table').bootstrapTable('refresh');
 						});
-					}else{
+					} else {
 						layer.alert(result.message);
 					}
 				},
@@ -151,7 +237,7 @@ var Menu = {
 		});
 	},
 	del : function(codeVal) {
-		layer.confirm('您确定要删除选中菜单组吗？', {
+		layer.confirm('您确定要删除选中角色吗？', {
 			btn : [ '确定', '取消' ]
 		// 按钮
 		}, function() {
@@ -159,7 +245,7 @@ var Menu = {
 				code : codeVal
 			}
 			$.ajax({
-				url : "system/menu/del.htm",
+				url : "system/role/del.htm",
 				type : "POST",
 				data : param,
 				success : function(result) {
@@ -177,13 +263,13 @@ var Menu = {
 			});
 		});
 	},
-	selParentMenus : function() {
+	selParentRoles : function() {
 		var param = {
 			groupCode : $("#groupCode").val()
 		};
-		var parentCode=$("#parentCode_tmp").val();
+		var parentCode = $("#parentCode_tmp").val();
 		$.ajax({
-			url : "system/menu/getparentmenus.htm",
+			url : "system/role/getparentRoles.htm",
 			type : "POST",
 			data : param,
 			success : function(result) {
@@ -193,12 +279,12 @@ var Menu = {
 					var data = result.data;
 					if (data.length > 0) {
 						for (var i = 0; i < data.length; i++) {
-							var parentMenu = data[i];
-							html += "<option value='" + parentMenu.code +"'";
-							if(parentCode == parentMenu.code){
-								html +=" selected='selected' ";
+							var parentRole = data[i];
+							html += "<option value='" + parentRole.code + "'";
+							if (parentCode == parentRole.code) {
+								html += " selected='selected' ";
 							}
-							html +=" >" + parentMenu.name + "</option>";
+							html += " >" + parentRole.name + "</option>";
 						}
 					}
 					$("#parentCode").html(html);
@@ -212,12 +298,12 @@ var Menu = {
 		});
 	}
 };
-function openMenuPermission(value, row, index) {
+function openRolePermission(value, row, index) {
 	var html = "";
-	if(row.flagAble == 0){
+	if (row.flagAble == 0) {
 		var code = row.code;
-		var url = "system/menu/permission/index.htm?menuCode=" + code;
-		html = '<a href="' + url + '" class="btn btn-info">设置</a>';		
+		var url = "system/role/permission/index.htm?RoleCode=" + code;
+		html = '<a href="' + url + '" class="btn btn-info">设置</a>';
 	}
 	return html;
 }
@@ -229,7 +315,7 @@ function openMenuPermission(value, row, index) {
  * @param index
  * @returns
  */
-function replaceMenuPermissionFlagAble(value, row, index) {
+function replaceRolePermissionFlagAble(value, row, index) {
 	if (value == 0) {
 		return "可用";
 	} else {
@@ -242,9 +328,9 @@ function replaceMenuPermissionFlagAble(value, row, index) {
  * @param codeVal
  */
 function openEdit(value, row, index) {
-	var code = row.code;
-	var url = "system/menu/editindex.htm?code=" + code;
-	var html = '<a href="' + url + '" class="btn btn-info">编辑</a>';
+	var html ="<a href='javascript:void(0)' ";
+	html += "class='btn btn-info'  onclick='Role.openEdit(\""+row.code+"\");' >";
+	html +="编辑</a>";
 	return html;
 }
 /**
@@ -257,6 +343,7 @@ function openEdit(value, row, index) {
  */
 function openDelLayer(value, row, index) {
 	var codeVal = row.code;
-	var html ="<a href='javascript:void(0)' onclick='Menu.del(\""+codeVal+"\")' class='btn btn-info'>删除</a>";
+	var html = "<a href='javascript:void(0)' onclick='Role.del(\"" + codeVal
+			+ "\")' class='btn btn-info'>删除</a>";
 	return html;
 }
