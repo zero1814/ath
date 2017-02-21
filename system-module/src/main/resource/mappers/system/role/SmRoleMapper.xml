@@ -89,6 +89,9 @@
 		<include refid="Base_Column_List" />
 		from sm_role
 		<where>
+			<if test="code != null and code != ''">
+				`code` = #{code,jdbcType=VARCHAR}
+			</if>
 			<if test="name != null and name!=''">
 				`name` = #{name,jdbcType=VARCHAR}
 			</if>
@@ -101,6 +104,9 @@
 		count(1)
 		from sm_role
 		<where>
+			<if test="code != null and code != ''">
+				`code` = #{code,jdbcType=VARCHAR}
+			</if>
 			<if test="name != null and name!=''">
 				`name` = #{name,jdbcType=VARCHAR}
 			</if>
