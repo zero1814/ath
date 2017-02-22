@@ -1,5 +1,5 @@
 /**
- * 系统模块-菜单组管理相关js操作
+ * 角色权限相关
  */
 /**
  * 列表显示字段
@@ -10,20 +10,47 @@ var columnsArray = [ {
 	field : 'code',
 	title : '编码'
 }, {
-	field : 'menuName',
-	title : '菜单名称'
+	field : 'name',
+	title : '名称'
 }, {
-	field : 'menuPermission',
-	title : '权限名称',
-	formatter : replaceRolePermissionPermissionFlagAble
-}, {
-	field : 'menuPermissionSetting',
-	title : '权限设置'
-} ];
+	field : 'permissionName',
+	title : '权限类型'
+},{
+	field : 'setting',
+	title : '是否启用'
+}];
 var RolePermission = {
-	data : function() {
+	initMenus : function() {
+		$.ajax({
+			url : "system/role/permission/menus.htm",
+			type : "POST",
+			data : {},
+			success : function(result) {
+				result = JSON.parse(result);
+				if (result) {
+					$('#menus').treeview({
+						data : result,
+						onNodeSelected:function(event,node){
+							var code = node.code;
+							var url = "system/role/permission/setting_permission_index.htm?menuCode="+code;
+							$("#role_permission").attr('src', url);
+						}
+					});
+				} else {
+					layer.alert(result.message);
+				}
+			},
+			error : function(result) {
+				layer.alert('加载菜单权限列表失败');
+			}
+		});
+	},
+	/**
+	 * 加载菜单权限列表
+	 */
+	menuPermissionData:function(){
 		$("#table").bootstrapTable({
-			url : "system/role/permission/data.htm", // 请求后台的URL（*）
+			url : "system/role/permission/setting_permission_data.htm", // 请求后台的URL（*）
 			method : 'get', // 请求方式（*）
 			dataType : "json",
 			toolbar : $("#tools").attr("id"), // 工具按钮用哪个容器
@@ -32,7 +59,7 @@ var RolePermission = {
 			pagination : true, // 是否显示分页（*）
 			sortable : true, // 是否启用排序
 			sortOrder : "desc", // 排序方式
-			queryParams : RolePermission.initDataParam,// 传递参数（*）
+			queryParams : RolePermission.initMenuPermissionDataParam,// 传递参数（*）
 			queryParamsType : "limit",
 			sidePagination : "server", // 分页方式：client客户端分页，server服务端分页（*）
 			pageNumber : 1, // 初始化加载第一页，默认第一页
@@ -52,8 +79,8 @@ var RolePermission = {
 			columns : columnsArray
 		});
 	},
-	initDataParam : function(params) {
-		var tmp = UsePublic.formToJSON($("#searchFrm"));
+	initMenuPermissionDataParam : function(params) {
+		var tmp = {};
 		if (tmp) {
 			tmp.pageNumber = params.pageNumber;
 			tmp.pageSize = params.limit;
@@ -64,8 +91,15 @@ var RolePermission = {
 			};
 		}
 		return tmp;
-	},
-	search : function() {
-		$('#table').bootstrapTable('refresh');
 	}
 };
+/**
+ * 初始化权限设置html
+ * @param value
+ * @param row
+ * @param index
+ * @returns {String}
+ */
+function initSettingPermisionHtml(value, row, index){
+	return "<input code=\""+row.code+"\" type=\"checkbox\" class=\"js-switch\" />";
+}

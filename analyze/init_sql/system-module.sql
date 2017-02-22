@@ -74,7 +74,7 @@ CREATE TABLE sm_menu_permission (
 	menu_code VARCHAR (50) NOT NULL COMMENT '菜单编码',
 	`name` VARCHAR (50) NOT NULL COMMENT '名称',
 	permission_type varchar(50) not null comment '权限类型',
-	is_usable INT (2) DEFAULT 0 COMMENT '是否可用 0 可用 1 不可用',
+	flag_able INT (2) DEFAULT 0 COMMENT '是否可用 0 可用 1 不可用',
 	description text COMMENT '权限描述',
 	create_user VARCHAR (50) NOT NULL COMMENT '创建人',
 	create_time datetime NOT NULL COMMENT '创建时间',

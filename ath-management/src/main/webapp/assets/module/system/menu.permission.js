@@ -107,7 +107,7 @@ var MenuPermission = {
 			// 关闭按钮
 			closeBtn : 1,
 			// 宽高
-			area : [ '500px', '300px' ],
+			area : [ '500px', '380px' ],
 			// 样式类名
 			skin : 'layui-layer-lan',
 			// 是否点击遮罩关闭
@@ -172,7 +172,7 @@ var MenuPermission = {
 						// 关闭按钮
 						closeBtn : 1,
 						// 宽高
-						area : [ '500px', '300px' ],
+						area : [ '500px', '380px' ],
 						// 样式类名
 						skin : 'layui-layer-lan',
 						// 是否点击遮罩关闭

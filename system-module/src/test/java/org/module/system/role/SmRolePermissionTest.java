@@ -9,6 +9,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
+import com.alibaba.fastjson.JSONArray;
+
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = { "classpath:spring/spring.xml", "classpath:spring/spring-mybatis.xml" })
 public class SmRolePermissionTest {
@@ -16,7 +18,6 @@ public class SmRolePermissionTest {
 	@Autowired
 	private ISmRolePermissionService service;
 
-	@Test
 	public void insert() {
 		SmRolePermission entity = new SmRolePermission();
 		entity.setCode(CodeHelper.getUniqueCode("RP"));
@@ -24,5 +25,11 @@ public class SmRolePermissionTest {
 		entity.setMenuPermissionCode("1");
 		entity.setCreateUser("admin");
 		service.insertSelective(entity);
+	}
+	
+	@Test
+	public void getMenus(){
+		JSONArray array = service.getMenus();
+		System.out.println(array);
 	}
 }
