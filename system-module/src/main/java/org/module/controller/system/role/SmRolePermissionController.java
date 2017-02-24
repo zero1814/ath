@@ -1,9 +1,11 @@
 package org.module.controller.system.role;
 
-import org.module.result.DataResult;
+import org.module.dto.system.menu.SmMenuPermissionDto;
+import org.module.result.PageResult;
 import org.module.service.system.role.ISmRolePermissionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -28,13 +30,14 @@ public class SmRolePermissionController {
 	}
 
 	@RequestMapping("setting_permission_index")
-	public String menuPersmissionSettingIndex(String menuCode) {
+	public String menuPersmissionSettingIndex(ModelMap model, String menuCode) {
+		model.addAttribute("menuCode", menuCode);
 		return "jsp/system/role/permission/setting_permission";
 	}
 
 	@RequestMapping("setting_permission_data")
 	@ResponseBody
-	public DataResult settingPermissionData(String menuCode) {
-		return service.getMenuPermission(menuCode);
+	public PageResult settingPermissionData(SmMenuPermissionDto dto) {
+		return service.getMenuPermission(dto);
 	}
 }

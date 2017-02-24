@@ -17,7 +17,8 @@ var columnsArray = [ {
 	title : '权限类型'
 },{
 	field : 'setting',
-	title : '是否启用'
+	title : '是否启用',
+	formatter:initSettingPermisionHtml
 }];
 var RolePermission = {
 	initMenus : function() {
@@ -67,7 +68,6 @@ var RolePermission = {
 			pageList : [ 10, 25, 50, 100 ], // 可供选择的每页的行数（*）
 			search : false, // 是否显示表格搜索，此搜索是客户端搜索，不会进服务端，所以，个人感觉意义不大
 			strictSearch : false,
-			showColumns : true, // 是否显示所有的列
 			showRefresh : true, // 是否显示刷新按钮
 			minimumCountColumns : 2, // 最少允许的列数
 			clickToSelect : true, // 是否启用点击选中行
@@ -80,13 +80,13 @@ var RolePermission = {
 		});
 	},
 	initMenuPermissionDataParam : function(params) {
-		var tmp = {};
+		var tmp = {flagAble:0,menuCode:menuCodeVal};
 		if (tmp) {
-			tmp.pageNumber = params.pageNumber;
+			tmp.pageNumber = params.offset+1;
 			tmp.pageSize = params.limit;
 		} else {
 			tmp = {
-				pageNumber : params.pageNumber,
+				pageNumber : params.offset+1,
 				pageSize : params.limit
 			};
 		}

@@ -14,7 +14,7 @@ import org.module.model.system.menu.SmMenu;
 import org.module.model.system.menu.SmMenuGroup;
 import org.module.model.system.menu.SmMenuPermission;
 import org.module.model.system.role.SmRolePermission;
-import org.module.result.DataResult;
+import org.module.result.PageResult;
 import org.module.service.impl.BaseServiceImpl;
 import org.module.service.system.role.ISmRolePermissionService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -72,15 +72,16 @@ public class SmRolePermissionServiceImpl
 	 * @see org.module.service.system.role.ISmRolePermissionService#getMenuPermission(java.lang.String)
 	 */
 	@Override
-	public DataResult getMenuPermission(String menuCode) {
-		DataResult result = new DataResult();
-		SmMenuPermissionDto dto = new SmMenuPermissionDto();
-		dto.setMenuCode(menuCode);
+	public PageResult getMenuPermission(SmMenuPermissionDto dto) {
+		PageResult result = new PageResult();
 		dto.setFlagAble(0);
-		List<SmMenuPermission> permissions = menuPermissionMapper.findEntityAll(dto);
+		dto.setStart((dto.getPageNumber() - 1) * dto.getPageSize());
+		List<SmMenuPermission> permissions = menuPermissionMapper.findEntityAllToPage(dto);
 		if (!permissions.isEmpty()) {
 			result.setCode(0);
-			result.setData(permissions);
+			result.setRows(permissions);
+			Integer total = menuPermissionMapper.findEntityAllCountToPage(dto);
+			result.setTotal(total);
 			result.setMessage("查询成功");
 		} else {
 			result.setCode(-1);

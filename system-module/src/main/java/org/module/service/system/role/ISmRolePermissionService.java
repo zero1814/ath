@@ -1,8 +1,9 @@
 package org.module.service.system.role;
 
+import org.module.dto.system.menu.SmMenuPermissionDto;
 import org.module.dto.system.role.SmRolePermissionDto;
 import org.module.model.system.role.SmRolePermission;
-import org.module.result.DataResult;
+import org.module.result.PageResult;
 import org.module.service.IBaseService;
 
 import com.alibaba.fastjson.JSONArray;
@@ -28,5 +29,5 @@ public interface ISmRolePermissionService extends IBaseService<SmRolePermission,
 	 * 时间: 2017年2月22日 下午3:37:49
 	 * @return
 	 */
-	public DataResult getMenuPermission(String menuCode);
+	public PageResult getMenuPermission(SmMenuPermissionDto dto);
 }
