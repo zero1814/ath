@@ -31,6 +31,7 @@ var RolePermission = {
 				if (result) {
 					$('#menus').treeview({
 						data : result,
+						multiSelect: false, //
 						onNodeSelected:function(event,node){
 							$("#menuCode").val(node.code);
 							$('#table').bootstrapTable('refresh');
