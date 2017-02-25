@@ -1,5 +1,6 @@
 package org.module.service.impl.system.role;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.module.dto.system.menu.SmMenuDto;
@@ -84,6 +85,8 @@ public class SmRolePermissionServiceImpl
 			result.setTotal(total);
 			result.setMessage("查询成功");
 		} else {
+			result.setRows(new ArrayList<SmMenuPermission>());
+			result.setTotal(0);
 			result.setCode(-1);
 			result.setMessage("获取菜单权限列表失败");
 		}
