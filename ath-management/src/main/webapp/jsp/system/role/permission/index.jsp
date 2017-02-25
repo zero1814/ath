@@ -23,9 +23,9 @@
 					<thead>
 						<tr>
 							<th data-field="code">编码</th>
-							<th data-field="menuName">菜单名称</th>
-							<th data-field="menuPermission">权限名称</th>
-							<th data-field="menuPermissionSetting">权限设置</th>
+							<th data-field="name">名称</th>
+							<th data-field="permissionName">权限类型</th>
+							<th data-field="setting">权限设置</th>
 						</tr>
 					</thead>
 				</table>
