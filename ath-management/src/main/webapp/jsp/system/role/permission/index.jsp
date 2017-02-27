@@ -2,8 +2,6 @@
 	pageEncoding="UTF-8"%>
 <%@ include file="/jsp/commons/header.jsp"%>
 <link href="assets/plugins/bootstrap/plugins/bootstrap-treeview/css/bootstrap-treeview.min.css" rel="stylesheet">
-<link href="assets/plugins/switchery/css/switchery.min.css"
-	rel="stylesheet">
 <div class="row">
 	<div class="col-sm-3">
 		<div class="ibox">
@@ -22,7 +20,6 @@
 				<table id="table" data-height="500" data-mobile-responsive="true">
 					<thead>
 						<tr>
-							<th data-field="code">编码</th>
 							<th data-field="name">名称</th>
 							<th data-field="permissionName">权限类型</th>
 							<th data-field="setting">权限设置</th>
@@ -35,7 +32,6 @@
 </div>
 <%@ include file="/jsp/commons/footer.jsp"%>
 <script src="assets/plugins/bootstrap/plugins/bootstrap-treeview/js/bootstrap-treeview.min.js"></script>
-<script src="assets/plugins/switchery/js/switchery.min.js"></script>
 <script src="assets/module/system/role.permission.js"></script>
 <script>
 $(document).ready(function() {

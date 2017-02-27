@@ -5,21 +5,16 @@
  * 列表显示字段
  */
 var columnsArray = [ {
-	checkbox : true
-}, {
-	field : 'code',
-	title : '编码'
-}, {
 	field : 'name',
 	title : '名称'
 }, {
 	field : 'permissionName',
 	title : '权限类型'
-},{
+}, {
 	field : 'setting',
 	title : '是否启用',
-	formatter:initSettingPermisionHtml
-}];
+	formatter : initSettingPermisionHtml
+} ];
 var RolePermission = {
 	initMenus : function() {
 		$.ajax({
@@ -31,10 +26,11 @@ var RolePermission = {
 				if (result) {
 					$('#menus').treeview({
 						data : result,
-						multiSelect: false, //
-						onNodeSelected:function(event,node){
+						multiSelect : false, //
+						onNodeSelected : function(event, node) {
 							$("#menuCode").val(node.code);
 							$('#table').bootstrapTable('refresh');
+							setTimeout("drawSwitch()", 100 )
 						}
 					});
 				} else {
@@ -49,7 +45,7 @@ var RolePermission = {
 	/**
 	 * 加载菜单权限列表
 	 */
-	menuPermissionData:function(){
+	menuPermissionData : function() {
 		$("#table").bootstrapTable({
 			url : "system/role/permission/setting_permission_data.htm", // 请求后台的URL（*）
 			method : 'get', // 请求方式（*）
@@ -74,20 +70,23 @@ var RolePermission = {
 			height : 500, // 行高，如果没有设置height属性，表格自动根据记录条数觉得表格高度
 			uniqueId : "code", // 每一行的唯一标识，一般为主键列
 			showToggle : false, // 是否显示详细视图和列表视图的切换按钮
-			showCheckbox: false,
+			showCheckbox : false,
 			cardView : false, // 是否显示详细视图
 			detailView : false, // 是否显示父子表
 			columns : columnsArray
 		});
 	},
 	initMenuPermissionDataParam : function(params) {
-		var tmp = {flagAble:0,menuCode:$("#menuCode").val()};
+		var tmp = {
+			flagAble : 0,
+			menuCode : $("#menuCode").val()
+		};
 		if (tmp) {
-			tmp.pageNumber = params.offset+1;
+			tmp.pageNumber = params.offset + 1;
 			tmp.pageSize = params.limit;
 		} else {
 			tmp = {
-				pageNumber : params.offset+1,
+				pageNumber : params.offset + 1,
 				pageSize : params.limit
 			};
 		}
@@ -96,11 +95,23 @@ var RolePermission = {
 };
 /**
  * 初始化权限设置html
+ * 
  * @param value
  * @param row
  * @param index
  * @returns {String}
  */
-function initSettingPermisionHtml(value, row, index){
-	return "<input code=\""+row.code+"\" type=\"checkbox\" class=\"js-switch\" />";
+function initSettingPermisionHtml(value, row, index) {
+	var html = "<input code=\"" + row.code + "\" type=\"checkbox\" class=\"js-switch\" />";
+//	var html = "<div  class=\"switch switch-mini\">";
+//		html +="<input name=\"menu.permission\" code=\""+row.code+"\" type=\"checkbox\" />";
+//		html +="</div>";
+	return html;
+}
+
+function drawSwitch(){
+	var elems = Array.prototype.slice.call(document.querySelectorAll('.js-switch'));
+	elems.forEach(function(html) {
+	  var switchery = new Switchery(html);
+	});
 }
