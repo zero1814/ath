@@ -19,7 +19,8 @@ public class SmRolePermissionController {
 	private ISmRolePermissionService service;
 
 	@RequestMapping("index")
-	public String index() {
+	public String index(ModelMap model,String roleCode) {
+		model.addAttribute("roleCode", roleCode);
 		return "jsp/system/role/permission/index";
 	}
 
