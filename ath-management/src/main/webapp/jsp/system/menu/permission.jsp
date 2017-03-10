@@ -44,21 +44,6 @@
 				</div>
 			</div>
 			<table id="table" data-height="400" data-mobile-responsive="true">
-				<thead>
-					<tr>
-						<th data-field="state" data-checkbox="true"></th>
-						<th data-field="code">编码</th>
-						<th data-field="name">名称</th>
-						<th data-field="permissionName">权限类型</th>
-						<th data-field="flagAble">是否可用</th>
-						<th data-field="createUser">创建人</th>
-						<th data-field="createTime">创建时间</th>
-						<th data-field="updateUser">修改人</th>
-						<th data-field="updateTime">修改时间</th>
-						<th data-field="edtiGroup">编辑</th>
-						<th data-field="delGroup">删除</th>
-					</tr>
-				</thead>
 			</table>
 		</div>
 	</div>
@@ -106,7 +91,7 @@
 		</form>
 	</div>
 </div>
-<div id="editMenuPermission" class="ibox col-sm-10"
+<div id="editMenuPermission" class="ibox col-sm-12"
 	style="margin: 40px; display: none;">
 	<div class="ibox-content">
 		<form id="editFrm" class="form-horizontal" action="">
@@ -152,7 +137,7 @@
 	</div>
 </div>
 <%@ include file="/jsp/commons/footer.jsp"%>
-<script src="assets/module/system/menu.permission.js"></script>
+<script src="assets/module/system/menu/menu.permission.js"></script>
 <script type="text/javascript">
 	$(document).ready(function() {
 		MenuPermission.data();

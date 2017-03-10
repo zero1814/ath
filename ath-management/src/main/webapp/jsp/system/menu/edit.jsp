@@ -55,4 +55,4 @@
 	</div>
 </div>
 <%@ include file="/jsp/commons/footer.jsp"%>
-<script src="assets/module/system/menu.js"></script>
+<script src="assets/module/system/menu/menu.js"></script>

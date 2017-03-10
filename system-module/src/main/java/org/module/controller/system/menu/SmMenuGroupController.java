@@ -20,7 +20,7 @@ public class SmMenuGroupController {
 
 	@RequestMapping("index")
 	public String index() {
-		return "jsp/system/menugroup/index";
+		return "jsp/system/menu/group";
 	}
 
 	@RequestMapping("data")

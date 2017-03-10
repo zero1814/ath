@@ -27,30 +27,16 @@
 					</div>
 				</form>
 				<div>
-					<a onclick="MenuGroup.openAdd();" class="btn btn-info"
-						href="javascript:void(0)">添加</a> <a class="btn btn-info"
-						href="javascript:void(0)">批量删除</a>
+					<a onclick="MenuGroup.openLayer($('#addLayer'));" class="btn btn-info" href="javascript:void(0)">添加</a> 
+					<a class="btn btn-info" href="javascript:void(0)">批量删除</a>
 				</div>
 			</div>
 			<table id="table" data-height="400" data-mobile-responsive="true">
-				<thead>
-					<tr>
-						<th data-field="state" data-checkbox="true"></th>
-						<th data-field="code">编码</th>
-						<th data-field="name">名称</th>
-						<th data-field="createUser">创建人</th>
-						<th data-field="createTime">创建时间</th>
-						<th data-field="updateUser">修改人</th>
-						<th data-field="updateTime">修改时间</th>
-						<th data-field="edtiGroup">编辑</th>
-						<th data-field="delGroup">删除</th>
-					</tr>
-				</thead>
 			</table>
 		</div>
 	</div>
 </div>
-<div id="addGroup" class="ibox col-sm-10" style="margin: 40px;display: none;">
+<div id="addLayer" class="ibox col-sm-10" style="margin: 40px;display: none;">
 	<div class="ibox-content">
 		<form id="addFrm" class="form-horizontal" action="">
 			<div class="form-group">
@@ -61,33 +47,28 @@
 				<div class="form-group">
 					<div class="col-sm-12"
 						style="text-align: center; margin-top: 25px;">
-						<a onclick="MenuGroup.add();" class="btn btn-primary"
-							href="javascript:void(0)">保存</a> <a
-							onclick="MenuGroup.closeAdd();" class="btn btn-white"
-							href="javascript:void(0)">取消</a>
+						<a onclick="MenuGroup.add();" class="btn btn-primary" href="javascript:void(0)">保存</a> 
+						<a onclick="MenuGroup.closeLayer();" class="btn btn-default" href="javascript:void(0)">取消</a>
 					</div>
 				</div>
 			</div>
 		</form>
 	</div>
 </div>
-<div id="editGroup" class="ibox col-sm-10" style="margin: 40px;display: none;">
+<div id="editLayer" class="ibox col-sm-10" style="margin: 40px;display: none;">
 	<div class="ibox-content">
 		<form id="editFrm" class="form-horizontal" action="">
 			<input type="hidden" name="editCode" id="editCode" value="">
 			<div class="form-group">
 				<label class="col-sm-3 control-label">名称：</label>
 				<div class="col-sm-6">
-					<input id="editName" name="editName" type="text"
-						class="form-control">
+					<input id="editName" name="editName" type="text" class="form-control" value="">
 				</div>
 				<div class="form-group">
 					<div class="col-sm-12"
 						style="text-align: center; margin-top: 25px;">
-						<a onclick="MenuGroup.edit();" class="btn btn-primary"
-							href="javascript:void(0)">保存</a> <a
-							onclick="MenuGroup.closeEdit();" class="btn btn-white"
-							href="javascript:void(0)">取消</a>
+						<a onclick="MenuGroup.edit();" class="btn btn-primary" href="javascript:void(0)">保存</a> 
+						<a onclick="MenuGroup.closeLayer();" class="btn btn-default" href="javascript:void(0)">取消</a>
 					</div>
 				</div>
 			</div>
@@ -95,7 +76,7 @@
 	</div>
 </div>
 <%@ include file="/jsp/commons/footer.jsp"%>
-<script src="assets/module/system/menugroup.js"></script>
+<script src="assets/module/system/menu/menugroup.js"></script>
 <script type="text/javascript">
 	$(document).ready(function() {
 		MenuGroup.data();

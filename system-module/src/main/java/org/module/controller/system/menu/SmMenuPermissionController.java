@@ -26,7 +26,7 @@ public class SmMenuPermissionController {
 	public String index(ModelMap model, String menuCode) {
 		model.addAttribute("menuCode", menuCode);
 		model.addAttribute("permissionType", service.getMenuPermissionType());
-		return "jsp/system/menu/permission/index";
+		return "jsp/system/menu/permission";
 	}
 
 	@RequestMapping("data")

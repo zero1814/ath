@@ -1,8 +1,5 @@
 /**
- * 系统模块-菜单组管理相关js操作
- */
-/**
- * 列表显示字段
+ * 系统相关-菜单相关-菜单管理
  */
 var columnsArray = [ {
 	checkbox : true
@@ -13,16 +10,6 @@ var columnsArray = [ {
 	field : 'name',
 	title : '名称'
 }, {
-	field : 'parentName',
-	title : '上级菜单名称'
-}, {
-	field : 'groupName',
-	title : '菜单组名称'
-},{
-	field : 'flagAble',
-	title : '是否可用',
-	formatter:replaceMenuPermissionFlagAble
-},  {
 	field : 'createUser',
 	title : '创建人'
 }, {
@@ -34,32 +21,28 @@ var columnsArray = [ {
 }, {
 	field : 'updateTime',
 	title : '修改时间'
-},{
-	field : 'menuPermission',
-	title : '权限',
-	formatter : openMenuPermission
 }, {
-	field : 'editGroup',
-	title : '编辑',
-	formatter : openEdit
-}, {
-	field : 'delGroup',
-	title : '删除',
-	formatter : openDelLayer
+	field : 'operation',
+	title : '操作',
+	formatter : operation
 } ];
-var Menu = {
+var MenuGroup = {
+	Layer : "",
+	/**
+	 * 加载表数据
+	 */
 	data : function() {
 		$("#table").bootstrapTable({
-			url : "system/menu/data.htm", // 请求后台的URL（*）
+			url : "system/menugroup/data.htm", // 请求后台的URL（*）
 			method : 'get', // 请求方式（*）
 			dataType : "json",
-			toolbar : $("#tools").attr("id"), // 工具按钮用哪个容器
+			toolbar : "toolbar", // 工具按钮用哪个容器
 			striped : true, // 是否显示行间隔色
 			cache : false, // 是否使用缓存，默认为true，所以一般情况下需要设置一下这个属性（*）
 			pagination : true, // 是否显示分页（*）
 			sortable : true, // 是否启用排序
 			sortOrder : "desc", // 排序方式
-			queryParams : Menu.initDataParam,// 传递参数（*）
+			queryParams : MenuGroup.initDataParam, // 传递参数（*）
 			queryParamsType : "limit",
 			sidePagination : "server", // 分页方式：client客户端分页，server服务端分页（*）
 			pageNumber : 1, // 初始化加载第一页，默认第一页
@@ -80,7 +63,7 @@ var Menu = {
 		});
 	},
 	initDataParam : function(params) {
-		var tmp=UsePublic.formToJSON($("#searchFrm"));
+		var tmp = $("#searchFrm").serializeArray();
 		if (tmp) {
 			tmp.pageNumber = params.pageNumber;
 			tmp.pageSize = params.limit;
@@ -92,30 +75,46 @@ var Menu = {
 		}
 		return tmp;
 	},
-	search : function() {
-		$('#table').bootstrapTable('refresh');
+	openLayer : function(obj) {
+		MenuGroup.Layer = layer.open({
+			// 基本层类型
+			// 0（信息框，默认）1（页面层）2（iframe层）3（加载层）4（tips层）
+			type : 1,
+			// 标题
+			title : "添加菜单权限",
+			// 关闭按钮
+			closeBtn : 1,
+			// 宽高
+			area : [ '500px', '300px' ],
+			// 样式类名
+			skin : 'layui-layer-lan',
+			// 是否点击遮罩关闭
+			shadeClose : false,
+			// 内容
+			content : $(obj)
+		});
 	},
-	/**
-	 * 打开添加页面
-	 */
-	openAdd : function() {
-		window.open("system/menu/addindex.htm", "_self");
+	closeLayer : function() {
+		if (MenuGroup.Layer) {
+			layer.close(MenuGroup.Layer);
+		}
 	},
-	add:function(){
-		var param = $("#addFrm").serialize();
+	add : function() {
+		var param = {
+			name : $("#addName").val()
+		}
 		$.ajax({
-			url : "system/menu/add.htm",
+			url : "system/menugroup/add.htm",
 			type : "POST",
 			data : param,
 			success : function(result) {
 				result = JSON.parse(result);
 				if (result.code == 0) {
+					layer.close(MenuGroup.addLayer);
 					layer.alert('添加成功', function(index) {
 						layer.close(index);
-						window.open("system/menu/index.htm","_self");
+						$('#table').bootstrapTable('refresh');
 					});
-				}else{
-					layer.alert(result.message);
 				}
 			},
 			error : function(result) {
@@ -123,31 +122,40 @@ var Menu = {
 			}
 		});
 	},
+	openEdit:function(code,name){
+		$("#editCode").val(code);
+		$("#editName").val(name);
+		MenuGroup.openLayer($('#editLayer'));
+	},
 	edit : function() {
 		layer.confirm('您确定要编辑选中菜单组吗？', {
 			btn : [ '确定', '取消' ]
 		// 按钮
 		}, function() {
-			var param = $("#editFrm").serialize();
+			var param = {
+				code : $("#editCode").val(),
+				name : $("#editName").val()
+			};
 			$.ajax({
-				url : "system/menu/edit.htm",
+				url : "system/menugroup/edit.htm",
 				type : "POST",
 				data : param,
 				success : function(result) {
 					result = JSON.parse(result);
 					if (result.code == 0) {
+						layer.close(MenuGroup.Layer);
 						layer.alert('编辑成功', function(index) {
 							layer.close(index);
-							window.open("system/menu/index.htm","_self");
+							$('#table').bootstrapTable('refresh');
 						});
-					}else{
-						layer.alert(result.message);
 					}
 				},
 				error : function(result) {
 					layer.alert('编辑失败');
 				}
 			});
+		}, function() {
+			layer.close(MenuGroup.editLayer);
 		});
 	},
 	del : function(codeVal) {
@@ -159,7 +167,7 @@ var Menu = {
 				code : codeVal
 			}
 			$.ajax({
-				url : "system/menu/del.htm",
+				url : "system/menugroup/del.htm",
 				type : "POST",
 				data : param,
 				success : function(result) {
@@ -176,87 +184,25 @@ var Menu = {
 				}
 			});
 		});
-	},
-	selParentMenus : function() {
-		var param = {
-			groupCode : $("#groupCode").val()
-		};
-		var parentCode=$("#parentCode_tmp").val();
-		$.ajax({
-			url : "system/menu/getparentmenus.htm",
-			type : "POST",
-			data : param,
-			success : function(result) {
-				result = JSON.parse(result);
-				if (result.code == 0) {
-					var html = "<option value=''>请选择</option>";
-					var data = result.data;
-					if (data.length > 0) {
-						for (var i = 0; i < data.length; i++) {
-							var parentMenu = data[i];
-							html += "<option value='" + parentMenu.code +"'";
-							if(parentCode == parentMenu.code){
-								html +=" selected='selected' ";
-							}
-							html +=" >" + parentMenu.name + "</option>";
-						}
-					}
-					$("#parentCode").html(html);
-				} else {
-					layer.alert(result.message);
-				}
-			},
-			error : function(result) {
-				layer.alert('删除失败');
-			}
-		});
 	}
 };
-function openMenuPermission(value, row, index) {
-	var html = "";
-	if(row.flagAble == 0){
-		var code = row.code;
-		var url = "system/menu/permission/index.htm?menuCode=" + code;
-		html = '<a href="' + url + '" class="btn btn-info">设置</a>';		
-	}
-	return html;
-}
+
 /**
- * 替换菜单是否可用文本
+ * 操作相关跳转或脚本
  * 
- * @param value
- * @param row
- * @param index
- * @returns
+ * @param {Object}
+ *            value
+ * @param {Object}
+ *            row
+ * @param {Object}
+ *            index
  */
-function replaceMenuPermissionFlagAble(value, row, index) {
-	if (value == 0) {
-		return "可用";
-	} else {
-		return "不可用";
-	}
-}
-/**
- * 打开编辑页面
- * 
- * @param codeVal
- */
-function openEdit(value, row, index) {
+function operation(value, row, index) {
 	var code = row.code;
-	var url = "system/menu/editindex.htm?code=" + code;
-	var html = '<a href="' + url + '" class="btn btn-info">编辑</a>';
-	return html;
-}
-/**
- * 打开删除操作layer
- * 
- * @param value
- * @param row
- * @param index
- * @returns {String}
- */
-function openDelLayer(value, row, index) {
-	var codeVal = row.code;
-	var html ="<a href='javascript:void(0)' onclick='Menu.del(\""+codeVal+"\")' class='btn btn-info'>删除</a>";
+	var name = row.name;
+	var html = '<div style="text-align: center;">';
+	html += '<a onclick="MenuGroup.openEdit(\''+code+'\',\''+name+'\');" style="margin: 5px;" class="btn btn-info btn-sm"><i class="fa fa-pencil"></i> 编辑 </a> ';
+	html += '<a onclick="MenuGroup.del(\''+code+'\');" style="margin: 5px;" class="btn btn-info btn-sm"><i class="fa fa-trash-o"></i> 删除 </a> ';
+	html += '</div>';
 	return html;
 }

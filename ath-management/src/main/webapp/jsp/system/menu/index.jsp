@@ -33,25 +33,12 @@
 				</div>
 			</div>
 			<table id="table" data-height="400" data-mobile-responsive="true">
-				<thead>
-					<tr>
-						<th data-field="state" data-checkbox="true"></th>
-						<th data-field="code">编码</th>
-						<th data-field="name">名称</th>
-						<th data-field="createUser">创建人</th>
-						<th data-field="createTime">创建时间</th>
-						<th data-field="updateUser">修改人</th>
-						<th data-field="updateTime">修改时间</th>
-						<th data-field="edtiGroup">编辑</th>
-						<th data-field="delGroup">删除</th>
-					</tr>
-				</thead>
 			</table>
 		</div>
 	</div>
 </div>
 <%@ include file="/jsp/commons/footer.jsp"%>
-<script src="assets/module/system/menu.js"></script>
+<script src="assets/module/system/menu/menu.js"></script>
 <script type="text/javascript">
 	$(document).ready(function() {
 		Menu.data();
