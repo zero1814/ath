@@ -27,31 +27,17 @@
 					</div>
 				</form>
 				<div>
-					<a onclick="Role.openAdd();" class="btn btn-info"
+					<a onclick="Role.openLayer($('#addLayer'));" class="btn btn-info"
 						href="javascript:void(0)">添加</a> <a class="btn btn-info"
 						href="javascript:void(0)">批量删除</a>
 				</div>
 			</div>
 			<table id="table" data-height="400" data-mobile-responsive="true">
-				<thead>
-					<tr>
-						<th data-field="state" data-checkbox="true"></th>
-						<th data-field="code">编码</th>
-						<th data-field="name">名称</th>
-						<th data-field="createUser">创建人</th>
-						<th data-field="createTime">创建时间</th>
-						<th data-field="updateUser">修改人</th>
-						<th data-field="updateTime">修改时间</th>
-						<th data-field="rolePermission">权限</th>
-						<th data-field="edtiRole">编辑</th>
-						<th data-field="delRole">删除</th>
-					</tr>
-				</thead>
 			</table>
 		</div>
 	</div>
 </div>
-<div id="addRole" class="ibox col-sm-10" style="margin: 40px;display: none;">
+<div id="addLayer" class="ibox col-sm-10" style="margin: 40px;display: none;">
 	<div class="ibox-content">
 		<form id="addFrm" class="form-horizontal" action="">
 			<div class="form-group">
@@ -80,14 +66,14 @@
 						style="text-align: center; margin-top: 25px;">
 						<a onclick="Role.add();" class="btn btn-primary"
 							href="javascript:void(0)">保存</a> <a
-							onclick="Role.closeAdd();" class="btn btn-white"
+							onclick="Role.closeLayer();" class="btn btn-white"
 							href="javascript:void(0)">取消</a>
 					</div>
 				</div>
 		</form>
 	</div>
 </div>
-<div id="editRole" class="ibox col-sm-10" style="margin: 40px;display: none;">
+<div id="editLayer" class="ibox col-sm-10" style="margin: 40px;display: none;">
 	<div class="ibox-content">
 		<form id="editFrm" class="form-horizontal" action="">
 			<input type="hidden" id="editCode" name="editCode" value="">
@@ -117,7 +103,7 @@
 						style="text-align: center; margin-top: 25px;">
 						<a onclick="Role.edit();" class="btn btn-primary"
 							href="javascript:void(0)">保存</a> <a
-							onclick="Role.closeEdit();" class="btn btn-white"
+							onclick="Role.closeLayer();" class="btn btn-white"
 							href="javascript:void(0)">取消</a>
 					</div>
 				</div>
@@ -125,7 +111,7 @@
 	</div>
 </div>
 <%@ include file="/jsp/commons/footer.jsp"%>
-<script src="assets/module/system/role.js"></script>
+<script src="assets/module/system/role/role.js"></script>
 <script type="text/javascript">
 	$(document).ready(function() {
 		Role.data();

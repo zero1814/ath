@@ -122,9 +122,10 @@ var MenuGroup = {
 			}
 		});
 	},
-	openEdit:function(code,name){
+	openEdit:function(code,name,flagAble){
 		$("#editCode").val(code);
 		$("#editName").val(name);
+		$("#editFlagAble").val();
 		MenuGroup.openLayer($('#editLayer'));
 	},
 	edit : function() {
@@ -200,8 +201,9 @@ var MenuGroup = {
 function operation(value, row, index) {
 	var code = row.code;
 	var name = row.name;
+	var flagAble = row.flagAble;
 	var html = '<div style="text-align: center;">';
-	html += '<a onclick="MenuGroup.openEdit(\''+code+'\',\''+name+'\');" style="margin: 5px;" class="btn btn-info btn-sm"><i class="fa fa-pencil"></i> 编辑 </a> ';
+	html += '<a onclick="MenuGroup.openEdit(\''+code+'\',\''+name+'\','+flagAble+');" style="margin: 5px;" class="btn btn-info btn-sm"><i class="fa fa-pencil"></i> 编辑 </a> ';
 	html += '<a onclick="MenuGroup.del(\''+code+'\');" style="margin: 5px;" class="btn btn-info btn-sm"><i class="fa fa-trash-o"></i> 删除 </a> ';
 	html += '</div>';
 	return html;

@@ -76,7 +76,7 @@
 	</div>
 </div>
 <%@ include file="/jsp/commons/footer.jsp"%>
-<script src="assets/module/system/menu/menugroup.js"></script>
+<script src="assets/module/system/menu/menu.group.js"></script>
 <script type="text/javascript">
 	$(document).ready(function() {
 		MenuGroup.data();
