@@ -234,7 +234,7 @@ function operation(value, row, index) {
 	var code = row.code;
 	var editUrl = "system/menu/editindex.htm?code=" + code;
 	var html = '<div style="text-align: center;">';
-	html += '<a href="html/system/menu/permission.html" style="margin: 5px;" class="btn btn-info btn-sm"><i class="fa fa-cog"></i> 权限 </a> ';
+	html += '<a href="system/menu/permission/index.htm" style="margin: 5px;" class="btn btn-info btn-sm"><i class="fa fa-cog"></i> 权限 </a> ';
 	html += '<a href="'+editUrl+'" style="margin: 5px;" class="btn btn-info btn-sm"><i class="fa fa-pencil"></i> 编辑 </a> ';
 	html += '<a onclick="Menu.del(\''+code+'\');" style="margin: 5px;" class="btn btn-info btn-sm"><i class="fa fa-trash-o"></i> 删除 </a> ';
 	html += '</div>';

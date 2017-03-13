@@ -48,7 +48,7 @@
 		</div>
 	</div>
 </div>
-<div id="addMenuPermission" class="ibox col-sm-10"
+<div id="addLayer" class="ibox col-sm-10"
 	style="margin: 40px; display: none;">
 	<div class="ibox-content">
 		<form id="addFrm" class="form-horizontal" action="">
@@ -84,14 +84,14 @@
 					style="text-align: center; margin-top: 25px;">
 					<a onclick="MenuPermission.add();" class="btn btn-primary"
 						href="javascript:void(0)">保存</a> <a
-						onclick="MenuPermission.closeAdd();" class="btn btn-white"
+						onclick="MenuPermission.closeLayer();" class="btn btn-white"
 						href="javascript:void(0)">取消</a>
 				</div>
 			</div>
 		</form>
 	</div>
 </div>
-<div id="editMenuPermission" class="ibox col-sm-12"
+<div id="editLayer" class="ibox col-sm-12"
 	style="margin: 40px; display: none;">
 	<div class="ibox-content">
 		<form id="editFrm" class="form-horizontal" action="">
@@ -129,7 +129,7 @@
 					style="text-align: center; margin-top: 25px;">
 					<a onclick="MenuPermission.edit();" class="btn btn-primary"
 						href="javascript:void(0)">保存</a> <a
-						onclick="MenuPermission.closeEdit();" class="btn btn-white"
+						onclick="MenuPermission.closeLayer();" class="btn btn-white"
 						href="javascript:void(0)">取消</a>
 				</div>
 			</div>

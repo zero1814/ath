@@ -125,7 +125,7 @@ var MenuGroup = {
 	openEdit:function(code,name,flagAble){
 		$("#editCode").val(code);
 		$("#editName").val(name);
-		$("#editFlagAble").val();
+		$("#editFlagAble").val(flagAble);
 		MenuGroup.openLayer($('#editLayer'));
 	},
 	edit : function() {

@@ -132,6 +132,12 @@ var MenuPermission = {
 				}
 			});
 	},
+	openEdit:function(code,name,flagAble){
+		$("#editCode").val(code);
+		$("#editName").val(name);
+		$("#editFlagAble").val();
+		MenuGroup.openLayer($('#editLayer'));
+	},
 	edit: function() {
 		layer.confirm('您确定要编辑选中菜单权限吗？', {
 			btn : [ '确定', '取消' ]
