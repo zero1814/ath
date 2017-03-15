@@ -1,43 +1,47 @@
-package org.module.db.model;
+package org.module.model.db;
 
 import org.module.model.BaseModel;
 
 /**
  * 
- * 类: ColumnModel <br>
- * 描述: 数据表列 <br>
+ * 类: DmColumn <br>
+ * 描述: 数据表列维护表 <br>
  * 作者: zhy<br>
- * 时间: 2017年3月13日 上午10:19:26
+ * 时间: 2017年3月15日 下午3:18:36
  */
-public class ColumnModel extends BaseModel {
+public class DmColumn extends BaseModel {
+
+	/**
+	 * 数据表编码
+	 */
+	private String tableCode;
 
 	/**
 	 * 名称
 	 */
 	private String name;
+
 	/**
-	 * 类型
+	 * 类型编码
 	 */
 	private String type;
+
 	/**
 	 * 默认值
 	 */
 	private String defaultValue;
+
 	/**
 	 * 描述
 	 */
 	private String comment;
-	/**
-	 * 是否为空
-	 */
-	private boolean isNull;
 
-	public boolean isNull() {
-		return isNull;
+	public String getTableCode() {
+		return tableCode;
 	}
 
-	public void setNull(boolean isNull) {
-		this.isNull = isNull;
+	public void setTableCode(String tableCode) {
+		this.tableCode = tableCode;
 	}
 
 	public String getName() {
