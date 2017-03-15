@@ -24,15 +24,15 @@
 		parameterType="java.lang.String">
 		select
 		<include refid="Base_Column_List" />
-		from dm_table
+		from dbmodule.dm_table
 		where `code` = #{code,jdbcType=VARCHAR}
 	</select>
 	<delete id="deleteByCode" parameterType="java.lang.String">
-		delete from dm_table
+		delete from dbmodule.dm_table
 		where `code` = #{code,jdbcType=VARCHAR}
 	</delete>
 	<insert id="insertSelective" parameterType="org.module.model.db.DmTable">
-		insert into dm_table
+		insert into dbmodule.dm_table
 		<trim prefix="(" suffix=")" suffixOverrides=",">
 			uid,
 			`code`,
@@ -61,7 +61,7 @@
 		</trim>
 	</insert>
 	<update id="updateByCode" parameterType="org.module.model.db.DmTable">
-		update dm_table
+		update dbmodule.dm_table
 		<set>
 			<if test="dbCode != null">
 				db_code = #{dbCode,jdbcType=VARCHAR},
