@@ -46,9 +46,9 @@ public class DmDatabaseTest {
 		EntityResult result = service.selectByCode("DB841960986742091776");
 		System.out.println(JSONObject.toJSON(result));
 	}
-	
+
 	@Test
-	public void del(){
+	public void del() {
 		RootResult result = service.deleteByCode("DB841960986742091776");
 		System.out.println(JSONObject.toJSON(result));
 	}

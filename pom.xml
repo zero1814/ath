@@ -15,6 +15,7 @@
 		<module>backStage-management-web</module>
 		<module>ath-management</module>
     <module>db-module</module>
+    <module>education-module</module>
   </modules>
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
