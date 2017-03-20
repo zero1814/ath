@@ -1,5 +1,8 @@
 package org.module.service;
 
-public interface IEmDefineService {
+import org.module.dto.education.EmDefineDto;
+import org.module.model.education.EmDefine;
+
+public interface IEmDefineService extends IBaseService<EmDefine, EmDefineDto> {
 
 }

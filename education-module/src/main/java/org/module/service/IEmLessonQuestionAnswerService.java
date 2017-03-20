@@ -1,5 +1,9 @@
 package org.module.service;
 
-public interface IEmLessonQuestionAnswerService {
+import org.module.dto.education.EmLessonQuestionAnswerDto;
+import org.module.model.education.EmLessonQuestionAnswer;
+
+public interface IEmLessonQuestionAnswerService
+		extends IBaseService<EmLessonQuestionAnswer, EmLessonQuestionAnswerDto> {
 
 }

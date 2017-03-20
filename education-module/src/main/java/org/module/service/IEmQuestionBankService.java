@@ -1,5 +1,8 @@
 package org.module.service;
 
-public interface IEmQuestionBankService {
+import org.module.dto.education.EmQuestionBankDto;
+import org.module.model.education.EmQuestionBank;
+
+public interface IEmQuestionBankService extends IBaseService<EmQuestionBank, EmQuestionBankDto>{
 
 }
