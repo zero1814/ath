@@ -2,9 +2,9 @@ package org.module.commons.helper.cache;
 
 import java.util.Map;
 
+import org.module.commons.annotation.Inject;
 import org.module.commons.base.BaseClass;
 
-import com.google.inject.Inject;
 
 import redis.clients.jedis.JedisCluster;
 
