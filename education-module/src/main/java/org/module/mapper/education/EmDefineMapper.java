@@ -5,5 +5,4 @@ import org.module.mapper.BaseMapper;
 import org.module.model.education.EmDefine;
 
 public interface EmDefineMapper extends BaseMapper<EmDefine, EmDefineDto> {
-
 }
