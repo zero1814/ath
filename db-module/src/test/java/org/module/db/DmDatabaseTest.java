@@ -20,6 +20,7 @@ public class DmDatabaseTest {
 	@Autowired
 	private IDmDatabaseService service;
 
+	@Test
 	public void insert() {
 		DmDatabase entity = new DmDatabase();
 		entity.setCode(CodeHelper.getUniqueCode("DB"));
@@ -47,7 +48,6 @@ public class DmDatabaseTest {
 		System.out.println(JSONObject.toJSON(result));
 	}
 
-	@Test
 	public void del() {
 		RootResult result = service.deleteByCode("DB841960986742091776");
 		System.out.println(JSONObject.toJSON(result));

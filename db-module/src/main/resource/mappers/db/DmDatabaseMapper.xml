@@ -30,7 +30,8 @@
 		where `code` = #{code,jdbcType=VARCHAR}
 	</select>
 	<delete id="deleteByCode" parameterType="java.lang.String">
-		delete from dbmodule.dm_database
+		delete from
+		dbmodule.dm_database
 		where `code` = #{code,jdbcType=VARCHAR}
 	</delete>
 	<insert id="insertSelective" parameterType="org.module.model.db.DmDatabase">
