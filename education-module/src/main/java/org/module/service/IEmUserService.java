@@ -1,5 +1,8 @@
 package org.module.service;
 
-public interface IEmUserService {
+import org.module.dto.education.EmUserDto;
+import org.module.model.education.EmUser;
+
+public interface IEmUserService extends IBaseService<EmUser, EmUserDto> {
 
 }

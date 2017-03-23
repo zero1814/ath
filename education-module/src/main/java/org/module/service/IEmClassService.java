@@ -1,5 +1,8 @@
 package org.module.service;
 
-public interface IEmClassService {
+import org.module.dto.education.EmClassDto;
+import org.module.model.education.EmClass;
+
+public interface IEmClassService extends IBaseService<EmClass, EmClassDto>{
 
 }
