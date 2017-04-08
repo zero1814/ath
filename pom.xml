@@ -228,6 +228,7 @@
 			<version>${activemq.version}</version>
 		</dependency>
 		<!-- cache -->
+		
 		<!-- redis -->
 		<dependency>
 			<groupId>redis.clients</groupId>
