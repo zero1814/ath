@@ -13,11 +13,8 @@
 	<modules>
 		<module>commons-module</module>
 		<module>system-module</module>
-		<module>backStage-management-web</module>
-		<module>ath-management</module>
 		<module>db-module</module>
 		<module>education-module</module>
-		<module>shiro-test</module>
 	</modules>
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
