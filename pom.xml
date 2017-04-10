@@ -15,6 +15,7 @@
 		<module>system-module</module>
 		<module>db-module</module>
 		<module>education-module</module>
+		<module>leader-management</module>
 	</modules>
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
