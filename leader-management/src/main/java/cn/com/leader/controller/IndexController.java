@@ -19,6 +19,24 @@ public class IndexController {
 	 */
 	@RequestMapping("index")
 	public String index(ModelMap model) {
+		/**
+		 * 获取菜单列表
+		 */
+		
+		return null;
+	}
+	
+	/**
+	 * 
+	 * 方法: subIndex <br>
+	 * 描述: iframe内嵌加载首页 <br>
+	 * 作者: zhy<br>
+	 * 时间: 2017年4月10日 上午10:23:37
+	 * @param model
+	 * @return
+	 */
+	@RequestMapping("subindex")
+	public String subIndex(ModelMap model){
 		return null;
 	}
 }

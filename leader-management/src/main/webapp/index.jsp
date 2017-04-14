@@ -47,7 +47,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 							</div>
 						</li>
 						<li>
-							<a class="J_menuItem" href="html/index.html">
+							<a class="J_menuItem" href="index.htm">
 								<i class="fa fa-home"></i>
 								<span class="nav-label">首页</span>
 							</a>
