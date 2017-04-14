@@ -15,7 +15,7 @@
 		<module>system-module</module>
 		<module>db-module</module>
 		<module>education-module</module>
-		<module>leader-management</module>
+		<module>cms</module>
 	</modules>
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -226,7 +226,7 @@
 			<version>${activemq.version}</version>
 		</dependency>
 		<!-- cache -->
-		
+
 		<!-- redis -->
 		<dependency>
 			<groupId>redis.clients</groupId>
