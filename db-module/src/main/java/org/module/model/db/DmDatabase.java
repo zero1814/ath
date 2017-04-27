@@ -7,28 +7,16 @@ import org.module.model.BaseModel;
  * 类: DmDatabase <br>
  * 描述: 数据库维护表 <br>
  * 作者: zhy<br>
- * 时间: 2017年3月15日 下午3:19:47
+ * 时间: 2017年4月27日 上午9:36:40
  */
 public class DmDatabase extends BaseModel {
 
-	/**
-	 * 名称
-	 */
 	private String name;
 
-	/**
-	 * 中文简称
-	 */
 	private String enName;
 
-	/**
-	 * 访问地址
-	 */
 	private String url;
 
-	/**
-	 * 描述
-	 */
 	private String comment;
 
 	public String getName() {

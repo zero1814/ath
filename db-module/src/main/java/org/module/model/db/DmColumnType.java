@@ -7,23 +7,14 @@ import org.module.model.BaseModel;
  * 类: DmColumnType <br>
  * 描述: 数据表列类型维护表 <br>
  * 作者: zhy<br>
- * 时间: 2017年3月15日 下午3:19:12
+ * 时间: 2017年4月27日 上午9:36:31
  */
 public class DmColumnType extends BaseModel {
 
-	/**
-	 * 名称
-	 */
 	private String name;
 
-	/**
-	 * 英文简称
-	 */
-	private String enName;
+	private String value;
 
-	/**
-	 * 描述
-	 */
 	private String comment;
 
 	public String getName() {
@@ -34,12 +25,12 @@ public class DmColumnType extends BaseModel {
 		this.name = name;
 	}
 
-	public String getEnName() {
-		return enName;
+	public String getValue() {
+		return value;
 	}
 
-	public void setEnName(String enName) {
-		this.enName = enName;
+	public void setValue(String value) {
+		this.value = value;
 	}
 
 	public String getComment() {

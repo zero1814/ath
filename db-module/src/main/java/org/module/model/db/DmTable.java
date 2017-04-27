@@ -7,23 +7,14 @@ import org.module.model.BaseModel;
  * 类: DmTable <br>
  * 描述: 数据表维护表 <br>
  * 作者: zhy<br>
- * 时间: 2017年3月15日 下午3:20:23
+ * 时间: 2017年4月27日 上午9:37:18
  */
 public class DmTable extends BaseModel {
 
-	/**
-	 * 数据库编码
-	 */
 	private String dbCode;
 
-	/**
-	 * 名称
-	 */
 	private String name;
 
-	/**
-	 * 描述
-	 */
 	private String comment;
 
 	public String getDbCode() {
@@ -50,4 +41,5 @@ public class DmTable extends BaseModel {
 		this.comment = comment;
 	}
 
+	
 }

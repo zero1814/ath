@@ -7,33 +7,18 @@ import org.module.model.BaseModel;
  * 类: DmTableIndex <br>
  * 描述: 数据表索引维护表 <br>
  * 作者: zhy<br>
- * 时间: 2017年3月15日 下午3:20:55
+ * 时间: 2017年4月27日 上午9:37:50
  */
 public class DmTableIndex extends BaseModel {
 
-	/**
-	 * 数据表编码
-	 */
 	private String tableCode;
 
-	/**
-	 * 名称
-	 */
 	private String name;
 
-	/**
-	 * 英文简称
-	 */
 	private String enName;
 
-	/**
-	 * 关联列数组
-	 */
 	private String content;
 
-	/**
-	 * 描述
-	 */
 	private String comment;
 
 	public String getTableCode() {

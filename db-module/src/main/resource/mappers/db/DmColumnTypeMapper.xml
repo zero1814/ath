@@ -6,7 +6,7 @@
 		<result column="uid" property="uid" jdbcType="VARCHAR" />
 		<result column="code" property="code" jdbcType="VARCHAR" />
 		<result column="name" property="name" jdbcType="VARCHAR" />
-		<result column="en_name" property="enName" jdbcType="VARCHAR" />
+		<result column="value" property="value" jdbcType="VARCHAR" />
 		<result column="comment" property="comment" jdbcType="VARCHAR" />
 		<result column="create_user" property="createUser" jdbcType="VARCHAR" />
 		<result column="create_time" property="createTime" jdbcType="VARCHAR" />
@@ -14,30 +14,32 @@
 		<result column="update_time" property="updateTime" jdbcType="VARCHAR" />
 	</resultMap>
 	<sql id="Base_Column_List">
-		id, uid, code, name, en_name, comment, create_user,
-		DATE_FORMAT(create_time,'%Y-%m-%d %H:%i:%s') as create_time,,
-		update_user, DATE_FORMAT(update_time,'%Y-%m-%d %H:%i:%s') as
+		id, uid, code, name, value, comment, create_user,
+		DATE_FORMAT(create_time,'%Y-%m-%d %H:%i:%s') as
+		create_time,
+		update_user,
+		DATE_FORMAT(update_time,'%Y-%m-%d %H:%i:%s') as
 		update_time
 	</sql>
 	<select id="selectByCode" resultMap="BaseResultMap"
-		parameterType="java.lang.String">
+		parameterType="java.lang.Integer">
 		select
 		<include refid="Base_Column_List" />
-		from dbmodule.dm_column_type
+		from dm_column_type
 		where `code` = #{code,jdbcType=VARCHAR}
 	</select>
-	<delete id="deleteByCode" parameterType="java.lang.String">
+	<delete id="deleteByCode" parameterType="java.lang.Integer">
 		delete from
-		dbmodule.dm_column_type
+		dm_column_type
 		where `code` = #{code,jdbcType=VARCHAR}
 	</delete>
 	<insert id="insertSelective" parameterType="org.module.model.db.DmColumnType">
-		insert into dbmodule.dm_column_type
+		insert into dm_column_type
 		<trim prefix="(" suffix=")" suffixOverrides=",">
 			uid,
-			`code`,
-			`name`,
-			en_name,
+			code,
+			name,
+			value,
 			<if test="comment != null">
 				comment,
 			</if>
@@ -50,7 +52,7 @@
 			#{uid,jdbcType=VARCHAR},
 			#{code,jdbcType=VARCHAR},
 			#{name,jdbcType=VARCHAR},
-			#{enName,jdbcType=VARCHAR},
+			#{value,jdbcType=VARCHAR},
 			<if test="comment != null">
 				#{comment,jdbcType=VARCHAR},
 			</if>
@@ -61,19 +63,18 @@
 		</trim>
 	</insert>
 	<update id="updateByCode" parameterType="org.module.model.db.DmColumnType">
-		update dbmodule.dm_column_type
+		update dm_column_type
 		<set>
 			<if test="name != null">
 				name = #{name,jdbcType=VARCHAR},
 			</if>
-			<if test="enName != null">
-				en_name = #{enName,jdbcType=VARCHAR},
+			<if test="value != null">
+				value = #{value,jdbcType=VARCHAR},
 			</if>
 			<if test="comment != null">
 				comment = #{comment,jdbcType=VARCHAR},
 			</if>
-			update_user =
-			#{updateUser,jdbcType=VARCHAR},
+			update_user = #{updateUser,jdbcType=VARCHAR},
 			update_time =
 			STR_TO_DATE(#{updateTime,jdbcType=VARCHAR},'%Y-%m-%d %H:%i:%s'),
 		</set>

@@ -7,42 +7,21 @@ import org.module.model.BaseModel;
  * 类: DmColumn <br>
  * 描述: 数据表列维护表 <br>
  * 作者: zhy<br>
- * 时间: 2017年3月15日 下午3:18:36
+ * 时间: 2017年4月27日 上午9:36:17
  */
 public class DmColumn extends BaseModel {
 
-	/**
-	 * 数据表编码
-	 */
-	private String tableCode;
-
-	/**
-	 * 名称
-	 */
 	private String name;
 
-	/**
-	 * 类型编码
-	 */
-	private String type;
+	private String tableCode;
 
-	/**
-	 * 默认值
-	 */
+	private String typeCode;
+
+	private Integer isDefault;
+
 	private String defaultValue;
 
-	/**
-	 * 描述
-	 */
 	private String comment;
-
-	public String getTableCode() {
-		return tableCode;
-	}
-
-	public void setTableCode(String tableCode) {
-		this.tableCode = tableCode;
-	}
 
 	public String getName() {
 		return name;
@@ -52,12 +31,28 @@ public class DmColumn extends BaseModel {
 		this.name = name;
 	}
 
-	public String getType() {
-		return type;
+	public String getTableCode() {
+		return tableCode;
 	}
 
-	public void setType(String type) {
-		this.type = type;
+	public void setTableCode(String tableCode) {
+		this.tableCode = tableCode;
+	}
+
+	public String getTypeCode() {
+		return typeCode;
+	}
+
+	public void setTypeCode(String typeCode) {
+		this.typeCode = typeCode;
+	}
+
+	public Integer getIsDefault() {
+		return isDefault;
+	}
+
+	public void setIsDefault(Integer isDefault) {
+		this.isDefault = isDefault;
 	}
 
 	public String getDefaultValue() {
