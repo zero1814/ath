@@ -49,15 +49,15 @@
 		<trim prefix="(" suffix=")" suffixOverrides=",">
 			uid,
 			`code`,
-			<if test="parentCode != null">
+			<if test="parentCode != null and parentCode != ''">
 				parent_code,
 			</if>
 			group_code,
 			`name`,
-			<if test="url != null">
+			<if test="url != null and url != ''">
 				url,
 			</if>
-			<if test="icon != null">
+			<if test="icon != null and icon != ''">
 				icon,
 			</if>
 			<if test="flagAble != null">
@@ -74,15 +74,15 @@
 		<trim prefix="values (" suffix=")" suffixOverrides=",">
 			#{uid,jdbcType=VARCHAR},
 			#{code,jdbcType=VARCHAR},
-			<if test="parentCode != null">
+			<if test="parentCode != null and parentCode != ''">
 				#{parentCode,jdbcType=VARCHAR},
 			</if>
 			#{groupCode,jdbcType=VARCHAR},
 			#{name,jdbcType=VARCHAR},
-			<if test="url != null">
+			<if test="url != null and url != ''">
 				#{url,jdbcType=VARCHAR},
 			</if>
-			<if test="icon != null">
+			<if test="icon != null and icon != ''">
 				#{icon,jdbcType=VARCHAR},
 			</if>
 			<if test="flagAble != null">
@@ -100,19 +100,19 @@
 	<update id="updateByCode" parameterType="org.module.model.system.menu.SmMenu">
 		update sm_menu
 		<set>
-			<if test="parentCode != null">
+			<if test="parentCode != null and parentCode != ''">
 				parent_code = #{parentCode,jdbcType=VARCHAR},
 			</if>
-			<if test="groupCode != null">
+			<if test="groupCode != null and groupCode != ''">
 				group_code = #{groupCode,jdbcType=VARCHAR},
 			</if>
-			<if test="name != null">
-				name = #{name,jdbcType=VARCHAR},
+			<if test="name != null and name != ''">
+				`name` = #{name,jdbcType=VARCHAR},
 			</if>
-			<if test="url != null">
+			<if test="url != null and url != ''">
 				url = #{url,jdbcType=VARCHAR},
 			</if>
-			<if test="icon != null">
+			<if test="icon != null and icon != ''">
 				icon = #{icon,jdbcType=VARCHAR},
 			</if>
 			<if test="flagAble != null">

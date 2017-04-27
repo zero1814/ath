@@ -42,7 +42,7 @@
 			`name`,
 			en_name,
 			url,
-			<if test="comment != null">
+			<if test="comment != null and comment != ''">
 				comment,
 			</if>
 			create_user,
@@ -68,17 +68,17 @@
 	<update id="updateByCode" parameterType="org.module.model.db.DmDatabase">
 		update dbmodule.dm_database
 		<set>
-			<if test="name != null">
-				name = #{name,jdbcType=VARCHAR},
+			<if test="name != null and name != ''">
+				`name` = #{name,jdbcType=VARCHAR},
 			</if>
-			<if test="enName != null">
+			<if test="enName != null and enName != ''">
 				en_name = #{enName,jdbcType=VARCHAR},
 			</if>
-			<if test="url != null">
+			<if test="url != null and url != ''">
 				url = #{url,jdbcType=VARCHAR},
 			</if>
-			<if test="comment != null">
-				comment = #{comment,jdbcType=VARCHAR},
+			<if test="comment != null and comment != ''">
+				`comment` = #{comment,jdbcType=VARCHAR},
 			</if>
 			update_user =
 			#{updateUser,jdbcType=VARCHAR},

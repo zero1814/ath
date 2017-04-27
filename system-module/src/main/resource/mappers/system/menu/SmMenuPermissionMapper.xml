@@ -89,11 +89,11 @@
 	<update id="updateByCode" parameterType="org.module.model.system.menu.SmMenuPermission">
 		update sm_menu_permission
 		<set>
-			<if test="menuCode != null">
+			<if test="menuCode != null and menuCode != ''">
 				menu_code = #{menuCode,jdbcType=VARCHAR},
 			</if>
-			<if test="name != null">
-				name = #{name,jdbcType=VARCHAR},
+			<if test="name != null and name != ''">
+				`name` = #{name,jdbcType=VARCHAR},
 			</if>
 			<if test="permissionType != null and permissionType != ''">
 				permission_type = #{permissionType,jdbcType=VARCHAR},

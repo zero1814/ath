@@ -15,7 +15,17 @@ public class DmTable extends BaseModel {
 
 	private String name;
 
+	private String enName;
+
 	private String comment;
+
+	public String getEnName() {
+		return enName;
+	}
+
+	public void setEnName(String enName) {
+		this.enName = enName;
+	}
 
 	public String getDbCode() {
 		return dbCode;
@@ -41,5 +51,4 @@ public class DmTable extends BaseModel {
 		this.comment = comment;
 	}
 
-	
 }

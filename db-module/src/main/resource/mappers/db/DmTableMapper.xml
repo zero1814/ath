@@ -7,6 +7,7 @@
 		<result column="code" property="code" jdbcType="VARCHAR" />
 		<result column="db_code" property="dbCode" jdbcType="VARCHAR" />
 		<result column="name" property="name" jdbcType="VARCHAR" />
+		<result column="en_name" property="enName" jdbcType="VARCHAR" />
 		<result column="comment" property="comment" jdbcType="VARCHAR" />
 		<result column="create_user" property="createUser" jdbcType="VARCHAR" />
 		<result column="create_time" property="createTime" jdbcType="VARCHAR" />
@@ -14,7 +15,7 @@
 		<result column="update_time" property="updateTime" jdbcType="VARCHAR" />
 	</resultMap>
 	<sql id="Base_Column_List">
-		id, uid, code, db_code, name, comment, create_user,
+		id, uid, code, db_code, name,en_name, comment, create_user,
 		DATE_FORMAT(create_time,'%Y-%m-%d %H:%i:%s') as create_time,
 		update_user,
 		DATE_FORMAT(update_time,'%Y-%m-%d %H:%i:%s') as
@@ -39,8 +40,9 @@
 			`code`,
 			db_code,
 			`name`,
-			<if test="comment != null">
-				comment,
+			en_name,
+			<if test="comment != null and comment != ''">
+				`comment`,
 			</if>
 			create_user,
 			create_time,
@@ -52,6 +54,7 @@
 			#{code,jdbcType=VARCHAR},
 			#{dbCode,jdbcType=VARCHAR},
 			#{name,jdbcType=VARCHAR},
+			#{enName,jdbcType=VARCHAR},
 			<if test="comment != null">
 				#{comment,jdbcType=VARCHAR},
 			</if>
@@ -64,14 +67,17 @@
 	<update id="updateByCode" parameterType="org.module.model.db.DmTable">
 		update dbmodule.dm_table
 		<set>
-			<if test="dbCode != null">
+			<if test="dbCode != null and dbCode != ''">
 				db_code = #{dbCode,jdbcType=VARCHAR},
 			</if>
-			<if test="name != null">
-				name = #{name,jdbcType=VARCHAR},
+			<if test="name != null and name != '' ">
+				`name` = #{name,jdbcType=VARCHAR},
 			</if>
-			<if test="comment != null">
-				comment = #{comment,jdbcType=VARCHAR},
+			<if test="enName != null and enName != ''">
+				en_name = #{enName,jdbcType=VARCHAR},
+			</if>
+			<if test="comment != null and comment != ''">
+				`comment` = #{comment,jdbcType=VARCHAR},
 			</if>
 			update_user =
 			#{updateUser,jdbcType=VARCHAR},

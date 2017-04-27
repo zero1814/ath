@@ -46,8 +46,8 @@
 			`name`,
 			en_name,
 			content,
-			<if test="comment != null">
-				comment,
+			<if test="comment != null and comment != ''">
+				`comment`,
 			</if>
 			create_user,
 			create_time,
@@ -73,20 +73,20 @@
 	<update id="updateByCode" parameterType="org.module.model.db.DmTableIndex">
 		update dbmodule.dm_table_index
 		<set>
-			<if test="tableCode != null">
+			<if test="tableCode != null and tableCode != ''">
 				table_code = #{tableCode,jdbcType=VARCHAR},
 			</if>
-			<if test="name != null">
-				name = #{name,jdbcType=VARCHAR},
+			<if test="name != null and name != ''">
+				`name` = #{name,jdbcType=VARCHAR},
 			</if>
-			<if test="enName != null">
+			<if test="enName != null and enName != ''">
 				en_name = #{enName,jdbcType=VARCHAR},
 			</if>
-			<if test="content != null">
+			<if test="content != null and content != ''">
 				content = #{content,jdbcType=VARCHAR},
 			</if>
-			<if test="comment != null">
-				comment = #{comment,jdbcType=VARCHAR},
+			<if test="comment != null and comment != ''">
+				`comment` = #{comment,jdbcType=VARCHAR},
 			</if>
 			update_user =
 			#{updateUser,jdbcType=VARCHAR},

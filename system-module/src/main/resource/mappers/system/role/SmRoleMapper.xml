@@ -68,8 +68,8 @@
 	<update id="updateByCode" parameterType="org.module.model.system.role.SmRole">
 		update sm_role
 		<set>
-			<if test="name != null">
-				name = #{name,jdbcType=VARCHAR},
+			<if test="name != null and name != ''">
+				`name` = #{name,jdbcType=VARCHAR},
 			</if>
 			<if test="flagAble != null">
 				flag_able = #{flagAble,jdbcType=INTEGER},

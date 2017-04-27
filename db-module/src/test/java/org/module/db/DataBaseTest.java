@@ -21,6 +21,7 @@ public class DataBaseTest {
 	@Autowired
 	private IDmDatabaseService service;
 
+	@Test
 	public void insert() {
 		DmDatabase entity = new DmDatabase();
 		entity.setCode(CodeHelper.getUniqueCode("DD"));
@@ -52,7 +53,6 @@ public class DataBaseTest {
 		System.out.println(JSON.toJSON(result));
 	}
 
-	@Test
 	public void del() {
 		RootResult result = service.deleteByCode("DD857469847359975424");
 		System.out.println(JSON.toJSON(result));

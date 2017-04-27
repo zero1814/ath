@@ -58,16 +58,17 @@
 			#{updateUser,jdbcType=VARCHAR},
 			STR_TO_DATE(#{updateTime,jdbcType=VARCHAR},'%Y-%m-%d
 			%H:%i:%s'),
-		</trim>+
+		</trim>
+		+
 	</insert>
 	<update id="updateByCode" parameterType="org.module.model.system.SmDefine">
 		update sm_define
 		<set>
-			<if test="parentCode != null">
+			<if test="parentCode != null and parentCode != ''">
 				parent_code = #{parentCode,jdbcType=VARCHAR},
 			</if>
-			<if test="name != null">
-				name = #{name,jdbcType=VARCHAR},
+			<if test="name != null and name != ''">
+				`name` = #{name,jdbcType=VARCHAR},
 			</if>
 			update_user = #{updateUser,jdbcType=VARCHAR},
 			update_time =
@@ -76,10 +77,11 @@
 		where `code`=#{code,jdbcType=VARCHAR}
 	</update>
 	<!-- 根据父级编码查询数据集合 -->
-	<select id="findDataByParentCode" resultMap="BaseResultMap" parameterType="java.lang.String">
+	<select id="findDataByParentCode" resultMap="BaseResultMap"
+		parameterType="java.lang.String">
 		select
 		<include refid="Base_Column_List" />
 		from sm_define
-		where `parent_code`=#{parentCode,jdbcType=VARCHAR}		
+		where `parent_code`=#{parentCode,jdbcType=VARCHAR}
 	</select>
 </mapper>

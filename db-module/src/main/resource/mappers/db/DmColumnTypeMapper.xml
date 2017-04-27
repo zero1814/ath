@@ -40,7 +40,7 @@
 			code,
 			name,
 			value,
-			<if test="comment != null">
+			<if test="comment != null and comment != ''">
 				comment,
 			</if>
 			create_user,
@@ -65,14 +65,14 @@
 	<update id="updateByCode" parameterType="org.module.model.db.DmColumnType">
 		update dbmodule.dm_column_type
 		<set>
-			<if test="name != null">
-				name = #{name,jdbcType=VARCHAR},
+			<if test="name != null and name != ''">
+				`name` = #{name,jdbcType=VARCHAR},
 			</if>
-			<if test="value != null">
-				value = #{value,jdbcType=VARCHAR},
+			<if test="value != null and value != ''">
+				`value` = #{value,jdbcType=VARCHAR},
 			</if>
 			<if test="comment != null">
-				comment = #{comment,jdbcType=VARCHAR},
+				`comment` = #{comment,jdbcType=VARCHAR},
 			</if>
 			update_user = #{updateUser,jdbcType=VARCHAR},
 			update_time =

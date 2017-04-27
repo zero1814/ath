@@ -42,12 +42,13 @@ CREATE TABLE dm_table (
 	`code` VARCHAR (50) NOT NULL COMMENT '编码',
 	db_code VARCHAR (50) NOT NULL COMMENT '数据库编码',
 	`name` VARCHAR (100) NOT NULL COMMENT '名称',
+	en_name VARCHAR (100) NOT NULL COMMENT '英文名称',
 	`comment` VARCHAR (100) DEFAULT '' COMMENT '描述',
 	create_user VARCHAR (50) NOT NULL COMMENT '创建人',
 	create_time datetime NOT NULL COMMENT '创建时间',
 	update_user VARCHAR (50) NOT NULL COMMENT '最后修改人',
 	update_time datetime NOT NULL COMMENT '最后修改时间',
-	UNIQUE db_table_uniq (`code`, db_code) COMMENT '唯一键约束'
+	UNIQUE db_table_uniq (`code`, en_name, db_code) COMMENT '唯一键约束'
 ) COMMENT '数据表维护表';
 
 DROP TABLE
@@ -57,16 +58,17 @@ CREATE TABLE dm_column (
 	id INT PRIMARY KEY AUTO_INCREMENT COMMENT '主键',
 	uid VARCHAR (50) NOT NULL COMMENT 'uuid',
 	`code` VARCHAR (50) NOT NULL COMMENT '编码',
-	table_code VARCHAR (50) NOT NULL COMMENT '数据表编码',
 	`name` VARCHAR (50) NOT NULL COMMENT '名称',
-	type VARCHAR (50) NOT NULL COMMENT '类型',
+	table_code VARCHAR (50) NOT NULL COMMENT '数据表编码',
+	type_code VARCHAR (50) NOT NULL COMMENT '类型',
+	is_default INT DEFAULT 0 COMMENT '是否有默认值 0 无 1 有',
 	default_value VARCHAR (100) DEFAULT '' COMMENT '默认值',
 	`comment` VARCHAR (100) DEFAULT '' COMMENT '描述',
 	create_user VARCHAR (50) NOT NULL COMMENT '创建人',
 	create_time datetime NOT NULL COMMENT '创建时间',
 	update_user VARCHAR (50) NOT NULL COMMENT '最后修改人',
 	update_time datetime NOT NULL COMMENT '最后修改时间',
-	UNIQUE table_col_uniq (`code`, table_code) COMMENT '唯一约束'
+	UNIQUE table_col_uniq (`code`, `name`, table_code) COMMENT '唯一约束'
 ) COMMENT '数据表列维护表';
 
 DROP TABLE
@@ -77,7 +79,7 @@ CREATE TABLE dm_column_type (
 	uid VARCHAR (50) NOT NULL COMMENT 'uuid',
 	`code` VARCHAR (50) NOT NULL UNIQUE COMMENT '编码',
 	`name` VARCHAR (100) NOT NULL COMMENT '名称',
-	en_name VARCHAR (100) NOT NULL COMMENT '英文名称',
+	`value` VARCHAR (100) NOT NULL COMMENT '值',
 	`comment` VARCHAR (100) DEFAULT '' COMMENT '描述',
 	create_user VARCHAR (50) NOT NULL COMMENT '创建人',
 	create_time datetime NOT NULL COMMENT '创建时间',
@@ -116,7 +118,6 @@ CREATE TABLE dm_table_sql (
 	`code` VARCHAR (50) NOT NULL COMMENT '编码',
 	table_code VARCHAR (50) NOT NULL COMMENT '关联表编码',
 	`name` VARCHAR (100) NOT NULL COMMENT '名称',
-	en_name VARCHAR (100) NOT NULL COMMENT '英文名称',
 	`comment` VARCHAR (100) DEFAULT '' COMMENT '描述',
 	content text COMMENT 'sql内容',
 	create_user VARCHAR (50) NOT NULL COMMENT '创建人',
