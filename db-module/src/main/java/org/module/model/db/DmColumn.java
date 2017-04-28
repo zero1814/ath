@@ -13,6 +13,8 @@ public class DmColumn extends BaseModel {
 
 	private String name;
 
+	private String enName;
+
 	private String tableCode;
 
 	private String typeCode;
@@ -22,6 +24,14 @@ public class DmColumn extends BaseModel {
 	private String defaultValue;
 
 	private String comment;
+
+	public String getEnName() {
+		return enName;
+	}
+
+	public void setEnName(String enName) {
+		this.enName = enName;
+	}
 
 	public String getName() {
 		return name;

@@ -6,6 +6,7 @@
 		<result column="uid" property="uid" jdbcType="VARCHAR" />
 		<result column="code" property="code" jdbcType="VARCHAR" />
 		<result column="name" property="name" jdbcType="VARCHAR" />
+		<result column="en_name" property="enName" jdbcType="VARCHAR" />
 		<result column="table_code" property="tableCode" jdbcType="VARCHAR" />
 		<result column="type_code" property="typeCode" jdbcType="VARCHAR" />
 		<result column="is_default" property="isDefault" jdbcType="INTEGER" />
@@ -18,7 +19,8 @@
 		<result column="update_time" property="updateTime" jdbcType="VARCHAR" />
 	</resultMap>
 	<sql id="Base_Column_List">
-		id, uid, code, name, table_code, type_code, is_default,
+		id, uid, code, name,en_name, table_code, type_code,
+		is_default,
 		default_value,
 		comment, create_user,
 		DATE_FORMAT(create_time,'%Y-%m-%d
@@ -29,14 +31,15 @@
 		update_time
 	</sql>
 	<select id="selectByCode" resultMap="BaseResultMap"
-		parameterType="java.lang.Integer">
+		parameterType="java.lang.String">
 		select
 		<include refid="Base_Column_List" />
 		from dbmodule.dm_column
 		where `code` = #{code,jdbcType=VARCHAR}
 	</select>
-	<delete id="deleteByCode" parameterType="java.lang.Integer">
-		delete from dbmodule.dm_column
+	<delete id="deleteByCode" parameterType="java.lang.String">
+		delete from
+		dbmodule.dm_column
 		where `code` = #{code,jdbcType=VARCHAR}
 	</delete>
 	<insert id="insertSelective" parameterType="org.module.model.db.DmColumn">
@@ -45,15 +48,16 @@
 			uid,
 			`code`,
 			`name`,
+			en_name,
 			table_code,
 			type_code,
 			<if test="isDefault != null">
 				is_default,
 			</if>
-			<if test="defaultValue != null">
+			<if test="defaultValue != null and defaultValue != ''">
 				default_value,
 			</if>
-			<if test="comment != null">
+			<if test="comment != null and comment != ''">
 				`comment`,
 			</if>
 			create_user,
@@ -65,6 +69,7 @@
 			#{uid,jdbcType=VARCHAR},
 			#{code,jdbcType=VARCHAR},
 			#{name,jdbcType=VARCHAR},
+			#{enName,jdbcType=VARCHAR},
 			#{tableCode,jdbcType=VARCHAR},
 			#{typeCode,jdbcType=VARCHAR},
 			<if test="isDefault != null">
@@ -87,6 +92,9 @@
 		<set>
 			<if test="name != null and name != '' ">
 				`name` = #{name,jdbcType=VARCHAR},
+			</if>
+			<if test="enName != null and enName != '' ">
+				`en_name` = #{enName,jdbcType=VARCHAR},
 			</if>
 			<if test="tableCode != null and tableCode != ''">
 				table_code = #{tableCode,jdbcType=VARCHAR},

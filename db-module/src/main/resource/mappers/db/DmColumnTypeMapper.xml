@@ -22,13 +22,13 @@
 		update_time
 	</sql>
 	<select id="selectByCode" resultMap="BaseResultMap"
-		parameterType="java.lang.Integer">
+		parameterType="java.lang.String">
 		select
 		<include refid="Base_Column_List" />
 		from dbmodule.dm_column_type
 		where `code` = #{code,jdbcType=VARCHAR}
 	</select>
-	<delete id="deleteByCode" parameterType="java.lang.Integer">
+	<delete id="deleteByCode" parameterType="java.lang.String">
 		delete from
 		dbmodule.dm_column_type
 		where `code` = #{code,jdbcType=VARCHAR}
