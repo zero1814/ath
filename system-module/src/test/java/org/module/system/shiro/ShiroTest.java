@@ -10,12 +10,14 @@ import org.apache.shiro.authc.LockedAccountException;
 import org.apache.shiro.authc.UnknownAccountException;
 import org.apache.shiro.authc.UsernamePasswordToken;
 import org.apache.shiro.subject.Subject;
+import org.junit.Test;
 
 public class ShiroTest {
 
+	@Test
 	public void login() {
-		String username = "";
-		String password = "";
+		String username = "123";
+		String password = "123";
 		// 获取HttpSession中的验证码
 		String verifyCode = "";
 		// 获取用户请求表单中输入的验证码
