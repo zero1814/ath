@@ -1,7 +1,5 @@
 package org.module.shiro;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Set;
 
 import org.apache.shiro.authc.AuthenticationException;
