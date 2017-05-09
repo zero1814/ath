@@ -20,18 +20,9 @@ public class RedisTest {
 
 	@Autowired
 	private JedisCluster cluster;
-	@Autowired
-	private JedisPool pool;
 
-	public void jedis() {
-		Jedis jedis = new Jedis("172.21.0.52", 7000);
-		jedis.set("add", "add");
-		System.out.println(jedis.get("add"));
-		
-	}
-	
 	@Test
-	public void cluster(){
+	public void cluster() {
 		cluster.set("add", "add");
 		System.out.println(cluster.get("add"));
 	}
