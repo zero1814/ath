@@ -125,6 +125,39 @@ CREATE TABLE sm_role_permission (
 	) COMMENT '角色访问菜单权限'
 ) COMMENT '角色权限';
 
+
+DROP TABLE
+IF EXISTS sm_user;
+
+CREATE TABLE sm_user (
+	id INT PRIMARY KEY AUTO_INCREMENT COMMENT '主键',
+	uid VARCHAR (50) NOT NULL COMMENT 'uuid',
+	`code` VARCHAR (50) NOT NULL UNIQUE COMMENT '编码',
+	user_name VARCHAR (50) NOT NULL UNIQUE COMMENT '用户名',
+	`password` VARCHAR (50) NOT NULL COMMENT '密码',
+	real_name varchar(50) not null COMMENT '真实姓名',
+	`status` VARCHAR (50) NOT NULL COMMENT '用户状态',
+	create_user VARCHAR (50) NOT NULL COMMENT '创建人',
+	create_time datetime NOT NULL COMMENT '创建时间',
+	update_user VARCHAR (50) NOT NULL COMMENT '最后修改人',
+	update_time datetime NOT NULL COMMENT '最后修改时间'
+) COMMENT '用户表';
+
+DROP TABLE
+IF EXISTS sm_define;
+
+CREATE TABLE sm_define (
+	id INT PRIMARY KEY AUTO_INCREMENT COMMENT '主键',
+	uid VARCHAR (50) NOT NULL COMMENT 'uuid',
+	`code` VARCHAR (50) NOT NULL UNIQUE COMMENT '编码',
+	parent_code VARCHAR (50) DEFAULT '0' COMMENT '父级编码',
+	`name` VARCHAR (50) NOT NULL COMMENT '名称',
+	create_user VARCHAR (50) NOT NULL COMMENT '创建人',
+	create_time datetime NOT NULL COMMENT '创建时间',
+	update_user VARCHAR (50) NOT NULL COMMENT '最后修改人',
+	update_time datetime NOT NULL COMMENT '最后修改时间'
+) COMMENT '系统模块参数表';
+
 DROP TABLE
 IF EXISTS sm_city;
 

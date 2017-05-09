@@ -11,9 +11,9 @@ public interface SmDefineMapper extends BaseMapper<SmDefine, SmDefineDto> {
 	/**
 	 * 
 	 * 方法: findDataByParentCode <br>
-	 * 描述: 根据父级编码查询数据集合 <br>
+	 * 描述: 根据父级编码查询子编码集合 <br>
 	 * 作者: zhy<br>
-	 * 时间: 2017年2月19日 下午7:48:56
+	 * 时间: 2017年5月9日 上午10:27:11
 	 * 
 	 * @param parentCode
 	 * @return
