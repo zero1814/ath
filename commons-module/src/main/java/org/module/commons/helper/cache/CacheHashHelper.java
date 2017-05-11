@@ -5,7 +5,6 @@ import java.util.Map;
 import org.module.commons.annotation.Inject;
 import org.module.commons.base.BaseClass;
 
-
 import redis.clients.jedis.JedisCluster;
 
 public class CacheHashHelper extends BaseClass {
@@ -23,97 +22,110 @@ public class CacheHashHelper extends BaseClass {
 	}
 
 	/**
-	 * 
-	 * 方法: addCache <br>
-	 * 描述: 添加缓存 <br>
-	 * 作者: zhy<br>
-	 * 时间: 2017年2月6日 下午5:21:27
-	 * 
-	 * @param key
-	 * @param hash
+	 * ==============string操作==============
 	 */
-	public void addCache(String key, Map<String, String> hash) {
-		cluster.hmset(key, hash);
-	}
-
+	
 	/**
 	 * 
-	 * 方法: editCache <br>
-	 * 描述: 编辑缓存 <br>
+	 * 方法: setValue <br>
+	 * 描述: 存储值 <br>
 	 * 作者: zhy<br>
-	 * 时间: 2017年2月6日 下午5:36:45
+	 * 时间: 2017年5月5日 下午4:21:02
 	 * 
 	 * @param key
-	 * @param hash
+	 * @param value
 	 */
-	public void editCache(String key, Map<String, String> hash) {
+	public void setValue(String key, String value) {
 		if (cluster.exists(key)) {
-			cluster.del(key);
+			cluster.getSet(key, value);
+		} else {
+			cluster.set(key, value);
 		}
-		cluster.hmset(key, hash);
+
 	}
 
 	/**
 	 * 
-	 * 方法: delCache <br>
-	 * 描述: 删除缓存 <br>
+	 * 方法: updateValue <br>
+	 * 描述: 根据key修改存储值 <br>
 	 * 作者: zhy<br>
-	 * 时间: 2017年2月6日 下午5:37:12
+	 * 时间: 2017年5月5日 下午4:24:46
 	 * 
 	 * @param key
+	 * @param value
 	 */
-	public void delCache(String key) {
-		cluster.del(key);
+	public void updateValue(String key, String value) {
+		if (cluster.exists(key)) {
+			cluster.getSet(key, value);
+		}
 	}
 
 	/**
 	 * 
-	 * 方法: delCache <br>
-	 * 描述: 删除缓存hash指定值 <br>
+	 * 方法: getValue <br>
+	 * 描述: 获取存储值 <br>
 	 * 作者: zhy<br>
-	 * 时间: 2017年2月7日 上午8:40:13
+	 * 时间: 2017年5月5日 下午4:22:16
 	 * 
 	 * @param key
-	 * @param field
-	 */
-	public void delCache(String key, String... field) {
-		cluster.hdel(key, field);
-	}
-
-	/**
-	 * 
-	 * 方法: getCacheValue <br>
-	 * 描述: 获取缓存值 <br>
-	 * 作者: zhy<br>
-	 * 时间: 2017年2月6日 下午5:44:56
-	 * 
-	 * @param key
-	 * @param field
 	 * @return
 	 */
-	public String getCacheValue(String key, String field) {
-		String val = "";
+	public String getValue(String key) {
+		if (cluster.exists(key)) {
+			return cluster.get(key);
+		} else {
+			return null;
+		}
+	}
+
+
+	/**
+	 * ====================hash操作====================
+	 */
+	/**
+	 * 
+	 * 方法: get <br>
+	 * 描述: 获取hash集合 <br>
+	 * 作者: zhy<br>
+	 * 时间: 2017年5月5日 下午5:02:31
+	 * 
+	 * @param key
+	 * @return
+	 */
+	public Map<String, String> getHash(String key) {
+		return cluster.hgetAll(key);
+	}
+
+	/**
+	 * 
+	 * 方法: setFiled <br>
+	 * 描述: hash存储filed值 <br>
+	 * 作者: zhy<br>
+	 * 时间: 2017年5月5日 下午5:09:54
+	 * 
+	 * @param key
+	 * @param field
+	 * @param value
+	 */
+	public void setFiled(String key, String field, String value) {
 		if (cluster.hexists(key, field)) {
-			val = cluster.hget(key, field);
+			cluster.hdel(key, field);
 		}
-		return val;
+		cluster.hset(key, field, value);
 	}
 
 	/**
 	 * 
-	 * 方法: getCacheHash <br>
-	 * 描述: 获取hash缓存信息 <br>
+	 * 方法: getFiled <br>
+	 * 描述: 获取field的value值 <br>
 	 * 作者: zhy<br>
-	 * 时间: 2017年2月6日 下午5:47:02
+	 * 时间: 2017年5月5日 下午5:02:14
 	 * 
 	 * @param key
+	 * @param field
 	 * @return
 	 */
-	public Map<String, String> getCacheHash(String key) {
-		Map<String, String> map = null;
-		if (cluster.exists(key)) {
-			map = cluster.hgetAll(key);
-		}
-		return map;
+	public String getFiled(String key, String field) {
+		return cluster.hget(key, field);
 	}
 }

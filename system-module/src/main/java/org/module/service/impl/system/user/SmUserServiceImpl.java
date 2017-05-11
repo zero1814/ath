@@ -3,7 +3,9 @@ package org.module.service.impl.system.user;
 import javax.annotation.Resource;
 
 import org.apache.commons.lang3.StringUtils;
-import org.module.cache.RedisString;
+import org.module.cache.CacheKey;
+import org.module.commons.helper.PropHelper;
+import org.module.commons.helper.cache.CacheHashHelper;
 import org.module.commons.util.MD5Util;
 import org.module.dto.system.user.SmUserDto;
 import org.module.mapper.system.user.SmUserMapper;
@@ -46,10 +48,10 @@ public class SmUserServiceImpl extends BaseServiceImpl<SmUser, SmUserMapper, SmU
 		param.setPassword(MD5Util.md5Hex(password));
 		SmUser entity = mapper.userExists(param);
 		if (entity != null) {
-			RedisString.instance().setValue(entity.getCode(), JSON.toJSONString(entity));
+			CacheHashHelper.instance().setValue(CacheKey.User + "", JSON.toJSONString(entity));
 		} else {
 			result.setCode(-1);
-			result.setMessage("用户不存在，请检查用户名，密码是否正确");
+			result.setMessage(PropHelper.getInfo("commons.user.login.200"));
 		}
 		return result;
 	}
