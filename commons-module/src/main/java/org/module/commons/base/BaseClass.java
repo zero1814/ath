@@ -11,8 +11,8 @@ import org.springframework.beans.factory.NoSuchBeanDefinitionException;
 
 /**
  * 
- * 类: BaseCache <br>
- * 描述: 缓存公共类 <br>
+ * 类: BaseClass <br>
+ * 描述: 公共类 <br>
  * 作者: zhy<br>
  * 时间: 2016年8月30日 上午11:01:41
  */

@@ -1,5 +1,6 @@
 package org.module.model.user;
 
+import org.module.commons.annotation.obj.Attribute;
 import org.module.model.BaseModel;
 
 /**
@@ -14,26 +15,31 @@ public class UmUser extends BaseModel {
 	/**
 	 * 部门编码
 	 */
+	@Attribute(isNull = false, comment = "请选择部门", name = "部门编码")
 	private String departmentCode;
 
 	/**
 	 * 用户名
 	 */
+	@Attribute(isNull = false, comment = "用户名不能为空", name = "用户名")
 	private String userName;
 
 	/**
 	 * 密码
 	 */
+	@Attribute(isNull = false, comment = "密码不能为空", name = "密码")
 	private String password;
 
 	/**
 	 * 真实姓名
 	 */
+	@Attribute(isNull = false, comment = "请填写真实姓名", name = "真实姓名")
 	private String realName;
 
 	/**
 	 * 状态
 	 */
+	@Attribute(isNull = false, comment = "用户状态不能为空", name = "真实姓名")
 	private String status;
 
 	public String getDepartmentCode() {
