@@ -1,6 +1,5 @@
 package org.module.model.user;
 
-import org.module.commons.annotation.obj.Attribute;
 import org.module.model.BaseModel;
 
 /**
