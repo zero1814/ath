@@ -20,6 +20,7 @@ public class TableTest {
 	@Autowired
 	private IDmTableService service;
 
+	@Test
 	public void insert() {
 		DmTable entity = new DmTable();
 		entity.setCode(CodeHelper.getUniqueCode("DT"));
@@ -47,7 +48,6 @@ public class TableTest {
 		System.out.println(JSON.toJSON(result));
 	}
 
-	@Test
 	public void del(){
 		RootResult result = service.deleteByCode("DT857476010046648320");
 		System.out.println(JSON.toJSON(result));

@@ -4,7 +4,11 @@ import org.module.dto.UmDepartmentDto;
 import org.module.mapper.user.UmDepartmentMapper;
 import org.module.model.user.UmDepartment;
 import org.module.service.impl.BaseServiceImpl;
+import org.module.service.user.IUmDepartmentService;
+import org.springframework.stereotype.Service;
 
-public class UmDepartmentServiceImpl extends BaseServiceImpl<UmDepartment, UmDepartmentMapper, UmDepartmentDto> {
+@Service
+public class UmDepartmentServiceImpl extends BaseServiceImpl<UmDepartment, UmDepartmentMapper, UmDepartmentDto>
+		implements IUmDepartmentService {
 
 }
