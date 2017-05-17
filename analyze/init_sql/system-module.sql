@@ -132,10 +132,9 @@ IF EXISTS sm_user;
 CREATE TABLE sm_user (
 	id INT PRIMARY KEY AUTO_INCREMENT COMMENT '主键',
 	uid VARCHAR (50) NOT NULL COMMENT 'uuid',
-	`code` VARCHAR (50) NOT NULL UNIQUE COMMENT '编码',
+	`code` VARCHAR (50) NOT NULL UNIQUE COMMENT '编码 usermodule中um_user中的code',
 	user_name VARCHAR (50) NOT NULL UNIQUE COMMENT '用户名',
 	`password` VARCHAR (50) NOT NULL COMMENT '密码',
-	real_name varchar(50) not null COMMENT '真实姓名',
 	`status` VARCHAR (50) NOT NULL COMMENT '用户状态',
 	create_user VARCHAR (50) NOT NULL COMMENT '创建人',
 	create_time datetime NOT NULL COMMENT '创建时间',

@@ -67,7 +67,6 @@ CREATE TABLE um_department (
 	update_time datetime NOT NULL COMMENT '最后修改时间'
 ) COMMENT '部门表';
 
-
 DROP TABLE
 IF EXISTS um_user;
 
@@ -75,9 +74,8 @@ CREATE TABLE um_user (
 	id INT PRIMARY KEY AUTO_INCREMENT COMMENT '主键',
 	uid VARCHAR (50) NOT NULL COMMENT 'uuid',
 	`code` VARCHAR (50) NOT NULL UNIQUE COMMENT '编码',
-	department_code VARCHAR (50) NOT NULL COMMENT '部门编码',
-	user_name VARCHAR (50) NOT NULL UNIQUE COMMENT '用户名',
-	`password` VARCHAR (50) NOT NULL COMMENT '密码',
+	department_code VARCHAR (50) DEFAULT '' COMMENT '部门编码',
+	company_code VARCHAR (50) NOT NULL COMMENT '公司编码',
 	real_name VARCHAR (50) NOT NULL COMMENT '真实姓名',
 	`status` VARCHAR (50) NOT NULL COMMENT '用户状态',
 	create_user VARCHAR (50) NOT NULL COMMENT '创建人',
