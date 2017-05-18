@@ -15,7 +15,7 @@
 
 		<!-- jdbc连接 -->
 		<jdbcConnection driverClass="com.mysql.jdbc.Driver"
-			connectionURL="jdbc:mysql://127.0.0.1:3306/systemmodule" userId="root"
+			connectionURL="jdbc:mysql://127.0.0.1:3306/dbmodule" userId="root"
 			password="" />
 
 		<!-- 类型转换 -->
@@ -25,7 +25,7 @@
 		</javaTypeResolver>
 
 		<!-- 生成实体类地址 -->
-		<javaModelGenerator targetPackage="org.module.model.system.user"
+		<javaModelGenerator targetPackage="org.module.model.db"
 			targetProject="src">
 			<!-- 是否在当前路径下新加一层schema] -->
 			<property name="enableSubPackages" value="false" />
@@ -41,13 +41,33 @@
 		</sqlMapGenerator>
 
 		<!-- 生成mapxml对应client，也就是接口dao -->
-		<javaClientGenerator targetPackage="org.module.mapper.system.user"
+		<javaClientGenerator targetPackage="org.module.mapper.db"
 			targetProject="src" type="XMLMAPPER">
 			<!-- 是否在当前路径下新加一层schema,eg：fase -->
 			<property name="enableSubPackages" value="false" />
 		</javaClientGenerator>
 		<!-- 配置表信息 -->
-		<table tableName="sm_uesr_role" domainObjectName="SmUesrRole"
+		<table tableName="dm_database" domainObjectName="DmDatabase"
+			enableCountByExample="false" enableDeleteByExample="false"
+			enableSelectByExample="false" enableUpdateByExample="false">
+		</table>
+		<table tableName="dm_table" domainObjectName="DmTable"
+			enableCountByExample="false" enableDeleteByExample="false"
+			enableSelectByExample="false" enableUpdateByExample="false">
+		</table>
+		<table tableName="dm_column" domainObjectName="DmColumn"
+			enableCountByExample="false" enableDeleteByExample="false"
+			enableSelectByExample="false" enableUpdateByExample="false">
+		</table>
+		<table tableName="dm_column_type" domainObjectName="DmColumnType"
+			enableCountByExample="false" enableDeleteByExample="false"
+			enableSelectByExample="false" enableUpdateByExample="false">
+		</table>
+		<table tableName="dm_table_index" domainObjectName="DmTableIndex"
+			enableCountByExample="false" enableDeleteByExample="false"
+			enableSelectByExample="false" enableUpdateByExample="false">
+		</table>
+		<table tableName="dm_table_sql" domainObjectName="DmTableSql"
 			enableCountByExample="false" enableDeleteByExample="false"
 			enableSelectByExample="false" enableUpdateByExample="false">
 		</table>

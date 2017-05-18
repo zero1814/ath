@@ -43,6 +43,7 @@ public class BaseServiceImpl<T extends BaseModel, M extends BaseMapper<T, DTO>, 
 	 */
 	@Override
 	public EntityResult insertSelective(T entity) {
+		logger.logInfo(this.getClass().getName() + "，开始执行insertSelective方法");
 		EntityResult result = new EntityResult();
 		if (entity.getUid() == null || "".equals(entity.getUid())) {
 			entity.setUid(UUID.randomUUID().toString().replace("-", ""));
@@ -53,20 +54,18 @@ public class BaseServiceImpl<T extends BaseModel, M extends BaseMapper<T, DTO>, 
 		entity.setUpdateUser(entity.getCreateUser());
 		entity.setUpdateTime(entity.getCreateTime());
 		try {
-			int flag = mapper.insertSelective(entity);
-			if (flag > 0) {
-				result.setCode(0);
-				result.setMessage("添加成功");
-				result.setEntity(entity);
-			} else {
-				result.setCode(-1);
-				result.setMessage("添加失败");
-			}
+			mapper.insertSelective(entity);
+			result.setCode(0);
+			result.setMessage("添加成功");
+			result.setEntity(entity);
+			logger.logInfo(this.getClass().getName() + "，执行insertSelective方法成功");
 		} catch (Exception e) {
 			e.printStackTrace();
 			result.setCode(-1);
 			result.setMessage("添加失败，错误原因:" + e.getMessage());
+			logger.logError(this.getClass().getName() + "执行insertSelective方法失败，失败原因:" + e.getMessage());
 		}
+		logger.logInfo(this.getClass().getName() + "，执行insertSelective方法结束");
 		return result;
 	}
 
@@ -80,24 +79,23 @@ public class BaseServiceImpl<T extends BaseModel, M extends BaseMapper<T, DTO>, 
 	 */
 	@Override
 	public EntityResult updateByCode(T entity) {
+		logger.logInfo(this.getClass().getName() + "，开始执行updateByCode方法");
 		EntityResult result = new EntityResult();
 		if (entity.getUpdateTime() == null || "".equals(entity.getUpdateTime())) {
 			entity.setUpdateTime(DateUtil.getSysDateTime());
 		}
 		try {
-			int flag = mapper.updateByCode(entity);
-			if (flag > 0) {
-				result.setCode(0);
-				result.setMessage("编辑成功");
-			} else {
-				result.setCode(-1);
-				result.setMessage("编辑失败");
-			}
+			mapper.updateByCode(entity);
+			result.setCode(0);
+			result.setMessage("编辑成功");
+			logger.logInfo(this.getClass().getName() + "，执行updateByCode方法成功");
 		} catch (Exception e) {
 			e.printStackTrace();
 			result.setCode(-1);
 			result.setMessage("编辑错误，错误原因:" + e.getMessage());
+			logger.logError(this.getClass().getName() + "执行updateByCode方法失败，失败原因:" + e.getMessage());
 		}
+		logger.logInfo(this.getClass().getName() + "，执行updateByCode方法结束");
 		return result;
 	}
 
@@ -111,16 +109,25 @@ public class BaseServiceImpl<T extends BaseModel, M extends BaseMapper<T, DTO>, 
 	 */
 	@Override
 	public EntityResult selectByEntity(T entity) {
+		logger.logInfo(this.getClass().getName() + "，开始执行selectByEntity方法");
 		EntityResult result = new EntityResult();
-		T entity_ = mapper.selectByEntity(entity);
-		if (entity_ != null) {
-			result.setCode(0);
-			result.setMessage("查询成功");
-			result.setEntity(entity_);
-		} else {
+		try {
+			T entity_ = mapper.selectByEntity(entity);
+			if (entity_ != null) {
+				result.setCode(0);
+				result.setMessage("查询成功");
+				result.setEntity(entity_);
+			} else {
+				result.setCode(-1);
+				result.setMessage("查询数据为空");
+			}
+			logger.logInfo(this.getClass().getName() + "，执行selectByEntity方法成功");
+		} catch (Exception e) {
 			result.setCode(-1);
-			result.setMessage("查询失败");
+			result.setMessage("查询数据失败");
+			logger.logError(this.getClass().getName() + "执行selectByEntity方法失败，失败原因:" + e.getMessage());
 		}
+		logger.logInfo(this.getClass().getName() + "，执行selectByEntity方法结束");
 		return result;
 	}
 
@@ -134,6 +141,7 @@ public class BaseServiceImpl<T extends BaseModel, M extends BaseMapper<T, DTO>, 
 	 */
 	@Override
 	public RootResult deleteByCode(String code) {
+		logger.logInfo(this.getClass().getName() + "，开始执行deleteByCode方法");
 		RootResult result = new RootResult();
 		try {
 			int flag = mapper.deleteByCode(code);
@@ -144,11 +152,14 @@ public class BaseServiceImpl<T extends BaseModel, M extends BaseMapper<T, DTO>, 
 				result.setCode(-1);
 				result.setMessage("删除失败");
 			}
+			logger.logInfo(this.getClass().getName() + "，执行deleteByCode方法成功");
 		} catch (Exception e) {
 			e.printStackTrace();
 			result.setCode(-1);
 			result.setMessage("删除失败，失败原因：" + e.getMessage());
+			logger.logError(this.getClass().getName() + "执行deleteByCode方法失败，失败原因:" + e.getMessage());
 		}
+		logger.logInfo(this.getClass().getName() + "，执行deleteByCode方法结束");
 		return result;
 	}
 
@@ -162,17 +173,27 @@ public class BaseServiceImpl<T extends BaseModel, M extends BaseMapper<T, DTO>, 
 	 */
 	@Override
 	public RootResult deleteByCodes(List<String> codes) {
+		logger.logInfo(this.getClass().getName() + "，开始执行deleteByCodes方法");
 		RootResult result = new RootResult();
-		if (codes != null && codes.size() > 0) {
-			int flag = mapper.deleteByCodes(codes);
-			if (flag < 0) {
+		try {
+			if (codes != null && codes.size() > 0) {
+				int flag = mapper.deleteByCodes(codes);
+				if (flag < 0) {
+					result.setCode(-1);
+					result.setMessage("编码集合为空");
+				}
+			} else {
 				result.setCode(-1);
-				result.setMessage("编码集合为空");
+				result.setMessage("批量删除中编码集合为空");
 			}
-		} else {
+			logger.logInfo(this.getClass().getName() + "，执行deleteByCodes方法成功");
+		} catch (Exception e) {
+			e.printStackTrace();
 			result.setCode(-1);
-			result.setMessage("批量删除中编码集合为空");
+			result.setMessage("批量删除失败，失败原因：" + e.getMessage());
+			logger.logError(this.getClass().getName() + "执行deleteByCodes方法失败，失败原因:" + e.getMessage());
 		}
+		logger.logInfo(this.getClass().getName() + "，执行deleteByCodes方法结束");
 		return result;
 	}
 
@@ -186,16 +207,23 @@ public class BaseServiceImpl<T extends BaseModel, M extends BaseMapper<T, DTO>, 
 	 */
 	@Override
 	public EntityResult selectByCode(String code) {
+		logger.logInfo(this.getClass().getName() + "，开始执行selectByCode方法");
 		EntityResult result = new EntityResult();
-		T entity = mapper.selectByCode(code);
-		if (entity != null) {
-			result.setCode(0);
-			result.setMessage("查询成功");
-			result.setEntity(entity);
-		} else {
-			result.setCode(-1);
-			result.setMessage("查询失败");
+		try {
+			T entity = mapper.selectByCode(code);
+			if (entity != null) {
+				result.setCode(0);
+				result.setMessage("查询成功");
+				result.setEntity(entity);
+			} else {
+				result.setCode(-1);
+				result.setMessage("查询数据为空");
+			}
+			logger.logInfo(this.getClass().getName() + "，执行selectByCode方法成功");
+		} catch (Exception e) {
+			logger.logError(this.getClass().getName() + "执行selectByCode方法失败，失败原因:" + e.getMessage());
 		}
+		logger.logInfo(this.getClass().getName() + "，执行selectByCode方法结束");
 		return result;
 	}
 
@@ -209,6 +237,7 @@ public class BaseServiceImpl<T extends BaseModel, M extends BaseMapper<T, DTO>, 
 	 */
 	@Override
 	public PageResult findEntityToPage(DTO dto) {
+		logger.logInfo(this.getClass().getName() + "，开始执行findEntityToPage方法");
 		PageResult result = new PageResult();
 		try {
 			if (dto.getPageNumber() == null) {
@@ -227,17 +256,20 @@ public class BaseServiceImpl<T extends BaseModel, M extends BaseMapper<T, DTO>, 
 			result.setMessage("获取分页数据成功");
 			result.setRows(list);
 			result.setTotal(total);
+			logger.logInfo(this.getClass().getName() + "，执行findEntityToPage方法成功");
 		} catch (Exception e) {
 			e.printStackTrace();
 			result.setCode(-1);
 			result.setMessage("获取分页信息失败，失败原因：" + e.getMessage());
-			getLogger().logError(this.getClass(), e.getMessage());
+			logger.logError(this.getClass().getName() + "执行findEntityToPage方法失败，失败原因:" + e.getMessage());
 		}
+		logger.logInfo(this.getClass().getName() + "，执行findEntityToPage方法结束");
 		return result;
 	}
 
 	@Override
 	public DataResult findDataAll(DTO dto) {
+		logger.logInfo(this.getClass().getName() + "，开始执行findDataAll方法");
 		DataResult result = new DataResult();
 		try {
 			List<T> list = mapper.findEntityAll(dto);
@@ -247,11 +279,14 @@ public class BaseServiceImpl<T extends BaseModel, M extends BaseMapper<T, DTO>, 
 				result.setCode(-1);
 				result.setMessage("获取列表为空");
 			}
+			logger.logInfo(this.getClass().getName() + "，执行findDataAll方法成功");
 		} catch (Exception e) {
 			e.printStackTrace();
 			result.setCode(-1);
 			result.setMessage("获取列表错误");
+			logger.logError(this.getClass().getName() + "执行findDataAll方法失败，失败原因:" + e.getMessage());
 		}
+		logger.logInfo(this.getClass().getName() + "，执行findDataAll方法结束");
 		return result;
 	}
 }

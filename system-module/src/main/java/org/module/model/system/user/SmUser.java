@@ -6,13 +6,6 @@ import org.module.commons.annotation.obj.Attribute;
 import org.module.commons.annotation.obj.Object;
 import org.module.model.BaseModel;
 
-/**
- * 
- * 类: SmUser <br>
- * 描述: 用户表 <br>
- * 作者: zhy<br>
- * 时间: 2017年5月18日 上午8:06:29
- */
 @Table(database = "systemmodule", name = "sm_user", comment = "用户表")
 @Object(name = "系统用户", description = "管理系统用户表")
 public class SmUser extends BaseModel {
@@ -39,6 +32,17 @@ public class SmUser extends BaseModel {
 	@Column(name = "status", comment = "状态")
 	@Attribute(name = "status", description = "状态")
 	private String status;
+
+	@Attribute(name = "role", description = "用户角色")
+	private SmUserRole role;
+
+	public SmUserRole getRole() {
+		return role;
+	}
+
+	public void setRole(SmUserRole role) {
+		this.role = role;
+	}
 
 	public String getTypeName() {
 		return typeName;

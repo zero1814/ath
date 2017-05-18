@@ -1,5 +1,6 @@
 package cn.com.cms.controller;
 
+import org.module.model.system.user.SmUser;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -19,7 +20,8 @@ public class IndexController {
 		/**
 		 * 获取菜单列表
 		 */
-
+		SmUser user = null;
+		
 		return null;
 	}
 

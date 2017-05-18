@@ -128,9 +128,6 @@ CREATE TABLE sm_role_permission (
 	) COMMENT '角色访问菜单权限'
 ) COMMENT '角色权限';
 
-
-
-
 DROP TABLE
 IF EXISTS sm_user;
 
@@ -148,6 +145,19 @@ CREATE TABLE sm_user (
 	update_user VARCHAR (50) NOT NULL COMMENT '最后修改人',
 	update_time datetime NOT NULL COMMENT '最后修改时间'
 ) COMMENT '用户表';
+
+DROP TABLE
+IF EXISTS sm_user_role;
+
+CREATE TABLE sm_user_role (
+	id INT PRIMARY KEY AUTO_INCREMENT COMMENT '主键',
+	uid VARCHAR (50) NOT NULL COMMENT 'uuid',
+	user_code VARCHAR (50) NOT NULL COMMENT '用户编码',
+	role_code VARCHAR (50) NOT NULL COMMENT '角色编码',
+	create_user VARCHAR (50) NOT NULL COMMENT '创建人',
+	create_time datetime NOT NULL COMMENT '创建时间',
+	UNIQUE user_role (user_code, role_code) COMMENT '用户角色唯一键约束'
+) COMMENT '用户角色关系表';
 
 DROP TABLE
 IF EXISTS sm_define;
