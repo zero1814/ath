@@ -60,7 +60,7 @@
 			#{updateUser,jdbcType=VARCHAR},
 			STR_TO_DATE(#{updateTime,jdbcType=VARCHAR},'%Y-%m-%d
 			%H:%i:%s'),
-			<if test="intro != null">
+			<if test="intro != null ">
 				#{intro,jdbcType=LONGVARCHAR},
 			</if>
 		</trim>

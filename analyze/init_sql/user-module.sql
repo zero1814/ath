@@ -32,8 +32,10 @@ create table um_define (
 	update_time datetime NOT NULL COMMENT '最后修改时间'
 ) COMMENT '参数表';
 
-insert into um_define(uid,`code`,`name`,create_user,create_time,update_user,update_time)values(REPLACE(UUID(),'-',''),'1000','状态','system',now(),'system',now());
-insert into um_define(uid,`code`,`name`,create_user,create_time,update_user,update_time)values(REPLACE(UUID(),'-',''),'1001','职位','system',now(),'system',now());
+insert into um_define(uid,`code`,`name`,create_user,create_time,update_user,update_time)values(REPLACE(UUID(),'-',''),'1000','用户相关','system',now(),'system',now());
+insert into um_define(uid,`code`,parent_code,`name`,create_user,create_time,update_user,update_time)values(REPLACE(UUID(),'-',''),'10001000','1000','状态','system',now(),'system',now());
+insert into um_define(uid,`code`,parent_code,`name`,create_user,create_time,update_user,update_time)values(REPLACE(UUID(),'-',''),'10001001','1000','职位','system',now(),'system',now());
+insert into um_define(uid,`code`,parent_code,`name`,create_user,create_time,update_user,update_time)values(REPLACE(UUID(),'-',''),'10001002','1000','类型','system',now(),'system',now());
 
 DROP TABLE
 IF EXISTS um_company;
@@ -67,6 +69,8 @@ CREATE TABLE um_department (
 	update_time datetime NOT NULL COMMENT '最后修改时间'
 ) COMMENT '部门表';
 
+
+
 DROP TABLE
 IF EXISTS um_user;
 
@@ -77,6 +81,7 @@ CREATE TABLE um_user (
 	department_code VARCHAR (50) DEFAULT '' COMMENT '部门编码',
 	company_code VARCHAR (50) NOT NULL COMMENT '公司编码',
 	real_name VARCHAR (50) NOT NULL COMMENT '真实姓名',
+	type_code VARCHAR (50) NOT NULL COMMENT '用户类型',
 	`status` VARCHAR (50) NOT NULL COMMENT '用户状态',
 	create_user VARCHAR (50) NOT NULL COMMENT '创建人',
 	create_time datetime NOT NULL COMMENT '创建时间',

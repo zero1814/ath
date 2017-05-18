@@ -36,7 +36,7 @@
 		<trim prefix="(" suffix=")" suffixOverrides=",">
 			uid,
 			`code`,
-			<if test="parentCode != null">
+			<if test="parentCode != null and parentCode != '' ">
 				parent_code,
 			</if>
 			`name`,
