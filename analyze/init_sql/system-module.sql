@@ -46,7 +46,7 @@ CREATE TABLE sm_menu_group (
 	update_time datetime NOT NULL COMMENT '最后修改时间'
 ) COMMENT '菜单分组';
 
-insert into sm_menu_group(uid,`code`,`name`,create_user,create_time,update_user,update_time)values(REPLACE(UUID(),'-',''),'SMG1000','系统相关','admin',now(),'admin',now());
+insert into sm_menu_group(uid,`code`,`name`,create_user,create_time,update_user,update_time)values(REPLACE(UUID(),'-',''),'SMG1000','后台管理','admin',now(),'admin',now());
 
 DROP TABLE
 IF EXISTS sm_menu;
