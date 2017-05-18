@@ -6,7 +6,7 @@ import java.util.List;
 import org.module.commons.annotation.obj.Object;
 import org.module.dto.system.menu.SmMenuDto;
 import org.module.dto.system.menu.SmMenuGroupDto;
-import org.module.helper.CodeHelper;
+import org.module.helper.commons.CodeHelper;
 import org.module.model.system.menu.SmMenu;
 import org.module.model.system.menu.SmMenuGroup;
 import org.module.result.DataResult;

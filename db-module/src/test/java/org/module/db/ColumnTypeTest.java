@@ -2,7 +2,7 @@ package org.module.db;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.module.helper.CodeHelper;
+import org.module.helper.commons.CodeHelper;
 import org.module.model.db.DmColumnType;
 import org.module.result.EntityResult;
 import org.module.result.RootResult;

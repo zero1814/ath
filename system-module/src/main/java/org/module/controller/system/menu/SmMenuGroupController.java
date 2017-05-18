@@ -1,7 +1,7 @@
 package org.module.controller.system.menu;
 
 import org.module.dto.system.menu.SmMenuGroupDto;
-import org.module.helper.CodeHelper;
+import org.module.helper.commons.CodeHelper;
 import org.module.model.system.menu.SmMenuGroup;
 import org.module.result.PageResult;
 import org.module.result.RootResult;

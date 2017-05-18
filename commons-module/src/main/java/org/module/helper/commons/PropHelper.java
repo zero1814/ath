@@ -1,4 +1,4 @@
-package org.module.helper;
+package org.module.helper.commons;
 
 import org.module.commons.base.BaseClass;
 import org.module.commons.util.file.prop.PropConfig;

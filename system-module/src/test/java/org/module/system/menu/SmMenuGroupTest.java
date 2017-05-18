@@ -3,7 +3,7 @@ package org.module.system.menu;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.module.dto.system.menu.SmMenuGroupDto;
-import org.module.helper.CodeHelper;
+import org.module.helper.commons.CodeHelper;
 import org.module.model.system.menu.SmMenuGroup;
 import org.module.result.DataResult;
 import org.module.result.EntityResult;

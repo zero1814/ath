@@ -1,6 +1,6 @@
 package org.module.commons.util.file.xml;
 
-import org.module.helper.IoHelper;
+import org.module.helper.commons.IoHelper;
 import org.springframework.core.io.Resource;
 
 public class XMLConfig {

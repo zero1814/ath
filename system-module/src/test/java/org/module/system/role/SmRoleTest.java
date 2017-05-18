@@ -3,7 +3,7 @@ package org.module.system.role;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.module.dto.system.role.SmRoleDto;
-import org.module.helper.CodeHelper;
+import org.module.helper.commons.CodeHelper;
 import org.module.model.system.role.SmRole;
 import org.module.result.DataResult;
 import org.module.result.EntityResult;

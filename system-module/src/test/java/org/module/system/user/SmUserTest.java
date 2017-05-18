@@ -3,7 +3,7 @@ package org.module.system.user;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.module.commons.util.MD5Util;
-import org.module.helper.CodeHelper;
+import org.module.helper.commons.CodeHelper;
 import org.module.model.system.user.SmUser;
 import org.module.result.EntityResult;
 import org.module.result.RootResult;

@@ -1,7 +1,7 @@
 package org.module.controller.system.menu;
 
 import org.module.dto.system.menu.SmMenuPermissionDto;
-import org.module.helper.CodeHelper;
+import org.module.helper.commons.CodeHelper;
 import org.module.model.system.menu.SmMenuPermission;
 import org.module.result.EntityResult;
 import org.module.result.PageResult;

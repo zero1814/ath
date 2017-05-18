@@ -3,7 +3,7 @@ package org.module.cache.system;
 import java.util.Map;
 
 import org.module.commons.annotation.Inject;
-import org.module.helper.cache.CacheHashHelper;
+import org.module.helper.commons.cache.CacheHashHelper;
 import org.module.model.system.user.SmUser;
 import org.module.result.EntityResult;
 import org.module.service.system.user.ISmUserService;
