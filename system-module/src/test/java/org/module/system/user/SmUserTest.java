@@ -21,6 +21,7 @@ public class SmUserTest {
 	@Autowired
 	private ISmUserService service;
 
+	@Test
 	public void insert() {
 		SmUser entity = new SmUser();
 		entity.setCode(CodeHelper.getUniqueCode("SU"));
@@ -50,7 +51,6 @@ public class SmUserTest {
 		System.out.println(JSON.toJSON(result));
 	}
 
-	@Test
 	public void del() {
 		RootResult result = service.deleteByCode("SU864996946777993216");
 		System.out.println(JSON.toJSON(result));
