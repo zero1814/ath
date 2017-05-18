@@ -111,6 +111,7 @@ CREATE TABLE sm_role (
 ) COMMENT '角色表';
 insert into sm_role(uid,`code`,`name`,intro,create_user,create_time,update_user,update_time)values(REPLACE(UUID(),'-',''),'1000','超级管理员','最高权限','system',now(),'system',now());
 insert into sm_role(uid,`code`,`name`,intro,create_user,create_time,update_user,update_time)values(REPLACE(UUID(),'-',''),'1001','管理员','二级管理员权限','system',now(),'system',now());
+
 DROP TABLE
 IF EXISTS sm_role_permission;
 
@@ -120,7 +121,7 @@ CREATE TABLE sm_role_permission (
 	role_code VARCHAR (50) NOT NULL COMMENT '角色编码',
 	menu_permission_code VARCHAR (50) NOT NULL COMMENT '菜单权限',
 	create_user VARCHAR (50) NOT NULL COMMENT '创建人',
-	create_time datetime NOT NULL COMMENT '创建时间',
+	create_time datetime NOT NULL COMMENT '创;建时间',
 	UNIQUE menu_role_permission (
 		role_code,
 		menu_permission_code
