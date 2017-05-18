@@ -3,8 +3,6 @@ package org.module.service.impl.system.user;
 import javax.annotation.Resource;
 
 import org.apache.commons.lang3.StringUtils;
-import org.module.cache.RedisString;
-import org.module.commons.util.MD5Util;
 import org.module.dto.system.user.SmUserDto;
 import org.module.mapper.system.user.SmUserMapper;
 import org.module.model.system.user.SmUser;
@@ -12,8 +10,6 @@ import org.module.result.RootResult;
 import org.module.service.impl.BaseServiceImpl;
 import org.module.service.system.user.ISmUserService;
 import org.springframework.stereotype.Service;
-
-import com.alibaba.fastjson.JSON;
 
 /**
  * 
@@ -41,16 +37,6 @@ public class SmUserServiceImpl extends BaseServiceImpl<SmUser, SmUserMapper, SmU
 	@Override
 	public RootResult login(String user_name, String password) {
 		RootResult result = new RootResult();
-		SmUser param = new SmUser();
-		param.setUserName(user_name);
-		param.setPassword(MD5Util.md5Hex(password));
-		SmUser entity = mapper.userExists(param);
-		if (entity != null) {
-			RedisString.instance().setValue(entity.getCode(), JSON.toJSONString(entity));
-		} else {
-			result.setCode(-1);
-			result.setMessage("用户不存在，请检查用户名，密码是否正确");
-		}
 		return result;
 	}
 
