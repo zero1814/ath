@@ -1,4 +1,4 @@
-package org.module.commons.helper;
+package org.module.helper;
 
 import org.module.commons.util.UniqueIdUtil;
 

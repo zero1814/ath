@@ -2,8 +2,8 @@ package org.module.user;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.module.commons.helper.CodeHelper;
 import org.module.commons.util.MD5Util;
+import org.module.helper.CodeHelper;
 import org.module.model.user.UmUser;
 import org.module.result.EntityResult;
 import org.module.result.RootResult;

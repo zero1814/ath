@@ -10,8 +10,8 @@ import org.apache.commons.configuration.PropertiesConfiguration;
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.module.commons.base.BaseClass;
-import org.module.commons.helper.IoHelper;
 import org.module.commons.map.MStringMap;
+import org.module.helper.IoHelper;
 import org.springframework.core.io.Resource;
 
 /**

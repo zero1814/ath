@@ -2,8 +2,8 @@ package org.module.system.menu;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.module.commons.helper.CodeHelper;
 import org.module.dto.system.menu.SmMenuDto;
+import org.module.helper.CodeHelper;
 import org.module.model.system.menu.SmMenu;
 import org.module.result.DataResult;
 import org.module.result.EntityResult;

@@ -1,4 +1,4 @@
-package org.module.commons.helper.cache;
+package org.module.helper.cache;
 
 import org.module.commons.annotation.Inject;
 import org.module.commons.base.BaseClass;

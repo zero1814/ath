@@ -2,7 +2,7 @@ package org.module.user;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.module.commons.helper.CodeHelper;
+import org.module.helper.CodeHelper;
 import org.module.model.user.UmDefine;
 import org.module.result.EntityResult;
 import org.module.result.RootResult;

@@ -2,7 +2,7 @@ package org.module.system.role;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.module.commons.helper.CodeHelper;
+import org.module.helper.CodeHelper;
 import org.module.model.system.role.SmRolePermission;
 import org.module.service.system.role.ISmRolePermissionService;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -1,7 +1,7 @@
 package org.module.commons;
 
 import org.junit.Test;
-import org.module.commons.helper.PropHelper;
+import org.module.helper.PropHelper;
 
 public class PropTest {
 

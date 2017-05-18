@@ -21,6 +21,7 @@ public class SmRole extends BaseModel {
 	@Column(name = "intro", comment = "角色描述")
 	@Attribute(name = "intro", description = "角色描述")
 	private String intro;
+	
 
 	public String getName() {
 		return name;

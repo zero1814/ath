@@ -1,7 +1,7 @@
 package org.module.controller.system.role;
 
-import org.module.commons.helper.CodeHelper;
 import org.module.dto.system.role.SmRoleDto;
+import org.module.helper.CodeHelper;
 import org.module.model.system.role.SmRole;
 import org.module.result.EntityResult;
 import org.module.result.PageResult;

@@ -25,8 +25,6 @@ public class UserRoleRealm extends AuthorizingRealm {
 	@Override
 	protected AuthorizationInfo doGetAuthorizationInfo(PrincipalCollection principal) {
 		SimpleAuthorizationInfo authorizationInfo = new SimpleAuthorizationInfo();
-		// 用户名
-		// String username = (String) principal.getPrimaryPrincipal();
 		/**
 		 * 获取用户角色信息
 		 */
