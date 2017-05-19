@@ -49,7 +49,7 @@
 						<div class="logo-element">ATH</div>
 					</li>
 					<li>
-						<a class="J_menuItem" href="index.htm">
+						<a class="J_menuItem" href="jsp/index.htm">
 							<i	class="fa fa-home"></i> <span class="nav-label">首页</span>
 						</a>
 					</li>

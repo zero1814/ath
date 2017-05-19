@@ -15,7 +15,7 @@ var Table = {
 	 * 加载表数据
 	 */
 	data: function() {
-		$('#' + Table.id).bootstrapTable({
+		var data = $('#' + Table.id).bootstrapTable({
 			url: Table.url, //请求后台的URL（*）
 			method: 'get', //请求方式（*）
 			striped: true, //是否显示行间隔色
@@ -24,7 +24,7 @@ var Table = {
 			sortable: false, //是否启用排序
 			sortOrder: "asc", //排序方式
 			queryParams: Table.setParam, //传递参数（*）
-			sidePagination: "client", //分页方式：client客户端分页，server服务端分页（*）
+			sidePagination: "server", //分页方式：client客户端分页，server服务端分页（*）
 			pageNumber: 1, //初始化加载第一页，默认第一页
 			pageSize: 10, //每页的记录行数（*）
 			pageList: [10, 25, 50, 100], //可供选择的每页的行数（*）

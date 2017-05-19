@@ -50,6 +50,7 @@ public class SmMenuController {
 			obj.put("rows", new ArrayList<SmMenuGroup>());
 			obj.put("total", 0);
 		}
+		System.out.println(obj);
 		return obj;
 	}
 
