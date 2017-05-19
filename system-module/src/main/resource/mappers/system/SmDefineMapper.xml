@@ -23,16 +23,16 @@
 		parameterType="java.lang.String">
 		select
 		<include refid="Base_Column_List" />
-		from sm_define
+		from systemmodule.sm_define
 		where `code`=#{code,jdbcType=VARCHAR}
 	</select>
 	<delete id="deleteByCode" parameterType="java.lang.String">
 		delete from
-		sm_define
+		systemmodule.sm_define
 		where `code`=#{code,jdbcType=VARCHAR}
 	</delete>
 	<insert id="insertSelective" parameterType="org.module.model.system.SmDefine">
-		insert into sm_define
+		insert into systemmodule.sm_define
 		<trim prefix="(" suffix=")" suffixOverrides=",">
 			uid,
 			`code`,
@@ -59,7 +59,7 @@
 		</trim>
 	</insert>
 	<update id="updateByCode" parameterType="org.module.model.system.SmDefine">
-		update sm_define
+		update systemmodule.sm_define
 		<set>
 			<if test="parentCode != null and parentCode != ''">
 				parent_code = #{parentCode,jdbcType=VARCHAR},
@@ -78,7 +78,7 @@
 		parameterType="java.lang.String">
 		select
 		<include refid="Base_Column_List" />
-		from sm_define
+		from systemmodule.sm_define
 		where `parent_code`=#{parentCode,jdbcType=VARCHAR}
 	</select>
 </mapper>

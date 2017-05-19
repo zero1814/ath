@@ -34,7 +34,7 @@ var Menu = {
 			title: '操作',
 			formatter: initOperate
 		}]
-		Table.init("table", "data/json/system/menu/menu.json", columns, Menu.searchParam());
+		Table.init("table", "system/menu/data.htm", columns, Menu.searchParam());
 	},
 	searchParam: function() {
 		var temp = { name: $("#name").val() };

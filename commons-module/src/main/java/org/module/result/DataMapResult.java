@@ -1,18 +1,17 @@
 package org.module.result;
 
 import java.util.List;
+import java.util.Map;
 
-import org.module.commons.map.MDataMap;
+public class DataMapResult extends RootResult {
 
-public class DataMapResult extends RootResult{
+	private List<Map<String, Object>> data;
 
-	private List<MDataMap> data;
-
-	public List<MDataMap> getData() {
+	public List<Map<String, Object>> getData() {
 		return data;
 	}
 
-	public void setData(List<MDataMap> data) {
+	public void setData(List<Map<String, Object>> data) {
 		this.data = data;
 	}
 

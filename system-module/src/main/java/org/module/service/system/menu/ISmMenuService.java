@@ -1,8 +1,9 @@
 package org.module.service.system.menu;
 
+import java.util.List;
+
 import org.module.dto.system.menu.SmMenuDto;
 import org.module.model.system.menu.SmMenu;
-import org.module.result.DataResult;
 import org.module.service.IBaseService;
 
 /**
@@ -24,5 +25,5 @@ public interface ISmMenuService extends IBaseService<SmMenu, SmMenuDto> {
 	 * @param groupCode
 	 * @return
 	 */
-	public DataResult menus(String groupCode);
+	List<SmMenu> menus(String groupCode);
 }

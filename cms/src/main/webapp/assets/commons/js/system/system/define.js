@@ -1,18 +1,17 @@
-var Param = {
+var Define = {
 	initTree: function() {
 		$.ajax({
-			url: 'data/json/system/system/param.json',
+			url: 'system/define/data.htm',
 			type: "get",
 			data: {},
 			dataType: "json",
 			success: function(result) {
-				//result = JSON.parse(result);
 				if(result.code == 0) {
 					$('#treeview').treeview({
 						levels: 1,
 						data: result.data,
 						onNodeSelected: function(event, node) {
-							var url = "html/system/system/param_detail.html";
+							var url = "system/define/detail.htm?code="+node.id;
 							$("#P_iframe").attr('src', url);
 						}
 					});

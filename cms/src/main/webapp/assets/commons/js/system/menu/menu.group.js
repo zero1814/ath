@@ -20,7 +20,7 @@ var MenuGroup = {
 			title: '操作',
 			formatter: initOperate
 		}]
-		Table.init("table", "data/json/system/menu/menu.group.json", columns, MenuGroup.searchParam());
+		Table.init("table", "system/menu/group/data.htm", columns, MenuGroup.searchParam());
 	},
 	searchParam: function() {
 		var temp = { name: $("#name").val() };

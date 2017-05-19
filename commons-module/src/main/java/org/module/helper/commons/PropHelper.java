@@ -27,7 +27,7 @@ public class PropHelper extends BaseClass {
 	 * @return
 	 */
 	public static String getConfig(String key) {
-		return PropConfig.init(key.split("\\.")[0]).get(key);
+		return PropConfig.getValue(key);
 	}
 
 	/**
@@ -46,7 +46,7 @@ public class PropHelper extends BaseClass {
 	 * @return
 	 */
 	public static String getConfig(String key, String... params) {
-		String str = PropConfig.init(key.split("\\.")[0]).get(key);
+		String str = PropConfig.getValue(key);
 		for (int i = 0, j = params.length; i < j; i++) {
 			str = str.replace("{" + (i) + "}", params[i].toString());
 		}

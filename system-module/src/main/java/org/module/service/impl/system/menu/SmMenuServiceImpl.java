@@ -8,7 +8,6 @@ import java.util.List;
 import org.module.dto.system.menu.SmMenuDto;
 import org.module.mapper.system.menu.SmMenuMapper;
 import org.module.model.system.menu.SmMenu;
-import org.module.result.DataResult;
 import org.module.service.impl.BaseServiceImpl;
 import org.module.service.system.menu.ISmMenuService;
 
@@ -19,35 +18,29 @@ public class SmMenuServiceImpl extends BaseServiceImpl<SmMenu, SmMenuMapper, SmM
 	private SmMenuMapper mapper;
 
 	@Override
-	public DataResult menus(String groupCode) {
-		DataResult result = new DataResult();
-		try {
-			SmMenuDto dto = new SmMenuDto();
-			dto.setGroupCode(groupCode);
-			List<SmMenu> menus = mapper.findEntityAll(dto);
-			if (menus != null && menus.size() > 0) {
-				for (SmMenu smMenu : menus) {
-					SmMenuDto subDto = new SmMenuDto();
-					subDto.setParentCode(smMenu.getCode());
-					subDto.setGroupCode(groupCode);
-					List<SmMenu> subMenus = mapper.findEntityAll(subDto);
-					if (subMenus != null && subMenus.size() > 0) {
-						smMenu.setChildMenu(subMenus);
-					}
+	public List<SmMenu> menus(String groupCode) {
+		SmMenuDto dto = new SmMenuDto();
+		dto.setGroupCode(groupCode);
+		dto.setParentCode("0");
+		return getMenus(dto);
+	}
+
+	private List<SmMenu> getMenus(SmMenuDto dto) {
+		// 获取一级菜单
+		List<SmMenu> list = mapper.findEntityAllForGroup(dto);
+		if (list != null && list.size() > 0) {
+			for (SmMenu menu : list) {
+				SmMenuDto subDto = new SmMenuDto();
+				subDto.setGroupCode(dto.getGroupCode());
+				subDto.setParentCode(menu.getCode());
+				// 获取子级菜单
+				List<SmMenu> subMenus = getMenus(subDto);
+				if (subMenus != null && subMenus.size() > 0) {
+					menu.setChildMenu(subMenus);
 				}
-				result.setData(menus);
-				result.setCode(0);
-				result.setMessage("获取菜单列表成功");
-			} else {
-				result.setCode(-1);
-				result.setMessage("获取菜单列表为空");
 			}
-		} catch (Exception e) {
-			e.printStackTrace();
-			result.setCode(-1);
-			result.setMessage("获取菜单列表失败，失败原因：" + e.getMessage());
 		}
-		return result;
+		return list;
 	}
 
 }

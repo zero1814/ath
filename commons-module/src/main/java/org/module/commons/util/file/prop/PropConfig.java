@@ -22,14 +22,12 @@ public class PropConfig {
 	 * @param nameSpace
 	 * @return
 	 */
-	public static MStringMap init(String nameSpace) {
-		MStringMap newMap = new MStringMap();
+	public static String getValue(String key) {
+		String value = "";
 		MStringMap map = PropLoad.instance().getData("config");
-		for (String str : map.getKeys()) {
-			if (StringUtils.contains(str, nameSpace)) {
-				newMap.put(str, map.get(str));
-			}
+		if (StringUtils.isNoneBlank(map.get(key))) {
+			value = map.get(key);
 		}
-		return newMap;
+		return value;
 	}
 }

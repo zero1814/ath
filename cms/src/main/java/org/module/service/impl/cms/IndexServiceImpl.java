@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.module.dto.system.menu.SmMenuDto;
-import org.module.helper.commons.PropHelper;
 import org.module.mapper.system.menu.SmMenuMapper;
 import org.module.model.system.menu.SmMenu;
 import org.module.service.cms.IndexService;
@@ -26,17 +25,18 @@ public class IndexServiceImpl implements IndexService {
 	@Override
 	public List<SmMenu> initMenus() {
 		List<SmMenu> menus = new ArrayList<SmMenu>();
-		String groupCode = PropHelper.getConfig("cms.menu.group");
+		String groupCode = "SMG1000";
 		try {
 			SmMenuDto dto = new SmMenuDto();
 			dto.setGroupCode(groupCode);
-			menus = menuMapper.findEntityAll(dto);
+			dto.setParentCode("0");
+			menus = menuMapper.findEntityAllForGroup(dto);
 			if (menus != null && menus.size() > 0) {
 				for (SmMenu smMenu : menus) {
 					SmMenuDto subDto = new SmMenuDto();
 					subDto.setParentCode(smMenu.getCode());
 					subDto.setGroupCode(groupCode);
-					List<SmMenu> subMenus = menuMapper.findEntityAll(subDto);
+					List<SmMenu> subMenus = menuMapper.findEntityAllForGroup(subDto);
 					if (subMenus != null && subMenus.size() > 0) {
 						smMenu.setChildMenu(subMenus);
 					}

@@ -1,6 +1,10 @@
 package org.module.model.system;
 
+import java.util.List;
+
+import org.module.commons.annotation.db.Column;
 import org.module.commons.annotation.db.Table;
+import org.module.commons.annotation.obj.Attribute;
 import org.module.commons.annotation.obj.Object;
 import org.module.model.BaseModel;
 
@@ -18,12 +22,24 @@ public class SmDefine extends BaseModel {
 	/**
 	 * 父级编码
 	 */
+	@Column(name = "parent_code", comment = "父级编码")
+	@Attribute(name = "parentCode", description = "父级编码")
 	private String parentCode;
 
-	/**
-	 * 名称
-	 */
+	@Column(name = "name", comment = "名称")
+	@Attribute(name = "name", description = "名称")
 	private String name;
+
+	@Attribute(name = "subDefine", description = "子级参数列表")
+	private List<SmDefine> subDefine;
+
+	public List<SmDefine> getSubDefine() {
+		return subDefine;
+	}
+
+	public void setSubDefine(List<SmDefine> subDefine) {
+		this.subDefine = subDefine;
+	}
 
 	public String getParentCode() {
 		return parentCode;

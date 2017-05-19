@@ -20,7 +20,6 @@ public class SmDefineTest {
 	@Autowired
 	private ISmDefineService service;
 
-	@Test
 	public void insert() {
 		SmDefine entity = new SmDefine();
 		entity.setCode(CodeHelper.getUniqueCode("SD"));
@@ -71,5 +70,10 @@ public class SmDefineTest {
 	public void selByCode() {
 		EntityResult result = service.selectByCode("SD828939197468372992");
 		System.out.println(JSON.toJSON(result));
+	}
+	
+	@Test
+	public void getAll(){
+		System.out.println(JSON.toJSON(service.findDataAll()));
 	}
 }

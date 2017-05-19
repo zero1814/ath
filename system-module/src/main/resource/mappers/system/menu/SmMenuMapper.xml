@@ -230,10 +230,8 @@
 		<where>
 			flag_able = 0
 			and is_deleted = 0
-			and group_code =
-			#{groupCode,jdbcType=VARCHAR}
-			and parent_code =
-			#{parentCode,jdbcType=VARCHAR}
+			and group_code = #{groupCode,jdbcType=VARCHAR}
+			and parent_code = #{parentCode,jdbcType=VARCHAR}
 		</where>
 	</select>
 </mapper>
