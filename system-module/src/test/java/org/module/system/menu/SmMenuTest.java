@@ -23,7 +23,6 @@ public class SmMenuTest {
 	@Autowired
 	private ISmMenuService service;
 
-	@Test
 	public void insert() {
 		SmMenu entity = new SmMenu();
 		entity.setCode(CodeHelper.getUniqueCode("SM"));
@@ -95,5 +94,11 @@ public class SmMenuTest {
 	public void del() {
 		RootResult result = service.deleteByCode("SM828896784997675008");
 		System.out.println(JSON.toJSON(result));
+	}
+
+	@Test
+	public void menus() {
+		System.out.println(JSON.toJSON(service.menus("SMG1000")));
+		;
 	}
 }
