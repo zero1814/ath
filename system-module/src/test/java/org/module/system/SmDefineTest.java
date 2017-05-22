@@ -74,6 +74,6 @@ public class SmDefineTest {
 	
 	@Test
 	public void getAll(){
-		System.out.println(JSON.toJSON(service.findDataAll()));
+		System.out.println(JSON.toJSON(service.treeData()));
 	}
 }

@@ -1,5 +1,7 @@
 package org.module.controller.system;
 
+import org.module.helper.commons.CodeHelper;
+import org.module.model.system.SmDefine;
 import org.module.result.DataResult;
 import org.module.result.EntityResult;
 import org.module.service.system.ISmDefineService;
@@ -34,5 +36,13 @@ public class SmDefineController {
 			model.addAttribute("define", result.getEntity());
 		}
 		return "jsp/system/define/detail";
+	}
+
+	@RequestMapping("add")
+	@ResponseBody
+	public EntityResult add(SmDefine entity) {
+		entity.setCode(CodeHelper.getUniqueCode("SD"));
+		entity.setCreateUser("test");
+		return service.insertSelective(entity);
 	}
 }

@@ -10,17 +10,17 @@ import java.util.List;
  * 时间: 2017年5月22日 上午11:10:23
  */
 public class TreeModel extends BaseModel {
-	
+
 	private String text;
 
-	private List<TreeModel> subTree;
+	private List<TreeModel> nodes;
 
-	public List<TreeModel> getSubTree() {
-		return subTree;
+	public List<TreeModel> getNodes() {
+		return nodes;
 	}
 
-	public void setSubTree(List<TreeModel> subTree) {
-		this.subTree = subTree;
+	public void setNodes(List<TreeModel> nodes) {
+		this.nodes = nodes;
 	}
 
 	public String getText() {

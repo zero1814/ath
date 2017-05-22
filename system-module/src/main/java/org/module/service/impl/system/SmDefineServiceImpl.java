@@ -47,7 +47,7 @@ public class SmDefineServiceImpl extends BaseServiceImpl<SmDefine, SmDefineMappe
 				tree.setCode(define.getCode());
 				tree.setText(define.getName());
 				if (sub != null && sub.size() > 0) {
-					tree.setSubTree(sub);
+					tree.setNodes(sub);
 				}
 				trees.add(tree);
 			}
