@@ -20,14 +20,14 @@
 		</c:if>
 	</div>
 </div>
-<div id="addDiv" style="display: none;overflow: hidden;">
-	<div class="row">
-		<div class="col-sm-6">
+<div id="addDiv" class="col-sm-6" style="display: none;overflow: hidden;">
+	<div class="ibox">
+		<div class="ibox-content">
 			<form id="addFrm" method="post" class="form-horizontal">
 				<input type="hidden" id="parentCode" name="parentCode" value="${define.code }">
 				<div class="form-group">
-					<label class="col-md-2 control-label">名称</label>
-					<div class="col-md-2">
+					<label class="col-sm-3 control-label">名称：</label>
+					<div class="col-sm-8">
 						<input name="name" id="name" value="" type="text" class="form-control">
 					</div>
 				</div>
