@@ -27,14 +27,22 @@ var Define = {
 			}
 		});
 	},
-	openAdd:function(code){
+	openLayer: function(titleVal, layerDivId) {
 		Define.Layer = layer.open({
 			type: 1,
-			title: "添加子项",
+			title: titleVal,
 			skin: 'layui-layer-lan', //加上边框
 			area: ['450px', '180px'], //宽高
-			content: $("#addDiv")
+			content: $("#" + layerDivId)
 		});
+	},
+	closeLayer: function() {
+		if(Define.Layer) {
+			layer.close(Define.Layer);
+		}
+	},
+	openAdd:function(){
+		Define.openLayer("添加子项","addDiv");
 	},
 	add : function() {
 		var param = $("#addFrm").serializeArray();
@@ -62,6 +70,38 @@ var Define = {
 					window.parent.location.href="system/define/index.htm";
 				});
 			}
+		});
+	},
+	del:function(code){
+		layer.confirm('您确认要删除选中的数据吗？', {
+			btn: ['确认', '取消']
+			// 按钮
+		}, function() {
+			$.ajax({
+				url: "system/define/del.htm",
+				type: "POST",
+				data: {"code":code},
+				success: function(result) {
+					result = JSON.parse(result);
+					if(result.code == 0) {
+						layer.alert('删除成功', function(index) {
+							layer.close(index);
+							window.parent.location.href="system/define/index.htm";
+						});
+					} else {
+						layer.alert(result.message, function(index) {
+							layer.close(index);
+							window.parent.location.href="system/define/index.htm";
+						});
+					}
+				},
+				error: function(result) {
+					layer.alert('删除失败，失败原因:' + JSON.stringify(result),function(index){
+						layer.close(index);
+						window.parent.location.href="system/define/index.htm";
+					});
+				}
+			});
 		});
 	}
 };

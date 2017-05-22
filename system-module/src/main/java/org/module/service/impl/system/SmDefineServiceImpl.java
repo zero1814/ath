@@ -8,6 +8,7 @@ import org.module.mapper.system.SmDefineMapper;
 import org.module.model.TreeModel;
 import org.module.model.system.SmDefine;
 import org.module.result.DataResult;
+import org.module.result.RootResult;
 import org.module.service.impl.BaseServiceImpl;
 import org.module.service.system.ISmDefineService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -75,4 +76,18 @@ public class SmDefineServiceImpl extends BaseServiceImpl<SmDefine, SmDefineMappe
 		}
 		return result;
 	}
+
+	@Override
+	public RootResult deleteByCode(String code) {
+		RootResult result = new RootResult();
+		List<SmDefine> list = mapper.findDataByParentCode(code);
+		if (list != null && list.size() > 0) {
+			result.setCode(-1);
+			result.setMessage("参数包含子项，请先删除其子项信息");
+		} else {
+			result = super.deleteByCode(code);
+		}
+		return result;
+	}
+
 }

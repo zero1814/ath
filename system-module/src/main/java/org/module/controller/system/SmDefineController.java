@@ -4,6 +4,7 @@ import org.module.helper.commons.CodeHelper;
 import org.module.model.system.SmDefine;
 import org.module.result.DataResult;
 import org.module.result.EntityResult;
+import org.module.result.RootResult;
 import org.module.service.system.ISmDefineService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -44,5 +45,11 @@ public class SmDefineController {
 		entity.setCode(CodeHelper.getUniqueCode("SD"));
 		entity.setCreateUser("test");
 		return service.insertSelective(entity);
+	}
+	
+	@RequestMapping("del")
+	@ResponseBody
+	public RootResult del(String code){
+		return service.deleteByCode(code);
 	}
 }
