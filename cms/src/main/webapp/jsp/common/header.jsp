@@ -27,4 +27,4 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		<script src="assets/commons/js/usepublic.js"></script>
 	</head>
 
-	<body class="gray-bg">
+	<body>

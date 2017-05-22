@@ -11,7 +11,8 @@ var Define = {
 						levels: 1,
 						data: result.data,
 						onNodeSelected: function(event, node) {
-							var url = "system/define/detail.htm?code="+node.id;
+							alert(JSON.stringify(node));
+							var url = "system/define/detail.htm?code="+node.code;
 							$("#P_iframe").attr('src', url);
 						}
 					});
@@ -24,7 +25,7 @@ var Define = {
 			}
 		});
 	},
-	initData: function() {
-
+	add:function(){
+		
 	}
 };

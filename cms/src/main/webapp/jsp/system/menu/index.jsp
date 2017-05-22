@@ -16,67 +16,28 @@
 		</ol>
 	</div>
 </div>
-
 <div class="wrapper wrapper-content">
 	<div class="row">
-		<div class="col-sm-12">
-			<form method="get" class="form-horizontal">
-				<div class="form-group">
-					<label class="col-sm-4 control-label">名称</label>
-					<div class="col-sm-4">
-						<input name="name" id="name" value="" type="text" class="form-control">
-					</div>
+		<div class="col-sm-5">
+			<div class="ibox float-e-margins">
+				<div class="ibox-title">
+					<h5>菜单列表</h5>
 				</div>
-				<div class="form-group">
-					<label class="col-sm-4 control-label"></label>
-					<div class="col-sm-4">
-						<a style="float: right;" href="javascript:void(0)" onclick="Menu.search();" class="btn btn-w-m btn-info">查询</a>
-					</div>
+				<div class="ibox-content">
+					<div id="treeview"></div>
 				</div>
-			</form>
+			</div>
 		</div>
-	</div>
-	<div class="row">
-		<div class="col-sm-12">
-			<div class="btn-group hidden-xs" role="table">
-				<a href="javascript:void(0)" onclick="Menu.openLayer('添加','addDiv');" class="btn btn-w-m btn-info">添加</a>
+		<div class="col-sm-5">
+			<div class="ibox float-e-margins">
+				<div class="ibox-title">
+					<h5>详情</h5>
+				</div>
+				<div class="ibox-content" style="height: 800px;">
+					<iframe id="m_iframe" width="100%" height="100%" src="" frameborder="0" seamless></iframe>
+				</div>
 			</div>
-			<table id="table" data-height="400" data-mobile-responsive="true">
-			</table>
 		</div>
-	</div>
-</div>
-<div id="addDiv" class="wrapper wrapper-content" style="display: none;overflow: hidden;">
-	<div class="row">
-		<form method="post" class="form-horizontal">
-			<div class="form-group">
-				<label class="col-sm-4 control-label">名称</label>
-				<div class="col-sm-4">
-					<input name="name" id="name" value="" type="text" class="form-control">
-				</div>
-			</div>
-			<div style="text-align: center;" class="form-group">
-				<a href="javascript:void(0)" class="btn btn-w-m btn-info" onclick="Menu.add()">保存</a>
-				<a href="javascript:void(0)" class="btn btn-w-m btn-default" onclick="Menu.closeLayer();">取消</a>
-			</div>
-		</form>
-	</div>
-</div>
-<div id="editDiv" class="wrapper wrapper-content" style="display: none;overflow: hidden;">
-	<div class="row">
-		<form method="post" class="form-horizontal">
-			<input type="hidden" id="editCode" name="editCode" value="" />
-			<div class="form-group">
-				<label class="col-sm-4 control-label">名称</label>
-				<div class="col-sm-4">
-					<input name="editName" id="editName" value="测试" type="text" class="form-control">
-				</div>
-			</div>
-			<div style="text-align: center;" class="form-group">
-				<a href="javascript:void(0)" class="btn btn-w-m btn-info" onclick="Menu.edit()">保存</a>
-				<a href="javascript:void(0)" class="btn btn-w-m btn-default" onclick="Menu.closeLayer();">取消</a>
-			</div>
-		</form>
 	</div>
 </div>
 <%@ include file="../../common/footer.jsp" %>

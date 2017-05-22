@@ -50,8 +50,21 @@ public class SmMenuController {
 			obj.put("rows", new ArrayList<SmMenuGroup>());
 			obj.put("total", 0);
 		}
-		System.out.println(obj);
 		return obj;
+	}
+
+	/**
+	 * 
+	 * 方法: detail <br>
+	 * 描述: 获取菜单信息 <br>
+	 * 作者: zhy<br>
+	 * 时间: 2017年5月22日 上午10:58:08
+	 * 
+	 * @param code
+	 * @return
+	 */
+	public String detail(String code) {
+		return "system/menu/detail";
 	}
 
 	@SuppressWarnings("unchecked")

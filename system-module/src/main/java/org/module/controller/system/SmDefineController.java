@@ -1,6 +1,6 @@
 package org.module.controller.system;
 
-import org.module.result.DataMapResult;
+import org.module.result.DataResult;
 import org.module.result.EntityResult;
 import org.module.service.system.ISmDefineService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,14 +23,14 @@ public class SmDefineController {
 
 	@RequestMapping("data")
 	@ResponseBody
-	public DataMapResult data() {
-		return service.findDataAll();
+	public DataResult data() {
+		return service.treeData();
 	}
 
 	@RequestMapping("detail")
 	public String detail(String code, ModelMap model) {
 		EntityResult result = service.selectByCode(code);
-		if(result.getCode() == 0){
+		if (result.getCode() == 0) {
 			model.addAttribute("define", result.getEntity());
 		}
 		return "jsp/system/define/detail";

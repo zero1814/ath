@@ -24,7 +24,18 @@ public class SmMenuServiceImpl extends BaseServiceImpl<SmMenu, SmMenuMapper, SmM
 		dto.setParentCode("0");
 		return getMenus(dto);
 	}
+	
+	
 
+	/**
+	 * 
+	 * 方法: getMenus <br>
+	 * 描述: 获取所有菜单列表 <br>
+	 * 作者: zhy<br>
+	 * 时间: 2017年5月22日 上午10:06:45
+	 * @param dto
+	 * @return
+	 */
 	private List<SmMenu> getMenus(SmMenuDto dto) {
 		// 获取一级菜单
 		List<SmMenu> list = mapper.findEntityAllForGroup(dto);
@@ -42,5 +53,4 @@ public class SmMenuServiceImpl extends BaseServiceImpl<SmMenu, SmMenuMapper, SmM
 		}
 		return list;
 	}
-
 }
