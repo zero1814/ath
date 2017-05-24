@@ -46,10 +46,18 @@ public class SmDefineController {
 		entity.setCreateUser("test");
 		return service.insertSelective(entity);
 	}
-	
+
 	@RequestMapping("del")
 	@ResponseBody
-	public RootResult del(String code){
+	public RootResult del(String code) {
 		return service.deleteByCode(code);
+	}
+
+	@RequestMapping("edit")
+	@ResponseBody
+	public EntityResult edit(SmDefine entity) {
+		entity.setUpdateUser("test");
+		return service.updateByCode(entity);
+
 	}
 }
