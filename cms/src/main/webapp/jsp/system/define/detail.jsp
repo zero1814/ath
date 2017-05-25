@@ -14,10 +14,8 @@
 	</div>
 	<div class="row" style="text-align: center;">
 		<a href="javascript:void(0)" style="margin: 15px;" class="btn btn-w-m btn-info" onclick="Define.openAdd();">添加子项</a>
-		<c:if test="${define.parentCode != '0' }">
-			<a href="javascript:void(0)" style="margin: 15px;" class="btn btn-w-m btn-warning" onclick="Define.openEdit();">编辑</a>
-			<a href="javascript:void(0)" style="margin: 15px;" class="btn btn-w-m btn-danger" onclick="Define.del('${define.code }');">删除</a>
-		</c:if>
+		<a href="javascript:void(0)" style="margin: 15px;" class="btn btn-w-m btn-warning" onclick="Define.openEdit();">编辑</a>
+		<a href="javascript:void(0)" style="margin: 15px;" class="btn btn-w-m btn-danger" onclick="Define.del('${define.code }');">删除</a>
 	</div>
 </div>
 <div id="addDiv" class="col-sm-6" style="display: none;overflow: hidden;">

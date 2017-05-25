@@ -30,7 +30,7 @@
 					<h5>详情</h5>
 				</div>
 				<div class="ibox-content" style="height: 800px;">
-					<iframe id="P_iframe" width="100%" height="100%" src="" frameborder="0" data-id="" seamless></iframe>
+					<iframe id="P_iframe" width="100%" height="100%" src="" data-id="" seamless></iframe>
 				</div>
 			</div>
 		</div>
@@ -40,7 +40,7 @@
 <script src="assets/commons/js/system/system/define.js"></script>
 <script>
 	$(document).ready(function() {
-		Define.initTree();
+		Define.init();
 	});
 </script>
 <%@ include file="../../common/footer.jsp"%>

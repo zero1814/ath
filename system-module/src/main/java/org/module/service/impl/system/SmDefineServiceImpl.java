@@ -56,6 +56,12 @@ public class SmDefineServiceImpl extends BaseServiceImpl<SmDefine, SmDefineMappe
 		return trees;
 	}
 
+	/**
+	 * 
+	 * 方法: treeData <br>
+	 * @return 
+	 * @see org.module.service.system.ISmDefineService#treeData()
+	 */
 	@Override
 	public DataResult treeData() {
 		DataResult result = new DataResult();

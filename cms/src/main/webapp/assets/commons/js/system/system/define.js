@@ -1,6 +1,6 @@
 var Define = {
 	Layer : '',
-	initTree : function() {
+	init : function() {
 		$.ajax({
 			url : 'system/define/data.htm',
 			type : "get",
@@ -8,14 +8,17 @@ var Define = {
 			dataType : "json",
 			success : function(result) {
 				if (result.code == 0) {
+					var tree = [{code:"0",text:'参数配置',nodes:result.data}];
 					$('#treeview').treeview(
 							{
 								levels : 1,
-								data : result.data,
+								data : tree,
 								onNodeSelected : function(event, node) {
-									var url = "system/define/detail.htm?code="
+									if(node.code != "0"){
+										var url = "system/define/detail.htm?code="
 											+ node.code;
-									$("#P_iframe").attr('src', url);
+										$("#P_iframe").attr('src', url);										
+									}
 								}
 							});
 				} else {
