@@ -1,18 +1,13 @@
 package org.module.controller.system.menu;
 
-import java.util.ArrayList;
-import java.util.List;
 
 import org.module.commons.annotation.obj.Object;
 import org.module.dto.system.menu.SmMenuDto;
-import org.module.dto.system.menu.SmMenuGroupDto;
 import org.module.helper.commons.CodeHelper;
 import org.module.model.system.menu.SmMenu;
-import org.module.model.system.menu.SmMenuGroup;
 import org.module.result.DataResult;
 import org.module.result.EntityResult;
 import org.module.result.RootResult;
-import org.module.service.system.menu.ISmMenuGroupService;
 import org.module.service.system.menu.ISmMenuService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -27,8 +22,6 @@ public class SmMenuController {
 
 	@Autowired
 	private ISmMenuService service;
-	@Autowired
-	private ISmMenuGroupService menuGroupService;
 
 	@RequestMapping("index")
 	public String index(String groupCode, ModelMap model) {
@@ -63,15 +56,9 @@ public class SmMenuController {
 		return "jsp/system/menu/detail";
 	}
 
-	@SuppressWarnings("unchecked")
 	@RequestMapping("addindex")
-	public String addIndex(ModelMap model) {
-		DataResult menuGroupDataResult = menuGroupService.findDataAll(new SmMenuGroupDto());
-		List<SmMenuGroup> groups = new ArrayList<SmMenuGroup>();
-		if (menuGroupDataResult.getCode() == 0) {
-			groups = (List<SmMenuGroup>) menuGroupDataResult.getData();
-		}
-		model.addAttribute("menuGroups", groups);
+	public String addIndex(String code,ModelMap model) {
+		model.addAttribute("parentCode", code);
 		return "jsp/system/menu/add";
 	}
 
@@ -83,7 +70,6 @@ public class SmMenuController {
 		return service.insertSelective(entity);
 	}
 
-	@SuppressWarnings("unchecked")
 	@RequestMapping("editindex")
 	public String editIndex(ModelMap model, String code) {
 		EntityResult result = service.selectByCode(code);
@@ -92,12 +78,6 @@ public class SmMenuController {
 		} else {
 			model.addAttribute("menu", new SmMenu());
 		}
-		DataResult menuGroupDataResult = menuGroupService.findDataAll(new SmMenuGroupDto());
-		List<SmMenuGroup> groups = new ArrayList<SmMenuGroup>();
-		if (menuGroupDataResult.getCode() == 0) {
-			groups = (List<SmMenuGroup>) menuGroupDataResult.getData();
-		}
-		model.addAttribute("menuGroups", groups);
 		return "jsp/system/menu/edit";
 	}
 

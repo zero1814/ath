@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ include file="../../common/header.jsp"%>
-<div class="wrapper wrapper-content">
+<div class="wrapper wrapper-content animated fadeInRight">
 	<div class="row" style="font-size:18px;">
         <ul class="list-group">
             <li class="list-group-item">
@@ -18,7 +18,7 @@
 		<a href="javascript:void(0)" style="margin: 15px;" class="btn btn-w-m btn-danger" onclick="Define.del('${define.code }');">删除</a>
 	</div>
 </div>
-<div id="addDiv" class="col-sm-6" style="display: none;overflow: hidden;">
+<div id="addDiv" class="col-sm-6" style="display: none;overflow: hidden;margin-top:5px;">
 	<div class="ibox">
 		<div class="ibox-content">
 			<form id="addFrm" method="post" class="form-horizontal">
@@ -37,7 +37,7 @@
 		</div>
 	</div>
 </div>
-<div id="editDiv" class="col-sm-6" style="display: none;overflow: hidden;">
+<div id="editDiv" class="col-sm-6" style="display: none;overflow: hidden;margin-top:5px;">
 	<div class="ibox">
 		<div class="ibox-content">
 			<form id="editFrm" method="post" class="form-horizontal">

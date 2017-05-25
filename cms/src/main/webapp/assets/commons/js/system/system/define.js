@@ -35,7 +35,7 @@ var Define = {
 			type: 1,
 			title: titleVal,
 			skin: 'layui-layer-lan', //加上边框
-			area: ['450px', '220px'], //宽高
+			area: ['450px', '240px'], //宽高
 			content: $("#" + layerDivId)
 		});
 	},

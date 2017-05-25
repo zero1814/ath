@@ -30,7 +30,7 @@
 					<h5>详情</h5>
 				</div>
 				<div class="ibox-content" style="height: 800px;">
-					<iframe id="P_iframe" width="100%" height="100%" src="" data-id="" seamless></iframe>
+					<iframe id="P_iframe" width="100%" height="100%" src="" data-id="" frameborder="0" seamless></iframe>
 				</div>
 			</div>
 		</div>
