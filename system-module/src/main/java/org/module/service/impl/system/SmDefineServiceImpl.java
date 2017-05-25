@@ -37,29 +37,11 @@ public class SmDefineServiceImpl extends BaseServiceImpl<SmDefine, SmDefineMappe
 		return null;
 	}
 
-	private List<TreeModel> getData(String parentCode) {
-		List<TreeModel> trees = new ArrayList<TreeModel>();
-		List<SmDefine> list = mapper.findDataByParentCode(parentCode);
-		if (list != null && list.size() > 0) {
-			for (SmDefine define : list) {
-				List<TreeModel> sub = getData(define.getCode());
-				TreeModel tree = new TreeModel();
-				tree.setId(define.getId());
-				tree.setCode(define.getCode());
-				tree.setText(define.getName());
-				if (sub != null && sub.size() > 0) {
-					tree.setNodes(sub);
-				}
-				trees.add(tree);
-			}
-		}
-		return trees;
-	}
-
 	/**
 	 * 
 	 * 方法: treeData <br>
-	 * @return 
+	 * 
+	 * @return
 	 * @see org.module.service.system.ISmDefineService#treeData()
 	 */
 	@Override
@@ -94,6 +76,35 @@ public class SmDefineServiceImpl extends BaseServiceImpl<SmDefine, SmDefineMappe
 			result = super.deleteByCode(code);
 		}
 		return result;
+	}
+
+	/**
+	 * 
+	 * 方法: getData <br>
+	 * 描述: 递归查询参数数据 <br>
+	 * 作者: zhy<br>
+	 * 时间: 2017年5月25日 上午11:19:06
+	 * 
+	 * @param parentCode
+	 * @return
+	 */
+	private List<TreeModel> getData(String parentCode) {
+		List<TreeModel> trees = new ArrayList<TreeModel>();
+		List<SmDefine> list = mapper.findDataByParentCode(parentCode);
+		if (list != null && list.size() > 0) {
+			for (SmDefine define : list) {
+				List<TreeModel> sub = getData(define.getCode());
+				TreeModel tree = new TreeModel();
+				tree.setId(define.getId());
+				tree.setCode(define.getCode());
+				tree.setText(define.getName());
+				if (sub != null && sub.size() > 0) {
+					tree.setNodes(sub);
+				}
+				trees.add(tree);
+			}
+		}
+		return trees;
 	}
 
 }

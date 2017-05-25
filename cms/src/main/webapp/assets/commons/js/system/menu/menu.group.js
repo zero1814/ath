@@ -15,6 +15,10 @@ var MenuGroup = {
 		}, {
 			field: 'createTime',
 			title: '创建时间'
+		},{
+			filed:'menu',
+			title:'菜单维护',
+			formatter: menuHref
 		}, {
 			field: 'operate',
 			title: '操作',
@@ -73,7 +77,10 @@ var MenuGroup = {
 		UsePublic.del(url, param, type);
 	}
 };
-
+function menuHref(value, row, index) {
+	var html = "<a style='margin:10px;' class='btn btn-info btn-sm' href='system/menu/index.htm?groupCode="+row.code+"'>维护</a>";
+	return html;
+}
 function initOperate(value, row, index) {
 	var html = "<a style='margin:10px;' class='btn btn-info btn-sm' href='javacript:void(0)' onclick='MenuGroup.openEdit()'>编辑</a>";
 	html += "<a style='margin:10px;' class='btn btn-info btn-sm' href='javacript:void(0)' onclick='MenuGroup.del(\"" + value + "\")'>删除</a>";

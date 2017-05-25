@@ -1,9 +1,9 @@
 var Menu = {
-	init : function() {
+	init : function(group) {
 		$.ajax({
 			url : 'system/menu/data.htm',
 			type : "get",
-			data : {},
+			data : {groupCode:group},
 			dataType : "json",
 			success : function(result) {
 				if (result.code == 0) {
@@ -11,8 +11,10 @@ var Menu = {
 						levels : 1,
 						data : result.data,
 						onNodeSelected : function(event, node) {
-							var url = "system/menu/detail.htm?code=" + node.id;
-							$("#m_iframe").attr('src', url);
+							if(node.code != "0"){
+								var url = "system/menu/detail.htm?code=" + node.code;
+								$("#m_iframe").attr('src', url);								
+							}
 						}
 					});
 				} else {

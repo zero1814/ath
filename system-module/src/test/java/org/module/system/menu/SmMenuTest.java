@@ -98,6 +98,6 @@ public class SmMenuTest {
 
 	@Test
 	public void menus() {
-		System.out.println(JSON.toJSON(service.menus("SMG1000")));
+		System.out.println(JSON.toJSON(service.tree("SMG1000")));
 	}
 }

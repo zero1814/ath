@@ -41,10 +41,10 @@
 	</div>
 </div>
 <%@ include file="../../common/footer.jsp" %>
-<script src="assets/commons/js/table.js"></script>
+<script src="assets/plugins/bootstrap/plugins/bootstrap-treeview/js/bootstrap-treeview.min.js"></script>
 <script src="assets/commons/js/system/menu/menu.js"></script>
 <script>
 	$(document).ready(function() {
-		Menu.data();
+		Menu.init('${groupCode}');
 	});
 </script>

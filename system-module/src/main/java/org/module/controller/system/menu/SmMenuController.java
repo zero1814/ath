@@ -11,7 +11,6 @@ import org.module.model.system.menu.SmMenu;
 import org.module.model.system.menu.SmMenuGroup;
 import org.module.result.DataResult;
 import org.module.result.EntityResult;
-import org.module.result.PageResult;
 import org.module.result.RootResult;
 import org.module.service.system.menu.ISmMenuGroupService;
 import org.module.service.system.menu.ISmMenuService;
@@ -20,8 +19,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
-
-import com.alibaba.fastjson.JSONObject;
 
 @Controller
 @RequestMapping("system/menu/")
@@ -34,23 +31,15 @@ public class SmMenuController {
 	private ISmMenuGroupService menuGroupService;
 
 	@RequestMapping("index")
-	public String index() {
+	public String index(String groupCode, ModelMap model) {
+		model.addAttribute("groupCode", groupCode);
 		return "jsp/system/menu/index";
 	}
 
 	@RequestMapping("data")
 	@ResponseBody
-	public JSONObject data(SmMenuDto dto) {
-		JSONObject obj = new JSONObject();
-		PageResult result = service.findEntityToPage(dto);
-		if (result.getCode() == 0) {
-			obj.put("rows", result.getRows());
-			obj.put("total", result.getTotal());
-		} else {
-			obj.put("rows", new ArrayList<SmMenuGroup>());
-			obj.put("total", 0);
-		}
-		return obj;
+	public DataResult data(String groupCode) {
+		return service.tree(groupCode);
 	}
 
 	/**
@@ -63,8 +52,15 @@ public class SmMenuController {
 	 * @param code
 	 * @return
 	 */
-	public String detail(String code) {
-		return "system/menu/detail";
+	@RequestMapping("detail")
+	public String detail(String code,ModelMap model) {
+		EntityResult result = service.selectByCode(code);
+		if(result.getCode()==0){
+			model.addAttribute("menu",result.getEntity());
+		}else{
+			model.addAttribute("menu",new SmMenu());
+		}
+		return "jsp/system/menu/detail";
 	}
 
 	@SuppressWarnings("unchecked")
