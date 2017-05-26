@@ -13,15 +13,7 @@ public class TreeModel extends BaseModel {
 
 	private String text;
 
-	private List<TreeModel> nodes;
-
-	public List<TreeModel> getNodes() {
-		return nodes;
-	}
-
-	public void setNodes(List<TreeModel> nodes) {
-		this.nodes = nodes;
-	}
+	private List<? extends TreeModel> nodes;
 
 	public String getText() {
 		return text;
@@ -29,6 +21,14 @@ public class TreeModel extends BaseModel {
 
 	public void setText(String text) {
 		this.text = text;
+	}
+
+	public List<? extends TreeModel> getNodes() {
+		return nodes;
+	}
+
+	public void setNodes(List<? extends TreeModel> nodes) {
+		this.nodes = nodes;
 	}
 
 }

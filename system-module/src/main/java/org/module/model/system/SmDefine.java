@@ -6,7 +6,7 @@ import org.module.commons.annotation.db.Column;
 import org.module.commons.annotation.db.Table;
 import org.module.commons.annotation.obj.Attribute;
 import org.module.commons.annotation.obj.Object;
-import org.module.model.BaseModel;
+import org.module.model.TreeModel;
 
 /**
  * 
@@ -17,7 +17,7 @@ import org.module.model.BaseModel;
  */
 @Table(database = "systemmodule", name = "sm_define", comment = "系统模块参数表")
 @Object(name = "系统模块参数表", description = "配置系统模块相关")
-public class SmDefine extends BaseModel {
+public class SmDefine extends TreeModel {
 
 	/**
 	 * 父级编码

@@ -6,11 +6,11 @@ import org.module.commons.annotation.db.Column;
 import org.module.commons.annotation.db.Table;
 import org.module.commons.annotation.obj.Attribute;
 import org.module.commons.annotation.obj.Object;
-import org.module.model.BaseModel;
+import org.module.model.TreeModel;
 
 @Table(database = "systemmodule", name = "sm_menu", comment = "菜单表")
 @Object(name = "系统菜单", description = "管理系统菜单")
-public class SmMenu extends BaseModel {
+public class SmMenu extends TreeModel {
 
 	@Column(name = "parent_code", comment = "父级编码", defaultValue = "0")
 	@Attribute(name = "parentCode", description = "上级菜单编码", defaultValue = "0")

@@ -36,16 +36,18 @@
 		parameterType="java.lang.String">
 		select
 		<include refid="Base_Column_List" />
-		from sm_menu
+		from systemmodule.sm_menu
 		where `code`=#{code,jdbcType=VARCHAR}
 	</select>
-	<delete id="deleteByCode" parameterType="java.lang.String">
-		delete from sm_menu
-		where `code`=#{code,jdbcType=VARCHAR}
-		and <![CDATA[ sm.create_user <>'system' ]]>
-	</delete>
+	<update id="deleteByCode" parameterType="java.lang.String">
+		update systemmodule.sm_menu 
+		<set>is_deleted = 1</set>
+		<where>
+			 `code`=#{code,jdbcType=VARCHAR}
+		</where>
+	</update>
 	<insert id="insertSelective" parameterType="org.module.model.system.menu.SmMenu">
-		insert into sm_menu
+		insert into systemmodule.sm_menu
 		<trim prefix="(" suffix=")" suffixOverrides=",">
 			uid,
 			`code`,
@@ -98,7 +100,7 @@
 		</trim>
 	</insert>
 	<update id="updateByCode" parameterType="org.module.model.system.menu.SmMenu">
-		update sm_menu
+		update systemmodule.sm_menu
 		<set>
 			<if test="parentCode != null and parentCode != ''">
 				parent_code = #{parentCode,jdbcType=VARCHAR},
@@ -137,12 +139,13 @@
 		SELECT
 		psm.`name`
 		FROM
-		sm_menu psm
+		systemmodule.sm_menu psm
 		WHERE
 		psm.`code` = sm.parent_code
 		),
 		'--'
-		) AS parent_name,
+		) AS
+		parent_name,
 		smg.`name` AS
 		group_name,
 		sm.url AS url,
@@ -151,15 +154,18 @@
 		DATE_FORMAT(
 		sm.create_time,
 		'%Y-%m-%d %H:%i:%s'
-		) AS create_time,
+		) AS
+		create_time,
 		sm.update_user,
 		DATE_FORMAT(
 		sm.update_time,
-		'%Y-%m-%d %H:%i:%s'
+		'%Y-%m-%d
+		%H:%i:%s'
 		) AS update_time
 		FROM
-		sm_menu AS sm
-		LEFT JOIN sm_menu_group AS smg ON sm.group_code =
+		systemmodule.sm_menu AS sm
+		LEFT JOIN
+		systemmodule.sm_menu_group AS smg ON sm.group_code =
 		smg.`code`
 		<where>
 			sm.is_deleted = 0
@@ -179,8 +185,9 @@
 		SELECT
 		count(1)
 		FROM
-		sm_menu AS sm
-		LEFT JOIN sm_menu_group AS smg ON
+		systemmodule.sm_menu AS sm
+		LEFT JOIN
+		systemmodule.sm_menu_group AS smg ON
 		sm.group_code = smg.`code`
 		<where>
 			sm.is_deleted = 0
@@ -213,9 +220,9 @@
 		%H:%i:%s'
 		) AS update_time
 		from
-		sm_menu
+		systemmodule.sm_menu
 		AS sm
-		LEFT JOIN sm_menu_group AS smg
+		LEFT JOIN systemmodule.sm_menu_group AS smg
 		ON sm.group_code =
 		smg.`code`
 	</select>
@@ -226,12 +233,22 @@
 		sm.`name`,
 		sm.url
 		FROM
-		sm_menu AS sm
+		systemmodule.sm_menu AS sm
 		<where>
 			flag_able = 0
 			and is_deleted = 0
-			and group_code = #{groupCode,jdbcType=VARCHAR}
-			and parent_code = #{parentCode,jdbcType=VARCHAR}
+			and group_code =
+			#{groupCode,jdbcType=VARCHAR}
+			and parent_code =
+			#{parentCode,jdbcType=VARCHAR}
 		</where>
+	</select>
+	<!-- 查询菜单是否有子级菜单 -->
+	<select id="findExistsSubMenus" parameterType="java.lang.String"
+		resultType="java.lang.Integer">
+		select count(1) from systemmodule.sm_menu where parent_code
+		= #{parentCode,jdbcType=VARCHAR} and
+		flag_able = 0
+		and is_deleted = 0
 	</select>
 </mapper>

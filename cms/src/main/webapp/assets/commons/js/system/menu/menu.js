@@ -12,9 +12,12 @@ var Menu = {
 						levels : 1,
 						data : result.data,
 						onNodeSelected : function(event, node) {
-							if(node.code != "0"){
+							if(node.code == "0"){
+								var url = "system/menu/addindex.htm?code=0&group="+node.groupCode;
+								$("#m_iframe").attr('src', url);
+							}else{
 								var url = "system/menu/detail.htm?code=" + node.code;
-								$("#m_iframe").attr('src', url);								
+								$("#m_iframe").attr('src', url);
 							}
 						}
 					});
@@ -41,10 +44,10 @@ var Menu = {
 			layer.close(Menu.Layer);
 		}
 	},
-	add:function(){
+	add:function(group){
 		var param = $("#addFrm").serializeArray();
 		$.ajax({
-			url: "system/define/add.htm",
+			url: "system/menu/add.htm",
 			type: "POST",
 			data: param,
 			success: function(result) {
@@ -54,22 +57,22 @@ var Menu = {
 						// 按钮
 						btn: ['是', '否']
 					}, function() {
-						window.location.href="system/menu/permission/addindex.htm?menu="+result.entity.code;
+						window.location.href="system/menu/permission.htm?code="+result.entity.code;
 					},function(){
-						layer.close(index);
-						window.parent.location.href="system/define/index.htm";
+						layer.close(Menu.Layer);
+						window.parent.location.href="system/menu/index.htm?groupCode="+group;
 					});
 				} else {
-					layer.alert(result.message, function(index) {
-						layer.close(index);
-						window.parent.location.href="system/define/index.htm";
+					layer.alert(result.message, function() {
+						layer.close(Menu.Layer);
+						window.parent.location.href="system/menu/index.htm?groupCode="+group;
 					});
 				}
 			},
 			error: function(result) {
 				layer.alert('添加失败，失败原因:' + JSON.stringify(result),function(index){
 					layer.close(index);
-					window.parent.location.href="system/define/index.htm";
+					window.parent.location.href="system/menu/index.htm?groupCode="+group;
 				});
 			}
 		});
@@ -77,7 +80,36 @@ var Menu = {
 	edit:function(code){
 		
 	},
-	del:function(code){
-		
+	del:function(code,group){
+		layer.confirm('您确认要删除选中的菜单吗？', {
+			btn: ['确认', '取消']
+			// 按钮
+		}, function() {
+			$.ajax({
+				url: "system/menu/del.htm",
+				type: "POST",
+				data: {"code":code},
+				success: function(result) {
+					result = JSON.parse(result);
+					if(result.code == 0) {
+						layer.alert('删除成功', function(index) {
+							layer.close(index);
+							window.parent.location.href="system/menu/index.htm?groupCode="+group;
+						});
+					} else {
+						layer.alert(result.message, function(index) {
+							layer.close(index);
+							window.parent.location.href="system/menu/index.htm?groupCode="+group;
+						});
+					}
+				},
+				error: function(result) {
+					layer.alert('删除失败，失败原因:' + JSON.stringify(result),function(index){
+						layer.close(index);
+						window.parent.location.href="system/menu/index.htm?groupCode="+group;
+					});
+				}
+			});
+		});
 	}
 }

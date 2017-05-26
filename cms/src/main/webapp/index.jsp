@@ -53,84 +53,9 @@
 							<i	class="fa fa-home"></i> <span class="nav-label">首页</span>
 						</a>
 					</li>
-					<c:forEach var="m" items="${menus}">
-						<li>
-							<c:choose>
-								<c:when test="${m.url == '' }">
-									<a href="#">
-										<c:if test="${m.icon != '' }">
-											<i class="fa ${m.icon }"></i>
-										</c:if>
-										<span class="nav-label">${m.name }</span>
-										<!-- 遍历二级菜单 -->
-										<c:if test="${m.childMenu != null && m.childMenu.size()>0 }">
-											<span class="fa arrow"></span>								
-										</c:if>
-									</a>
-									<ul class="nav nav-second-level">
-										<c:forEach var="s" items="${m.childMenu}">
-											<li>
-												<c:choose>
-													<c:when test="${s.url == '' }">
-														<a href="#">
-															<c:if test="${s.icon != '' }">
-																<i class="fa ${s.icon }"></i>
-															</c:if>
-															${s.name }
-														</a>
-														<ul class="nav nav-third-level">
-															<c:forEach var="t" items="${s.childMenu}">
-																<li>
-																	<c:choose>
-																		<c:when test="${t.url == '' }">
-																			<a href="#">
-																				<c:if test="${t.icon != '' }">
-																					<i class="fa ${t.icon }"></i>
-																				</c:if>
-																				${t.name }
-																			</a>
-																		</c:when>
-																		<c:otherwise>
-																			<a class="J_menuItem" href="${t.url }">
-																				<c:if test="${t.icon != '' }">
-																					<i class="fa ${t.icon }"></i>
-																				</c:if>
-																				<span class="nav-label">${t.name }</span>
-																				<!-- 遍历二级菜单 -->
-																				<c:if test="${t.childMenu != null && t.childMenu.size()>0 }">
-																					<span class="fa arrow"></span>								
-																				</c:if>
-																			</a>
-																		</c:otherwise>
-																	</c:choose>
-																</li>
-															</c:forEach>
-														</ul>
-													</c:when>
-													<c:otherwise>
-														<a class="J_menuItem" href="${s.url }">
-															<c:if test="${s.icon != '' }">
-																<i class="fa ${s.icon }"></i>
-															</c:if>
-															<span class="nav-label">${s.name }</span>
-														</a>
-													</c:otherwise>
-												</c:choose>
-											</li>
-										</c:forEach>
-									</ul>
-								</c:when>
-								<c:otherwise>
-									<a class="J_menuItem" href="${m.url }">
-										<c:if test="${m.icon != '' }">
-											<i class="fa ${m.icon }"></i>
-										</c:if>
-										<span class="nav-label">${m.name }</span>
-									</a>
-								</c:otherwise>
-							</c:choose>
-						</li>
-					</c:forEach>
+					<c:set var="index" value="0" scope="request" /><!-- 自增序号，注意scope-->  
+					<c:set var="level" value="0" scope="request" /><!-- 记录树的层次，注意scope-->
+					<c:import url="jsp/system/menu/menu.jsp" />
 				</ul>
 			</div>
 		</nav>

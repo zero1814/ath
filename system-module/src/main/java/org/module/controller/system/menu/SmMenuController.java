@@ -1,8 +1,6 @@
 package org.module.controller.system.menu;
 
-
 import org.module.commons.annotation.obj.Object;
-import org.module.dto.system.menu.SmMenuDto;
 import org.module.helper.commons.CodeHelper;
 import org.module.model.system.menu.SmMenu;
 import org.module.result.DataResult;
@@ -46,19 +44,20 @@ public class SmMenuController {
 	 * @return
 	 */
 	@RequestMapping("detail")
-	public String detail(String code,ModelMap model) {
+	public String detail(String code, ModelMap model) {
 		EntityResult result = service.selectByCode(code);
-		if(result.getCode()==0){
-			model.addAttribute("menu",result.getEntity());
-		}else{
-			model.addAttribute("menu",new SmMenu());
+		if (result.getCode() == 0) {
+			model.addAttribute("menu", result.getEntity());
+		} else {
+			model.addAttribute("menu", new SmMenu());
 		}
 		return "jsp/system/menu/detail";
 	}
 
 	@RequestMapping("addindex")
-	public String addIndex(String code,ModelMap model) {
+	public String addIndex(String code,String group, ModelMap model) {
 		model.addAttribute("parentCode", code);
+		model.addAttribute("groupCode", group);
 		return "jsp/system/menu/add";
 	}
 
@@ -96,17 +95,18 @@ public class SmMenuController {
 
 	/**
 	 * 
-	 * 方法: getMenusByGroup <br>
-	 * 描述: 根据菜单组编码获取对应菜单数据列表 <br>
+	 * 方法: permission <br>
+	 * 描述: 添加权限页 <br>
 	 * 作者: zhy<br>
-	 * 时间: 2017年2月17日 下午5:02:25
+	 * 时间: 2017年5月26日 上午9:11:54
 	 * 
-	 * @param dto
+	 * @param code
+	 * @param model
 	 * @return
 	 */
-	@RequestMapping("getparentmenus")
-	@ResponseBody
-	public DataResult getMenusByGroup(SmMenuDto dto) {
-		return service.findDataAll(dto);
+	@RequestMapping("permission")
+	public String permission(String code, ModelMap model) {
+		model.addAttribute("menuCode", code);
+		return "jsp/system/menu/permission";
 	}
 }

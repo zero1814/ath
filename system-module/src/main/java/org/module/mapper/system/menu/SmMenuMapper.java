@@ -26,4 +26,16 @@ public interface SmMenuMapper extends BaseMapper<SmMenu, SmMenuDto> {
 	 * @return
 	 */
 	List<SmMenu> findEntityAllForGroup(SmMenuDto dto);
+
+	/**
+	 * 
+	 * 方法: findExistsSubMenus <br>
+	 * 描述: 查询菜单是否有子级菜单 <br>
+	 * 作者: zhy<br>
+	 * 时间: 2017年5月26日 上午10:40:03
+	 * 
+	 * @param parentCode
+	 * @return
+	 */
+	Integer findExistsSubMenus(String parentCode);
 }

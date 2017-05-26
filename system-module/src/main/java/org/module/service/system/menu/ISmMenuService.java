@@ -25,4 +25,16 @@ public interface ISmMenuService extends IBaseService<SmMenu, SmMenuDto> {
 	 * @return
 	 */
 	DataResult tree(String groupCode);
+
+	/**
+	 * 
+	 * 方法: menus <br>
+	 * 描述: 获取可用的菜单列表 <br>
+	 * 作者: zhy<br>
+	 * 时间: 2017年5月26日 下午3:07:38
+	 * 
+	 * @param groupCode
+	 * @return
+	 */
+	DataResult menus(String groupCode);
 }

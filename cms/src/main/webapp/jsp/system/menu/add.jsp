@@ -3,8 +3,9 @@
 <%@ include file="../../common/header.jsp" %>
 <div  class="wrapper wrapper-content animated fadeInRight">
 	<div class="row">
-		<form method="post" class="form-horizontal">
+		<form id="addFrm" method="post" class="form-horizontal">
 			<input type="hidden" name="parentCode" id="parentCode" value="${parentCode }">
+			<input type="hidden" name="groupCode" id="groupCode" value="${groupCode }">
 			<div class="form-group">
 				<label class="col-sm-4 control-label">名称</label>
 				<div class="col-sm-4">
@@ -21,10 +22,11 @@
 				</div>
 			</div>
 			<div style="text-align: center;" class="form-group">
-				<a href="javascript:void(0)" class="btn btn-w-m btn-info" onclick="MenuGroup.add()">保存</a>
+				<a href="javascript:void(0)" class="btn btn-w-m btn-info" onclick="Menu.add('${groupCode}')">保存</a>
 				<a href="system/menu/detail.htm?code=${parentCode }" class="btn btn-w-m btn-default">取消</a>
 			</div>
 		</form>
 	</div>
 </div>
+<script src="assets/commons/js/system/menu/menu.js"></script>
 <%@ include file="../../common/footer.jsp" %>

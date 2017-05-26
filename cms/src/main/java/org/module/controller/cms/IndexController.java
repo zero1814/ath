@@ -3,17 +3,23 @@ package org.module.controller.cms;
 import java.util.List;
 
 import org.module.model.system.menu.SmMenu;
+import org.module.result.DataResult;
 import org.module.service.cms.IndexService;
+import org.module.service.system.menu.ISmMenuService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
 public class IndexController {
 
 	@Autowired
 	private IndexService service;
+
+	@Autowired
+	private ISmMenuService menuService;
 
 	/**
 	 * 方法: index <br>
@@ -30,18 +36,9 @@ public class IndexController {
 		return "index";
 	}
 
-	/**
-	 * 
-	 * 方法: subIndex <br>
-	 * 描述: iframe内嵌加载首页 <br>
-	 * 作者: zhy<br>
-	 * 时间: 2017年4月10日 上午10:23:37
-	 * 
-	 * @param model
-	 * @return
-	 */
-	@RequestMapping("subindex")
-	public String subIndex(ModelMap model) {
-		return null;
+	@RequestMapping("index/menus")
+	@ResponseBody
+	public DataResult menus() {
+		return menuService.menus("SMG1000");
 	}
 }

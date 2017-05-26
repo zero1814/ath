@@ -24,29 +24,40 @@ public class IndexServiceImpl implements IndexService {
 
 	@Override
 	public List<SmMenu> initMenus() {
-		List<SmMenu> menus = new ArrayList<SmMenu>();
+		List<SmMenu> menus = null;
 		String groupCode = "SMG1000";
 		try {
-			SmMenuDto dto = new SmMenuDto();
-			dto.setGroupCode(groupCode);
-			dto.setParentCode("0");
-			menus = menuMapper.findEntityAllForGroup(dto);
-			if (menus != null && menus.size() > 0) {
-				for (SmMenu smMenu : menus) {
-					SmMenuDto subDto = new SmMenuDto();
-					subDto.setParentCode(smMenu.getCode());
-					subDto.setGroupCode(groupCode);
-					List<SmMenu> subMenus = menuMapper.findEntityAllForGroup(subDto);
-					if (subMenus != null && subMenus.size() > 0) {
-						smMenu.setChildMenu(subMenus);
-					}
-				}
-
-			}
+			menus = getData("0", groupCode);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		return menus;
 	}
 
+	/**
+	 * 
+	 * 方法: getMenus <br>
+	 * 描述: 获取所有菜单列表 <br>
+	 * 作者: zhy<br>
+	 * 时间: 2017年5月22日 上午10:06:45
+	 * 
+	 * @param dto
+	 * @return
+	 */
+	private List<SmMenu> getData(String parentCode, String groupCode) {
+		// 获取一级菜单
+		SmMenuDto dto = new SmMenuDto();
+		dto.setParentCode(parentCode);
+		dto.setGroupCode(groupCode);
+		List<SmMenu> list = menuMapper.findEntityAllForGroup(dto);
+		if (list != null && list.size() > 0) {
+			for (SmMenu menu : list) {
+				List<SmMenu> sub = getData(menu.getCode(), groupCode);
+				if (sub != null && sub.size() > 0) {
+					menu.setChildMenu(sub);
+				}
+			}
+		}
+		return list;
+	}
 }
