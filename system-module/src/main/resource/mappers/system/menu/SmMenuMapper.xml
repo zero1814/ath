@@ -231,7 +231,8 @@
 		SELECT
 		sm.`code`,
 		sm.`name`,
-		sm.url
+		sm.url,
+		sm.icon
 		FROM
 		systemmodule.sm_menu AS sm
 		<where>
