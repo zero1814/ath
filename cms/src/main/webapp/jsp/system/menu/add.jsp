@@ -13,6 +13,18 @@
 				</div>
 			</div>
 			<div class="form-group">
+				<label class="col-sm-4 control-label">链接地址</label>
+				<div class="col-sm-4">
+					<input name="url" id="url" value="" type="text" class="form-control">
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="col-sm-4 control-label">图标</label>
+				<div class="col-sm-4">
+					<input name="icon" id="icon" value="" type="text" class="form-control">
+				</div>
+			</div>
+			<div class="form-group">
 				<label class="col-sm-4 control-label">是否可用</label>
 				<div class="col-sm-4">
 					<select class="form-control m-b" name="flagAble">

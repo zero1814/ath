@@ -24,7 +24,7 @@ public class IndexServiceImpl implements IndexService {
 
 	@Override
 	public List<SmMenu> initMenus() {
-		List<SmMenu> menus = null;
+		List<SmMenu> menus = new ArrayList<SmMenu>();
 		String groupCode = "SMG1000";
 		try {
 			menus = getData("0", groupCode);

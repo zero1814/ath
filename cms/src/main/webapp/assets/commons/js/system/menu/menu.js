@@ -78,7 +78,37 @@ var Menu = {
 		});
 	},
 	edit:function(code){
-		
+		layer.confirm('您确认要编辑选中的菜单吗？', {
+			btn: ['确认', '取消']
+			// 按钮
+		}, function() {
+			var param = $("#editFrm").serializeArray();
+			$.ajax({
+				url: "system/menu/edit.htm",
+				type: "POST",
+				data: param,
+				success: function(result) {
+					result = JSON.parse(result);
+					if(result.code == 0) {
+						layer.alert('编辑成功', function(index) {
+							layer.close(index);
+							window.parent.location.href="system/menu/index.htm?groupCode="+group;
+						});
+					} else {
+						layer.alert(result.message, function(index) {
+							layer.close(index);
+							window.parent.location.href="system/menu/index.htm?groupCode="+group;
+						});
+					}
+				},
+				error: function(result) {
+					layer.alert('编辑失败，失败原因:' + JSON.stringify(result),function(index){
+						layer.close(index);
+						window.parent.location.href="system/menu/index.htm?groupCode="+group;
+					});
+				}
+			});
+		});
 	},
 	del:function(code,group){
 		layer.confirm('您确认要删除选中的菜单吗？', {
