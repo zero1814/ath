@@ -141,5 +141,38 @@ var Menu = {
 				}
 			});
 		});
+	},
+	permission:function(menu){
+		$.ajax({
+			url : 'system/menu/permission.htm',
+			type : "get",
+			data : {code:menu},
+			dataType : "json",
+			success : function(result) {
+				var html = "";
+				if (result.code == 0) {
+					html = Menu.drawPermission(result.data);
+				}else{
+					html ="<tr><td colspan='4'>"+result.message+"</td></tr>";
+				}
+				$("#permission").html(html);
+			},
+			error : function(result) {
+				layer.alert('加载参数列表失败，失败原因：' + JSON.stringify(result));
+			}
+		});
+	},
+	drawPermission:function(data){
+		var html ="";
+		for(var key in data){
+			var obj = data[key];
+			html+="<tr>";
+			html+="<td>"+obj.name+"</td>";
+			html+="<td>"+obj.permissionTypeName+"</td>";
+			html+="<td>"+obj.createUser+"</td>";
+			html+="<td>"+obj.updateUser+"</td>";
+			html+="</tr>";
+		}
+		return html;
 	}
 }

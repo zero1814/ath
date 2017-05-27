@@ -55,7 +55,7 @@ public class SmMenuController {
 	}
 
 	@RequestMapping("addindex")
-	public String addIndex(String code,String group, ModelMap model) {
+	public String addIndex(String code, String group, ModelMap model) {
 		model.addAttribute("parentCode", code);
 		model.addAttribute("groupCode", group);
 		return "jsp/system/menu/add";
@@ -105,8 +105,8 @@ public class SmMenuController {
 	 * @return
 	 */
 	@RequestMapping("permission")
-	public String permission(String code, ModelMap model) {
-		model.addAttribute("menuCode", code);
-		return "jsp/system/menu/permission";
+	@ResponseBody
+	public DataResult permission(String code) {
+		return service.menusPermission(code);
 	}
 }

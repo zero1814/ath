@@ -19,7 +19,6 @@ public class PageResult extends RootResult {
 
 	private Integer total;
 
-
 	public List<? extends BaseModel> getRows() {
 		return rows;
 	}

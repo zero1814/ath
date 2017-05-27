@@ -23,5 +23,30 @@
 		<a href="system/menu/editindex.htm?code=${menu.code }" style="margin: 15px;" class="btn btn-w-m btn-warning">编辑</a>
 		<a href="javascript:void(0)" style="margin: 15px;" class="btn btn-w-m btn-danger" onclick="Menu.del('${menu.code}','${menu.groupCode}')">删除</a>
 	</div>
+	<div class="row" style="text-align: center;">
+		<div class="ibox float-e-margins">
+			<div class="ibox-title">
+				<h5>菜单权限</h5>
+			</div>
+			<div class="ibox-content">
+				<table class="table table-bordered">
+					<thead>
+						<tr>
+							<th>名称</th>
+							<th>类型</th>
+							<th>创建人</th>
+							<th>修改人</th>
+						</tr>
+					</thead>
+					<tbody id="permission"></tbody>
+				</table>
+			</div>
+		</div>
+	</div>
 </div>
 <script src="assets/commons/js/system/menu/menu.js"></script>
+<script type="text/javascript">
+$(function($) {
+	Menu.permission('${menu.code}');
+});
+</script>

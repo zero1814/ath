@@ -10,6 +10,8 @@
 		<result column="name" property="name" jdbcType="VARCHAR" />
 		<result column="permission_type" property="permissionType"
 			jdbcType="VARCHAR" />
+		<result column="permission_type_name" property="permissionTypeName"
+			jdbcType="VARCHAR" />
 		<result column="permission_name" property="permissionName"
 			jdbcType="VARCHAR" />
 		<result column="flag_able" property="flagAble" jdbcType="INTEGER" />
@@ -171,6 +173,24 @@
 		from sm_menu_permission
 		<where>
 			flag_able = 0
+		</where>
+	</select>
+
+	<!-- 根据菜单编码查询菜单权限列表 -->
+	<select id="findMenuPermissionByMenuCode" parameterType="java.lang.String" resultMap="BaseResultMap">
+		SELECT
+		p.`name`,
+		pt.`name` AS permission_type_name,
+		p.create_user,
+		p.update_user
+		FROM
+		systemmodule.sm_menu_permission AS p
+		LEFT JOIN
+		systemmodule.sm_menu_permission_type AS pt ON p.permission_type
+		=
+		pt.`code`
+		<where>
+			p.menu_code = #{menuCode,jdbcType=VARCHAR}
 		</where>
 	</select>
 </mapper>

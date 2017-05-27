@@ -24,6 +24,9 @@ public class SmMenuPermission extends BaseModel {
 	@Column(name = "permission_type", comment = "权限类型", isNull = false)
 	@Attribute(name = "permissionType", description = "权限类型", isNull = false)
 	private String permissionType;
+	
+	@Attribute(name = "permissionTypeName", description = "权限类型名称", isNull = false)
+	private String permissionTypeName;
 
 	@Attribute(name = "permissionName", description = "权限类型名称")
 	private String permissionName;
