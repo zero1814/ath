@@ -33,8 +33,15 @@ public class SmMenuPermissionController {
 	@ResponseBody
 	public PageResult data(SmMenuPermissionDto dto) {
 		PageResult result = service.findEntityToPage(dto);
-		System.out.println("result:"+JSON.toJSON(result));
+		System.out.println("result:" + JSON.toJSON(result));
 		return result;
+	}
+
+	@RequestMapping("addindex")
+	public String addIndex(String menuCode, ModelMap model) {
+		model.addAttribute("menuCode", menuCode);
+		model.addAttribute("types", service.getMenuPermissionType());
+		return "jsp/system/menu/permission/add.jsp";
 	}
 
 	@RequestMapping("add")
@@ -43,6 +50,13 @@ public class SmMenuPermissionController {
 		entity.setCode(CodeHelper.getUniqueCode("SMP"));
 		entity.setCreateUser("admin");
 		return service.insertSelective(entity);
+	}
+
+	@RequestMapping("editindex")
+	public String editIndex(String code, ModelMap model) {
+		model.addAttribute("permission", service.selectByCode(code).getEntity());
+		model.addAttribute("types", service.getMenuPermissionType());
+		return "jsp/system/menu/permission/add.jsp";
 	}
 
 	@RequestMapping("edit")

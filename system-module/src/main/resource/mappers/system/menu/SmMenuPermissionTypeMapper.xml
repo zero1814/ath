@@ -68,4 +68,7 @@
 		</set>
 		where `code`=#{code,jdbcType=VARCHAR}
 	</update>
+	<select id="findEntityAll" resultMap="BaseResultMap">
+		select <include refid="Base_Column_List" /> from systemmodule.sm_menu_permission_type
+	</select>
 </mapper>

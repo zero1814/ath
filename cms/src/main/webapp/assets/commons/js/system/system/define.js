@@ -9,18 +9,13 @@ var Define = {
 			success : function(result) {
 				if (result.code == 0) {
 					var tree = [{code:"0",text:'参数配置',nodes:result.data}];
-					$('#treeview').treeview(
-							{
-								levels : 1,
-								data : tree,
-								onNodeSelected : function(event, node) {
-									if(node.code != "0"){
-										var url = "system/define/detail.htm?code="
-											+ node.code;
-										$("#P_iframe").attr('src', url);										
-									}
-								}
-							});
+					Tree.init("treeview",true,tree,function(event, node) {
+						if(node.code != "0"){
+							var url = "system/define/detail.htm?code="
+								+ node.code;
+							$("#P_iframe").attr('src', url);										
+						}
+					});
 				} else {
 					layer.alert(result.message);
 				}

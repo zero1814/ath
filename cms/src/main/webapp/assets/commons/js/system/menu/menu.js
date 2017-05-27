@@ -8,17 +8,13 @@ var Menu = {
 			dataType : "json",
 			success : function(result) {
 				if (result.code == 0) {
-					$('#treeview').treeview({
-						levels : 1,
-						data : result.data,
-						onNodeSelected : function(event, node) {
-							if(node.code == "0"){
-								var url = "system/menu/addindex.htm?code=0&group="+node.groupCode;
-								$("#m_iframe").attr('src', url);
-							}else{
-								var url = "system/menu/detail.htm?code=" + node.code;
-								$("#m_iframe").attr('src', url);
-							}
+					Tree.init("treeview",true,result.data,function(event, node) {
+						if(node.code == "0"){
+							var url = "system/menu/addindex.htm?code=0&group="+node.groupCode;
+							$("#m_iframe").attr('src', url);
+						}else{
+							var url = "system/menu/detail.htm?code=" + node.code;
+							$("#m_iframe").attr('src', url);
 						}
 					});
 				} else {

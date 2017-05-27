@@ -40,6 +40,7 @@
 </div>
 <%@ include file="../../common/footer.jsp" %>
 <script src="assets/plugins/bootstrap/plugins/bootstrap-treeview/js/bootstrap-treeview.min.js"></script>
+<script src="assets/commons/js/tree.js"></script>
 <script src="assets/commons/js/system/menu/menu.js"></script>
 <script>
 	$(document).ready(function() {

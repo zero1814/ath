@@ -1,41 +1,5 @@
 var MenuPermission = {
 	Layer: '',
-	data: function() {
-		columns = [{
-			checkbox: true
-		}, {
-			field: 'code',
-			title: '编码'
-		}, {
-			field: 'name',
-			title: '名称'
-		}, {
-			field: 'menuName',
-			title: '菜单名称'
-		}, {
-			field: 'createTime',
-			title: '创建时间'
-		}, {
-			field: 'updateUser',
-			title: '修改人'
-		}, {
-			field: 'updateTime',
-			title: '修改时间'
-		}, {
-			field: 'operate',
-			title: '操作',
-			formatter: initOperate
-		}]
-		Table.init("table", "data/json/system/menu/menu.permission.json", columns, MenuPermission.searchParam());
-	},
-	searchParam: function() {
-		var temp = { name: $("#name").val() };
-		return temp;
-	},
-	search: function() {
-		Table.param = MenuPermission.searchParam();
-		$("#table").bootstrapTable('refresh');
-	},
 	openLayer: function(titleVal, layerDivId) {
 		MenuPermission.Layer = layer.open({
 			type: 1,
