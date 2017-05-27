@@ -41,7 +41,7 @@ public class SmMenuPermissionController {
 	public String addIndex(String menuCode, ModelMap model) {
 		model.addAttribute("menuCode", menuCode);
 		model.addAttribute("types", service.getMenuPermissionType());
-		return "jsp/system/menu/permission/add.jsp";
+		return "jsp/system/menu/permission/add";
 	}
 
 	@RequestMapping("add")
@@ -56,7 +56,7 @@ public class SmMenuPermissionController {
 	public String editIndex(String code, ModelMap model) {
 		model.addAttribute("permission", service.selectByCode(code).getEntity());
 		model.addAttribute("types", service.getMenuPermissionType());
-		return "jsp/system/menu/permission/add.jsp";
+		return "jsp/system/menu/permission/edit";
 	}
 
 	@RequestMapping("edit")

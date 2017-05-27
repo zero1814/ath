@@ -12,18 +12,15 @@
 			jdbcType="VARCHAR" />
 		<result column="permission_type_name" property="permissionTypeName"
 			jdbcType="VARCHAR" />
-		<result column="permission_name" property="permissionName"
-			jdbcType="VARCHAR" />
 		<result column="flag_able" property="flagAble" jdbcType="INTEGER" />
 		<result column="create_user" property="createUser" jdbcType="VARCHAR" />
 		<result column="create_time" property="createTime" jdbcType="VARCHAR" />
 		<result column="update_user" property="updateUser" jdbcType="VARCHAR" />
 		<result column="update_time" property="updateTime" jdbcType="VARCHAR" />
-		<result column="description" property="description" jdbcType="LONGVARCHAR" />
 	</resultMap>
 	<sql id="Base_Column_List">
 		id, uid, code, menu_code,
-		name,permission_type,flag_able,description,
+		name,permission_type,flag_able,
 		create_user,
 		DATE_FORMAT(create_time,'%Y-%m-%d
 		%H:%i:%s') as
@@ -62,9 +59,6 @@
 			create_time,
 			update_user,
 			update_time,
-			<if test="description != null">
-				description,
-			</if>
 		</trim>
 		<trim prefix="values (" suffix=")" suffixOverrides=",">
 			#{uid,jdbcType=VARCHAR},
@@ -83,9 +77,6 @@
 			#{updateUser,jdbcType=VARCHAR},
 			STR_TO_DATE(#{updateTime,jdbcType=VARCHAR},'%Y-%m-%d
 			%H:%i:%s'),
-			<if test="description != null">
-				#{description,jdbcType=LONGVARCHAR},
-			</if>
 		</trim>
 	</insert>
 	<update id="updateByCode" parameterType="org.module.model.system.menu.SmMenuPermission">
@@ -106,9 +97,6 @@
 			update_user = #{updateUser,jdbcType=VARCHAR},
 			update_time =
 			STR_TO_DATE(#{updateTime,jdbcType=VARCHAR},'%Y-%m-%d %H:%i:%s'),
-			<if test="description != null ">
-				description = #{description,jdbcType=LONGVARCHAR},
-			</if>
 		</set>
 		where `code`=#{code,jdbcType=VARCHAR}
 	</update>
@@ -128,8 +116,7 @@
 		smp.update_user,
 		DATE_FORMAT(smp.update_time,'%Y-%m-%d
 		%H:%i:%s') as
-		update_time,
-		smp.description
+		update_time
 		FROM
 		sm_menu_permission AS smp
 		LEFT JOIN
@@ -179,6 +166,8 @@
 	<!-- 根据菜单编码查询菜单权限列表 -->
 	<select id="findMenuPermissionByMenuCode" parameterType="java.lang.String" resultMap="BaseResultMap">
 		SELECT
+		p.`code`,
+		p.menu_code,
 		p.`name`,
 		pt.`name` AS permission_type_name,
 		p.create_user,

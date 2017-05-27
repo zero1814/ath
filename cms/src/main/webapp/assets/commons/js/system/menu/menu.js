@@ -8,7 +8,7 @@ var Menu = {
 			dataType : "json",
 			success : function(result) {
 				if (result.code == 0) {
-					Tree.init("treeview",true,result.data,function(event, node) {
+					Tree.init("treeview",false,result.data,function(event, node) {
 						if(node.code == "0"){
 							var url = "system/menu/addindex.htm?code=0&group="+node.groupCode;
 							$("#m_iframe").attr('src', url);
@@ -46,8 +46,8 @@ var Menu = {
 			url: "system/menu/add.htm",
 			type: "POST",
 			data: param,
+			dataType : "json",
 			success: function(result) {
-				result = JSON.parse(result);
 				if(result.code == 0) {
 					layer.confirm('添加成功，是否为菜单设置权限？', {
 						// 按钮
@@ -83,8 +83,8 @@ var Menu = {
 				url: "system/menu/edit.htm",
 				type: "POST",
 				data: param,
+				dataType : "json",
 				success: function(result) {
-					result = JSON.parse(result);
 					if(result.code == 0) {
 						layer.alert('编辑成功', function(index) {
 							layer.close(index);
@@ -115,8 +115,8 @@ var Menu = {
 				url: "system/menu/del.htm",
 				type: "POST",
 				data: {"code":code},
+				dataType : "json",
 				success: function(result) {
-					result = JSON.parse(result);
 					if(result.code == 0) {
 						layer.alert('删除成功', function(index) {
 							layer.close(index);
@@ -167,8 +167,63 @@ var Menu = {
 			html+="<td>"+obj.permissionTypeName+"</td>";
 			html+="<td>"+obj.createUser+"</td>";
 			html+="<td>"+obj.updateUser+"</td>";
+			html+="<td>";
+			html+="<a href='javascript:void(0)' style='margin:5px;' class='btn btn-info btn-xs' onclick='Menu.openEditPermission(\""+obj.code+"\")'>编辑</a>";
+			html+="<a href='javascript:void(0)' style='margin:5px;' class='btn btn-info btn-xs' onclick='Menu.delPermission(\""+obj.menuCode+"\",\""+obj.code+"\")'>删除</a>";
+			html+="</td>";
 			html+="</tr>";
 		}
 		return html;
+	},
+	openAddPermission:function(menuCode){
+		Menu.Layer = layer.open({
+			  type: 2,
+			  title: '添加菜单权限',
+			  shadeClose: true,
+			  shade: 0.8,
+			  area: ['430px', '450px'],
+			  content: 'system/menu/permission/addindex.htm?menuCode='+menuCode
+			}); 
+	},
+	openEditPermission:function(code){
+		layer.confirm('您确认要编辑选中的权限吗？', {btn: ['是', '否']},function(){
+			Menu.Layer = layer.open({
+				  type: 2,
+				  title: '编辑菜单权限',
+				  shadeClose: true,
+				  shade: 0.8,
+				  area: ['430px', '450px'],
+				  content: 'system/menu/permission/editindex.htm?code='+code
+				}); 
+		});
+	},
+	delPermission:function(menuCode,code){
+		layer.confirm('您确认要删除选中的权限吗？', {btn: ['是', '否']},function(){
+			$.ajax({
+				url: "system/menu/del.htm",
+				type: "POST",
+				data: {"code":code},
+				dataType : "json",
+				success: function(result) {
+					if(result.code == 0) {
+						layer.alert('删除成功', function(index) {
+							layer.close(index);
+							window.location.href="system/menu/detail.htm?code=" + menuCode;
+						});
+					} else {
+						layer.alert(result.message, function(index) {
+							layer.close(index);
+							window.location.href="system/menu/detail.htm?code=" + menuCode;
+						});
+					}
+				},
+				error: function(result) {
+					layer.alert('删除失败，失败原因:' + JSON.stringify(result),function(index){
+						layer.close(index);
+						window.location.href="system/menu/detail.htm?code=" + menuCode;
+					});
+				}
+			});
+		});
 	}
 }

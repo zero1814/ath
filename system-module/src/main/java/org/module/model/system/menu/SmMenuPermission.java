@@ -28,25 +28,10 @@ public class SmMenuPermission extends BaseModel {
 	@Attribute(name = "permissionTypeName", description = "权限类型名称", isNull = false)
 	private String permissionTypeName;
 
-	@Attribute(name = "permissionName", description = "权限类型名称")
-	private String permissionName;
-	
 	@Column(name = "flag_able", comment = "是否可用 0 可用 1 不可用", defaultValue = "0")
 	@Attribute(name = "flagAble", description = "是否可用 0 可用 1 不可用", defaultValue = "0")
 	private Integer flagAble;
 	
-	@Column(name = "description", comment = "权限描述")
-	@Attribute(name = "description", description = "权限描述")
-	private String description;
-
-	
-	public String getPermissionName() {
-		return permissionName;
-	}
-
-	public void setPermissionName(String permissionName) {
-		this.permissionName = permissionName;
-	}
 
 	public String getPermissionType() {
 		return permissionType;
@@ -88,12 +73,12 @@ public class SmMenuPermission extends BaseModel {
 		this.name = name;
 	}
 
-	public String getDescription() {
-		return description;
+	public String getPermissionTypeName() {
+		return permissionTypeName;
 	}
 
-	public void setDescription(String description) {
-		this.description = description;
+	public void setPermissionTypeName(String permissionTypeName) {
+		this.permissionTypeName = permissionTypeName;
 	}
-
+	
 }

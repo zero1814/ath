@@ -29,13 +29,19 @@
 				<h5>菜单权限</h5>
 			</div>
 			<div class="ibox-content">
+				<div class="row">
+					<div class="col-md-4" style="text-align: left;">
+						<a href="javascript:void(0)" class="btn btn-w-m btn-info" onclick="Menu.openAddPermission('${menu.code}')">添加</a>
+					</div>
+				</div>
 				<table class="table table-bordered">
 					<thead>
 						<tr>
-							<th>名称</th>
-							<th>类型</th>
-							<th>创建人</th>
-							<th>修改人</th>
+							<th style="text-align: center;">名称</th>
+							<th style="text-align: center;">类型</th>
+							<th style="text-align: center;">创建人</th>
+							<th style="text-align: center;">修改人</th>
+							<th style="text-align: center;">操作</th>
 						</tr>
 					</thead>
 					<tbody id="permission"></tbody>

@@ -9,13 +9,14 @@ var MenuPermission = {
 			content: $("#" + layerDivId)
 		});
 	},
-	closeLayer: function() {
-		if(MenuPermission.Layer) {
-			layer.close(MenuPermission.Layer);
+	closeLayer: function(menuCode) {
+		if(parent.Menu.Layer) {
+			layer.close(parent.Menu.Layer);
+			parent.window.location.href="system/menu/detail.htm?code="+menuCode;
 		}
 	},
 	openEdit: function(val) {
-		layer.confirm('您确定要修改此条数据吗？', {
+		layer.confirm('您确认要编辑选中的菜单吗', {
 			btn: ['确定', '取消'] //按钮
 		}, function(index) {
 			layer.close(index);
@@ -24,11 +25,61 @@ var MenuPermission = {
 			layer.close(index);
 		});
 	},
-	add: function() {
-
+	add: function(menuCode) {
+		var param = $("#addPermissionFrm").serializeArray();
+		$.ajax({
+			url: "system/menu/permission/add.htm",
+			type: "POST",
+			data: param,
+			dataType : "json",
+			success: function(result) {
+				if(result.code == 0) {
+					layer.alert('添加成功', function(index) {
+						layer.close(parent.Menu.Layer);
+						parent.window.location.href="system/menu/detail.htm?code="+menuCode;
+					});
+				} else {
+					layer.alert(result.message, function() {
+						layer.close(parent.Menu.Layer);
+						parent.window.location.href="system/menu/detail.htm?code="+menuCode;
+					});
+				}
+			},
+			error: function(result) {
+				layer.alert('添加失败，失败原因:' + JSON.stringify(result),function(index){
+					layer.close(parent.Menu.Layer);
+					window.location.href="system/menu/detail.htm?code="+menuCode;
+				});
+			}
+		});
 	},
-	edit: function() {
-
+	edit: function(menuCode) {
+		var param = $("#editPermissionFrm").serializeArray();
+		$.ajax({
+			url: "system/menu/permission/edit.htm",
+			type: "POST",
+			data: param,
+			dataType : "json",
+			success: function(result) {
+				if(result.code == 0) {
+					layer.alert("编辑成功", function(index) {
+						layer.close(parent.Menu.Layer);
+						parent.window.location.href="system/menu/detail.htm?code="+menuCode;
+					});
+				} else {
+					layer.alert(result.message, function() {
+						layer.close(parent.Menu.Layer);
+						parent.window.location.href="system/menu/detail.htm?code="+menuCode;
+					});
+				}
+			},
+			error: function(result) {
+				layer.alert("编辑失败，失败原因:" + JSON.stringify(result),function(index){
+					layer.close(parent.Menu.Layer);
+					window.location.href="system/menu/detail.htm?code="+menuCode;
+				});
+			}
+		});
 	},
 	del: function(val) {
 		layer.confirm('您确定要删除此条数据吗？', {
