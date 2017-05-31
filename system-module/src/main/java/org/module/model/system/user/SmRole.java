@@ -1,13 +1,13 @@
-package org.module.model.system.menu;
+package org.module.model.system.user;
 
 import org.module.commons.annotation.db.Column;
 import org.module.commons.annotation.db.Table;
 import org.module.model.BaseModel;
 
-@Table(name = "sm_menu_group", database = "systemmodule", comment = "菜单分组")
-public class SmMenuGroup extends BaseModel {
+@Table(name = "sm_role", database = "systemmodule", comment = "角色表")
+public class SmRole extends BaseModel{
 
-	@Column(name = "name", isNull = false, comment = "名称")
+	@Column(name = "名称", isNull = false, comment = "角色名称")
 	private String name;
 
 	public String getName() {

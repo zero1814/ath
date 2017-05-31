@@ -1,55 +1,51 @@
 package org.module.model.system.user;
 
+import java.util.List;
+
 import org.module.commons.annotation.db.Column;
 import org.module.commons.annotation.db.Table;
 import org.module.commons.annotation.obj.Attribute;
-import org.module.commons.annotation.obj.Object;
 import org.module.model.BaseModel;
 
-@Table(database = "systemmodule", name = "sm_user", comment = "用户表")
-@Object(name = "系统用户", description = "管理系统用户表")
+@Table(name = "sm_user", database = "systemmodule", comment = "用户表")
 public class SmUser extends BaseModel {
 
-	@Column(name = "user_name", comment = "用户名")
-	@Attribute(name = "userName", description = "用户名")
+	@Column(name = "user_name", isNull = false, comment = "用户名")
 	private String userName;
 
-	@Column(name = "password", comment = "密码")
-	@Attribute(name = "password", description = "密码")
+	@Column(name = "password", isNull = false, comment = "密码")
 	private String password;
 
-	@Column(name = "real_name", comment = "真实姓名")
-	@Attribute(name = "realName", description = "真实姓名")
+	@Column(name = "real_name", isNull = false, comment = "真实姓名")
 	private String realName;
 
-	@Column(name = "type_code", comment = "用户类型")
-	@Attribute(name = "typeCode", description = "用户类型")
-	private String typeCode;
+	@Column(name = "head_pic", isNull = false, comment = "头像")
+	private String headPic;
 
-	@Attribute(name = "typeName", description = "用户类型名称")
-	private String typeName;
+	@Column(name = "phone", isNull = false, comment = "手机号")
+	private String phone;
 
-	@Column(name = "status", comment = "状态")
-	@Attribute(name = "status", description = "状态")
-	private String status;
+	@Column(name = "mail", isNull = false, comment = "电子邮箱")
+	private String mail;
 
-	@Attribute(name = "role", description = "用户角色")
-	private SmUserRole role;
+	@Column(name = "qq", comment = "qq号码")
+	private String qq;
 
-	public SmUserRole getRole() {
-		return role;
+	@Column(name = "weixin", comment = "微信号")
+	private String weixin;
+
+	/**
+	 * 用户角色
+	 */
+	@Attribute(name = "roles", description = "用户角色列表")
+	private List<SmUserRole> roles;
+
+	public List<SmUserRole> getRoles() {
+		return roles;
 	}
 
-	public void setRole(SmUserRole role) {
-		this.role = role;
-	}
-
-	public String getTypeName() {
-		return typeName;
-	}
-
-	public void setTypeName(String typeName) {
-		this.typeName = typeName;
+	public void setRoles(List<SmUserRole> roles) {
+		this.roles = roles;
 	}
 
 	public String getUserName() {
@@ -76,20 +72,44 @@ public class SmUser extends BaseModel {
 		this.realName = realName;
 	}
 
-	public String getTypeCode() {
-		return typeCode;
+	public String getHeadPic() {
+		return headPic;
 	}
 
-	public void setTypeCode(String typeCode) {
-		this.typeCode = typeCode;
+	public void setHeadPic(String headPic) {
+		this.headPic = headPic;
 	}
 
-	public String getStatus() {
-		return status;
+	public String getPhone() {
+		return phone;
 	}
 
-	public void setStatus(String status) {
-		this.status = status;
+	public void setPhone(String phone) {
+		this.phone = phone;
+	}
+
+	public String getMail() {
+		return mail;
+	}
+
+	public void setMail(String mail) {
+		this.mail = mail;
+	}
+
+	public String getQq() {
+		return qq;
+	}
+
+	public void setQq(String qq) {
+		this.qq = qq;
+	}
+
+	public String getWeixin() {
+		return weixin;
+	}
+
+	public void setWeixin(String weixin) {
+		this.weixin = weixin;
 	}
 
 }
