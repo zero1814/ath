@@ -16,131 +16,39 @@ SET utf8 COLLATE utf8_general_ci;
 USE systemmodule;
 
 DROP TABLE
-IF EXISTS sm_define;
+IF EXISTS sm_user;
 
-CREATE TABLE sm_define (
-	id INT PRIMARY KEY AUTO_INCREMENT COMMENT '主键',
-	uid VARCHAR (50) NOT NULL UNIQUE COMMENT 'uuid',
-	`code` VARCHAR (50) NOT NULL UNIQUE COMMENT '参数编码',
-	parent_code VARCHAR (50) DEFAULT '0' COMMENT '父级编码',
-	`name` VARCHAR (50) NOT NULL COMMENT '名称',
-	create_user VARCHAR (50) NOT NULL COMMENT '创建人',
-	create_time datetime NOT NULL COMMENT '创建时间',
-	update_user VARCHAR (50) NOT NULL COMMENT '最后修改人',
-	update_time datetime NOT NULL COMMENT '最后修改时间'
-) COMMENT '系统参数表';
-
-insert into sm_define(uid,`code`,`name`,create_user,create_time,update_user,update_time)values(REPLACE(UUID(),'-',''),'1000','用户相关','system',now(),'system',now());
-insert into sm_define(uid,`code`,`name`,create_user,create_time,update_user,update_time)values(REPLACE(UUID(),'-',''),'1001','角色相关','system',now(),'system',now());
-insert into sm_define(uid,`code`,parent_code,`name`,create_user,create_time,update_user,update_time)values(REPLACE(UUID(),'-',''),'10010001','1001','权限相关','system',now(),'system',now());
-
-DROP TABLE
-IF EXISTS sm_menu_group;
-
-CREATE TABLE sm_menu_group (
-	id INT PRIMARY KEY AUTO_INCREMENT COMMENT '主键',
-	uid VARCHAR (50) NOT NULL COMMENT 'uid',
-	`code` VARCHAR (50) NOT NULL UNIQUE COMMENT '编码',
-	`name` VARCHAR (50) NOT NULL COMMENT '名称',
-	create_user VARCHAR (50) NOT NULL COMMENT '创建人',
-	create_time datetime NOT NULL COMMENT '创建时间',
-	update_user VARCHAR (50) NOT NULL COMMENT '最后修改人',
-	update_time datetime NOT NULL COMMENT '最后修改时间'
-) COMMENT '菜单组';
-
-insert into sm_menu_group(uid,`code`,`name`,create_user,create_time,update_user,update_time)values(REPLACE(UUID(),'-',''),'SMG1000','后台管理','admin',now(),'admin',now());
-
-DROP TABLE
-IF EXISTS sm_menu;
-
-CREATE TABLE sm_menu (
+CREATE TABLE sm_user (
 	id INT PRIMARY KEY AUTO_INCREMENT COMMENT '主键',
 	uid VARCHAR (50) NOT NULL COMMENT 'uuid',
-	`code` VARCHAR (50) NOT NULL UNIQUE COMMENT '菜单编码',
-	parent_code VARCHAR (50) DEFAULT '0' COMMENT '父级编码',
-	group_code VARCHAR (50) DEFAULT '' COMMENT '菜单组编码',
-	`name` VARCHAR (50) NOT NULL COMMENT '名称',
-	url VARCHAR (200) DEFAULT '' COMMENT '菜单链接地址',
-	icon VARCHAR (50) DEFAULT '' COMMENT '菜单图标',
-	flag_able INT DEFAULT 0 COMMENT '是否可用 0 可用 1 不可用',
-	is_deleted INT DEFAULT 0 COMMENT '是否已删除 0 未删除 1 已删除',
+	`code` VARCHAR (50) NOT NULL COMMENT '编码',
+	user_name VARCHAR (50) NOT NULL UNIQUE COMMENT '用户名',
+	`password` VARCHAR (50) NOT NULL COMMENT '密码',
+	real_name VARCHAR (50) NOT NULL COMMENT '真实姓名',
+	head_pic VARCHAR (100) DEFAULT '' COMMENT '头像',
+	phone VARCHAR (50) NOT NULL COMMENT '手机号',
+	mail VARCHAR (50) NOT NULL COMMENT '电子邮箱',
+	qq VARCHAR (50) DEFAULT '' COMMENT 'qq号码',
+	weixin VARCHAR (50) DEFAULT '' COMMENT '微信号',
 	create_user VARCHAR (50) NOT NULL COMMENT '创建人',
 	create_time datetime NOT NULL COMMENT '创建时间',
 	update_user VARCHAR (50) NOT NULL COMMENT '最后修改人',
 	update_time datetime NOT NULL COMMENT '最后修改时间'
-) COMMENT '系统菜单表';
-
-insert into sm_menu(uid,`code`,group_code,`name`,create_user,create_time,update_user,update_time)values(REPLACE(UUID(),'-',''),'SM1000','SMG1000','菜单管理','system',now(),'system',now());
-insert into sm_menu(uid,`code`,group_code,`name`,create_user,create_time,update_user,update_time)values(REPLACE(UUID(),'-',''),'SM1002','SMG1000','参数管理','system',now(),'system',now());
-
-DROP TABLE
-IF EXISTS sm_menu_permission;
-
-CREATE TABLE sm_menu_permission (
-	id INT PRIMARY KEY AUTO_INCREMENT COMMENT '主键',
-	uid VARCHAR (50) NOT NULL COMMENT 'uuid',
-	`code` VARCHAR (50) NOT NULL UNIQUE COMMENT '编码',
-	menu_code VARCHAR (50) NOT NULL COMMENT '菜单编码',
-	`name` VARCHAR (50) NOT NULL COMMENT '名称',
-	permission_type varchar(50) not null COMMENT '权限类型',
-	description text COMMENT '权限描述',
-	create_user VARCHAR (50) NOT NULL COMMENT '创建人',
-	create_time datetime NOT NULL COMMENT '创建时间',
-	update_user VARCHAR (50) NOT NULL COMMENT '最后修改人',
-	update_time datetime NOT NULL COMMENT '最后修改时间'
-) COMMENT '菜单权限表';
+) COMMENT '用户表';
 
 DROP TABLE
 IF EXISTS sm_role;
 
 CREATE TABLE sm_role (
 	id INT PRIMARY KEY AUTO_INCREMENT COMMENT '主键',
-	uid VARCHAR (50) NOT NULL UNIQUE COMMENT 'uuid',
-	`code` VARCHAR (50) NOT NULL UNIQUE COMMENT '角色编码',
+	uid VARCHAR (50) NOT NULL COMMENT 'uuid',
+	`code` VARCHAR (50) NOT NULL UNIQUE COMMENT '编码',
 	`name` VARCHAR (50) NOT NULL COMMENT '名称',
-	intro text COMMENT '介绍',
-	flag_able INT DEFAULT 0 COMMENT '是否可用 0 可用 1 不可用',
 	create_user VARCHAR (50) NOT NULL COMMENT '创建人',
 	create_time datetime NOT NULL COMMENT '创建时间',
 	update_user VARCHAR (50) NOT NULL COMMENT '最后修改人',
 	update_time datetime NOT NULL COMMENT '最后修改时间'
 ) COMMENT '角色表';
-insert into sm_role(uid,`code`,`name`,intro,create_user,create_time,update_user,update_time)values(REPLACE(UUID(),'-',''),'1000','超级管理员','最高权限','system',now(),'system',now());
-insert into sm_role(uid,`code`,`name`,intro,create_user,create_time,update_user,update_time)values(REPLACE(UUID(),'-',''),'1001','管理员','二级管理员权限','system',now(),'system',now());
-
-DROP TABLE
-IF EXISTS sm_role_permission;
-
-CREATE TABLE sm_role_permission (
-	id INT PRIMARY KEY AUTO_INCREMENT COMMENT '主键',
-	uid VARCHAR (50) NOT NULL UNIQUE COMMENT 'uuid',
-	role_code VARCHAR (50) NOT NULL COMMENT '角色编码',
-	menu_permission_code VARCHAR (50) NOT NULL COMMENT '菜单权限',
-	create_user VARCHAR (50) NOT NULL COMMENT '创建人',
-	create_time datetime NOT NULL COMMENT '创;建时间',
-	UNIQUE menu_role_permission (
-		role_code,
-		menu_permission_code
-	) COMMENT '角色访问菜单权限'
-) COMMENT '角色权限';
-
-DROP TABLE
-IF EXISTS sm_user;
-
-CREATE TABLE sm_user (
-	id INT PRIMARY KEY AUTO_INCREMENT COMMENT '主键',
-	uid VARCHAR (50) NOT NULL COMMENT 'uuid',
-	`code` VARCHAR (50) NOT NULL UNIQUE COMMENT '编码',
-	user_name VARCHAR (50) NOT NULL UNIQUE COMMENT '用户名',
-	`password` VARCHAR (50) NOT NULL COMMENT '密码',
-	real_name VARCHAR (50) NOT NULL COMMENT '真实姓名',
-	type_code VARCHAR (50) NOT NULL COMMENT '类型编码',
-	`status` VARCHAR (50) NOT NULL COMMENT '用户状态',
-	create_user VARCHAR (50) NOT NULL COMMENT '创建人',
-	create_time datetime NOT NULL COMMENT '创建时间',
-	update_user VARCHAR (50) NOT NULL COMMENT '最后修改人',
-	update_time datetime NOT NULL COMMENT '最后修改时间'
-) COMMENT '用户表';
 
 DROP TABLE
 IF EXISTS sm_user_role;
@@ -156,34 +64,70 @@ CREATE TABLE sm_user_role (
 ) COMMENT '用户角色关系表';
 
 DROP TABLE
-IF EXISTS sm_define;
+IF EXISTS sm_page_group;
 
-CREATE TABLE sm_define (
+CREATE TABLE sm_page_group (
 	id INT PRIMARY KEY AUTO_INCREMENT COMMENT '主键',
 	uid VARCHAR (50) NOT NULL COMMENT 'uuid',
 	`code` VARCHAR (50) NOT NULL UNIQUE COMMENT '编码',
-	parent_code VARCHAR (50) DEFAULT '0' COMMENT '父级编码',
+	parent_code varchar(50) DEFAULT '0' COMMENT '父级编码',
 	`name` VARCHAR (50) NOT NULL COMMENT '名称',
 	create_user VARCHAR (50) NOT NULL COMMENT '创建人',
 	create_time datetime NOT NULL COMMENT '创建时间',
 	update_user VARCHAR (50) NOT NULL COMMENT '最后修改人',
 	update_time datetime NOT NULL COMMENT '最后修改时间'
-) COMMENT '系统模块参数表';
-
-
-insert into sm_define (uid,`code`,`name`,create_user,create_time,update_user,update_time)values(REPLACE(UUID(),'-',''),'0000','参数配置','system',now(),'system',now());
+) COMMENT '页面分组';
 
 DROP TABLE
-IF EXISTS sm_city;
+IF EXISTS sm_page;
 
-CREATE TABLE sm_city (
+CREATE TABLE sm_page (
 	id INT PRIMARY KEY AUTO_INCREMENT COMMENT '主键',
 	uid VARCHAR (50) NOT NULL UNIQUE COMMENT 'uuid',
 	`code` VARCHAR (50) NOT NULL UNIQUE COMMENT '编码',
-	parent_code VARCHAR (50) NOT NULL COMMENT '父级编码',
-	`name` VARCHAR (100) NOT NULL COMMENT '名称',
+	group_code VARCHAR (50) NOT NULL COMMENT '页面分组编码',
+	`name` VARCHAR (50) NOT NULL COMMENT '名称',
+	url VARCHAR (500) NOT NULL COMMENT '链接地址',
+	param VARCHAR (500) DEFAULT '' COMMENT '参数',
+	flag_able INT (2) DEFAULT 0 COMMENT '是否可用 0 可用 1 不可用',
+	is_deleted INT (2) DEFAULT 0 COMMENT '是否已删除 0 未删除 1 已删除',
 	create_user VARCHAR (50) NOT NULL COMMENT '创建人',
 	create_time datetime NOT NULL COMMENT '创建时间',
 	update_user VARCHAR (50) NOT NULL COMMENT '最后修改人',
 	update_time datetime NOT NULL COMMENT '最后修改时间'
-) COMMENT '城市维护表';
+) COMMENT '页面表';
+
+DROP TABLE
+IF EXISTS sm_menu;
+
+CREATE TABLE sm_menu (
+	id INT PRIMARY KEY AUTO_INCREMENT COMMENT '主键',
+	uid VARCHAR (50) NOT NULL COMMENT 'uuid',
+	`code` VARCHAR (50) NOT NULL UNIQUE COMMENT '菜单编码',
+	parent_code VARCHAR (50) DEFAULT '0' COMMENT '父级编码',
+	group_code VARCHAR (50) DEFAULT '' COMMENT '菜单组编码',
+	page_code VARCHAR (50) DEFAULT '' COMMENT '页面编码',
+	`name` VARCHAR (50) NOT NULL COMMENT '名称',
+	icon VARCHAR (50) DEFAULT '' COMMENT '菜单图标',
+	flag_able INT DEFAULT 0 COMMENT '是否可用 0 可用 1 不可用',
+	create_user VARCHAR (50) NOT NULL COMMENT '创建人',
+	create_time datetime NOT NULL COMMENT '创建时间',
+	update_user VARCHAR (50) NOT NULL COMMENT '最后修改人',
+	update_time datetime NOT NULL COMMENT '最后修改时间'
+) COMMENT '系统菜单表';
+
+DROP TABLE
+IF EXISTS sm_menu_group;
+
+CREATE TABLE sm_menu_group (
+	id INT PRIMARY KEY AUTO_INCREMENT COMMENT '主键',
+	uid VARCHAR (50) NOT NULL COMMENT 'uid',
+	`code` VARCHAR (50) NOT NULL UNIQUE COMMENT '编码',
+	`name` VARCHAR (50) NOT NULL COMMENT '名称',
+	create_user VARCHAR (50) NOT NULL COMMENT '创建人',
+	create_time datetime NOT NULL COMMENT '创建时间',
+	update_user VARCHAR (50) NOT NULL COMMENT '最后修改人',
+	update_time datetime NOT NULL COMMENT '最后修改时间'
+) COMMENT '菜单分组';
+
+INSERT INTO sm_menu_group (uid,`code`,`name`,create_user,create_time,update_user,update_time)VALUES(REPLACE (UUID(), '-', ''),'SMG1000','后台管理','admin',now(),'admin',now());

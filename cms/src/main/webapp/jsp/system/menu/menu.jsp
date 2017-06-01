@@ -17,7 +17,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						<i class="fa ${m.icon }"></i>
 					</c:if>
 					<span class="nav-label">${m.name }</span> <!-- 遍历二级菜单 -->
-					<c:if test="${fn:length(m.childMenu) > 0}">
+					<c:if test="${fn:length(m.child) > 0}">
 						<span class="fa arrow"></span>
 					</c:if>
 				</a>

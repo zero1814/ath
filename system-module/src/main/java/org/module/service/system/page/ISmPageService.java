@@ -1,7 +1,7 @@
-package org.module.service.system.menu;
+package org.module.service.system.page;
 
-import org.module.dto.system.menu.SmPageDto;
-import org.module.model.system.menu.SmPage;
+import org.module.dto.system.page.SmPageDto;
+import org.module.model.system.page.SmPage;
 import org.module.service.IBaseService;
 
 /**

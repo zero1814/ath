@@ -1,4 +1,4 @@
-package org.module.dto.system.menu;
+package org.module.dto.system.page;
 
 import org.module.dto.BaseDto;
 

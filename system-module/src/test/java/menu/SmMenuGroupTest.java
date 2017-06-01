@@ -20,11 +20,12 @@ public class SmMenuGroupTest {
 	@Autowired
 	private ISmMenuGroupService service;
 
+	@Test
 	public void insert() {
 		SmMenuGroup entity = new SmMenuGroup();
 		entity.setCode(CodeHelper.getUniqueCode("SMG"));
 		entity.setName("后台管理");
-		entity.setCreateUser("test");
+		entity.setCreateUser("system");
 		service.insertSelective(entity);
 	}
 
@@ -41,7 +42,6 @@ public class SmMenuGroupTest {
 		System.out.println(JSON.toJSON(result));
 	}
 
-	@Test
 	public void del() {
 		RootResult result = service.deleteByCode("SMG869792468005023744");
 		System.out.println(JSON.toJSON(result));

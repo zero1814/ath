@@ -1,8 +1,8 @@
-package org.module.mapper.system.menu;
+package org.module.mapper.system.page;
 
-import org.module.dto.system.menu.SmPageDto;
+import org.module.dto.system.page.SmPageDto;
 import org.module.mapper.BaseMapper;
-import org.module.model.system.menu.SmPage;
+import org.module.model.system.page.SmPage;
 
 /**
  * 

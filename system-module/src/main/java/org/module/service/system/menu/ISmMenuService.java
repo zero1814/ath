@@ -2,6 +2,7 @@ package org.module.service.system.menu;
 
 import org.module.dto.system.menu.SmMenuDto;
 import org.module.model.system.menu.SmMenu;
+import org.module.result.DataResult;
 import org.module.service.IBaseService;
 
 /**
@@ -12,5 +13,13 @@ import org.module.service.IBaseService;
  * 时间: 2017年5月31日 上午11:05:24
  */
 public interface ISmMenuService extends IBaseService<SmMenu, SmMenuDto> {
-
+	/**
+	 * 
+	 * 方法: findDataAll <br>
+	 * 描述: 获取所有菜单集合 <br>
+	 * 作者: zhy<br>
+	 * 时间: 2017年6月1日 上午10:41:52
+	 * @return
+	 */
+	DataResult findDataAll();
 }

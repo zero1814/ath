@@ -49,12 +49,12 @@ public class IndexServiceImpl implements IndexService {
 		SmMenuDto dto = new SmMenuDto();
 		dto.setParentCode(parentCode);
 		dto.setGroupCode(groupCode);
-		List<SmMenu> list = menuMapper.findEntityAllForGroup(dto);
+		List<SmMenu> list = menuMapper.findDataAll(dto);
 		if (list != null && list.size() > 0) {
 			for (SmMenu menu : list) {
 				List<SmMenu> sub = getData(menu.getCode(), groupCode);
 				if (sub != null && sub.size() > 0) {
-					menu.setChildMenu(sub);
+					menu.setChilds(sub);
 				}
 			}
 		}

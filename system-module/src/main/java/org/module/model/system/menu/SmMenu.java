@@ -1,12 +1,15 @@
 package org.module.model.system.menu;
 
+import java.util.List;
+
 import org.module.commons.annotation.db.Column;
 import org.module.commons.annotation.db.Table;
 import org.module.commons.annotation.obj.Attribute;
-import org.module.model.BaseModel;
+import org.module.model.TreeModel;
+import org.module.model.system.page.SmPage;
 
 @Table(name = "sm_menu", database = "systemmodule", comment = "菜单表")
-public class SmMenu extends BaseModel {
+public class SmMenu extends TreeModel {
 
 	@Column(name = "parent_code", comment = "父级编码")
 	private String parentCode;
@@ -20,6 +23,8 @@ public class SmMenu extends BaseModel {
 	@Column(name = "page_code", comment = "菜单对应页面编码")
 	private String pageCode;
 
+	@Attribute(name = "url", description = "菜单对应页面链接地址")
+	private String url;
 	@Attribute(name = "page", description = "菜单对应页面信息")
 	private SmPage page;
 
@@ -31,6 +36,41 @@ public class SmMenu extends BaseModel {
 
 	@Column(name = "flag_able", comment = "是否可用 0 可用 1 不可用")
 	private Integer flagAble;
+
+	@Attribute(name = "childs", description = "子级菜单集合")
+	private List<SmMenu> childs;
+
+	public String getUrl() {
+		return url;
+	}
+
+	public void setUrl(String url) {
+		this.url = url;
+	}
+
+	public SmMenuGroup getGroup() {
+		return group;
+	}
+
+	public void setGroup(SmMenuGroup group) {
+		this.group = group;
+	}
+
+	public SmPage getPage() {
+		return page;
+	}
+
+	public void setPage(SmPage page) {
+		this.page = page;
+	}
+
+	public List<SmMenu> getChilds() {
+		return childs;
+	}
+
+	public void setChilds(List<SmMenu> childs) {
+		this.childs = childs;
+	}
 
 	public String getParentCode() {
 		return parentCode;
@@ -78,6 +118,11 @@ public class SmMenu extends BaseModel {
 
 	public void setFlagAble(Integer flagAble) {
 		this.flagAble = flagAble;
+	}
+
+	@Override
+	public String getText() {
+		return this.name;
 	}
 
 }

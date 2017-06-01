@@ -1,9 +1,8 @@
 package org.module.controller.system.menu;
 
-import org.module.dto.system.menu.SmMenuDto;
 import org.module.model.system.menu.SmMenu;
+import org.module.result.DataResult;
 import org.module.result.EntityResult;
-import org.module.result.PageResult;
 import org.module.result.RootResult;
 import org.module.service.system.menu.ISmMenuService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,13 +26,13 @@ public class SmMenuController {
 
 	@RequestMapping("index")
 	public String index() {
-		return "";
+		return "jsp/system/menu/index";
 	}
 
 	@RequestMapping("data")
 	@ResponseBody
-	public PageResult data(SmMenuDto dto) {
-		return service.findEntityToPage(dto);
+	public DataResult data() {
+		return service.findDataAll();
 	}
 
 	@RequestMapping("add")
