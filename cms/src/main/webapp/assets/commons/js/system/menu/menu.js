@@ -149,7 +149,7 @@ var Menu = {
 				if (result.code == 0) {
 					html = Menu.drawPermission(result.data);
 				}else{
-					html ="<tr><td colspan='4'>"+result.message+"</td></tr>";
+					html ="<tr><td colspan='5'>"+result.message+"</td></tr>";
 				}
 				$("#permission").html(html);
 			},

@@ -7,6 +7,7 @@ import org.module.result.RootResult;
 import org.module.service.system.menu.ISmMenuService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -33,6 +34,21 @@ public class SmMenuController {
 	@ResponseBody
 	public DataResult data() {
 		return service.findDataAll();
+	}
+
+	@RequestMapping("detail")
+	public String detail(String code, ModelMap model) {
+		EntityResult result = service.selectByCode(code);
+		if (result.getCode() == 0) {
+			model.addAttribute("menu", result.getEntity());
+		}
+		return "jsp/system/menu/detail";
+	}
+
+	@RequestMapping("permission")
+	@ResponseBody
+	public DataResult permission(String code) {
+		return service.getMenuPermission(code);
 	}
 
 	@RequestMapping("add")

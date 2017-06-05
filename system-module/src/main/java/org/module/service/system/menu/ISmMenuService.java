@@ -19,7 +19,20 @@ public interface ISmMenuService extends IBaseService<SmMenu, SmMenuDto> {
 	 * 描述: 获取所有菜单集合 <br>
 	 * 作者: zhy<br>
 	 * 时间: 2017年6月1日 上午10:41:52
+	 * 
 	 * @return
 	 */
 	DataResult findDataAll();
+
+	/**
+	 * 
+	 * 方法: getMenuPermission <br>
+	 * 描述: 获取菜单权限列表 <br>
+	 * 作者: zhy<br>
+	 * 时间: 2017年6月5日 下午5:57:57
+	 * 
+	 * @param code
+	 * @return
+	 */
+	DataResult getMenuPermission(String code);
 }
