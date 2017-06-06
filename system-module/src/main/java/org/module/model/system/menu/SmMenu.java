@@ -23,8 +23,6 @@ public class SmMenu extends TreeModel {
 	@Column(name = "page_code", comment = "菜单对应页面编码")
 	private String pageCode;
 
-	@Attribute(name = "url", description = "菜单对应页面链接地址")
-	private String url;
 	@Attribute(name = "page", description = "菜单对应页面信息")
 	private SmPage page;
 
@@ -39,14 +37,6 @@ public class SmMenu extends TreeModel {
 
 	@Attribute(name = "childs", description = "子级菜单集合")
 	private List<SmMenu> childs;
-
-	public String getUrl() {
-		return url;
-	}
-
-	public void setUrl(String url) {
-		this.url = url;
-	}
 
 	public SmMenuGroup getGroup() {
 		return group;

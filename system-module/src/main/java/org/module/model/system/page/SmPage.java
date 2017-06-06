@@ -1,16 +1,24 @@
 package org.module.model.system.page;
 
+import java.util.List;
+
 import org.module.commons.annotation.db.Column;
 import org.module.commons.annotation.db.Table;
+import org.module.commons.annotation.obj.Attribute;
 import org.module.model.BaseModel;
 
 @Table(name = "sm_page", database = "systemmodule", comment = "页面表")
 public class SmPage extends BaseModel {
 
+	@Column(name = "parent_code", defaultValue = "0", comment = "父级编码")
+	private String parentCode;
+
 	@Column(name = "group_code", isNull = false, comment = "页面分组编码")
 	private String groupCode;
+
 	@Column(name = "name", isNull = false, comment = "名称")
 	private String name;
+
 	@Column(name = "url", isNull = false, comment = "链接地址")
 	private String url;
 
@@ -22,6 +30,36 @@ public class SmPage extends BaseModel {
 
 	@Column(name = "is_deleted", comment = "是否已删除 0 未删除 1 已删除")
 	private Integer isDeleted;
+
+	@Attribute(name = "childs", description = "子级页面集合")
+	private List<SmPage> childs;
+
+	@Attribute(name = "group", description = "页面分组")
+	private SmPageGroup group;
+
+	public String getParentCode() {
+		return parentCode;
+	}
+
+	public void setParentCode(String parentCode) {
+		this.parentCode = parentCode;
+	}
+
+	public SmPageGroup getGroup() {
+		return group;
+	}
+
+	public void setGroup(SmPageGroup group) {
+		this.group = group;
+	}
+
+	public List<SmPage> getChilds() {
+		return childs;
+	}
+
+	public void setChilds(List<SmPage> childs) {
+		this.childs = childs;
+	}
 
 	public String getGroupCode() {
 		return groupCode;

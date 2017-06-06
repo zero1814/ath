@@ -11,7 +11,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <c:forEach var="m" items="${menus}">
 	<li>
 		<c:choose>
-			<c:when test="${m.url == '' }">
+			<c:when test="${m.page.url == '' }">
 				<a href="#"> 
 					<c:if test="${m.icon != '' }">
 						<i class="fa ${m.icon }"></i>
@@ -29,7 +29,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				</c:if>
 			</c:when>
 			<c:otherwise>
-				<a class="J_menuItem" href="${m.url }"> <c:if
+				<a class="J_menuItem" href="${m.page.url }"> <c:if
 						test="${m.icon != '' }">
 						<i class="fa ${m.icon }"></i>
 					</c:if> <span class="nav-label">${m.name }</span>

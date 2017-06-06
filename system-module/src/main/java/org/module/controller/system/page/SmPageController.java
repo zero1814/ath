@@ -2,8 +2,8 @@ package org.module.controller.system.page;
 
 import org.module.dto.system.page.SmPageDto;
 import org.module.model.system.page.SmPage;
+import org.module.result.DataResult;
 import org.module.result.EntityResult;
-import org.module.result.PageResult;
 import org.module.result.RootResult;
 import org.module.service.system.page.ISmPageService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,8 +25,8 @@ public class SmPageController {
 
 	@RequestMapping("data")
 	@ResponseBody
-	public PageResult data(SmPageDto dto) {
-		return service.findEntityToPage(dto);
+	public DataResult data(SmPageDto dto) {
+		return service.findDataAll(dto);
 	}
 
 	@RequestMapping("add")

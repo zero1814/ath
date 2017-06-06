@@ -51,11 +51,21 @@ public class SmMenuController {
 		return service.getMenuPermission(code);
 	}
 
+	@RequestMapping("addindex")
+	public String addIndex() {
+		return "jsp/system/menu/add";
+	}
+
 	@RequestMapping("add")
 	@ResponseBody
 	public EntityResult add(SmMenu entity) {
 		entity.setCreateUser("insert");
 		return service.insertSelective(entity);
+	}
+
+	@RequestMapping("editindex")
+	public String editIndex() {
+		return "jsp/system/menu/edit";
 	}
 
 	@RequestMapping("edit")

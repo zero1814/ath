@@ -11,7 +11,7 @@
           	  	名称:<strong style="margin:15px;">${menu.name }</strong>
             </li>
             <li class="list-group-item">
-            	链接地址:<strong style="margin:15px;">${menu.page.url }</strong>
+            	链接地址:<strong style="margin:15px;">${menu.url }</strong>
             </li>
             <li class="list-group-item">
             	图标:<strong style="margin:15px;"><c:if test="${menu.icon !='' }"><i class="fa ${menu.icon }"></i></c:if></strong>
