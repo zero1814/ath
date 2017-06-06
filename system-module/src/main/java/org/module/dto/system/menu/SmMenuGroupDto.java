@@ -9,6 +9,16 @@ import org.module.dto.BaseDto;
  * 作者: zhy<br>
  * 时间: 2017年5月31日 上午10:54:10
  */
-public class SmMenuGroupDto extends BaseDto{
+public class SmMenuGroupDto extends BaseDto {
+
+	private String name;
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
 
 }

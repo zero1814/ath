@@ -57,7 +57,7 @@
 		</trim>
 	</insert>
 	<update id="updateByCode" parameterType="org.module.model.system.menu.SmMenuGroup">
-	update systemmodule.sm_menu_group
+		update systemmodule.sm_menu_group
 		<set>
 			<if test="name != null and name != ''">
 				name = #{name,jdbcType=VARCHAR},
@@ -68,4 +68,26 @@
 		</set>
 		where `code`=#{code,jdbcType=VARCHAR}
 	</update>
+	<select id="findEntityAllToPage" parameterType="org.module.dto.system.menu.SmMenuGroupDto"
+		resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from systemmodule.sm_menu_group
+		<where>
+			1=1
+			<if test="name != null and name != ''">
+				and name = #{name,jdbcType=VARCHAR},
+			</if>
+		</where>
+	</select>
+	<select id="findEntityAllCountToPage" parameterType="org.module.dto.system.menu.SmMenuGroupDto"
+		resultType="java.lang.Integer">
+		select count(1) from systemmodule.sm_menu_group
+		<where>
+			1=1
+			<if test="name != null and name != ''">
+				and name = #{name,jdbcType=VARCHAR},
+			</if>
+		</where>
+	</select>
 </mapper>

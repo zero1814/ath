@@ -78,7 +78,34 @@
 		</set>
 		where `code`=#{code,jdbcType=VARCHAR}
 	</update>
-	<select id="findDataAll" resultMap="BaseResultMap" parameterType="java.lang.String">
-		select <include refid="Base_Column_List" /> from systemmodule.sm_page_group where parent_code = #{parentCode,jdbcType=VARCHAR}
+	<select id="findDataAll" resultMap="BaseResultMap"
+		parameterType="java.lang.String">
+		select
+		<include refid="Base_Column_List" />
+		from systemmodule.sm_page_group where parent_code =
+		#{parentCode,jdbcType=VARCHAR}
+	</select>
+
+	<select id="findEntityAllToPage" parameterType="org.module.dto.system.page.SmPageGroupDto"
+		resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from systemmodule.sm_page_group
+		<where>
+			1=1
+			<if test="name != null and name != ''">
+				and name = #{name,jdbcType=VARCHAR},
+			</if>
+		</where>
+	</select>
+	<select id="findEntityAllCountToPage" parameterType="org.module.dto.system.page.SmPageGroupDto"
+		resultType="java.lang.Integer">
+		select count(1) from systemmodule.sm_page_group
+		<where>
+			1=1
+			<if test="name != null and name != ''">
+				and name = #{name,jdbcType=VARCHAR},
+			</if>
+		</where>
 	</select>
 </mapper>
