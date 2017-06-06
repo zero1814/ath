@@ -23,5 +23,5 @@ public interface ISmPageService extends IBaseService<SmPage, SmPageDto> {
 	 * 
 	 * @return
 	 */
-	DataResult findDataAll(String groupCode);
+	DataResult treeData(String groupCode);
 }

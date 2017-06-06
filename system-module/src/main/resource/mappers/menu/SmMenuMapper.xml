@@ -15,8 +15,8 @@
 		<result column="create_time" property="createTime" jdbcType="VARCHAR" />
 		<result column="update_user" property="updateUser" jdbcType="VARCHAR" />
 		<result column="update_time" property="updateTime" jdbcType="VARCHAR" />
-		<collection property="page"
-			ofType="org.module.model.system.page.SmPage">
+		<collection property="page" ofType="org.module.model.system.page.SmPage">
+			<result column="page_name" property="name" jdbcType="VARCHAR" />
 			<result column="url" property="url" jdbcType="VARCHAR" />
 		</collection>
 	</resultMap>
@@ -34,10 +34,32 @@
 	</sql>
 	<select id="selectByCode" resultMap="BaseResultMap"
 		parameterType="java.lang.String">
-		select
-		<include refid="Base_Column_List" />
-		from systemmodule.sm_menu
-		where `code`=#{code,jdbcType=VARCHAR}
+		SELECT
+		m.`code`,
+		m.parent_code,
+		m.group_code,
+		m.page_code,
+		m.`name`,
+		m.icon,
+		m.flag_able,
+		p.`name` as page_name,
+		p.url,
+		m.create_user,
+		DATE_FORMAT(
+		m.create_time,
+		'%Y-%m-%d
+		%H:%i:%s'
+		) AS create_time,
+		m.update_user,
+		DATE_FORMAT(
+		m.update_time,
+		'%Y-%m-%d %H:%i:%s'
+		) AS update_time
+		FROM
+		systemmodule.sm_menu AS m
+		LEFT JOIN systemmodule.sm_page AS p ON m.page_code = p.`code`
+		where
+		m.`code`=#{code,jdbcType=VARCHAR}
 	</select>
 	<delete id="deleteByCode" parameterType="java.lang.String">
 		delete from
@@ -129,10 +151,13 @@
 		IFNULL(p.url,'') as url
 		FROM
 		systemmodule.sm_menu AS m
-		LEFT OUTER JOIN systemmodule.sm_page AS p ON m.page_code = p.`code`
+		LEFT OUTER JOIN systemmodule.sm_page AS p ON
+		m.page_code = p.`code`
 		WHERE
 		m.flag_able=0
-		and m.group_code = #{groupCode,jdbcType=VARCHAR}
-		and m.parent_code = #{parentCode,jdbcType=VARCHAR}
+		and m.group_code =
+		#{groupCode,jdbcType=VARCHAR}
+		and m.parent_code =
+		#{parentCode,jdbcType=VARCHAR}
 	</select>
 </mapper>

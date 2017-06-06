@@ -1,6 +1,5 @@
 package org.module.controller.system.page;
 
-import org.module.dto.system.page.SmPageDto;
 import org.module.model.system.page.SmPage;
 import org.module.result.DataResult;
 import org.module.result.EntityResult;
@@ -8,6 +7,7 @@ import org.module.result.RootResult;
 import org.module.service.system.page.ISmPageService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -19,14 +19,24 @@ public class SmPageController {
 	private ISmPageService service;
 
 	@RequestMapping("index")
-	public String index() {
-		return "";
+	public String index(String groupCode, ModelMap model) {
+		model.addAttribute("groupCode", groupCode);
+		return "jsp/system/page/index";
 	}
 
-	@RequestMapping("data")
+	@RequestMapping("tree")
 	@ResponseBody
-	public DataResult data(SmPageDto dto) {
-		return service.findDataAll(dto);
+	public DataResult data(String groupCode) {
+		return service.treeData(groupCode);
+	}
+
+	@RequestMapping("detail")
+	public String detal(String code, ModelMap model) {
+		EntityResult result = service.selectByCode(code);
+		if (result.getCode() == 0) {
+			model.addAttribute("page", result.getEntity());
+		}
+		return "jsp/system/page/detail";
 	}
 
 	@RequestMapping("add")

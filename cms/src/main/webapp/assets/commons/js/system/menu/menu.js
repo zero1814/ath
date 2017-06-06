@@ -2,19 +2,22 @@ var Menu = {
 	Layer:'',
 	init : function(group) {
 		$.ajax({
-			url : 'system/menu/data.htm',
+			url : 'system/menu/tree.htm',
 			type : "get",
 			data : {groupCode:group},
 			dataType : "json",
 			success : function(result) {
 				if (result.code == 0) {
-					Tree.init("treeview",false,result.data,function(event, node) {
-						if(node.code == "0"){
-							var url = "system/menu/addindex.htm?code=0&group="+node.groupCode;
-							$("#m_iframe").attr('src', url);
-						}else{
-							var url = "system/menu/detail.htm?code=" + node.code;
-							$("#m_iframe").attr('src', url);
+					var tree = [{text:"菜单管理",nodes:result.data}];
+					Tree.init("treeview",false,tree,function(event, node) {
+						if(node.code){
+							if(node.code == "0"){
+								var url = "system/menu/addindex.htm?code=0&group="+node.groupCode;
+								$("#m_iframe").attr('src', url);
+							}else{
+								var url = "system/menu/detail.htm?code=" + node.code;
+								$("#m_iframe").attr('src', url);
+							}
 						}
 					});
 				} else {

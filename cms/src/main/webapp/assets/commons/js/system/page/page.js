@@ -5,19 +5,22 @@ var Page = {
 	Layer:'',
 	init : function(group) {
 		$.ajax({
-			url : 'system/page/data.htm',
+			url : 'system/page/tree.htm',
 			type : "get",
 			data : {groupCode:group},
 			dataType : "json",
 			success : function(result) {
 				if (result.code == 0) {
-					Tree.init("treeview",false,result.data,function(event, node) {
-						if(node.code == "0"){
-							var url = "system/page/addindex.htm?code=0&group="+node.groupCode;
-							$("#m_iframe").attr('src', url);
-						}else{
-							var url = "system/page/detail.htm?code=" + node.code;
-							$("#m_iframe").attr('src', url);
+					var tree = [{text:"页面管理",nodes:result.data}];
+					Tree.init("treeview",false,tree,function(event, node) {
+						if(node.code){
+							if(node.code == "0"){
+								var url = "system/page/addindex.htm?code=0&group="+node.groupCode;
+								$("#m_iframe").attr('src', url);
+							}else{
+								var url = "system/page/detail.htm?code=" + node.code;
+								$("#m_iframe").attr('src', url);
+							}							
 						}
 					});
 				} else {

@@ -78,6 +78,8 @@ CREATE TABLE sm_page_group (
 	update_time datetime NOT NULL COMMENT '最后修改时间'
 ) COMMENT '页面分组';
 
+insert into sm_page_group(uid,`code`,`name`,create_user,create_time,update_user,update_time)values(REPLACE (UUID(), '-', ''),'SPG1000','菜单相关','admin',now(),'admin',now());
+
 DROP TABLE
 IF EXISTS sm_page;
 
@@ -85,6 +87,7 @@ CREATE TABLE sm_page (
 	id INT PRIMARY KEY AUTO_INCREMENT COMMENT '主键',
 	uid VARCHAR (50) NOT NULL UNIQUE COMMENT 'uuid',
 	`code` VARCHAR (50) NOT NULL UNIQUE COMMENT '编码',
+	parent_code varchar(50) DEFAULT '0' COMMENT '父级编码',
 	group_code VARCHAR (50) NOT NULL COMMENT '页面分组编码',
 	`name` VARCHAR (50) NOT NULL COMMENT '名称',
 	url VARCHAR (500) NOT NULL COMMENT '链接地址',
@@ -96,6 +99,30 @@ CREATE TABLE sm_page (
 	update_user VARCHAR (50) NOT NULL COMMENT '最后修改人',
 	update_time datetime NOT NULL COMMENT '最后修改时间'
 ) COMMENT '页面表';
+
+insert into sm_page(uid,`code`,group_code,`name`,url,create_user,create_time,update_user,update_time)values(REPLACE (UUID(), '-', ''),'SP1000','SPG1000','菜单管理','','admin',now(),'admin',now());
+insert into sm_page(uid,`code`,parent_code,group_code,`name`,url,create_user,create_time,update_user,update_time)values(REPLACE (UUID(), '-', ''),'SP10001000','SP1000','SPG1000','菜单组管理','system/menu/group/index.htm','admin',now(),'admin',now());
+insert into sm_page(uid,`code`,parent_code,group_code,`name`,url,create_user,create_time,update_user,update_time)values(REPLACE (UUID(), '-', ''),'SP10001001','SP1000','SPG1000','菜单管理','system/menu/index.htm','admin',now(),'admin',now());
+insert into sm_page(uid,`code`,group_code,`name`,url,create_user,create_time,update_user,update_time)values(REPLACE (UUID(), '-', ''),'SP1001','SPG1000','页面组管理','','admin',now(),'admin',now());
+insert into sm_page(uid,`code`,parent_code,group_code,`name`,url,create_user,create_time,update_user,update_time)values(REPLACE (UUID(), '-', ''),'SP10011000','SP1001','SPG1000','页面组管理','system/page/group/index.htm','admin',now(),'admin',now());
+insert into sm_page(uid,`code`,parent_code,group_code,`name`,url,create_user,create_time,update_user,update_time)values(REPLACE (UUID(), '-', ''),'SP10011001','SP1001','SPG1000','页面管理','system/page/index.htm','admin',now(),'admin',now());
+
+
+DROP TABLE
+IF EXISTS sm_menu_group;
+
+CREATE TABLE sm_menu_group (
+	id INT PRIMARY KEY AUTO_INCREMENT COMMENT '主键',
+	uid VARCHAR (50) NOT NULL COMMENT 'uid',
+	`code` VARCHAR (50) NOT NULL UNIQUE COMMENT '编码',
+	`name` VARCHAR (50) NOT NULL COMMENT '名称',
+	create_user VARCHAR (50) NOT NULL COMMENT '创建人',
+	create_time datetime NOT NULL COMMENT '创建时间',
+	update_user VARCHAR (50) NOT NULL COMMENT '最后修改人',
+	update_time datetime NOT NULL COMMENT '最后修改时间'
+) COMMENT '菜单分组';
+
+INSERT INTO sm_menu_group (uid,`code`,`name`,create_user,create_time,update_user,update_time)VALUES(REPLACE (UUID(), '-', ''),'SMG1000','后台管理','admin',now(),'admin',now());
 
 DROP TABLE
 IF EXISTS sm_menu;
@@ -115,19 +142,7 @@ CREATE TABLE sm_menu (
 	update_user VARCHAR (50) NOT NULL COMMENT '最后修改人',
 	update_time datetime NOT NULL COMMENT '最后修改时间'
 ) COMMENT '系统菜单表';
-
-DROP TABLE
-IF EXISTS sm_menu_group;
-
-CREATE TABLE sm_menu_group (
-	id INT PRIMARY KEY AUTO_INCREMENT COMMENT '主键',
-	uid VARCHAR (50) NOT NULL COMMENT 'uid',
-	`code` VARCHAR (50) NOT NULL UNIQUE COMMENT '编码',
-	`name` VARCHAR (50) NOT NULL COMMENT '名称',
-	create_user VARCHAR (50) NOT NULL COMMENT '创建人',
-	create_time datetime NOT NULL COMMENT '创建时间',
-	update_user VARCHAR (50) NOT NULL COMMENT '最后修改人',
-	update_time datetime NOT NULL COMMENT '最后修改时间'
-) COMMENT '菜单分组';
-
-INSERT INTO sm_menu_group (uid,`code`,`name`,create_user,create_time,update_user,update_time)VALUES(REPLACE (UUID(), '-', ''),'SMG1000','后台管理','admin',now(),'admin',now());
+INSERT INTO sm_menu(uid,`code`,group_code,page_code,`name`,create_user,create_time,update_user,update_time)VALUES(REPLACE (UUID(), '-', ''),'SM1000','SMG1000','SP1000','菜单管理','admin',now(),'admin',now());
+INSERT INTO sm_menu(uid,`code`,parent_code,group_code,page_code,`name`,create_user,create_time,update_user,update_time)VALUES(REPLACE (UUID(), '-', ''),'SM10001000','SM1000','SMG1000','SP10001000','菜单组管理','admin',now(),'admin',now());
+INSERT INTO sm_menu(uid,`code`,group_code,page_code,`name`,create_user,create_time,update_user,update_time)VALUES(REPLACE (UUID(), '-', ''),'SM1001','SMG1000','SP1000','页面管理','admin',now(),'admin',now());
+INSERT INTO sm_menu(uid,`code`,parent_code,group_code,page_code,`name`,create_user,create_time,update_user,update_time)VALUES(REPLACE (UUID(), '-', ''),'SM10011000','SM1001','SMG1000','SP10011001','页面组管理','admin',now(),'admin',now());

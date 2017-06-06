@@ -61,7 +61,7 @@ public class SmMenuTest {
 	
 	@Test
 	public void findAll(){
-		DataResult result = service.findDataAll();
+		DataResult result = service.treeData("");
 		System.out.println(JSON.toJSON(result));
 	}
 }

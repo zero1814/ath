@@ -1,27 +1,49 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ include file="../../common/header.jsp" %>
-<div class="wrapper wrapper-content animated fadeInRight">
-	<div class="row" style="font-size:18px;">
-        <ul class="list-group">
-            <li class="list-group-item">
-            	编码:<strong style="margin:15px;">${menu.code }</strong>
-            </li>
-            <li class="list-group-item ">
-          	  	名称:<strong style="margin:15px;">${menu.name }</strong>
-            </li>
-            <li class="list-group-item">
-            	链接地址:<strong style="margin:15px;">${menu.url }</strong>
-            </li>
-            <li class="list-group-item">
-            	图标:<strong style="margin:15px;"><c:if test="${menu.icon !='' }"><i class="fa ${menu.icon }"></i></c:if></strong>
-            </li>
-        </ul>
-	</div>
-	<div class="row" style="text-align: center;">
-		<a href="system/menu/addindex.htm?code=${menu.code }&group=${menu.groupCode}" style="margin: 15px;" class="btn btn-w-m btn-info">添加子项</a>
-		<a href="system/menu/editindex.htm?code=${menu.code }" style="margin: 15px;" class="btn btn-w-m btn-warning">编辑</a>
-		<a href="javascript:void(0)" style="margin: 15px;" class="btn btn-w-m btn-danger" onclick="Menu.del('${menu.code}','${menu.groupCode}')">删除</a>
+<div style="padding-top:20px;" class="row wrapper border-bottom white-bg page-heading">
+	<div class="col-sm-4">
+		<ol class="breadcrumb">
+			<li>
+				系统相关
+			</li>
+			<li>
+				页面管理
+			</li>
+			<li>
+				<strong>页面管理</strong>
+			</li>
+		</ol>
 	</div>
 </div>
-<script src="assets/commons/js/system/menu/menu.js"></script>
+<div class="wrapper wrapper-content">
+	<div class="row">
+		<div class="col-sm-5">
+			<div class="ibox float-e-margins">
+				<div class="ibox-title">
+					<h5>页面列表</h5>
+				</div>
+				<div class="ibox-content">
+					<div id="treeview"></div>
+				</div>
+			</div>
+		</div>
+		<div class="col-sm-5">
+			<div class="ibox float-e-margins">
+				<div class="ibox-title"></div>
+				<div class="ibox-content" style="height: 800px;">
+					<iframe id="m_iframe" width="100%" height="100%" src="" frameborder="0" seamless></iframe>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<%@ include file="../../common/footer.jsp" %>
+<script src="assets/plugins/bootstrap/plugins/bootstrap-treeview/js/bootstrap-treeview.min.js"></script>
+<script src="assets/commons/js/tree.js"></script>
+<script src="assets/commons/js/system/page/page.js"></script>
+<script>
+	$(document).ready(function() {
+		Page.init('${groupCode}');
+	});
+</script>

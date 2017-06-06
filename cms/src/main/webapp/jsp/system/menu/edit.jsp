@@ -14,7 +14,7 @@
 			<div class="form-group">
 				<label class="col-sm-4 control-label">链接地址</label>
 				<div class="col-sm-4">
-					<input name="url" id="url" value="${menu.url }" type="text" class="form-control">
+					<input name="url" id="url" value="${menu.page.url }" type="text" class="form-control">
 				</div>
 			</div>
 			<div class="form-group">

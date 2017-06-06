@@ -5,10 +5,10 @@ import java.util.List;
 import org.module.commons.annotation.db.Column;
 import org.module.commons.annotation.db.Table;
 import org.module.commons.annotation.obj.Attribute;
-import org.module.model.BaseModel;
+import org.module.model.TreeModel;
 
 @Table(name = "sm_page", database = "systemmodule", comment = "页面表")
-public class SmPage extends BaseModel {
+public class SmPage extends TreeModel {
 
 	@Column(name = "parent_code", defaultValue = "0", comment = "父级编码")
 	private String parentCode;
@@ -107,6 +107,11 @@ public class SmPage extends BaseModel {
 
 	public void setIsDeleted(Integer isDeleted) {
 		this.isDeleted = isDeleted;
+	}
+
+	@Override
+	public String getText() {
+		return this.name;
 	}
 
 }

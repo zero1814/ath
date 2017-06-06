@@ -25,7 +25,7 @@ public class SmPageServiceImpl extends BaseServiceImpl<SmPage, SmPageMapper, SmP
 	private SmPageMapper mapper;
 
 	@Override
-	public DataResult findDataAll(String groupCode) {
+	public DataResult treeData(String groupCode) {
 		DataResult result = new DataResult();
 		try {
 			result.setCode(0);
@@ -56,13 +56,13 @@ public class SmPageServiceImpl extends BaseServiceImpl<SmPage, SmPageMapper, SmP
 		dto.setParentCode(parentCode);
 		List<SmPage> list = mapper.findDataAll(dto);
 		if (list != null && list.size() > 0) {
-			for (SmPage m : list) {
+			for (SmPage p : list) {
 				SmPageDto spDto = new SmPageDto();
 				spDto.setGroupCode(groupCode);
-				spDto.setParentCode(m.getCode());
+				spDto.setParentCode(p.getCode());
 				List<SmPage> sub = mapper.findDataAll(spDto);
 				if (sub != null && sub.size() > 0) {
-					m.setChilds(sub);
+					p.setNodes(sub);
 				}
 			}
 		}

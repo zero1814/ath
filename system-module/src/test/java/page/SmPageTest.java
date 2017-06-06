@@ -78,7 +78,7 @@ public class SmPageTest {
 	
 	@Test
 	public void all(){
-		DataResult result = service.findDataAll("SPG870101120909832192");
+		DataResult result = service.treeData("SPG870101120909832192");
 		System.out.println(JSON.toJSON(result));
 	}
 }

@@ -26,14 +26,15 @@ public class SmMenuController {
 	private ISmMenuService service;
 
 	@RequestMapping("index")
-	public String index() {
+	public String index(String groupCode,ModelMap model) {
+		model.addAttribute("groupCode", groupCode);
 		return "jsp/system/menu/index";
 	}
 
-	@RequestMapping("data")
+	@RequestMapping("tree")
 	@ResponseBody
-	public DataResult data() {
-		return service.findDataAll();
+	public DataResult data(String groupCode) {
+		return service.treeData(groupCode);
 	}
 
 	@RequestMapping("detail")
@@ -43,12 +44,6 @@ public class SmMenuController {
 			model.addAttribute("menu", result.getEntity());
 		}
 		return "jsp/system/menu/detail";
-	}
-
-	@RequestMapping("permission")
-	@ResponseBody
-	public DataResult permission(String code) {
-		return service.getMenuPermission(code);
 	}
 
 	@RequestMapping("addindex")
@@ -64,7 +59,11 @@ public class SmMenuController {
 	}
 
 	@RequestMapping("editindex")
-	public String editIndex() {
+	public String editIndex(String code, ModelMap model) {
+		EntityResult result = service.selectByCode(code);
+		if (result.getCode() == 0) {
+			model.addAttribute("menu", result.getEntity());
+		}
 		return "jsp/system/menu/edit";
 	}
 

@@ -25,11 +25,11 @@ public class SmMenuServiceImpl extends BaseServiceImpl<SmMenu, SmMenuMapper, SmM
 	private SmMenuMapper mapper;
 
 	@Override
-	public DataResult findDataAll() {
+	public DataResult treeData(String groupCode) {
 		DataResult result = new DataResult();
 		try {
 			result.setCode(0);
-			result.setData(data("0", "SMG1000"));
+			result.setData(data("0", groupCode));
 			result.setMessage("查询菜单成功");
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -62,27 +62,10 @@ public class SmMenuServiceImpl extends BaseServiceImpl<SmMenu, SmMenuMapper, SmM
 				sbDto.setParentCode(m.getCode());
 				List<SmMenu> sub = mapper.findDataAll(sbDto);
 				if (sub != null && sub.size() > 0) {
-					m.setChilds(sub);
+					m.setNodes(sub);
 				}
 			}
 		}
 		return list;
 	}
-
-	/**
-	 * 
-	 * 方法: getMenuPermission <br>
-	 * 
-	 * @param code
-	 * @return
-	 * @see org.module.service.system.menu.ISmMenuService#getMenuPermission(java.lang.String)
-	 */
-	@Override
-	public DataResult getMenuPermission(String code) {
-		DataResult result = new DataResult();
-		result.setCode(-1);
-		result.setMessage("暂无数据");
-		return result;
-	}
-
 }
