@@ -59,22 +59,95 @@ var MenuGroup = {
 		});
 	},
 	add: function() {
-		var url = '';
-		var param = {};
-		var type = 'div';
-		UsePublic.add(url, param, type);
+		var param = $("#addFrm").serializeArray();
+		$.ajax({
+			url: 'system/menu/group/add.htm',
+			type: "POST",
+			data: param,
+			dataType : "json",
+			success: function(result) {
+				if(result.code == 0) {
+					layer.alert('添加成功', function(index) {
+						layer.close(MenuGroup.Layer);
+						$("#table").bootstrapTable('refresh');
+					});
+				} else {
+					layer.alert(result.message, function(index) {
+						layer.close(MenuGroup.Layer);
+						$("#table").bootstrapTable('refresh');
+					});
+				}
+			},
+			error: function(result) {
+				layer.alert('添加失败，失败原因:' + JSON.stringify(result));
+			}
+		});
 	},
 	edit: function() {
-		var url = '';
-		var param = {};
-		var type = 'div';
-		UsePublic.edit(url, param, 'div');
+		var param = $("#editFrm").serializeArray();
+		layer.confirm('您确认要编辑选中的菜单吗？', {
+			btn: ['确认', '取消']
+			// 按钮
+		}, function() {
+			var param = $("#editFrm").serializeArray();
+			$.ajax({
+				url: "system/menu/group/edit.htm",
+				type: "POST",
+				data: param,
+				dataType : "json",
+				success: function(result) {
+					if(result.code == 0) {
+						layer.alert('编辑成功', function() {
+							layer.close(MenuGroup.Layer);
+							$("#table").bootstrapTable('refresh');
+						});
+					} else {
+						layer.alert(result.message, function(index) {
+							layer.close(MenuGroup.Layer);
+							$("#table").bootstrapTable('refresh');
+						});
+					}
+				},
+				error: function(result) {
+					layer.alert('编辑失败，失败原因:' + JSON.stringify(result),function(index){
+						layer.close(MenuGroup.Layer);
+						window.parent.location.href="system/menu/index.htm?groupCode="+group;
+					});
+				}
+			});
+		});
 	},
 	del: function(val) {
-		var url = '';
-		var param = {};
-		var type = 'div';
-		UsePublic.del(url, param, type);
+		layer.confirm('您确认要删除选中的页面吗？', {
+			btn: ['确认', '取消']
+			// 按钮
+		}, function() {
+			$.ajax({
+				url: "system/menu/group/del.htm",
+				type: "POST",
+				data: {"code":val},
+				dataType : "json",
+				success: function(result) {
+					if(result.code == 0) {
+						layer.alert('删除成功', function(index) {
+							layer.close(index);
+							$("#table").bootstrapTable('refresh');
+						});
+					} else {
+						layer.alert(result.message, function(index) {
+							layer.close(index);
+							$("#table").bootstrapTable('refresh');
+						});
+					}
+				},
+				error: function(result) {
+					layer.alert('删除失败，失败原因:' + JSON.stringify(result),function(index){
+						layer.close(index);
+						$("#table").bootstrapTable('refresh');
+					});
+				}
+			});
+		});
 	}
 };
 function menuHref(value, row, index) {
@@ -82,7 +155,8 @@ function menuHref(value, row, index) {
 	return html;
 }
 function initOperate(value, row, index) {
+	var code = row.code;
 	var html = "<a style='margin:10px;' class='btn btn-info btn-sm' href='javacript:void(0)' onclick='MenuGroup.openEdit()'>编辑</a>";
-	html += "<a style='margin:10px;' class='btn btn-info btn-sm' href='javacript:void(0)' onclick='MenuGroup.del(\"" + value + "\")'>删除</a>";
+	html += "<a style='margin:10px;' class='btn btn-info btn-sm' href='javacript:void(0)' onclick='MenuGroup.del(\"" + code + "\")'>删除</a>";
 	return html;
 }

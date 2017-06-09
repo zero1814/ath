@@ -160,4 +160,8 @@
 		and m.parent_code =
 		#{parentCode,jdbcType=VARCHAR}
 	</select>
+	<!-- 判断是否包含子菜单 -->
+	<select id="isExistsChildMenu" parameterType="java.lang.String" resultType="java.lang.Integer">
+		select count(1) from systemmodule.sm_menu where parent_code = #{parentCode,jdbcType=VARCHAR} 
+	</select>
 </mapper>

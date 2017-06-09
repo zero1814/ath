@@ -48,7 +48,7 @@
 </div>
 <div id="addDiv" class="wrapper wrapper-content" style="display: none;overflow: hidden;">
 	<div class="row">
-		<form method="post" class="form-horizontal">
+		<form id="addFrm" method="post" class="form-horizontal">
 			<div class="form-group">
 				<label class="col-sm-4 control-label">名称</label>
 				<div class="col-sm-4">
@@ -64,7 +64,7 @@
 </div>
 <div id="editDiv" class="wrapper wrapper-content" style="display: none;overflow: hidden;">
 	<div class="row">
-		<form method="post" class="form-horizontal">
+		<form id="editFrm" method="post" class="form-horizontal">
 			<input type="hidden" id="editCode" name="editCode" value="" />
 			<div class="form-group">
 				<label class="col-sm-4 control-label">名称</label>

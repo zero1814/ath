@@ -27,4 +27,17 @@ public interface SmPageMapper extends BaseMapper<SmPage, SmPageDto> {
 	 * @return
 	 */
 	List<SmPage> findDataAll(SmPageDto dto);
+
+	/**
+	 * 
+	 * 方法: isExistsChildPage <br>
+	 * 描述: 判断是否包含子页面 <br>
+	 * 作者: zhy<br>
+	 * 时间: 2017年6月9日 下午5:01:58
+	 * 
+	 * @param parentCode
+	 * @return
+	 */
+	Integer isExistsChildPage(String parentCode);
+
 }

@@ -1,5 +1,6 @@
 package org.module.controller.system.page;
 
+import org.module.helper.commons.CodeHelper;
 import org.module.model.system.page.SmPage;
 import org.module.result.DataResult;
 import org.module.result.EntityResult;
@@ -39,11 +40,28 @@ public class SmPageController {
 		return "jsp/system/page/detail";
 	}
 
+	@RequestMapping("addindex")
+	public String addIndex(String code, String group, ModelMap model) {
+		model.addAttribute("parentCode", code);
+		model.addAttribute("groupCode", group);
+		return "jsp/system/page/add";
+	}
+
 	@RequestMapping("add")
 	@ResponseBody
 	public EntityResult add(SmPage entity) {
 		entity.setCreateUser("test");
+		entity.setCode(CodeHelper.getUniqueCode("SP"));
 		return service.insertSelective(entity);
+	}
+
+	@RequestMapping("editindex")
+	public String editIndex(String code, ModelMap model) {
+		EntityResult result = service.selectByCode(code);
+		if (result.getCode() == 0) {
+			model.addAttribute("page", result.getEntity());
+		}
+		return "jsp/system/page/edit";
 	}
 
 	@RequestMapping("edit")

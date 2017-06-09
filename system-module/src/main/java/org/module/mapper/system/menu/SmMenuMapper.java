@@ -27,4 +27,16 @@ public interface SmMenuMapper extends BaseMapper<SmMenu, SmMenuDto> {
 	 * @return
 	 */
 	List<SmMenu> findDataAll(SmMenuDto dto);
+
+	/**
+	 * 
+	 * 方法: isExistsChildMenu <br>
+	 * 描述: 判断是否包含子菜单 <br>
+	 * 作者: zhy<br>
+	 * 时间: 2017年6月9日 下午5:08:23
+	 * 
+	 * @param parentCode
+	 * @return
+	 */
+	Integer isExistsChildMenu(String parentCode);
 }

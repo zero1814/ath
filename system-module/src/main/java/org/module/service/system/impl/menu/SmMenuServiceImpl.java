@@ -6,6 +6,7 @@ import org.module.dto.system.menu.SmMenuDto;
 import org.module.mapper.system.menu.SmMenuMapper;
 import org.module.model.system.menu.SmMenu;
 import org.module.result.DataResult;
+import org.module.result.RootResult;
 import org.module.service.impl.BaseServiceImpl;
 import org.module.service.system.menu.ISmMenuService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -68,4 +69,19 @@ public class SmMenuServiceImpl extends BaseServiceImpl<SmMenu, SmMenuMapper, SmM
 		}
 		return list;
 	}
+
+	@Override
+	public RootResult deleteByCode(String code) {
+		RootResult result = new RootResult();
+		Integer isExistsChild = mapper.isExistsChildMenu(code);
+		if (isExistsChild > 0) {
+			result.setCode(-1);
+			result.setMessage("菜单包含子菜单，请先删除子菜单信息");
+		} else {
+			result = super.deleteByCode(code);
+		}
+
+		return result;
+	}
+
 }

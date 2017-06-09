@@ -1,27 +1,44 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ include file="../../common/header.jsp" %>
-<div class="wrapper wrapper-content animated fadeInRight">
-	<div class="row" style="font-size:18px;">
-        <ul class="list-group">
-            <li class="list-group-item">
-            	编码:<strong style="margin:15px;">${menu.code }</strong>
-            </li>
-            <li class="list-group-item ">
-          	  	名称:<strong style="margin:15px;">${menu.name }</strong>
-            </li>
-            <li class="list-group-item">
-            	链接地址:<strong style="margin:15px;">${menu.url }</strong>
-            </li>
-            <li class="list-group-item">
-            	图标:<strong style="margin:15px;"><c:if test="${menu.icon !='' }"><i class="fa ${menu.icon }"></i></c:if></strong>
-            </li>
-        </ul>
-	</div>
-	<div class="row" style="text-align: center;">
-		<a href="system/menu/addindex.htm?code=${menu.code }&group=${menu.groupCode}" style="margin: 15px;" class="btn btn-w-m btn-info">添加子项</a>
-		<a href="system/menu/editindex.htm?code=${menu.code }" style="margin: 15px;" class="btn btn-w-m btn-warning">编辑</a>
-		<a href="javascript:void(0)" style="margin: 15px;" class="btn btn-w-m btn-danger" onclick="Menu.del('${menu.code}','${menu.groupCode}')">删除</a>
+<div  class="wrapper wrapper-content animated fadeInRight">
+	<div class="row">
+		<form id="addFrm" method="post" class="form-horizontal">
+			<input type="hidden" name="parentCode" id="parentCode" value="${parentCode }">
+			<input type="hidden" name="groupCode" id="groupCode" value="${groupCode }">
+			<div class="form-group">
+				<label class="col-sm-4 control-label">名称</label>
+				<div class="col-sm-4">
+					<input name="name" id="name" value="" type="text" class="form-control">
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="col-sm-4 control-label">链接地址</label>
+				<div class="col-sm-4">
+					<input name="url" id="url" value="" type="text" class="form-control">
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="col-sm-4 control-label">参数</label>
+				<div class="col-sm-4">
+					<input name="param" id="param" value="" type="text" class="form-control">
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="col-sm-4 control-label">是否可用</label>
+				<div class="col-sm-4">
+					<select class="form-control m-b" name="flagAble">
+						<option value="0">可用</option>
+						<option value="1">不可用</option>					
+					</select>
+				</div>
+			</div>
+			<div style="text-align: center;" class="form-group">
+				<a href="javascript:void(0)" class="btn btn-w-m btn-info" onclick="Page.add('${groupCode }')">保存</a>
+				<a href="system/page/detail.htm?code=${parentCode }" class="btn btn-w-m btn-default">取消</a>
+			</div>
+		</form>
 	</div>
 </div>
-<script src="assets/commons/js/system/menu/menu.js"></script>
+<script src="assets/commons/js/system/page/page.js"></script>
+<%@ include file="../../common/footer.jsp" %>

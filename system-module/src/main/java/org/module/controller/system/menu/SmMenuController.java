@@ -1,5 +1,6 @@
 package org.module.controller.system.menu;
 
+import org.module.helper.commons.CodeHelper;
 import org.module.model.system.menu.SmMenu;
 import org.module.result.DataResult;
 import org.module.result.EntityResult;
@@ -26,7 +27,7 @@ public class SmMenuController {
 	private ISmMenuService service;
 
 	@RequestMapping("index")
-	public String index(String groupCode,ModelMap model) {
+	public String index(String groupCode, ModelMap model) {
 		model.addAttribute("groupCode", groupCode);
 		return "jsp/system/menu/index";
 	}
@@ -55,6 +56,7 @@ public class SmMenuController {
 	@ResponseBody
 	public EntityResult add(SmMenu entity) {
 		entity.setCreateUser("insert");
+		entity.setCode(CodeHelper.getUniqueCode("SM"));
 		return service.insertSelective(entity);
 	}
 

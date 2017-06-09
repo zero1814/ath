@@ -152,4 +152,8 @@
 			#{groupCode,jdbcType=VARCHAR}
 		</where>
 	</select>
+	<!-- 判断是否包含子页面 -->
+	<select id="isExistsChildPage" parameterType="java.lang.String" resultType="java.lang.Integer">
+		select count(1) from systemmodule.sm_page where parent_code = #{parentCode,jdbcType=VARCHAR}
+	</select>
 </mapper>

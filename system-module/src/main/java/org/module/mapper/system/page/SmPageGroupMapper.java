@@ -26,4 +26,5 @@ public interface SmPageGroupMapper extends BaseMapper<SmPageGroup, SmPageGroupDt
 	 * @return
 	 */
 	List<SmPageGroup> findDataAll(String parentCode);
+
 }

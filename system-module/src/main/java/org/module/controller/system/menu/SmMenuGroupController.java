@@ -1,6 +1,7 @@
 package org.module.controller.system.menu;
 
 import org.module.dto.system.menu.SmMenuGroupDto;
+import org.module.helper.commons.CodeHelper;
 import org.module.model.system.menu.SmMenuGroup;
 import org.module.result.PageResult;
 import org.module.result.RootResult;
@@ -31,12 +32,15 @@ public class SmMenuGroupController {
 	@RequestMapping("add")
 	@ResponseBody
 	public RootResult add(SmMenuGroup entity) {
+		entity.setCode(CodeHelper.getUniqueCode("SMG"));
+		entity.setCreateUser("add");
 		return service.insertSelective(entity);
 	}
 
 	@RequestMapping("edit")
 	@ResponseBody
 	public RootResult edit(SmMenuGroup entity) {
+		entity.setUpdateUser("edit");
 		return service.updateByCode(entity);
 	}
 

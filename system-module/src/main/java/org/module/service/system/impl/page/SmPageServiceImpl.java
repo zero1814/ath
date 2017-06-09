@@ -6,6 +6,7 @@ import org.module.dto.system.page.SmPageDto;
 import org.module.mapper.system.page.SmPageMapper;
 import org.module.model.system.page.SmPage;
 import org.module.result.DataResult;
+import org.module.result.RootResult;
 import org.module.service.impl.BaseServiceImpl;
 import org.module.service.system.page.ISmPageService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -68,4 +69,19 @@ public class SmPageServiceImpl extends BaseServiceImpl<SmPage, SmPageMapper, SmP
 		}
 		return list;
 	}
+
+	@Override
+	public RootResult deleteByCode(String code) {
+		RootResult result = new RootResult();
+		// 查询是否包含子页面
+		Integer isExistsChild = mapper.isExistsChildPage(code);
+		if (isExistsChild > 0) {
+			result.setCode(-1);
+			result.setMessage("页面包含子页面，请先删除子页面信息");
+		} else {
+			result = super.deleteByCode(code);
+		}
+		return result;
+	}
+
 }

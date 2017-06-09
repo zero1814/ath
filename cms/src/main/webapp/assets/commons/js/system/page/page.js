@@ -36,8 +36,8 @@ var Page = {
 		Page.Layer = layer.open({
 			type: 1,
 			title: titleVal,
-			skin: 'layui-layer-lan', //加上边框
-			area: ['450px', '220px'], //宽高
+			skin: 'layui-layer-lan', // 加上边框
+			area: ['450px', '220px'], // 宽高
 			content: $("#" + layerDivId)
 		});
 	},
@@ -49,7 +49,7 @@ var Page = {
 	add:function(group){
 		var param = $("#addFrm").serializeArray();
 		$.ajax({
-			url: "system/Page/add.htm",
+			url: "system/page/add.htm",
 			type: "POST",
 			data: param,
 			dataType : "json",
@@ -79,14 +79,14 @@ var Page = {
 			}
 		});
 	},
-	edit:function(code){
+	edit:function(group){
 		layer.confirm('您确认要编辑选中的页面吗？', {
 			btn: ['确认', '取消']
 			// 按钮
 		}, function() {
 			var param = $("#editFrm").serializeArray();
 			$.ajax({
-				url: "system/Page/edit.htm",
+				url: "system/page/edit.htm",
 				type: "POST",
 				data: param,
 				dataType : "json",
@@ -118,7 +118,7 @@ var Page = {
 			// 按钮
 		}, function() {
 			$.ajax({
-				url: "system/Page/del.htm",
+				url: "system/page/del.htm",
 				type: "POST",
 				data: {"code":code},
 				dataType : "json",
