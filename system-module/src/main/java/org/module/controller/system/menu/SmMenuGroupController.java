@@ -20,7 +20,7 @@ public class SmMenuGroupController {
 
 	@RequestMapping("index")
 	public String index() {
-		return "jsp/system/menu/group";
+		return "jsp/system/menu/group/index";
 	}
 
 	@RequestMapping("data")
@@ -29,6 +29,11 @@ public class SmMenuGroupController {
 		return service.findEntityToPage(dto);
 	}
 
+	@RequestMapping("addindex")
+	public String addIndex(){
+		return "jsp/system/menu/group/add";
+	}
+	
 	@RequestMapping("add")
 	@ResponseBody
 	public RootResult add(SmMenuGroup entity) {

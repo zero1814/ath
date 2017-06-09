@@ -34,13 +34,13 @@ var MenuGroup = {
 		Table.param = MenuGroup.searchParam();
 		$("#table").bootstrapTable('refresh');
 	},
-	openLayer: function(titleVal, layerDivId) {
+	openLayer: function(titleVal, url) {
 		MenuGroup.Layer = layer.open({
-			type: 1,
+			type: 2,
 			title: titleVal,
 			skin: 'layui-layer-lan', //加上边框
 			area: ['450px', '180px'], //宽高
-			content: $("#" + layerDivId)
+			content: [url, 'no']
 		});
 	},
 	closeLayer: function() {
@@ -48,12 +48,15 @@ var MenuGroup = {
 			layer.close(MenuGroup.Layer);
 		}
 	},
+	openAdd:function(){
+		MenuGroup.openLayer("添加","system/menu/group/addindex.htm");
+	},
 	openEdit: function(val) {
 		layer.confirm('您确定要修改此条数据吗？', {
 			btn: ['确定', '取消'] //按钮
 		}, function(index) {
 			layer.close(index);
-			MenuGroup.openLayer('编辑', 'editDiv');
+			MenuGroup.openLayer("编辑","system/menu/group/eidtindex.htm?code="+val);
 		}, function(index) {
 			layer.close(index);
 		});
