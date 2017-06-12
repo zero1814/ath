@@ -44,7 +44,7 @@ var PageTable = {
 			type: 2,
 			title: titleVal,
 			skin: 'layui-layer-lan', // 加上边框
-			area: ['450px', '280px'], // 宽高
+			area: ['480px', '380px'], // 宽高
 			content: [url, 'no']
 		});
 	},

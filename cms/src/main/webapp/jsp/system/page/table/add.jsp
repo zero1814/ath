@@ -2,7 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ include file="../../../common/header.jsp" %>
 <div  class="wrapper wrapper-content animated fadeInRight">
-	<div class="row">
+	<div class="row" style="margin:10px;">
 		<form id="addFrm" method="post" class="form-horizontal">
 			<input type="hidden" name="parentCode" id="parentCode" value="${parentCode }">
 			<input type="hidden" name="groupCode" id="groupCode" value="${groupCode }">
