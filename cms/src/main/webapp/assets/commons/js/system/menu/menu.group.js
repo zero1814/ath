@@ -39,13 +39,13 @@ var MenuGroup = {
 			type: 2,
 			title: titleVal,
 			skin: 'layui-layer-lan', //加上边框
-			area: ['450px', '180px'], //宽高
+			area: ['450px', '280px'], //宽高
 			content: [url, 'no']
 		});
 	},
 	closeLayer: function() {
-		if(MenuGroup.Layer) {
-			layer.close(MenuGroup.Layer);
+		if(parent.MenuGroup.Layer) {
+			parent.layer.close(parent.MenuGroup.Layer);
 		}
 	},
 	openAdd:function(){
@@ -56,7 +56,7 @@ var MenuGroup = {
 			btn: ['确定', '取消'] //按钮
 		}, function(index) {
 			layer.close(index);
-			MenuGroup.openLayer("编辑","system/menu/group/eidtindex.htm?code="+val);
+			MenuGroup.openLayer("编辑","system/menu/group/editindex.htm?code="+val);
 		}, function(index) {
 			layer.close(index);
 		});
@@ -71,13 +71,13 @@ var MenuGroup = {
 			success: function(result) {
 				if(result.code == 0) {
 					layer.alert('添加成功', function(index) {
-						layer.close(MenuGroup.Layer);
-						$("#table").bootstrapTable('refresh');
+						parent.$("#table").bootstrapTable('refresh');
+						parent.layer.close(parent.MenuGroup.Layer);
 					});
 				} else {
 					layer.alert(result.message, function(index) {
-						layer.close(MenuGroup.Layer);
-						$("#table").bootstrapTable('refresh');
+						parent.$("#table").bootstrapTable('refresh');
+						parent.layer.close(MenuGroup.Layer);
 					});
 				}
 			},
@@ -100,20 +100,20 @@ var MenuGroup = {
 				dataType : "json",
 				success: function(result) {
 					if(result.code == 0) {
-						layer.alert('编辑成功', function() {
-							layer.close(MenuGroup.Layer);
-							$("#table").bootstrapTable('refresh');
+						layer.alert('编辑成功', function(index) {
+							parent.$("#table").bootstrapTable('refresh');
+							parent.layer.close(parent.MenuGroup.Layer);
 						});
 					} else {
 						layer.alert(result.message, function(index) {
-							layer.close(MenuGroup.Layer);
-							$("#table").bootstrapTable('refresh');
+							parent.$("#table").bootstrapTable('refresh');
+							parent.layer.close(parent.MenuGroup.Layer);
 						});
 					}
 				},
 				error: function(result) {
 					layer.alert('编辑失败，失败原因:' + JSON.stringify(result),function(index){
-						layer.close(MenuGroup.Layer);
+						parent.layer.close(parent.MenuGroup.Layer);
 						window.parent.location.href="system/menu/index.htm?groupCode="+group;
 					});
 				}
@@ -159,7 +159,7 @@ function menuHref(value, row, index) {
 }
 function initOperate(value, row, index) {
 	var code = row.code;
-	var html = "<a style='margin:10px;' class='btn btn-info btn-sm' href='javacript:void(0)' onclick='MenuGroup.openEdit()'>编辑</a>";
+	var html = "<a style='margin:10px;' class='btn btn-info btn-sm' href='javacript:void(0)' onclick='MenuGroup.openEdit(\""+code+"\")'>编辑</a>";
 	html += "<a style='margin:10px;' class='btn btn-info btn-sm' href='javacript:void(0)' onclick='MenuGroup.del(\"" + code + "\")'>删除</a>";
 	return html;
 }
