@@ -85,9 +85,15 @@ public class BaseServiceImpl<T extends BaseModel, M extends BaseMapper<T, DTO>, 
 			entity.setUpdateTime(DateUtil.getSysDateTime());
 		}
 		try {
-			mapper.updateByCode(entity);
-			result.setCode(0);
-			result.setMessage("编辑成功");
+			T t = mapper.selectByCode(entity.getCode());
+			if (t != null) {
+				mapper.updateByCode(entity);
+				result.setCode(0);
+				result.setMessage("编辑成功");
+			} else {
+				result.setCode(-1);
+				result.setMessage("编辑对象不存在");
+			}
 			logger.logInfo(this.getClass().getName() + "，执行updateByCode方法成功");
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -144,13 +150,19 @@ public class BaseServiceImpl<T extends BaseModel, M extends BaseMapper<T, DTO>, 
 		logger.logInfo(this.getClass().getName() + "，开始执行deleteByCode方法");
 		RootResult result = new RootResult();
 		try {
-			int flag = mapper.deleteByCode(code);
-			if (flag >= 0) {
-				result.setCode(0);
-				result.setMessage("删除成功");
+			T t = mapper.selectByCode(code);
+			if (t != null) {
+				int flag = mapper.deleteByCode(code);
+				if (flag >= 0) {
+					result.setCode(0);
+					result.setMessage("删除成功");
+				} else {
+					result.setCode(-1);
+					result.setMessage("删除失败");
+				}
 			} else {
 				result.setCode(-1);
-				result.setMessage("删除失败");
+				result.setMessage("删除对象不存在");
 			}
 			logger.logInfo(this.getClass().getName() + "，执行deleteByCode方法成功");
 		} catch (Exception e) {
