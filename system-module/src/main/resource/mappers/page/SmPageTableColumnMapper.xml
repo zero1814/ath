@@ -14,6 +14,10 @@
 		<result column="create_time" property="createTime" jdbcType="VARCHAR" />
 		<result column="update_user" property="updateUser" jdbcType="VARCHAR" />
 		<result column="update_time" property="updateTime" jdbcType="VARCHAR" />
+		<collection property="table"
+			ofType="org.module.model.system.page.SmPageTable">
+			<result column="table_name" property="name" jdbcType="VARCHAR" />
+		</collection>
 	</resultMap>
 	<sql id="Base_Column_List">
 		id, uid, code, table_code, field, title, formatter,
@@ -90,4 +94,41 @@
 		</set>
 		where `code`=#{code,jdbcType=VARCHAR}
 	</update>
+	<select id="findEntityAllToPage" parameterType="org.module.dto.system.page.SmPageTableColumnDto"
+		resultMap="BaseResultMap">
+		SELECT
+		c.`code`,
+		c.field,
+		c.title,
+		c.formatter,
+		t.`name` as table_name,
+		c.create_user,
+		c.create_time,
+		c.update_user,
+		c.update_time
+		FROM
+		systemmodule.sm_page_table_column AS c
+		LEFT JOIN
+		systemmodule.sm_page_table AS t ON c.table_code = t.`code`
+		<where>
+			c.table_code = #{tableCode,jdbcType=VARCHAR}
+			<if test="name != null and name !=''">
+				and c.`name` = #{name,jdbcType=VARCHAR}
+			</if>
+		</where>
+	</select>
+	<select id="findEntityAllCountToPage" parameterType="org.module.dto.system.page.SmPageTableColumnDto"
+		resultType="java.lang.Integer">
+		select count(1)
+		FROM
+		systemmodule.sm_page_table_column AS c
+		LEFT JOIN
+		systemmodule.sm_page_table AS t ON c.table_code = t.`code`
+		<where>
+			c.table_code = #{tableCode,jdbcType=VARCHAR}
+			<if test="name != null and name !=''">
+				and c.`name` = #{name,jdbcType=VARCHAR}
+			</if>
+		</where>
+	</select>
 </mapper>

@@ -20,8 +20,9 @@ public class SmPageTableColumnController {
 	private ISmPageTableColumnService service;
 
 	@RequestMapping("index")
-	public String index() {
-		return "";
+	public String index(String tableCode, ModelMap model) {
+		model.addAttribute("tableCode", tableCode);
+		return "jsp/system/page/table/column/index";
 	}
 
 	@RequestMapping("data")

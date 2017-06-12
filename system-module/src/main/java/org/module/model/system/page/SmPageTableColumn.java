@@ -2,6 +2,7 @@ package org.module.model.system.page;
 
 import org.module.commons.annotation.db.Column;
 import org.module.commons.annotation.db.Table;
+import org.module.commons.annotation.obj.Attribute;
 import org.module.model.BaseModel;
 
 @Table(name = "sm_page_table_column", database = "systemmodule", comment = "页面列表显示字段设置表")
@@ -18,6 +19,17 @@ public class SmPageTableColumn extends BaseModel {
 
 	@Column(name = "formatter", defaultValue = "", comment = "格式化程序")
 	private String formatter;
+
+	@Attribute(name = "页面显示列表")
+	private SmPageTable table;
+
+	public SmPageTable getTable() {
+		return table;
+	}
+
+	public void setTable(SmPageTable table) {
+		this.table = table;
+	}
 
 	public String getTableCode() {
 		return tableCode;

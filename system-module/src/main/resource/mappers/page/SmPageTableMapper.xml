@@ -85,10 +85,15 @@
 		p.`name` as page_name,
 		t.create_user,
 		DATE_FORMAT(t.create_time,'%Y-%m-%d
-		%H:%i:%s') as create_time
+		%H:%i:%s') as create_time,
+		t.update_user,
+		DATE_FORMAT(t.update_time,'%Y-%m-%d %H:%i:%s')
+		as
+		update_time
 		FROM
 		systemmodule.sm_page_table AS t
-		LEFT JOIN systemmodule.sm_page AS p ON
+		LEFT JOIN systemmodule.sm_page AS p
+		ON
 		t.page_code = p.`code`
 		<where>
 			<if test="name != null and name != ''">

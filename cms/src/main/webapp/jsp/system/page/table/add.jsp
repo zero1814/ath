@@ -4,8 +4,6 @@
 <div  class="wrapper wrapper-content animated fadeInRight">
 	<div class="row" style="margin:10px;">
 		<form id="addFrm" method="post" class="form-horizontal">
-			<input type="hidden" name="parentCode" id="parentCode" value="${parentCode }">
-			<input type="hidden" name="groupCode" id="groupCode" value="${groupCode }">
 			<div class="form-group">
 				<label class="col-sm-4 control-label">名称</label>
 				<div class="col-sm-4">
@@ -23,11 +21,11 @@
 				</div>
 			</div>
 			<div style="text-align: center;" class="form-group">
-				<a href="javascript:void(0)" class="btn btn-w-m btn-info" onclick="Page.add('${groupCode }')">保存</a>
-				<a href="system/page/detail.htm?code=${code }" class="btn btn-w-m btn-default">取消</a>
+				<a href="javascript:void(0)" class="btn btn-w-m btn-info" onclick="PageTable.add()">保存</a>
+				<a href="javascript:void(0)" class="btn btn-w-m btn-default" onclick="PageTable.closeLayer();">取消</a>
 			</div>
 		</form>
 	</div>
 </div>
-<script src="assets/commons/js/system/page/page.js"></script>
+<script src="assets/commons/js/system/page/page.table.js"></script>
 <%@ include file="../../../common/footer.jsp" %>

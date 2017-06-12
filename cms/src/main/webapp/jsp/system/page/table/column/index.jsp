@@ -11,39 +11,46 @@
 				页面管理
 			</li>
 			<li>
-				<strong>页面管理</strong>
+				<strong>页面显示管理</strong>
 			</li>
 		</ol>
 	</div>
 </div>
+
 <div class="wrapper wrapper-content">
 	<div class="row">
-		<div class="col-sm-5">
-			<div class="ibox float-e-margins">
-				<div class="ibox-title">
-					<h5>页面列表</h5>
+		<div class="col-sm-12">
+			<form method="get" class="form-horizontal">
+				<div class="form-group">
+					<label class="col-sm-4 control-label">名称</label>
+					<div class="col-sm-4">
+						<input name="name" id="name" value="" type="text" class="form-control">
+					</div>
 				</div>
-				<div class="ibox-content">
-					<div id="treeview"></div>
+				<div class="form-group">
+					<label class="col-sm-4 control-label"></label>
+					<div class="col-sm-4">
+						<a style="float: right;" href="javascript:void(0)" onclick="PageTableColumn.search();" class="btn btn-w-m btn-info">查询</a>
+					</div>
 				</div>
-			</div>
+			</form>
 		</div>
-		<div class="col-sm-5">
-			<div class="ibox float-e-margins">
-				<div class="ibox-title"></div>
-				<div class="ibox-content" style="height: 800px;">
-					<iframe id="m_iframe" width="100%" height="100%" src="" frameborder="0" seamless></iframe>
-				</div>
+	</div>
+	<div class="row">
+		<div class="col-sm-12">
+			<div class="btn-group hidden-xs" role="table">
+				<a href="javascript:void(0)" onclick="PageTableColumn.openAdd();" class="btn btn-w-m btn-info">添加</a>
 			</div>
+			<table id="table" data-height="400" data-mobile-responsive="true">
+			</table>
 		</div>
 	</div>
 </div>
-<%@ include file="../../../../common/footer.jsp" %>
-<script src="assets/plugins/bootstrap/plugins/bootstrap-treeview/js/bootstrap-treeview.min.js"></script>
-<script src="assets/commons/js/tree.js"></script>
-<script src="assets/commons/js/system/page/page.js"></script>
+<script src="assets/commons/js/table.js"></script>
+<script src="assets/commons/js/system/page/page.table.column.js"></script>
 <script>
 	$(document).ready(function() {
-		Page.init('${groupCode}');
+		PageTableColumn.data();
 	});
 </script>
+<%@ include file="../../../../common/footer.jsp" %>

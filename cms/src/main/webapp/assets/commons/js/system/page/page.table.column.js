@@ -1,7 +1,7 @@
 /**
  * 页面显示列表相关函数
  */
-var PageTableColumn = {
+var PageTable = {
 	Layer: '',
 	data: function() {
 		columns = [{
@@ -27,12 +27,16 @@ var PageTableColumn = {
 		},{
 			field: 'updateTime',
 			title: '最后时间'
-		},,{
+		},{
+			field: 'settingColumn',
+			title: '显示字段',
+			formatter: settingColumn			
+		},{
 			field: 'operate',
 			title: '操作',
 			formatter: initOperate
 		}]
-		Table.init("table", "system/page/table/data.htm", columns, PageTableColumn
+		Table.init("table", "system/page/table/data.htm", columns, PageTable
 			.searchParam());
 	},
 	searchParam: function() {
@@ -42,11 +46,11 @@ var PageTableColumn = {
 		return temp;
 	},
 	search: function() {
-		Table.param = PageTableColumn.searchParam();
+		Table.param = PageTable.searchParam();
 		$("#table").bootstrapTable('refresh');
 	},
 	openLayer: function(titleVal, url) {
-		PageTableColumn.Layer = layer.open({
+		PageTable.Layer = layer.open({
 			type: 2,
 			title: titleVal,
 			skin: 'layui-layer-lan', // 加上边框
@@ -55,12 +59,12 @@ var PageTableColumn = {
 		});
 	},
 	closeLayer: function() {
-		if(parent.PageTableColumn.Layer) {
-			parent.layer.close(parent.PageTableColumn.Layer);
+		if(parent.PageTable.Layer) {
+			parent.layer.close(parent.PageTable.Layer);
 		}
 	},
 	openAdd: function() {
-		PageTableColumn.openLayer("添加", "system/page/table/addindex.htm");
+		PageTable.openLayer("添加", "system/page/table/addindex.htm");
 	},
 	openEdit: function(val) {
 		layer.confirm('您确定要修改此条数据吗？', {
@@ -68,7 +72,7 @@ var PageTableColumn = {
 			// 按钮
 		}, function(index) {
 			layer.close(index);
-			PageTableColumn.openLayer("编辑", "system/page/table/editindex.htm?code=" +
+			PageTable.openLayer("编辑", "system/page/table/editindex.htm?code=" +
 				val);
 		}, function(index) {
 			layer.close(index);
@@ -85,12 +89,12 @@ var PageTableColumn = {
 				if(result.code == 0) {
 					layer.alert('添加成功', function(index) {
 						parent.$("#table").bootstrapTable('refresh');
-						parent.layer.close(parent.PageTableColumn.Layer);
+						parent.layer.close(parent.PageTable.Layer);
 					});
 				} else {
 					layer.alert(result.message, function(index) {
 						parent.$("#table").bootstrapTable('refresh');
-						parent.layer.close(PageTableColumn.Layer);
+						parent.layer.close(PageTable.Layer);
 					});
 				}
 			},
@@ -119,18 +123,18 @@ var PageTableColumn = {
 								if(result.code == 0) {
 									layer.alert('编辑成功',function(index) {
 										parent.$("#table").bootstrapTable('refresh');
-										parent.layer.close(parent.PageTableColumn.Layer);
+										parent.layer.close(parent.PageTable.Layer);
 									});
 								} else {
 									layer.alert(result.message,function(index) {
 										parent.$("#table").bootstrapTable('refresh');
-										parent.layer.close(parent.PageTableColumn.Layer);
+										parent.layer.close(parent.PageTable.Layer);
 									});
 								}
 							},
 							error: function(result) {
 								layer.alert('编辑失败，失败原因:' +JSON.stringify(result),function(index) {
-									parent.layer.close(parent.PageTableColumn.Layer);
+									parent.layer.close(parent.PageTable.Layer);
 									window.parent.location.href = "system/menu/index.htm?groupCode=" +group;
 								});
 							}
@@ -173,9 +177,14 @@ var PageTableColumn = {
 		});
 	}
 };
+function settingColumn(value, row, index){
+	var code = row.code;
+	var html = "<a style='margin:10px;' class='btn btn-info btn-sm' href='system/page/table/column/index.htm?tableCode="+code+"'>设置</a>";
+	return html;
+}
 function initOperate(value, row, index) {
 	var code = row.code;
-	var html = "<a style='margin:10px;' class='btn btn-info btn-sm' href='javacript:void(0)' onclick='PageTableColumn.openEdit(\""+code+"\")'>编辑</a>";
-	html += "<a style='margin:10px;' class='btn btn-info btn-sm' href='javacript:void(0)' onclick='PageTableColumn.del(\"" + code + "\")'>删除</a>";
+	var html = "<a style='margin:10px;' class='btn btn-info btn-sm' href='javacript:void(0)' onclick='PageTable.openEdit(\""+code+"\")'>编辑</a>";
+	html += "<a style='margin:10px;' class='btn btn-info btn-sm' href='javacript:void(0)' onclick='PageTable.del(\"" + code + "\")'>删除</a>";
 	return html;
 }
