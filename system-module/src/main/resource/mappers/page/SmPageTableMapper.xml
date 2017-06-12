@@ -26,16 +26,16 @@
 		parameterType="java.lang.String">
 		select
 		<include refid="Base_Column_List" />
-		from sm_page_table
+		from systemmodule.sm_page_table
 		where `code`=#{code,jdbcType=VARCHAR}
 	</select>
 	<delete id="deleteByCode" parameterType="java.lang.String">
 		delete from
-		sm_page_table
+		systemmodule.sm_page_table
 		where `code`=#{code,jdbcType=VARCHAR}
 	</delete>
 	<insert id="insertSelective" parameterType="org.module.model.system.page.SmPageTable">
-		insert into sm_page_table
+		insert into systemmodule.sm_page_table
 		<trim prefix="(" suffix=")" suffixOverrides=",">
 			uid,
 			`code`,
@@ -60,7 +60,7 @@
 		</trim>
 	</insert>
 	<update id="updateByCode" parameterType="org.module.model.system.page.SmPageTable">
-		update sm_page_table
+		update systemmodule.sm_page_table
 		<set>
 			<if test="name != null and name != ''">
 				`name` = #{name,jdbcType=VARCHAR},
