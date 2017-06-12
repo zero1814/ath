@@ -4,7 +4,6 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.module.helper.commons.CodeHelper;
 import org.module.model.system.page.SmPage;
-import org.module.result.DataResult;
 import org.module.result.EntityResult;
 import org.module.result.RootResult;
 import org.module.service.system.page.ISmPageService;
@@ -75,10 +74,8 @@ public class SmPageTest {
 		RootResult result = service.deleteByCode("SP869797891529502720");
 		System.out.println(JSON.toJSON(result));
 	}
-	
+
 	@Test
-	public void all(){
-		DataResult result = service.treeData("SPG870101120909832192");
-		System.out.println(JSON.toJSON(result));
+	public void all() {
 	}
 }

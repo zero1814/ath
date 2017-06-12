@@ -2,9 +2,9 @@ package org.module.controller.system.menu;
 
 import org.module.helper.commons.CodeHelper;
 import org.module.model.system.menu.SmMenu;
-import org.module.result.DataResult;
 import org.module.result.EntityResult;
 import org.module.result.RootResult;
+import org.module.result.TreeResult;
 import org.module.service.system.menu.ISmMenuService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -34,7 +34,7 @@ public class SmMenuController {
 
 	@RequestMapping("tree")
 	@ResponseBody
-	public DataResult data(String groupCode) {
+	public TreeResult data(String groupCode) {
 		return service.treeData(groupCode);
 	}
 

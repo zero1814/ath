@@ -5,8 +5,8 @@ import java.util.List;
 import org.module.dto.system.page.SmPageDto;
 import org.module.mapper.system.page.SmPageMapper;
 import org.module.model.system.page.SmPage;
-import org.module.result.DataResult;
 import org.module.result.RootResult;
+import org.module.result.TreeResult;
 import org.module.service.impl.BaseServiceImpl;
 import org.module.service.system.page.ISmPageService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,8 +26,8 @@ public class SmPageServiceImpl extends BaseServiceImpl<SmPage, SmPageMapper, SmP
 	private SmPageMapper mapper;
 
 	@Override
-	public DataResult treeData(String groupCode) {
-		DataResult result = new DataResult();
+	public TreeResult treeData(String groupCode) {
+		TreeResult result = new TreeResult();
 		try {
 			result.setCode(0);
 			result.setData(data("0", groupCode));

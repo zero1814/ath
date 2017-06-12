@@ -3,10 +3,12 @@ package org.module.service.system.impl.menu;
 import java.util.List;
 
 import org.module.dto.system.menu.SmMenuDto;
+import org.module.mapper.system.menu.SmMenuGroupMapper;
 import org.module.mapper.system.menu.SmMenuMapper;
 import org.module.model.system.menu.SmMenu;
-import org.module.result.DataResult;
+import org.module.model.system.menu.SmMenuGroup;
 import org.module.result.RootResult;
+import org.module.result.TreeResult;
 import org.module.service.impl.BaseServiceImpl;
 import org.module.service.system.menu.ISmMenuService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,14 +26,23 @@ public class SmMenuServiceImpl extends BaseServiceImpl<SmMenu, SmMenuMapper, SmM
 
 	@Autowired
 	private SmMenuMapper mapper;
+	@Autowired
+	private SmMenuGroupMapper groupMapper;
 
 	@Override
-	public DataResult treeData(String groupCode) {
-		DataResult result = new DataResult();
+	public TreeResult treeData(String groupCode) {
+		TreeResult result = new TreeResult();
 		try {
-			result.setCode(0);
-			result.setData(data("0", groupCode));
-			result.setMessage("查询菜单成功");
+			SmMenuGroup group = groupMapper.selectByCode(groupCode);
+			if (group != null) {
+				result.setCode(0);
+				result.setTreeName(group.getName());
+				result.setData(data("0", groupCode));
+				result.setMessage("查询菜单成功");
+			} else {
+				result.setCode(-1);
+				result.setMessage("菜单组下菜单信息为空");
+			}
 		} catch (Exception e) {
 			e.printStackTrace();
 			result.setCode(-1);

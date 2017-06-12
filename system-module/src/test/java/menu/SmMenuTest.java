@@ -4,7 +4,6 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.module.helper.commons.CodeHelper;
 import org.module.model.system.menu.SmMenu;
-import org.module.result.DataResult;
 import org.module.result.EntityResult;
 import org.module.result.RootResult;
 import org.module.service.system.menu.ISmMenuService;
@@ -58,10 +57,8 @@ public class SmMenuTest {
 		RootResult result = service.deleteByCode("SM869797002345443328");
 		System.out.println(JSON.toJSON(result));
 	}
-	
+
 	@Test
-	public void findAll(){
-		DataResult result = service.treeData("");
-		System.out.println(JSON.toJSON(result));
+	public void findAll() {
 	}
 }
