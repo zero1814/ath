@@ -138,7 +138,8 @@
 		sp.parent_code,
 		sp.`name`,
 		sp.group_code,
-		spg.`name` AS group_name,
+		spg.`name` AS
+		group_name,
 		sp.url,
 		sp.param,
 		sp.flag_able
@@ -148,12 +149,27 @@
 		spg.`code`
 		<where>
 			sp.parent_code = #{parentCode,jdbcType=VARCHAR}
-			and sp.group_code =
+			and
+			sp.group_code =
 			#{groupCode,jdbcType=VARCHAR}
 		</where>
 	</select>
 	<!-- 判断是否包含子页面 -->
-	<select id="isExistsChildPage" parameterType="java.lang.String" resultType="java.lang.Integer">
-		select count(1) from systemmodule.sm_page where parent_code = #{parentCode,jdbcType=VARCHAR}
+	<select id="isExistsChildPage" parameterType="java.lang.String"
+		resultType="java.lang.Integer">
+		select count(1) from systemmodule.sm_page where parent_code
+		= #{parentCode,jdbcType=VARCHAR}
+	</select>
+	<select id="findPages" resultMap="BaseResultMap" parameterType="org.module.dto.system.page.SmPageDto">
+		select
+		<include refid="Base_Column_List" />
+		from systemmodule.sm_page
+		<where>
+			is_deleted = 0
+			and url != ""
+			<if test="flagAble != null">
+			 and flag_able = ${#flagAble,jdbcType=INTEGER}
+			</if>
+		</where>
 	</select>
 </mapper>

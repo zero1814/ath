@@ -11,7 +11,8 @@ var Page = {
 			dataType : "json",
 			success : function(result) {
 				if (result.code == 0) {
-					var tree = [{text:"页面管理",nodes:result.data}];
+					alert(JSON.stringify(result));
+					var tree = [{text:result.treeName,nodes:result.data}];
 					Tree.init("treeview",false,tree,function(event, node) {
 						if(node.code){
 							if(node.code == "0"){

@@ -12,9 +12,14 @@
 				</div>
 			</div>
 			<div class="form-group">
-				<label class="col-sm-4 control-label">链接地址</label>
+				<label class="col-sm-4 control-label">链接页面</label>
 				<div class="col-sm-4">
-					<input name="url" id="url" value="${menu.page.url }" type="text" class="form-control">
+					<select class="form-control m-b" name="pageCode">
+						<option value="">请选择</option>
+						<c:forEach var="page" items="${pages }">
+							<option value="${page.code }" <c:if test="${menu.pageCode == page.code }">selected="selected"</c:if>>${page.name }</option>
+						</c:forEach>
+					</select>
 				</div>
 			</div>
 			<div class="form-group">
@@ -40,7 +45,7 @@
 			</div>
 			<div style="text-align: center;" class="form-group">
 				<a href="javascript:void(0)" class="btn btn-w-m btn-info" onclick="Menu.edit()">保存</a>
-				<a href="system/menu/detail.htm?code=${parentCode }" class="btn btn-w-m btn-default">取消</a>
+				<a href="system/menu/detail.htm?code=${menu.code }" class="btn btn-w-m btn-default">取消</a>
 			</div>
 		</form>
 	</div>

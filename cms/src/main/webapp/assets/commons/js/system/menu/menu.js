@@ -1,5 +1,6 @@
 var Menu = {
 	Layer:'',
+	groupCode:'',
 	init : function(group) {
 		$.ajax({
 			url : 'system/menu/tree.htm',
@@ -8,7 +9,7 @@ var Menu = {
 			dataType : "json",
 			success : function(result) {
 				if (result.code == 0) {
-					var tree = [{text:"菜单管理",nodes:result.data}];
+					var tree = [{text:result.treeName,nodes:result.data}];
 					Tree.init("treeview",false,tree,function(event, node) {
 						if(node.code){
 							if(node.code == "0"){
@@ -18,6 +19,9 @@ var Menu = {
 								var url = "system/menu/detail.htm?code=" + node.code;
 								$("#m_iframe").attr('src', url);
 							}
+						}else{
+							var url = "system/menu/addindex.htm?code=0&group="+node.groupCode;
+							$("#m_iframe").attr('src', url);							
 						}
 					});
 				} else {
@@ -43,7 +47,7 @@ var Menu = {
 			layer.close(Menu.Layer);
 		}
 	},
-	add:function(group){
+	add:function(){
 		var param = $("#addFrm").serializeArray();
 		$.ajax({
 			url: "system/menu/add.htm",
@@ -53,13 +57,13 @@ var Menu = {
 			success: function(result) {
 				layer.alert(result.message, function() {
 					layer.close(Menu.Layer);
-					window.parent.location.href="system/menu/index.htm?groupCode="+group;
+					window.parent.location.href="system/menu/index.htm?groupCode="+$("#groupCode").val();
 				});
 			},
 			error: function(result) {
 				layer.alert('添加失败，失败原因:' + JSON.stringify(result),function(index){
 					layer.close(index);
-					window.parent.location.href="system/menu/index.htm?groupCode="+group;
+					window.parent.location.href="system/menu/index.htm?groupCode="+$("#groupCode").val();
 				});
 			}
 		});
@@ -79,19 +83,19 @@ var Menu = {
 					if(result.code == 0) {
 						layer.alert('编辑成功', function(index) {
 							layer.close(index);
-							window.parent.location.href="system/menu/index.htm?groupCode="+group;
+							window.parent.location.href="system/menu/index.htm?groupCode="+$("#groupCode").val();
 						});
 					} else {
 						layer.alert(result.message, function(index) {
 							layer.close(index);
-							window.parent.location.href="system/menu/index.htm?groupCode="+group;
+							window.parent.location.href="system/menu/index.htm?groupCode="+$("#groupCode").val();
 						});
 					}
 				},
 				error: function(result) {
 					layer.alert('编辑失败，失败原因:' + JSON.stringify(result),function(index){
 						layer.close(index);
-						window.parent.location.href="system/menu/index.htm?groupCode="+group;
+						window.parent.location.href="system/menu/index.htm?groupCode="+$("#groupCode").val();
 					});
 				}
 			});

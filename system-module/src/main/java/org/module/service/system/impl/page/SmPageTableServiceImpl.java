@@ -1,10 +1,15 @@
 package org.module.service.system.impl.page;
 
+import java.util.List;
+
 import org.module.dto.system.page.SmPageTableDto;
+import org.module.mapper.system.page.SmPageMapper;
 import org.module.mapper.system.page.SmPageTableMapper;
+import org.module.model.system.page.SmPage;
 import org.module.model.system.page.SmPageTable;
 import org.module.service.impl.BaseServiceImpl;
 import org.module.service.system.page.ISmPageTableService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 /**
@@ -18,4 +23,11 @@ import org.springframework.stereotype.Service;
 public class SmPageTableServiceImpl extends BaseServiceImpl<SmPageTable, SmPageTableMapper, SmPageTableDto>
 		implements ISmPageTableService {
 
+	@Autowired
+	private SmPageMapper pageMapper;
+
+	@Override
+	public List<SmPage> findPageAll() {
+		return pageMapper.findPages(null);
+	}
 }

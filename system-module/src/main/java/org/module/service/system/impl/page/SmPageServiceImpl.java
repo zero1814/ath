@@ -3,8 +3,10 @@ package org.module.service.system.impl.page;
 import java.util.List;
 
 import org.module.dto.system.page.SmPageDto;
+import org.module.mapper.system.page.SmPageGroupMapper;
 import org.module.mapper.system.page.SmPageMapper;
 import org.module.model.system.page.SmPage;
+import org.module.model.system.page.SmPageGroup;
 import org.module.result.RootResult;
 import org.module.result.TreeResult;
 import org.module.service.impl.BaseServiceImpl;
@@ -25,13 +27,23 @@ public class SmPageServiceImpl extends BaseServiceImpl<SmPage, SmPageMapper, SmP
 	@Autowired
 	private SmPageMapper mapper;
 
+	@Autowired
+	private SmPageGroupMapper groupMapper;
+
 	@Override
 	public TreeResult treeData(String groupCode) {
 		TreeResult result = new TreeResult();
 		try {
-			result.setCode(0);
-			result.setData(data("0", groupCode));
-			result.setMessage("查询成功");
+			SmPageGroup group = groupMapper.selectByCode(groupCode);
+			if (group != null) {
+				result.setTreeName(group.getName());
+				result.setCode(0);
+				result.setData(data("0", groupCode));
+				result.setMessage("查询成功");
+			} else {
+				result.setCode(-1);
+				result.setMessage("页面分组不存在");
+			}
 		} catch (Exception e) {
 			e.printStackTrace();
 			result.setCode(-1);

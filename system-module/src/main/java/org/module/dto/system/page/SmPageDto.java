@@ -15,6 +15,16 @@ public class SmPageDto extends BaseDto {
 
 	private String parentCode;
 
+	private Integer flagAble;
+
+	public Integer getFlagAble() {
+		return flagAble;
+	}
+
+	public void setFlagAble(Integer flagAble) {
+		this.flagAble = flagAble;
+	}
+
 	public String getGroupCode() {
 		return groupCode;
 	}

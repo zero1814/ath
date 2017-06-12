@@ -1,7 +1,10 @@
 package org.module.service.system.menu;
 
+import java.util.List;
+
 import org.module.dto.system.menu.SmMenuDto;
 import org.module.model.system.menu.SmMenu;
+import org.module.model.system.page.SmPage;
 import org.module.result.TreeResult;
 import org.module.service.IBaseService;
 
@@ -23,4 +26,15 @@ public interface ISmMenuService extends IBaseService<SmMenu, SmMenuDto> {
 	 * @return
 	 */
 	TreeResult treeData(String groupCode);
+
+	/**
+	 * 
+	 * 方法: pages <br>
+	 * 描述: 获取所有可用页面 <br>
+	 * 作者: zhy<br>
+	 * 时间: 2017年6月12日 下午9:46:47
+	 * 
+	 * @return
+	 */
+	List<SmPage> pages();
 }

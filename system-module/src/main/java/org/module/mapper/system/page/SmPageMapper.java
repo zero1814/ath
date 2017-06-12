@@ -40,4 +40,15 @@ public interface SmPageMapper extends BaseMapper<SmPage, SmPageDto> {
 	 */
 	Integer isExistsChildPage(String parentCode);
 
+	/**
+	 * 
+	 * 方法: findPages <br>
+	 * 描述: 获取所有页面信息 <br>
+	 * 作者: zhy<br>
+	 * 时间: 2017年6月12日 下午8:50:51
+	 * 
+	 * @return
+	 */
+	List<SmPage> findPages(SmPageDto dto);
+
 }

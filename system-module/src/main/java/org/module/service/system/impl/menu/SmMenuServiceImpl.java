@@ -5,8 +5,10 @@ import java.util.List;
 import org.module.dto.system.menu.SmMenuDto;
 import org.module.mapper.system.menu.SmMenuGroupMapper;
 import org.module.mapper.system.menu.SmMenuMapper;
+import org.module.mapper.system.page.SmPageMapper;
 import org.module.model.system.menu.SmMenu;
 import org.module.model.system.menu.SmMenuGroup;
+import org.module.model.system.page.SmPage;
 import org.module.result.RootResult;
 import org.module.result.TreeResult;
 import org.module.service.impl.BaseServiceImpl;
@@ -28,6 +30,8 @@ public class SmMenuServiceImpl extends BaseServiceImpl<SmMenu, SmMenuMapper, SmM
 	private SmMenuMapper mapper;
 	@Autowired
 	private SmMenuGroupMapper groupMapper;
+	@Autowired
+	private SmPageMapper pageMapper;
 
 	@Override
 	public TreeResult treeData(String groupCode) {
@@ -37,7 +41,8 @@ public class SmMenuServiceImpl extends BaseServiceImpl<SmMenu, SmMenuMapper, SmM
 			if (group != null) {
 				result.setCode(0);
 				result.setTreeName(group.getName());
-				result.setData(data("0", groupCode));
+				List<SmMenu> list = data("0", groupCode);
+				result.setData(list);
 				result.setMessage("查询菜单成功");
 			} else {
 				result.setCode(-1);
@@ -93,6 +98,18 @@ public class SmMenuServiceImpl extends BaseServiceImpl<SmMenu, SmMenuMapper, SmM
 		}
 
 		return result;
+	}
+
+	/**
+	 * 
+	 * 方法: pages <br>
+	 * 
+	 * @return
+	 * @see org.module.service.system.menu.ISmMenuService#pages()
+	 */
+	@Override
+	public List<SmPage> pages() {
+		return pageMapper.findPages(null);
 	}
 
 }

@@ -21,7 +21,7 @@ public class SmPageTableController {
 
 	@RequestMapping("index")
 	public String index() {
-		return "";
+		return "jsp/system/page/table/index";
 	}
 
 	@RequestMapping("data")
@@ -31,8 +31,9 @@ public class SmPageTableController {
 	}
 
 	@RequestMapping("addindex")
-	public String addIndex() {
-		return "";
+	public String addIndex(ModelMap model) {
+		model.addAttribute("pages", service.findPageAll());
+		return "jsp/system/page/table/add";
 	}
 
 	@RequestMapping("add")
@@ -47,7 +48,8 @@ public class SmPageTableController {
 		if (result.getCode() == 0) {
 			model.addAttribute("table", result.getEntity());
 		}
-		return "";
+		model.addAttribute("pages", service.findPageAll());
+		return "jsp/system/page/table/edit";
 	}
 
 	@RequestMapping("edit")

@@ -48,7 +48,10 @@ public class SmMenuController {
 	}
 
 	@RequestMapping("addindex")
-	public String addIndex() {
+	public String addIndex(String code,String group,ModelMap model) {
+		model.addAttribute("parentCode", code);
+		model.addAttribute("groupCode", group);
+		model.addAttribute("pages", service.pages());
 		return "jsp/system/menu/add";
 	}
 
@@ -66,6 +69,7 @@ public class SmMenuController {
 		if (result.getCode() == 0) {
 			model.addAttribute("menu", result.getEntity());
 		}
+		model.addAttribute("pages", service.pages());
 		return "jsp/system/menu/edit";
 	}
 
