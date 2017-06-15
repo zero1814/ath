@@ -11,7 +11,6 @@ var Page = {
 			dataType : "json",
 			success : function(result) {
 				if (result.code == 0) {
-					alert(JSON.stringify(result));
 					var tree = [{text:result.treeName,nodes:result.data}];
 					Tree.init("treeview",false,tree,function(event, node) {
 						if(node.code){
