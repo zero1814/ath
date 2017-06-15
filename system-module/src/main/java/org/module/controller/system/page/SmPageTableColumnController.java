@@ -34,7 +34,7 @@ public class SmPageTableColumnController {
 	@RequestMapping("addindex")
 	public String addIndex(String tableCode, ModelMap model) {
 		model.addAttribute("tableCode", tableCode);
-		return "";
+		return "jsp/system/page/table/column/add";
 	}
 
 	@RequestMapping("add")
@@ -49,7 +49,7 @@ public class SmPageTableColumnController {
 		if (result.getCode() == 0) {
 			model.addAttribute("column", result.getEntity());
 		}
-		return "";
+		return "jsp/system/page/table/column/edit";
 	}
 
 	@RequestMapping("edit")

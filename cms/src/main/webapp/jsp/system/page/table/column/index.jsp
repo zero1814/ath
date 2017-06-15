@@ -10,8 +10,9 @@
 			<li>
 				页面管理
 			</li>
+			<li>页面显示管理</li>
 			<li>
-				<strong>页面显示管理</strong>
+				<strong>页面显示字段管理</strong>
 			</li>
 		</ol>
 	</div>
@@ -30,7 +31,7 @@
 				<div class="form-group">
 					<label class="col-sm-4 control-label"></label>
 					<div class="col-sm-4">
-						<a style="float: right;" href="javascript:void(0)" onclick="PageTableColumn.search();" class="btn btn-w-m btn-info">查询</a>
+						<a style="float: right;" href="javascript:void(0)" onclick="PageTable.search();" class="btn btn-w-m btn-info">查询</a>
 					</div>
 				</div>
 			</form>
@@ -39,7 +40,7 @@
 	<div class="row">
 		<div class="col-sm-12">
 			<div class="btn-group hidden-xs" role="table">
-				<a href="javascript:void(0)" onclick="PageTableColumn.openAdd();" class="btn btn-w-m btn-info">添加</a>
+				<a href="javascript:void(0)" onclick="PageTable.openAdd();" class="btn btn-w-m btn-info">添加</a>
 			</div>
 			<table id="table" data-height="400" data-mobile-responsive="true">
 			</table>
