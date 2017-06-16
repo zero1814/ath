@@ -2,9 +2,10 @@
     pageEncoding="UTF-8"%>
 <%@ include file="../../../../common/header.jsp" %>
 <div  class="wrapper wrapper-content animated fadeInRight">
-	<div class="row">
+	<div class="row" style="margin:0px 5px 0px 5px">
 		<form id="editFrm" method="post" class="form-horizontal">
-			<input type="hidden" name="tableCode" id="tableCode" value="${tableCode }">
+			<input type="hidden" name="code" id="code" value="${column.code }">
+			<input type="hidden" name="tableCode" id="tableCode" value="${column.tableCode }">
 			<div class="form-group">
 				<label class="col-sm-4 control-label">字段名称</label>
 				<div class="col-sm-4">

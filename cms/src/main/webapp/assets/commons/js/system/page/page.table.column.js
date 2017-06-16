@@ -10,11 +10,14 @@ var PageTableColumn = {
 			field: 'code',
 			title: '编码'
 		}, {
-			field: 'name',
-			title: '名称'
+			field: 'field',
+			title: '字段名称'
 		}, {
-			field: 'page.name',
-			title: '页面名称'
+			field: 'title',
+			title: '标题'
+		},{
+			field: 'formatter',
+			title: '函数'
 		}, {
 			field: 'createUser',
 			title: '创建人'
@@ -145,7 +148,7 @@ var PageTableColumn = {
 			// 按钮
 		}, function() {
 			$.ajax({
-				url: "system/page/table/del.htm",
+				url: "system/page/table/column/del.htm",
 				type: "POST",
 				data: {
 					"code": val

@@ -19,6 +19,7 @@
 </div>
 
 <div class="wrapper wrapper-content">
+	<input type="hidden" id="tableCode" name="tableCode" value="${tableCode }">
 	<div class="row">
 		<div class="col-sm-12">
 			<form method="get" class="form-horizontal">

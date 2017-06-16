@@ -13,6 +13,8 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.alibaba.fastjson.JSON;
+
 @Controller
 @RequestMapping("system/page/table/column/")
 public class SmPageTableColumnController {
@@ -29,6 +31,7 @@ public class SmPageTableColumnController {
 	@RequestMapping("data")
 	@ResponseBody
 	public PageResult data(SmPageTableColumnDto dto) {
+		System.out.println(JSON.toJSON(dto));
 		return service.findEntityToPage(dto);
 	}
 
