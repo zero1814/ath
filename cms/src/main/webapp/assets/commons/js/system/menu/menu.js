@@ -9,7 +9,7 @@ var Menu = {
 			dataType : "json",
 			success : function(result) {
 				if (result.code == 0) {
-					var tree = [{text:result.treeText,code:result.treeCode,nodes:result.data}];
+					var tree = [{text:result.treeText,nodes:result.data}];
 					Tree.init("treeview",false,tree,function(event, node) {
 						if(node.code){
 							if(node.code == "0"){

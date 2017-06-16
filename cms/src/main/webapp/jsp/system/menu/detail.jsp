@@ -22,7 +22,7 @@
         </ul>
 	</div>
 	<div class="row" style="text-align: center;">
-		<c:if test="${menu.page.url == '' }">
+		<c:if test="${menu.pageCode == '' }">
 			<a href="system/menu/addindex.htm?code=${menu.code }&group=${menu.groupCode}" style="margin: 15px;" class="btn btn-w-m btn-info">添加子项</a>
 		</c:if>
 		<a href="system/menu/editindex.htm?code=${menu.code }" style="margin: 15px;" class="btn btn-w-m btn-warning">编辑</a>

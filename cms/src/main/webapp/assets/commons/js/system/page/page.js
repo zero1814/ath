@@ -11,7 +11,7 @@ var Page = {
 			dataType : "json",
 			success : function(result) {
 				if (result.code == 0) {
-					var tree = [{text:result.treeName,nodes:result.data}];
+					var tree = [{text:result.treeText,nodes:result.data}];
 					Tree.init("treeview",false,tree,function(event, node) {
 						if(node.code){
 							if(node.code == "0"){
@@ -21,6 +21,9 @@ var Page = {
 								var url = "system/page/detail.htm?code=" + node.code;
 								$("#m_iframe").attr('src', url);
 							}							
+						}else{
+							var url = "system/page/addindex.htm?code=0&group="+result.treeCode;
+							$("#m_iframe").attr('src', url);	
 						}
 					});
 				} else {

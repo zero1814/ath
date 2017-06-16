@@ -36,7 +36,8 @@ public class SmPageServiceImpl extends BaseServiceImpl<SmPage, SmPageMapper, SmP
 		try {
 			SmPageGroup group = groupMapper.selectByCode(groupCode);
 			if (group != null) {
-				result.setTreeName(group.getName());
+				result.setTreeText(group.getName());
+				result.setTreeCode(group.getCode());
 				result.setCode(0);
 				result.setData(data("0", groupCode));
 				result.setMessage("查询成功");
