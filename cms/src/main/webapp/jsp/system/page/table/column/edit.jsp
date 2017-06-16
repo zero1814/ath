@@ -4,40 +4,31 @@
 <div  class="wrapper wrapper-content animated fadeInRight">
 	<div class="row">
 		<form id="editFrm" method="post" class="form-horizontal">
-			<input type="hidden" name="code" id="code" value="${page.code }">
+			<input type="hidden" name="tableCode" id="tableCode" value="${tableCode }">
 			<div class="form-group">
-				<label class="col-sm-4 control-label">名称</label>
+				<label class="col-sm-4 control-label">字段名称</label>
 				<div class="col-sm-4">
-					<input name="name" id="name" value="${page.name }" type="text" class="form-control">
+					<input name="field" id="field" value="${column.field}" type="text" class="form-control">
 				</div>
 			</div>
 			<div class="form-group">
-				<label class="col-sm-4 control-label">链接地址</label>
+				<label class="col-sm-4 control-label">标题</label>
 				<div class="col-sm-4">
-					<input name="url" id="url" value="${page.url }" type="text" class="form-control">
+					<input name="title" id="title" value="${column.title}" type="text" class="form-control">
 				</div>
 			</div>
 			<div class="form-group">
-				<label class="col-sm-4 control-label">参数</label>
+				<label class="col-sm-4 control-label">格式化程序</label>
 				<div class="col-sm-4">
-					<input name="param" id="param" value="${page.param }" type="text" class="form-control">
-				</div>
-			</div>
-			<div class="form-group">
-				<label class="col-sm-4 control-label">是否可用</label>
-				<div class="col-sm-4">
-					<select class="form-control m-b" name="flagAble">
-						<option  value="0" <c:if test="${page.flagAble == 0 }">selected="selected"</c:if>>可用</option>
-						<option value="1" <c:if test="${page.flagAble == 1 }">selected="selected"</c:if>>不可用</option>					
-					</select>
+					<textarea name="formatter" id="formatter" class="form-control" rows="3">${column.formatter}</textarea>
 				</div>
 			</div>
 			<div style="text-align: center;" class="form-group">
-				<a href="javascript:void(0)" class="btn btn-w-m btn-info" onclick="Page.edit('${page.groupCode }')">保存</a>
-				<a href="system/page/detail.htm?code=${parentCode }" class="btn btn-w-m btn-default">取消</a>
+				<a href="javascript:void(0)" class="btn btn-w-m btn-info" onclick="PageTableColumn.edit()">保存</a>
+				<a href="PageTableColumn.closeLayer();" class="btn btn-w-m btn-default">取消</a>
 			</div>
 		</form>
 	</div>
 </div>
-<script src="assets/commons/js/system/page/page.js"></script>
+<script src="assets/commons/js/system/page/page.table.column.js"></script>
 <%@ include file="../../../../common/footer.jsp" %>

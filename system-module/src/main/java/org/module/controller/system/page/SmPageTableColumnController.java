@@ -1,6 +1,7 @@
 package org.module.controller.system.page;
 
 import org.module.dto.system.page.SmPageTableColumnDto;
+import org.module.helper.commons.CodeHelper;
 import org.module.model.system.page.SmPageTableColumn;
 import org.module.result.EntityResult;
 import org.module.result.PageResult;
@@ -40,6 +41,8 @@ public class SmPageTableColumnController {
 	@RequestMapping("add")
 	@ResponseBody
 	public EntityResult add(SmPageTableColumn entity) {
+		entity.setCode(CodeHelper.getUniqueCode("SPTC"));
+		entity.setCreateUser("add");
 		return service.insertSelective(entity);
 	}
 
@@ -55,6 +58,7 @@ public class SmPageTableColumnController {
 	@RequestMapping("edit")
 	@ResponseBody
 	public EntityResult edit(SmPageTableColumn entity) {
+		entity.setUpdateUser("edit");
 		return service.updateByCode(entity);
 	}
 

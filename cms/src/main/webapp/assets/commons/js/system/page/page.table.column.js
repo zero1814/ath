@@ -60,7 +60,7 @@ var PageTableColumn = {
 		}
 	},
 	openAdd: function() {
-		PageTableColumn.openLayer("添加", "system/page/table/addindex.htm");
+		PageTableColumn.openLayer("添加", "system/page/table/column/addindex.htm?tableCode="+$("#tableCode").val());
 	},
 	openEdit: function(val) {
 		layer.confirm('您确定要修改此条数据吗？', {
@@ -68,8 +68,7 @@ var PageTableColumn = {
 			// 按钮
 		}, function(index) {
 			layer.close(index);
-			PageTableColumn.openLayer("编辑", "system/page/table/editindex.htm?code=" +
-				val);
+			PageTableColumn.openLayer("编辑", "system/page/table/column/editindex.htm?code="+val);
 		}, function(index) {
 			layer.close(index);
 		});
@@ -77,25 +76,27 @@ var PageTableColumn = {
 	add: function() {
 		var param = $("#addFrm").serializeArray();
 		$.ajax({
-			url: 'system/page/table/add.htm',
+			url: 'system/page/table/column/add.htm',
 			type: "POST",
 			data: param,
 			dataType: "json",
 			success: function(result) {
 				if(result.code == 0) {
 					layer.alert('添加成功', function(index) {
+						layer.close(index);
 						parent.$("#table").bootstrapTable('refresh');
 						parent.layer.close(parent.PageTableColumn.Layer);
 					});
 				} else {
-					layer.alert(result.message, function(index) {
+					parent.layer.alert(result.message, function(index) {
+						parent.layer.close(index);
 						parent.$("#table").bootstrapTable('refresh');
 						parent.layer.close(PageTableColumn.Layer);
 					});
 				}
 			},
 			error: function(result) {
-				layer.alert('添加失败，失败原因:' + JSON.stringify(result));
+				parent.layer.alert('添加失败，失败原因:' + JSON.stringify(result));
 			}
 		});
 	},
@@ -109,18 +110,20 @@ var PageTableColumn = {
 				function() {
 					var param = $("#editFrm").serializeArray();
 					$.ajax({
-							url: "system/page/table/edit.htm",
+							url: "system/page/table/column/edit.htm",
 							type: "POST",
 							data: param,
 							dataType: "json",
 							success: function(result) {
 								if(result.code == 0) {
 									layer.alert('编辑成功',function(index) {
+										layer.close(index);
 										parent.$("#table").bootstrapTable('refresh');
 										parent.layer.close(parent.PageTableColumn.Layer);
 									});
 								} else {
 									layer.alert(result.message,function(index) {
+										parent.layer.close(index);
 										parent.$("#table").bootstrapTable('refresh');
 										parent.layer.close(parent.PageTableColumn.Layer);
 									});
@@ -128,6 +131,7 @@ var PageTableColumn = {
 							},
 							error: function(result) {
 								layer.alert('编辑失败，失败原因:' +JSON.stringify(result),function(index) {
+									parent.layer.close(index);
 									parent.layer.close(parent.PageTableColumn.Layer);
 									window.parent.location.href = "system/menu/index.htm?groupCode=" +group;
 								});
@@ -155,7 +159,7 @@ var PageTableColumn = {
 						});
 					} else {
 						layer.alert(result.message, function(index) {
-							layer.close(index);
+							parent.layer.close(index);
 							$("#table").bootstrapTable('refresh');
 						});
 					}
@@ -163,7 +167,7 @@ var PageTableColumn = {
 				error: function(result) {
 					layer.alert('删除失败，失败原因:' + JSON.stringify(result),
 						function(index) {
-							layer.close(index);
+							parent.layer.close(index);
 							$("#table").bootstrapTable('refresh');
 						});
 				}

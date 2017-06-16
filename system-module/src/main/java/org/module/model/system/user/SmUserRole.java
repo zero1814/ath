@@ -1,5 +1,7 @@
 package org.module.model.system.user;
 
+import java.util.List;
+
 import org.module.commons.annotation.db.Column;
 import org.module.commons.annotation.db.Table;
 import org.module.commons.annotation.obj.Attribute;
@@ -13,6 +15,12 @@ public class SmUserRole extends BaseModel {
 
 	@Column(name = "role_code", isNull = false, comment = "角色编码")
 	private String roleCode;
+
+	@Attribute(name = "user", description = "用户信息")
+	private SmUser user;
+
+	@Attribute(name = "roles", description = "用户角色列表")
+	private List<SmRole> roles;
 
 	/**
 	 * 角色
