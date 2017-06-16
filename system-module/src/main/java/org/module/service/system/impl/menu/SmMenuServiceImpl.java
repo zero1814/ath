@@ -40,7 +40,8 @@ public class SmMenuServiceImpl extends BaseServiceImpl<SmMenu, SmMenuMapper, SmM
 			SmMenuGroup group = groupMapper.selectByCode(groupCode);
 			if (group != null) {
 				result.setCode(0);
-				result.setTreeName(group.getName());
+				result.setTreeText(group.getName());
+				result.setTreeCode(group.getCode());
 				List<SmMenu> list = data("0", groupCode);
 				result.setData(list);
 				result.setMessage("查询菜单成功");

@@ -13,15 +13,25 @@ import org.module.model.BaseModel;
  */
 public class TreeResult extends RootResult {
 
-	private String treeName;
+	private String treeCode;
+	private String treeText;
+
 	private List<? extends BaseModel> data;
 
-	public String getTreeName() {
-		return treeName;
+	public String getTreeCode() {
+		return treeCode;
 	}
 
-	public void setTreeName(String treeName) {
-		this.treeName = treeName;
+	public void setTreeCode(String treeCode) {
+		this.treeCode = treeCode;
+	}
+
+	public String getTreeText() {
+		return treeText;
+	}
+
+	public void setTreeText(String treeText) {
+		this.treeText = treeText;
 	}
 
 	public List<? extends BaseModel> getData() {
