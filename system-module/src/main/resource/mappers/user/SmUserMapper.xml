@@ -10,7 +10,7 @@
 		<result column="real_name" property="realName" jdbcType="VARCHAR" />
 		<result column="head_pic" property="headPic" jdbcType="VARCHAR" />
 		<result column="phone" property="phone" jdbcType="VARCHAR" />
-		<result column="mail" property="mail" jdbcType="VARCHAR" />
+		<result column="e_mail" property="eMail" jdbcType="VARCHAR" />
 		<result column="qq" property="qq" jdbcType="VARCHAR" />
 		<result column="weixin" property="weixin" jdbcType="VARCHAR" />
 		<result column="create_user" property="createUser" jdbcType="VARCHAR" />
@@ -20,9 +20,10 @@
 	</resultMap>
 	<sql id="Base_Column_List">
 		id, uid, code, user_name, password, real_name, head_pic,
-		phone, mail, qq,
+		phone, e_mail, qq,
 		weixin,
-		create_user, DATE_FORMAT(create_time,'%Y-%m-%d
+		create_user,
+		DATE_FORMAT(create_time,'%Y-%m-%d
 		%H:%i:%s') as
 		create_time,
 		update_user,
@@ -38,7 +39,8 @@
 		where `code`=#{code,jdbcType=VARCHAR}
 	</select>
 	<delete id="deleteByCode" parameterType="java.lang.String">
-		delete from systemmodule.sm_user
+		delete from
+		systemmodule.sm_user
 		where `code`=#{code,jdbcType=VARCHAR}
 	</delete>
 	<insert id="insertSelective" parameterType="org.module.model.system.user.SmUser">
@@ -53,7 +55,7 @@
 				head_pic,
 			</if>
 			phone,
-			mail,
+			e_mail,
 			<if test="qq != null and qq != ''">
 				qq,
 			</if>
@@ -75,7 +77,7 @@
 				#{headPic,jdbcType=VARCHAR},
 			</if>
 			#{phone,jdbcType=VARCHAR},
-			#{mail,jdbcType=VARCHAR},
+			#{eMail,jdbcType=VARCHAR},
 			<if test="qq != null and qq != ''">
 				#{qq,jdbcType=VARCHAR},
 			</if>
@@ -108,8 +110,8 @@
 			<if test="phone != null and phone != ''">
 				phone = #{phone,jdbcType=VARCHAR},
 			</if>
-			<if test="mail != null and mail != ''">
-				mail = #{mail,jdbcType=VARCHAR},
+			<if test="eMail != null and eMail != ''">
+				e_mail = #{eMail,jdbcType=VARCHAR},
 			</if>
 			<if test="qq != null and qq != ''">
 				qq = #{qq,jdbcType=VARCHAR},
@@ -123,4 +125,15 @@
 		</set>
 		where `code`=#{code,jdbcType=VARCHAR}
 	</update>
+	<select id="selectEntity" parameterType="org.module.dto.system.user.SmUserDto"
+		resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from systemmodule.sm_user
+		<where>
+			user_name = #{userName,jdbcType=VARCHAR}
+			AND `password` =
+			#{password,jdbcType=VARCHAR}
+		</where>
+	</select>
 </mapper>

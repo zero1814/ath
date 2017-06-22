@@ -114,11 +114,11 @@ public class BaseServiceImpl<T extends BaseModel, M extends BaseMapper<T, DTO>, 
 	 * @see cn.com.ath.service.IBaseService#selectByEntity(cn.com.ath.model.BaseModel)
 	 */
 	@Override
-	public EntityResult selectByEntity(T entity) {
+	public EntityResult selectEntity(DTO dto) {
 		logger.logInfo(this.getClass().getName() + "，开始执行selectByEntity方法");
 		EntityResult result = new EntityResult();
 		try {
-			T entity_ = mapper.selectByEntity(entity);
+			T entity_ = mapper.selectEntity(dto);
 			if (entity_ != null) {
 				result.setCode(0);
 				result.setMessage("查询成功");

@@ -25,8 +25,8 @@ public class SmUser extends BaseModel {
 	@Column(name = "phone", isNull = false, comment = "手机号")
 	private String phone;
 
-	@Column(name = "mail", isNull = false, comment = "电子邮箱")
-	private String mail;
+	@Column(name = "e_mail", isNull = false, comment = "电子邮箱")
+	private String eMail;
 
 	@Column(name = "qq", comment = "qq号码")
 	private String qq;
@@ -88,12 +88,12 @@ public class SmUser extends BaseModel {
 		this.phone = phone;
 	}
 
-	public String getMail() {
-		return mail;
+	public String geteMail() {
+		return eMail;
 	}
 
-	public void setMail(String mail) {
-		this.mail = mail;
+	public void seteMail(String eMail) {
+		this.eMail = eMail;
 	}
 
 	public String getQq() {

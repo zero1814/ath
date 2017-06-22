@@ -36,7 +36,7 @@
     <!-- spring的监听器 -->
     <context-param>
         <param-name>contextConfigLocation</param-name>
-        <param-value>classpath*:spring/spring.xml,classpath*:spring/spring-mybatis.xml</param-value>
+        <param-value>classpath*:spring/spring.xml,classpath*:spring/spring-mybatis.xml,classpath*:spring/spring-redis.xml</param-value>
     </context-param>
     <listener>
         <listener-class>
@@ -48,7 +48,10 @@
 	            org.springframework.web.context.request.RequestContextListener  
 	        </listener-class>  
 	</listener>
+	<listener>
+		<listener-class>org.module.commons.init.ServerletListener</listener-class>
+	</listener>
 	<welcome-file-list>
-		<welcome-file>index.htm</welcome-file>
+		<welcome-file>jsp/system/user/login.jsp</welcome-file>
 	</welcome-file-list>
 </web-app>

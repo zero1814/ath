@@ -75,16 +75,38 @@ var User = {
 		}, function(index) {
 			layer.close(index);
 		});
+	},login:function(){
+		var param = $("#loginFrm").serializeArray();
+		$.ajax({
+			url: 'system/user/login.htm',
+			type: "POST",
+			data: param,
+			dataType : "json",
+			success: function(result) {
+				if(result.code == 0) {
+					layer.alert("登录成功", function(index) {
+						window.location.href="index.htm";
+					});
+				} else {
+					layer.alert("用户不存在", function(index) {
+						window.location.href="jsp/system/user/register.jsp";
+					});
+				}
+			},
+			error: function(result) {
+				layer.alert("登录失败", function(index) {
+					window.location.href="jsp/error/500.jsp";
+				});
+			}
+		});
 	}
 };
 
 function initOperate(value, row, index) {
-
 	var html = "<a style='margin:10px;' class='btn btn-info btn-sm' href='javacript:void(0)' onclick='User.openEdit()'>编辑</a>";
 	html += "<a style='margin:10px;' class='btn btn-info btn-sm' href='javacript:void(0)' onclick='User.del(\"" + value + "\")'>删除</a>";
 	return html;
 }
-
 function initFlagAble(value, row, index) {
 	var html = '';
 	if(value == 0) {

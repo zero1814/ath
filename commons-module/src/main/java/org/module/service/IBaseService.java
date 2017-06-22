@@ -85,10 +85,10 @@ public interface IBaseService<T extends BaseModel, DTO extends BaseDto> {
 	 * 作者: zhy<br>
 	 * 时间: 2016年8月1日 下午1:56:19
 	 * 
-	 * @param entity
+	 * @param dto
 	 * @return
 	 */
-	EntityResult selectByEntity(T entity);
+	EntityResult selectEntity(DTO dto);
 
 	/**
 	 * 
