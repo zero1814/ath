@@ -12,7 +12,7 @@
 		<result column="phone" property="phone" jdbcType="VARCHAR" />
 		<result column="e_mail" property="eMail" jdbcType="VARCHAR" />
 		<result column="qq" property="qq" jdbcType="VARCHAR" />
-		<result column="weixin" property="weixin" jdbcType="VARCHAR" />
+		<result column="we_chat" property="weChat" jdbcType="VARCHAR" />
 		<result column="create_user" property="createUser" jdbcType="VARCHAR" />
 		<result column="create_time" property="createTime" jdbcType="VARCHAR" />
 		<result column="update_user" property="updateUser" jdbcType="VARCHAR" />
@@ -21,7 +21,7 @@
 	<sql id="Base_Column_List">
 		id, uid, code, user_name, password, real_name, head_pic,
 		phone, e_mail, qq,
-		weixin,
+		we_chat,
 		create_user,
 		DATE_FORMAT(create_time,'%Y-%m-%d
 		%H:%i:%s') as
@@ -59,8 +59,8 @@
 			<if test="qq != null and qq != ''">
 				qq,
 			</if>
-			<if test="weixin != null and weixin != ''">
-				weixin,
+			<if test="weChat != null and weChat != ''">
+				we_chat,
 			</if>
 			create_user,
 			create_time,
@@ -81,8 +81,8 @@
 			<if test="qq != null and qq != ''">
 				#{qq,jdbcType=VARCHAR},
 			</if>
-			<if test="weixin != null and weixin != ''">
-				#{weixin,jdbcType=VARCHAR},
+			<if test="weChat != null and weChat != ''">
+				#{weChat,jdbcType=VARCHAR},
 			</if>
 			#{createUser,jdbcType=VARCHAR},
 			STR_TO_DATE(#{createTime,jdbcType=VARCHAR},'%Y-%m-%d
@@ -116,8 +116,8 @@
 			<if test="qq != null and qq != ''">
 				qq = #{qq,jdbcType=VARCHAR},
 			</if>
-			<if test="weixin != null  and weixin != ''">
-				weixin = #{weixin,jdbcType=VARCHAR},
+			<if test="weChat != null  and weChat != ''">
+				we_chat = #{weChat,jdbcType=VARCHAR},
 			</if>
 			update_user = #{updateUser,jdbcType=VARCHAR},
 			update_time =

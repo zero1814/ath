@@ -31,8 +31,8 @@ public class SmUser extends BaseModel {
 	@Column(name = "qq", comment = "qq号码")
 	private String qq;
 
-	@Column(name = "weixin", comment = "微信号")
-	private String weixin;
+	@Column(name = "we_chat", comment = "微信号")
+	private String weChat;
 
 	/**
 	 * 用户角色
@@ -104,12 +104,12 @@ public class SmUser extends BaseModel {
 		this.qq = qq;
 	}
 
-	public String getWeixin() {
-		return weixin;
+	public String getWeChat() {
+		return weChat;
 	}
 
-	public void setWeixin(String weixin) {
-		this.weixin = weixin;
+	public void setWeChat(String weChat) {
+		this.weChat = weChat;
 	}
 
 }
