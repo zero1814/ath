@@ -84,11 +84,9 @@ var User = {
 			dataType : "json",
 			success: function(result) {
 				if(result.code == 0) {
-					layer.alert("登录成功", function(index) {
-						window.location.href="index.htm";
-					});
+					window.location.href="index.htm";
 				} else {
-					layer.alert("用户不存在", function(index) {
+					layer.msg("用户不存在",{time:1000},function(){
 						window.location.href="jsp/system/user/register.jsp";
 					});
 				}

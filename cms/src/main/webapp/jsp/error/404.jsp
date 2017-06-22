@@ -23,7 +23,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			<h1>404</h1>
 			<h3 class="font-bold">页面未找到！</h3>
 			<div class="error-desc">
-				<a href="index.html" class="btn btn-primary m-t">主页</a>
+				<a href="index.htm" class="btn btn-primary m-t">主页</a>
 			</div>
 		</div>
 	</body>

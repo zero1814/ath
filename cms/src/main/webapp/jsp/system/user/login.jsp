@@ -20,6 +20,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<link href="assets/commons/css/animate.css" rel="stylesheet" />
 	<link href="assets/commons/css/style.css" rel="stylesheet" />
 	<link href="assets/commons/css/login.css" rel="stylesheet" />
+	<link href="assets/plugins/layer/skin/default/layer.css" rel="stylesheet" />
     <script>
         if (window.top !== window.self) {
             window.top.location = window.location;
@@ -28,26 +29,24 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
 </head>
 
-<body>
-    <div class="middle-box text-center loginscreen  animated fadeInDown">
-        <div>
-            <div>
-                <h1 class="logo-name">A</h1>
-            </div>
-            <h3>欢迎使用 ATH</h3>
-
-            <form class="m-t" role="form" id="loginFrm">
-                <div class="form-group">
-                    <input type="text" name="userName" class="form-control" placeholder="用户名">
-                </div>
-                <div class="form-group">
-                    <input type="password" name="password" class="form-control" placeholder="密码">
-                </div>
-                <a href="javascript:void(0)" onclick="User.login();" class="btn btn-primary block full-width m-b">登 录</a>
-                <p class="text-muted text-center"> <a href="<%=basePath %>jsp/system/user/forget_password.jsp"><small>忘记密码了？</small></a> | <a href="jsp/system/user/register.jsp">注册一个新账号</a>
-                </p>
-            </form>
-        </div>
+<body class="signin">
+	<div class="signinpanel">
+	    <div class="middle-box text-center loginscreen  animated fadeInDown">
+	        <div>
+	            <h3>欢迎使用 ATH</h3>
+	            <form class="m-t" role="form" id="loginFrm">
+	                <div class="form-group">
+	                    <input type="text" name="userName" class="form-control" placeholder="用户名">
+	                </div>
+	                <div class="form-group">
+	                    <input type="password" name="password" class="form-control" placeholder="密码">
+	                </div>
+	                <a href="javascript:void(0)" onclick="User.login();" class="btn btn-primary block full-width m-b">登 录</a>
+	                <p class="text-muted text-center"> <a href="<%=basePath %>jsp/system/user/forget_password.jsp"><small>忘记密码了？</small></a> | <a href="jsp/system/user/register.jsp">注册一个新账号</a>
+	                </p>
+	            </form>
+	        </div>
+	    </div>
     </div>
 <script src="assets/plugins/jquery/1.12.2/jquery-1.12.2.min.js"></script>
 <script src="assets/plugins/bootstrap/3.3.5/js/bootstrap.min.js"></script>
