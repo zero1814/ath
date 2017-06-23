@@ -56,6 +56,7 @@ public class SmUserServiceImpl extends BaseServiceImpl<SmUser, SmUserMapper, SmU
 	 */
 	@Override
 	public EntityResult register(SmUser entity) {
+		entity.setPassword(MD5Util.md5Hex(entity.getPassword()));
 		EntityResult result = super.insertSelective(entity);
 		if (result.getCode() == 0) {
 			/**

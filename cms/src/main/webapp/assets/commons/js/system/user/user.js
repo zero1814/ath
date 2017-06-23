@@ -108,7 +108,7 @@ var User = {
 			data: param,
 			dataType : "json",
 			success: function(result) {
-				layer.alert(result.message, function() {
+				layer.alert("注册成功", function() {
 					window.parent.location.href="jsp/system/user/login.jsp";
 				});
 			},

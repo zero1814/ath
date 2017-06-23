@@ -1,5 +1,6 @@
 package org.module.controller.system.user;
 
+import org.module.helper.commons.CodeHelper;
 import org.module.model.system.user.SmUser;
 import org.module.result.EntityResult;
 import org.module.service.system.user.ISmUserService;
@@ -24,6 +25,8 @@ public class SmUserController {
 	@RequestMapping("register")
 	@ResponseBody
 	public EntityResult register(SmUser entity) {
+		entity.setCode(CodeHelper.getUniqueCode("SU"));
+		entity.setCreateUser("register");
 		return service.register(entity);
 	}
 

@@ -37,13 +37,13 @@
 				<div class="form-group">
 					<label class="col-sm-4 control-label">密码</label>
 					<div class="col-sm-4">
-						<input name="password" id="password" value="" type="text" class="form-control" required>
+						<input name="password" id="password" value="" type="password" class="form-control" required>
 					</div>
 				</div>
 				<div class="form-group">
 					<label class="col-sm-4 control-label">重复密码</label>
 					<div class="col-sm-4">
-						<input name="r_password" id="r_password" value="" type="text" class="form-control" required>
+						<input name="r_password" id="r_password" value="" type="password" class="form-control" required>
 					</div>
 				</div>
 				<div class="form-group">
@@ -117,8 +117,6 @@
         },
         errorClass: "help-block m-b-none",
         validClass: "help-block m-b-none"
-
-
     });
 	$(document).on('ready', function() {
 		$("#registerFrm").validate({
@@ -170,6 +168,9 @@
 					maxlength : "请输入11位手机号"
 				},
 				eMail : "请输入一个正确的邮箱"
+			},
+			submitHandler:function(){
+				User.register();
 			}
 		});
 		Upload.init({id:"upload",url:"upload/image.htm",backfillId:"headPic"});
