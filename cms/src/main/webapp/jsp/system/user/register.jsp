@@ -27,7 +27,7 @@
 <body class="gray-bg">
 	<div class=" wrapper wrapper-content animated fadeInRight">
 		<div class="row">
-			<form id="addFrm" method="post" class="form-horizontal">
+			<form id="register" method="post" class="form-horizontal" >
 				<div class="form-group">
 					<label class="col-sm-4 control-label">用户名</label>
 					<div class="col-sm-4">
@@ -92,11 +92,11 @@
 	</div>
 	<script src="assets/plugins/jquery/1.12.2/jquery-1.12.2.min.js"></script>
 	<script src="assets/plugins/bootstrap/3.3.5/js/bootstrap.min.js"></script>
-	<script src="assets/commons/js/system/user.js"></script>
 	<script src="assets/commons/js/upload.js"></script>
+	<script src="assets/commons/js/system/user/user.js"></script>
 	<script>
 	$(document).on('ready', function() {
-		Upload.init({id:"upload"});
+		Upload.init({id:"upload",url:"upload/image.htm",backfillId:"headPic"});
 	});
 	</script>
 </body>

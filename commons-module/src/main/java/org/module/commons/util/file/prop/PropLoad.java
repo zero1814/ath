@@ -49,7 +49,6 @@ public class PropLoad extends BaseClass {
 			getLogger().logInfo("开始读取properties配置文件");
 			String tmp = type + "/";
 			new IoHelper().copyResources("classpath*:properties/" + type + "/*.properties", tmp, tmp);
-			System.out.println(loadProperties(tmp));
 			map.putAll(loadProperties(tmp));
 			getLogger().logInfo("读取properties配置文件结束");
 		} catch (Exception e) {
