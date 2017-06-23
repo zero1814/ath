@@ -27,41 +27,41 @@
 <body class="gray-bg">
 	<div class=" wrapper wrapper-content animated fadeInRight">
 		<div class="row">
-			<form id="register" method="post" class="form-horizontal" >
+			<form id="registerFrm" method="post" class="form-horizontal" >
 				<div class="form-group">
 					<label class="col-sm-4 control-label">用户名</label>
 					<div class="col-sm-4">
-						<input name="userName" id="userName" value="" type="text" class="form-control">
+						<input name="userName" id="userName" value="" type="text" class="form-control" required>
 					</div>
 				</div>
 				<div class="form-group">
 					<label class="col-sm-4 control-label">密码</label>
 					<div class="col-sm-4">
-						<input name="password" id="password" value="" type="text" class="form-control">
+						<input name="password" id="password" value="" type="text" class="form-control" required>
 					</div>
 				</div>
 				<div class="form-group">
 					<label class="col-sm-4 control-label">重复密码</label>
 					<div class="col-sm-4">
-						<input name="r_password" id="r_password" value="" type="text" class="form-control">
+						<input name="r_password" id="r_password" value="" type="text" class="form-control" required>
 					</div>
 				</div>
 				<div class="form-group">
 					<label class="col-sm-4 control-label">真实姓名</label>
 					<div class="col-sm-4">
-						<input name="realName" id="realName" value="" type="text" class="form-control">
+						<input name="realName" id="realName" value="" type="text" class="form-control" required>
 					</div>
 				</div>
 				<div class="form-group">
 					<label class="col-sm-4 control-label">手机号</label>
 					<div class="col-sm-4">
-						<input name="phone" id="phone" value="" type="text" class="form-control">
+						<input name="phone" id="phone" value="" type="text" class="form-control" required>
 					</div>
 				</div>
 				<div class="form-group">
 					<label class="col-sm-4 control-label">电子邮箱</label>
 					<div class="col-sm-4">
-						<input name="eMail" id="eMail" value="" type="text" class="form-control">
+						<input name="eMail" id="eMail" value="" type="text" class="form-control" required>
 					</div>
 				</div>
 				<div class="form-group">
@@ -84,7 +84,10 @@
 					</div>
 				</div>
 				<div style="text-align: center;" class="form-group">
-					<a href="javascript:void(0)" class="btn btn-w-m btn-info" onclick="Menu.add('${groupCode}')">注册</a>
+					<!--
+						<a href="javascript:void(0)" class="btn btn-w-m btn-info" onclick="User.register();">注册</a> 
+					 -->
+					<button class="btn btn-primary" type="submit">提交</button>
 					<a href="<%=basePath %>jsp/system/user/login.jsp" class="btn btn-w-m btn-default">取消</a>
 				</div>
 			</form>
@@ -92,10 +95,83 @@
 	</div>
 	<script src="assets/plugins/jquery/1.12.2/jquery-1.12.2.min.js"></script>
 	<script src="assets/plugins/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+	<script src="assets/plugins/layer/layer.js"></script>
 	<script src="assets/commons/js/upload.js"></script>
+	<script src="assets/plugins/jquery/plugins/validate/jquery.validate.min.js"></script>
 	<script src="assets/commons/js/system/user/user.js"></script>
 	<script>
+    $.validator.setDefaults({
+        highlight: function (element) {
+            $(element).closest('.form-group').removeClass('has-success').addClass('has-error');
+        },
+        success: function (element) {
+            element.closest('.form-group').removeClass('has-error').addClass('has-success');
+        },
+        errorElement: "span",
+        errorPlacement: function (error, element) {
+            if (element.is(":radio") || element.is(":checkbox")) {
+                error.appendTo(element.parent().parent().parent());
+            } else {
+                error.appendTo(element.parent());
+            }
+        },
+        errorClass: "help-block m-b-none",
+        validClass: "help-block m-b-none"
+
+
+    });
 	$(document).on('ready', function() {
+		$("#registerFrm").validate({
+			rules : {
+				userName : {
+					required : true,
+					minlength : 6
+				},
+				password : {
+					required : true,
+					minlength : 6
+				},
+				r_password : {
+					required : true,
+					minlength : 6,
+					equalTo : "#password"
+				},
+				realName : {
+					required : true
+				},
+				phone : {
+					required : true,
+					minlength : 11,
+					maxlength : 11
+				},
+				eMail : {
+					required : true,
+					email : true
+				}
+			},
+			messages : {
+				userName : {
+					required : "请输入用户名",
+					minlength : "用户名不能小于6个字符"
+				},
+				password : {
+					required : "请输入密码",
+					minlength : "密码长度不能小于 6个字符"
+				},
+				r_password : {
+					required : "请输入密码",
+					minlength : "密码长度不能小于 6个字符",
+					equalTo : "两次密码输入不一致"
+				},
+				realName : "请输入真实姓名",
+				phone : {
+					required : "请输入手机号",
+					minlength : "请输入11位手机号",
+					maxlength : "请输入11位手机号"
+				},
+				eMail : "请输入一个正确的邮箱"
+			}
+		});
 		Upload.init({id:"upload",url:"upload/image.htm",backfillId:"headPic"});
 	});
 	</script>

@@ -75,7 +75,8 @@ var User = {
 		}, function(index) {
 			layer.close(index);
 		});
-	},login:function(){
+	},
+	login:function(){
 		var param = $("#loginFrm").serializeArray();
 		$.ajax({
 			url: 'system/user/login.htm',
@@ -95,6 +96,80 @@ var User = {
 				layer.alert("登录失败", function(index) {
 					window.location.href="jsp/error/500.jsp";
 				});
+			}
+		});
+	},
+	register:function(){
+		//$("#registerFrm").validate();
+		var param = $("#registerFrm").serializeArray();
+		$.ajax({
+			url: "system/user/register.htm",
+			type: "POST",
+			data: param,
+			dataType : "json",
+			success: function(result) {
+				layer.alert(result.message, function() {
+					window.parent.location.href="jsp/system/user/login.jsp";
+				});
+			},
+			error: function(result) {
+				layer.alert('注册失败，失败原因:' + JSON.stringify(result),function(index){
+					layer.close(index);
+					window.parent.location.href="jsp/system/user/register.jsp";
+				});
+			}
+		});
+	},
+	validate:function(){
+		$("#registerFrm").validate({
+			rules : {
+				userName : {
+					required : true,
+					minlength : 6
+				},
+				password : {
+					required : true,
+					minlength : 6
+				},
+				r_password : {
+					required : true,
+					minlength : 6,
+					equalTo : "#password"
+				},
+				realName : {
+					required : true
+				},
+				phone : {
+					required : true,
+					minlength : 11,
+					maxlength : 11
+				},
+				email : {
+					required : true,
+					email : true
+				}
+			},
+			messages : {
+				username : {
+					required : "请输入用户名",
+					minlength : "用户名不能小于6个字符"
+				},
+				password : {
+					required : "请输入密码",
+					minlength : "密码长度不能小于 6个字符"
+				},
+				confirm_password : {
+					required : "请输入密码",
+					minlength : "密码长度不能小于 6个字符",
+					equalTo : "两次密码输入不一致"
+				},
+				realName : "请输入真实姓名",
+				phone : {
+					required : "请输入手机号",
+					minlength : "请输入11位手机号",
+					maxlength : "请输入11位手机号"
+				},
+				email : "请输入一个正确的邮箱"
 			}
 		});
 	}
