@@ -1,7 +1,6 @@
 package org.module.commons.util.file.prop;
 
-import org.apache.commons.lang3.StringUtils;
-import org.module.commons.map.MStringMap;
+import org.module.cache.RedisHash;
 
 /**
  * 
@@ -23,11 +22,6 @@ public class PropInfo {
 	 * @return
 	 */
 	public static String getValue(String key) {
-		String value = "";
-		MStringMap map = PropLoad.instance().getData("info");
-		if(StringUtils.isNoneBlank(map.get(key))){
-			value = map.get(key);
-		}
-		return value;
+		return RedisHash.instance().getFiled("info", key);
 	}
 }

@@ -12,7 +12,6 @@ import org.apache.commons.lang3.StringUtils;
 import org.module.commons.base.BaseClass;
 import org.module.commons.map.MStringMap;
 import org.module.helper.commons.IoHelper;
-import org.springframework.core.io.Resource;
 
 /**
  * 
@@ -32,6 +31,32 @@ public class PropLoad extends BaseClass {
 			}
 		}
 		return self;
+	}
+
+	/**
+	 * 
+	 * 方法: getData <br>
+	 * 描述: 根据类型查询配置文件内容信息 <br>
+	 * 作者: zhy<br>
+	 * 时间: 2016年10月24日 上午10:50:57
+	 * 
+	 * @param type
+	 * @return
+	 */
+	public MStringMap getData(String type) {
+		MStringMap map = new MStringMap();
+		try {
+			getLogger().logInfo("开始读取properties配置文件");
+			String tmp = type + "/";
+			new IoHelper().copyResources("classpath*:properties/" + type + "/*.properties", tmp, tmp);
+			System.out.println(loadProperties(tmp));
+			map.putAll(loadProperties(tmp));
+			getLogger().logInfo("读取properties配置文件结束");
+		} catch (Exception e) {
+			e.printStackTrace();
+			getLogger().logError("读取properties配置文件报错,错误原因:" + e.getMessage());
+		}
+		return map;
 	}
 
 	/**
@@ -103,32 +128,6 @@ public class PropLoad extends BaseClass {
 					e.printStackTrace();
 				}
 			}
-		}
-		return map;
-	}
-
-	/**
-	 * 
-	 * 方法: getData <br>
-	 * 描述: 根据类型查询配置文件内容信息 <br>
-	 * 作者: zhy<br>
-	 * 时间: 2016年10月24日 上午10:50:57
-	 * 
-	 * @param type
-	 * @return
-	 */
-	public MStringMap getData(String type) {
-		MStringMap map = new MStringMap();
-		try {
-			getLogger().logInfo("开始读取properties配置文件");
-			Resource[] resources = IoHelper.upResources("classpath*:properties/" + type + "/*.properties");
-			for (int i = 0; i < resources.length; i++) {
-				map.putAll(loadProperties(resources[i].getFile().getParent()));
-			}
-			getLogger().logInfo("读取properties配置文件结束");
-		} catch (IOException e) {
-			e.printStackTrace();
-			getLogger().logError("读取properties配置文件报错,错误原因:" + e.getMessage());
 		}
 		return map;
 	}

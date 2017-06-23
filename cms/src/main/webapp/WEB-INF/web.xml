@@ -44,14 +44,16 @@
         </listener-class>
     </listener>
 	<listener>  
-	        <listener-class>  
-	            org.springframework.web.context.request.RequestContextListener  
-	        </listener-class>  
+        <listener-class>  
+            org.springframework.web.context.request.RequestContextListener  
+        </listener-class>  
 	</listener>
 	<listener>
-		<listener-class>org.module.commons.init.ServerletListener</listener-class>
+		<listener-class>
+			org.module.web.listener.ServerletListener
+		</listener-class>
 	</listener>
 	<welcome-file-list>
-		<welcome-file>jsp/system/user/login.jsp</welcome-file>
+		<welcome-file>jsp/system/user/register.jsp</welcome-file>
 	</welcome-file-list>
 </web-app>

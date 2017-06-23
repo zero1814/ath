@@ -3,10 +3,11 @@ package org.module.cache;
 import java.util.Map;
 
 import org.module.commons.annotation.Inject;
+import org.module.commons.base.BaseClass;
 
 import redis.clients.jedis.JedisCluster;
 
-public class RedisHash {
+public class RedisHash extends BaseClass {
 	@Inject
 	private JedisCluster cluster;
 

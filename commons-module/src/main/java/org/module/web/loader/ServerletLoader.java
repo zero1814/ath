@@ -1,9 +1,11 @@
-package org.module.commons.init;
+package org.module.web.loader;
 
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 
 import org.module.commons.util.SpringUtil;
+import org.module.web.init.PropertiesInit;
+import org.module.web.listener.ServerletListener;
 import org.springframework.web.WebApplicationInitializer;
 import org.springframework.web.context.WebApplicationContext;
 import org.springframework.web.context.support.WebApplicationContextUtils;
@@ -43,7 +45,7 @@ public class ServerletLoader {
 				servletContext.log("Initializing HJY web core");
 				WebApplicationContext wac = WebApplicationContextUtils.getWebApplicationContext(servletContext);
 				SpringUtil.setApplicationContext(wac);
-
+				new PropertiesInit().init();
 				servletContext.log("Initializing HJY web core finished");
 
 			} catch (RuntimeException ex) {
@@ -63,9 +65,10 @@ public class ServerletLoader {
 			}
 		}
 	}
-	
+
 	/**
 	 * 容器关闭时调用
+	 * 
 	 * @param servletContext
 	 * @return
 	 */

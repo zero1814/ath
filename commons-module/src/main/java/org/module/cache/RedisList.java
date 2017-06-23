@@ -1,6 +1,7 @@
 package org.module.cache;
 
 import org.module.commons.annotation.Inject;
+import org.module.commons.base.BaseClass;
 
 import redis.clients.jedis.JedisCluster;
 
@@ -11,7 +12,7 @@ import redis.clients.jedis.JedisCluster;
  * 作者: zhy<br>
  * 时间: 2017年5月5日 下午5:11:27
  */
-public class RedisList {
+public class RedisList extends BaseClass {
 
 	@Inject
 	private JedisCluster cluster;
