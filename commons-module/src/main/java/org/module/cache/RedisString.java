@@ -3,7 +3,6 @@ package org.module.cache;
 import org.module.commons.annotation.Inject;
 import org.module.commons.base.BaseClass;
 
-import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 
