@@ -3,6 +3,10 @@ package org.module.cache;
 import org.module.commons.annotation.Inject;
 import org.module.commons.base.BaseClass;
 
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONArray;
+import com.alibaba.fastjson.JSONObject;
+
 import redis.clients.jedis.JedisCluster;
 
 /**
@@ -73,6 +77,44 @@ public class RedisString extends BaseClass {
 	public String getValue(String key) {
 		if (jedisCluster.exists(key)) {
 			return jedisCluster.get(key);
+		} else {
+			return null;
+		}
+	}
+
+	/**
+	 * 
+	 * 方法: getJSONObject <br>
+	 * 描述: 获取json对象 <br>
+	 * 作者: zhy<br>
+	 * 时间: 2017年6月26日 上午11:04:37
+	 * 
+	 * @param key
+	 * @return
+	 */
+	public JSONObject getJSONObject(String key) {
+		if (jedisCluster.exists(key)) {
+			JSONObject obj = JSONObject.parseObject(jedisCluster.get(key));
+			return obj;
+		} else {
+			return null;
+		}
+	}
+
+	/**
+	 * 
+	 * 方法: getJSONArray <br>
+	 * 描述: 获取json数组对象 <br>
+	 * 作者: zhy<br>
+	 * 时间: 2017年6月26日 上午11:04:46
+	 * 
+	 * @param key
+	 * @return
+	 */
+	public JSONArray getJSONArray(String key) {
+		if (jedisCluster.exists(key)) {
+			JSONArray obj = JSONArray.parseArray(jedisCluster.get(key));
+			return obj;
 		} else {
 			return null;
 		}
