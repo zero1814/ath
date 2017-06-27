@@ -1,17 +1,17 @@
 package org.module.shiro.manager;
 
-import java.util.List;
-
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.session.Session;
-import org.apache.shiro.subject.SimplePrincipalCollection;
-import org.module.commons.util.SpringUtil;
 import org.module.model.system.user.SmUser;
 
 public class TokenManager {
 
 	/**
-	 * 获取当前登录的用户User对象
+	 * 
+	 * 方法: getToken <br>
+	 * 描述: 获取当前登录的用户User对象 <br>
+	 * 作者: zhy<br>
+	 * 时间: 2017年6月27日 下午5:16:58
 	 * 
 	 * @return
 	 */
@@ -21,7 +21,11 @@ public class TokenManager {
 	}
 
 	/**
-	 * 获取当前用户的Session
+	 * 
+	 * 方法: getSession <br>
+	 * 描述: 获取当前用户的Session <br>
+	 * 作者: zhy<br>
+	 * 时间: 2017年6月27日 下午5:17:06
 	 * 
 	 * @return
 	 */
@@ -30,7 +34,11 @@ public class TokenManager {
 	}
 
 	/**
-	 * 获取当前用户ID
+	 * 
+	 * 方法: getUserCode <br>
+	 * 描述: 获取当前用户编码 <br>
+	 * 作者: zhy<br>
+	 * 时间: 2017年6月27日 下午5:16:49
 	 * 
 	 * @return
 	 */
@@ -49,7 +57,11 @@ public class TokenManager {
 	}
 
 	/**
-	 * 从当前登录用户的Session里取值
+	 * 
+	 * 方法: getVal2Session <br>
+	 * 描述: 从当前登录用户的Session里取值 <br>
+	 * 作者: zhy<br>
+	 * 时间: 2017年6月27日 下午5:16:38
 	 * 
 	 * @param key
 	 * @return
@@ -59,18 +71,26 @@ public class TokenManager {
 	}
 
 	/**
-	 * 获取验证码，获取一次后删除
+	 * 
+	 * 方法: getVerificationCode <br>
+	 * 描述: 获取验证码，获取一次后删除 <br>
+	 * 作者: zhy<br>
+	 * 时间: 2017年6月27日 下午5:15:41
 	 * 
 	 * @return
 	 */
-	public static String getYZM() {
+	public static String getVerificationCode() {
 		String code = (String) getSession().getAttribute("CODE");
 		getSession().removeAttribute("CODE");
 		return code;
 	}
 
 	/**
-	 * 登录
+	 * 
+	 * 方法: login <br>
+	 * 描述: 登录 <br>
+	 * 作者: zhy<br>
+	 * 时间: 2017年6月27日 下午5:16:09
 	 * 
 	 * @param user
 	 * @param rememberMe
@@ -84,7 +104,11 @@ public class TokenManager {
 	}
 
 	/**
-	 * 判断是否登录
+	 * 
+	 * 方法: isLogin <br>
+	 * 描述: 判断是否登录 <br>
+	 * 作者: zhy<br>
+	 * 时间: 2017年6月27日 下午5:16:20
 	 * 
 	 * @return
 	 */
@@ -93,7 +117,11 @@ public class TokenManager {
 	}
 
 	/**
-	 * 退出登录
+	 * 
+	 * 方法: logout <br>
+	 * 描述: 退出登录 <br>
+	 * 作者: zhy<br>
+	 * 时间: 2017年6月27日 下午5:16:29
 	 */
 	public static void logout() {
 		SecurityUtils.getSubject().logout();

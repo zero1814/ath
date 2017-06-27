@@ -1,6 +1,5 @@
 package org.module.shiro;
 
-import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.Map;
 
@@ -13,8 +12,13 @@ import org.module.helper.commons.LogHelper;
 import net.sf.json.JSONObject;
 
 public class ShiroFilterUtils {
+
 	/**
-	 * 是否是Ajax请求
+	 * 
+	 * 方法: isAjax <br>
+	 * 描述: 是否是Ajax请求 <br>
+	 * 作者: zhy<br>
+	 * 时间: 2017年6月27日 下午5:17:32
 	 * 
 	 * @param request
 	 * @return
@@ -24,11 +28,14 @@ public class ShiroFilterUtils {
 	}
 
 	/**
-	 * response 输出JSON
 	 * 
-	 * @param hresponse
+	 * 方法: out <br>
+	 * 描述: response 输出JSON <br>
+	 * 作者: zhy<br>
+	 * 时间: 2017年6月27日 下午5:17:44
+	 * 
+	 * @param response
 	 * @param resultMap
-	 * @throws IOException
 	 */
 	public static void out(ServletResponse response, Map<String, String> resultMap) {
 		PrintWriter out = null;
