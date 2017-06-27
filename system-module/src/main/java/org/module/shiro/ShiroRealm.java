@@ -11,6 +11,7 @@ import org.module.commons.annotation.Inject;
 import org.module.model.system.user.SmUser;
 import org.module.result.EntityResult;
 import org.module.service.system.user.ISmUserService;
+import org.module.shiro.manager.ShiroToken;
 
 public class ShiroRealm extends AuthorizingRealm {
 	@Inject
