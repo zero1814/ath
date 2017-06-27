@@ -3,9 +3,9 @@ package org.module.helper;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import org.module.cache.CacheKey;
 import org.module.cache.RedisString;
 import org.module.model.system.user.SmUser;
-import org.module.system.util.Constant;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
 
@@ -31,7 +31,7 @@ public class UserHelper {
 		if (request != null) {
 			HttpSession session = this.getRequest().getSession();
 			if (session != null) {
-				String key = session.getAttribute(Constant.SESSION_USER).toString();
+				String key = session.getAttribute(CacheKey.USER).toString();
 				if (key != null) {
 					JSONObject obj = RedisString.instance().getJSONObject(key);
 					if (obj != null) {

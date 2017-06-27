@@ -40,7 +40,7 @@ public class SmUserServiceImpl extends BaseServiceImpl<SmUser, SmUserMapper, SmU
 		entity.setPassword(MD5Util.md5Hex(password));
 		EntityResult result = super.selectEntity(entity);
 		if (result.getCode() == 0) {
-			RedisString.instance().setValue(CacheKey.User + "_" + entity.getUserName(),
+			RedisString.instance().setValue(CacheKey.USER + "_" + entity.getUserName(),
 					JSON.toJSONString(result.getEntity()));
 		}
 		return result;
@@ -62,7 +62,7 @@ public class SmUserServiceImpl extends BaseServiceImpl<SmUser, SmUserMapper, SmU
 			/**
 			 * 注册成功后存储用户信息到redis中
 			 */
-			RedisString.instance().setValue(CacheKey.User + "_" + entity.getUserName(),
+			RedisString.instance().setValue(CacheKey.USER + "_" + entity.getUserName(),
 					JSON.toJSONString(result.getEntity()));
 		}
 		return result;

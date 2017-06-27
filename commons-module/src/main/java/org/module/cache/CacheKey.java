@@ -1,13 +1,9 @@
 package org.module.cache;
 
-public enum CacheKey {
+public class CacheKey {
 
 	/**
 	 * 用户信息
 	 */
-	User,
-	/**
-	 * 菜单
-	 */
-	Menu
+	public static final String USER = "user";
 }
