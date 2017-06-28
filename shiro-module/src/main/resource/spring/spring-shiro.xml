@@ -43,7 +43,7 @@ http://www.springframework.org/schema/context/spring-context-4.3.xsd">
 		<property name="sessionIdGenerator" ref="sessionIdGenerator" />
 	</bean>
 	<!-- 手动操作Session，管理Session -->
-	<bean id="customSessionManager" class="com.sojson.core.shiro.session.CustomSessionManager">
+	<bean id="customSessionManager" class="org.module.shiro.session.CustomSessionManager">
 		<property name="shiroSessionRepository" ref="jedisShiroSessionRepository" />
 		<property name="customShiroSessionDAO" ref="customShiroSessionDAO" />
 	</bean>
