@@ -91,4 +91,10 @@ http://www.springframework.org/schema/context/spring-context-4.3.xsd">
 		<!-- 会话Cookie模板 -->
 		<property name="sessionIdCookie" ref="sessionIdCookie" />
 	</bean>
+	<!-- 认证数据库存储-->
+    <bean id="shiroManager" class="com.sojson.core.shiro.service.impl.ShiroManagerImpl"/>
+    <bean id="login" class="com.sojson.core.shiro.filter.LoginFilter"/>
+    <bean id="role" class="com.sojson.core.shiro.filter.RoleFilter"/>
+    <bean id="permission" class="com.sojson.core.shiro.filter.PermissionFilter"/>
+    <bean id="simple" class="com.sojson.core.shiro.filter.SimpleAuthFilter"/>
 </beans>
