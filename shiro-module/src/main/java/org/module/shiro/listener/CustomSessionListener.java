@@ -3,11 +3,15 @@ package org.module.shiro.listener;
 import org.apache.shiro.session.Session;
 import org.apache.shiro.session.SessionListener;
 import org.module.helper.commons.LogHelper;
+import org.module.shiro.RedisShiroSessionRepository;
 
-public class ShiroSessionListener implements SessionListener {
+public class CustomSessionListener implements SessionListener {
+
+	private RedisShiroSessionRepository repository;
 
 	@Override
 	public void onExpiration(Session session) {
+		repository.deleteSession(session.getId());
 		LogHelper.info(getClass(), session.getId() + ":expiration......");
 	}
 
@@ -19,6 +23,14 @@ public class ShiroSessionListener implements SessionListener {
 	@Override
 	public void onStop(Session session) {
 		LogHelper.info(getClass(), session.getId() + ":stop......");
+	}
+
+	public RedisShiroSessionRepository getRepository() {
+		return repository;
+	}
+
+	public void setRepository(RedisShiroSessionRepository repository) {
+		this.repository = repository;
 	}
 
 }

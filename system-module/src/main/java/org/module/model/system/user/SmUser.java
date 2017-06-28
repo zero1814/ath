@@ -34,6 +34,20 @@ public class SmUser extends BaseModel {
 	@Column(name = "we_chat", comment = "微信号")
 	private String weChat;
 
+	public SmUser() {
+	}
+
+	public SmUser(SmUser user) {
+		this.userName = user.getUserName();
+		this.password = user.getPassword();
+		this.realName = user.getRealName();
+		this.headPic = user.getHeadPic();
+		this.phone = user.getPhone();
+		this.eMail = user.geteMail();
+		this.qq = user.getQq();
+		this.weChat = user.getWeChat();
+	}
+
 	/**
 	 * 用户角色
 	 */

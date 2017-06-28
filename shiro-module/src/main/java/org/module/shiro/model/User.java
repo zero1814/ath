@@ -1,15 +1,10 @@
-package org.module.shiro.session;
+package org.module.shiro.model;
 
 import java.util.Date;
 
-/**
- * 
- * 类: User <br>
- * 描述: session存储 <br>
- * 作者: zhy<br>
- * 时间: 2017年6月28日 上午9:50:15
- */
-public class Session {
+import org.module.model.system.user.SmUser;
+
+public class User extends SmUser {
 	/**
 	 * Session Id
 	 */
@@ -37,6 +32,14 @@ public class Session {
 	 */
 	private boolean sessionStatus = Boolean.TRUE;
 
+	
+	public User() {
+	}
+	
+	public User(SmUser user) {
+		super(user);
+	}
+	
 	public String getSessionId() {
 		return sessionId;
 	}
