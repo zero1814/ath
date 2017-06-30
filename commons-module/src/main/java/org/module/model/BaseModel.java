@@ -1,5 +1,7 @@
 package org.module.model;
 
+import java.io.Serializable;
+
 /**
  * 
  * 类: BaseModel <br>

@@ -31,4 +31,8 @@ public class SpringUtil {
 		return (T) ctx.getBean(beanName);
 	}
 
+	public static <T> T getBean(String name, Class<T> requiredType) throws BeansException {
+		return ctx.getBean(name, requiredType);
+	}
+
 }
