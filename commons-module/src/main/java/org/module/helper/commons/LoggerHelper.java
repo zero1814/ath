@@ -9,7 +9,7 @@ import org.module.commons.base.BaseLog;
  * 作者: zhy<br>
  * 时间: 2017年6月26日 下午2:15:06
  */
-public class LogHelper {
+public class LoggerHelper {
 	public static BaseLog logger = new BaseLog();
 
 	/**

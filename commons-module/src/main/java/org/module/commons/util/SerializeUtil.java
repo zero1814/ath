@@ -7,7 +7,7 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 
-import org.module.helper.commons.LogHelper;
+import org.module.helper.commons.LoggerHelper;
 
 /**
  * 
@@ -44,7 +44,7 @@ public class SerializeUtil {
 			bos.close();
 			rv = bos.toByteArray();
 		} catch (Exception e) {
-			LogHelper.error(SerializeUtil.class, e.getMessage());
+			LoggerHelper.error(SerializeUtil.class, e.getMessage());
 		} finally {
 			close(os);
 			close(bos);
@@ -88,7 +88,7 @@ public class SerializeUtil {
 				rv = is.readObject();
 			}
 		} catch (Exception e) {
-			LogHelper.error(SerializeUtil.class, e.getMessage());
+			LoggerHelper.error(SerializeUtil.class, e.getMessage());
 		} finally {
 			close(is);
 			close(bis);
@@ -101,7 +101,7 @@ public class SerializeUtil {
 			try {
 				closeable.close();
 			} catch (IOException e) {
-				LogHelper.error(SerializeUtil.class, e.getMessage());
+				LoggerHelper.error(SerializeUtil.class, e.getMessage());
 			}
 	}
 }
