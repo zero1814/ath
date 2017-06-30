@@ -4,6 +4,7 @@ import org.module.cache.CacheKey;
 import org.module.cache.RedisString;
 import org.module.commons.util.MD5Util;
 import org.module.dto.system.user.SmUserDto;
+import org.module.helper.UserHelper;
 import org.module.mapper.system.user.SmUserMapper;
 import org.module.model.system.user.SmUser;
 import org.module.result.EntityResult;
@@ -56,6 +57,8 @@ public class SmUserServiceImpl extends BaseServiceImpl<SmUser, SmUserMapper, SmU
 	 */
 	@Override
 	public EntityResult register(SmUser entity) {
+		String userCode = UserHelper.intance().userInfo().getCode();
+		entity.setCreateUser(userCode);
 		entity.setPassword(MD5Util.md5Hex(entity.getPassword()));
 		EntityResult result = super.insertSelective(entity);
 		if (result.getCode() == 0) {

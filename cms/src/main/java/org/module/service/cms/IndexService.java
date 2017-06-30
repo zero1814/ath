@@ -23,4 +23,5 @@ public interface IndexService {
 	 * @return
 	 */
 	List<SmMenu> initMenus();
+
 }
