@@ -17,7 +17,7 @@ import net.sf.json.JSONObject;
  * 类: ShiroFilterUtils <br>
  * 描述: Shiro Filter 工具类 <br>
  * 作者: zhy<br>
- * 时间: 2017年6月30日 下午2:53:14
+ * 时间: 2017年7月3日 上午10:37:58
  */
 public class ShiroFilterUtils {
 	final static Class<? extends ShiroFilterUtils> CLAZZ = ShiroFilterUtils.class;

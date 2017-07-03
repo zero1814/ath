@@ -3,7 +3,7 @@ package org.module.web.loader;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 
-import org.module.commons.util.SpringUtil;
+import org.module.commons.util.SpringContextUtil;
 import org.module.web.init.PropertiesInit;
 import org.module.web.listener.ServerletListener;
 import org.springframework.web.WebApplicationInitializer;
@@ -44,7 +44,7 @@ public class ServerletLoader {
 			try {
 				servletContext.log("Initializing HJY web core");
 				WebApplicationContext wac = WebApplicationContextUtils.getWebApplicationContext(servletContext);
-				SpringUtil.setApplicationContext(wac);
+				SpringContextUtil.setApplicationContext(wac);
 				new PropertiesInit().init();
 				servletContext.log("Initializing HJY web core finished");
 

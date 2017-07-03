@@ -1,10 +1,8 @@
-package org.module.shiro.manager;
+package org.module.shiro.session;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collection;
 import java.util.HashMap;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -12,28 +10,25 @@ import java.util.Set;
 import org.apache.shiro.session.Session;
 import org.apache.shiro.subject.SimplePrincipalCollection;
 import org.apache.shiro.subject.support.DefaultSubjectContext;
+import org.module.commons.util.StringUtils;
 import org.module.helper.commons.LoggerHelper;
-import org.module.model.shiro.UserOnline;
+import org.module.model.shiro.UserOnlineBo;
 import org.module.model.system.user.SmUser;
 import org.module.shiro.CustomShiroSessionDAO;
-import org.module.shiro.session.SessionStatus;
-import org.module.shiro.session.ShiroSessionRepository;
-
 
 /**
  * 
  * 类: CustomSessionManager <br>
  * 描述: 用户Session 手动管理 <br>
  * 作者: zhy<br>
- * 时间: 2017年6月30日 下午2:53:44
+ * 时间: 2017年7月3日 上午10:42:47
  */
 public class CustomSessionManager {
 
 	/**
 	 * session status
 	 */
-	public static final String SESSION_STATUS = "ath-online-status";
-
+	public static final String SESSION_STATUS = "sojson-online-status";
 	ShiroSessionRepository shiroSessionRepository;
 
 	CustomShiroSessionDAO customShiroSessionDAO;
@@ -43,13 +38,13 @@ public class CustomSessionManager {
 	 * 
 	 * @return
 	 */
-	public List<UserOnline> getAllUser() {
+	public List<UserOnlineBo> getAllUser() {
 		// 获取所有session
 		Collection<Session> sessions = customShiroSessionDAO.getActiveSessions();
-		List<UserOnline> list = new ArrayList<UserOnline>();
+		List<UserOnlineBo> list = new ArrayList<UserOnlineBo>();
 
 		for (Session session : sessions) {
-			UserOnline bo = getSessionBo(session);
+			UserOnlineBo bo = getSessionBo(session);
 			if (null != bo) {
 				list.add(bo);
 			}
@@ -64,9 +59,10 @@ public class CustomSessionManager {
 	 *            用户ID
 	 * @return
 	 */
+	@SuppressWarnings("unchecked")
 	public List<SimplePrincipalCollection> getSimplePrincipalCollectionByUserId(String... userCodes) {
 		// 把userIds 转成Set，好判断
-		Set<String> codes = new HashSet<String>(Arrays.asList(userCodes));
+		Set<String> idset = (Set<String>) StringUtils.array2Set(userCodes);
 		// 获取所有session
 		Collection<Session> sessions = customShiroSessionDAO.getActiveSessions();
 		// 定义返回
@@ -82,7 +78,7 @@ public class CustomSessionManager {
 				if (null != obj && obj instanceof SmUser) {
 					SmUser user = (SmUser) obj;
 					// 比较用户ID，符合即加入集合
-					if (null != user && codes.contains(user.getCode())) {
+					if (null != user && idset.contains(user.getId())) {
 						list.add(spc);
 					}
 				}
@@ -97,13 +93,13 @@ public class CustomSessionManager {
 	 * @param sessionId
 	 * @return
 	 */
-	public UserOnline getSession(String sessionId) {
+	public UserOnlineBo getSession(String sessionId) {
 		Session session = shiroSessionRepository.getSession(sessionId);
-		UserOnline bo = getSessionBo(session);
+		UserOnlineBo bo = getSessionBo(session);
 		return bo;
 	}
 
-	private UserOnline getSessionBo(Session session) {
+	private UserOnlineBo getSessionBo(Session session) {
 		// 获取session登录信息。
 		Object obj = session.getAttribute(DefaultSubjectContext.PRINCIPALS_SESSION_KEY);
 		if (null == obj) {
@@ -120,7 +116,7 @@ public class CustomSessionManager {
 			obj = spc.getPrimaryPrincipal();
 			if (null != obj && obj instanceof SmUser) {
 				// 存储session + user 综合信息
-				UserOnline userBo = new UserOnline((SmUser) obj);
+				UserOnlineBo userBo = new UserOnlineBo((SmUser) obj);
 				// 最后一次和系统交互的时间
 				userBo.setLastAccess(session.getLastAccessTime());
 				// 主机的ip地址
@@ -173,7 +169,7 @@ public class CustomSessionManager {
 			map.put("sessionStatusText", status ? "踢出" : "激活");
 			map.put("sessionStatusTextTd", status ? "有效" : "已踢出");
 		} catch (Exception e) {
-			LoggerHelper.error(getClass(), "改变Session状态错误，sessionId：" + sessionIds);
+			LoggerHelper.error(getClass(), "改变Session状态错误，sessionId:" + sessionIds);
 			map.put("status", 500);
 			map.put("message", "改变失败，有可能Session不存在，请刷新再试！");
 		}
@@ -190,7 +186,7 @@ public class CustomSessionManager {
 	 */
 	public void forbidUserById(String code, Long status) {
 		// 获取所有在线用户
-		for (UserOnline bo : getAllUser()) {
+		for (UserOnlineBo bo : getAllUser()) {
 			String userCode = bo.getCode();
 			// 匹配用户ID
 			if (userCode.equals(code)) {

@@ -6,16 +6,16 @@ import java.util.Collection;
 import org.apache.shiro.session.Session;
 import org.module.commons.util.SerializeUtil;
 import org.module.helper.commons.LoggerHelper;
-import org.module.shiro.manager.CustomSessionManager;
-import org.module.shiro.manager.JedisManager;
+import org.module.shiro.session.CustomSessionManager;
 import org.module.shiro.session.SessionStatus;
 import org.module.shiro.session.ShiroSessionRepository;
 
 /**
- * Session 管理
  * 
- * @author sojson.com
- *
+ * 类: JedisShiroSessionRepository <br>
+ * 描述: Session 管理 <br>
+ * 作者: zhy<br>
+ * 时间: 2017年7月3日 上午10:25:55
  */
 @SuppressWarnings("unchecked")
 public class JedisShiroSessionRepository implements ShiroSessionRepository {

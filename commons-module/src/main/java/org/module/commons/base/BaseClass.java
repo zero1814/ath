@@ -5,7 +5,7 @@ import java.lang.reflect.Field;
 
 import org.apache.commons.lang3.StringUtils;
 import org.module.commons.annotation.Inject;
-import org.module.commons.util.SpringUtil;
+import org.module.commons.util.SpringContextUtil;
 import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.NoSuchBeanDefinitionException;
 
@@ -53,12 +53,12 @@ public abstract class BaseClass {
 	}
 
 	public <T> T getBean(Class<T> clazz) throws BeansException {
-		return (T) SpringUtil.getBean(clazz);
+		return (T) SpringContextUtil.getBean(clazz);
 	}
 
 	@SuppressWarnings("unchecked")
 	public <T> T getBean(String beanName) throws BeansException {
-		return (T) SpringUtil.getBean(beanName);
+		return (T) SpringContextUtil.getBean(beanName);
 	}
 
 	public BaseLog getLogger() {

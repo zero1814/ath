@@ -19,7 +19,7 @@ import org.module.helper.commons.LoggerHelper;
  * 类: PermissionFilter <br>
  * 描述: 权限校验 Filter <br>
  * 作者: zhy<br>
- * 时间: 2017年6月30日 下午2:52:54
+ * 时间: 2017年7月3日 上午10:37:41
  */
 public class PermissionFilter extends AccessControlFilter {
 	@Override

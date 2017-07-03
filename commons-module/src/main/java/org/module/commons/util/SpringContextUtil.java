@@ -10,12 +10,12 @@ import org.springframework.context.ApplicationContext;
  * 作者: zhy<br>
  * 时间: 2016年8月30日 上午11:10:08
  */
-public class SpringUtil {
+public class SpringContextUtil {
 
 	private static ApplicationContext ctx;
 
 	public static void setApplicationContext(ApplicationContext ctx) {
-		SpringUtil.ctx = ctx;
+		SpringContextUtil.ctx = ctx;
 	}
 
 	public static ApplicationContext getContext() {

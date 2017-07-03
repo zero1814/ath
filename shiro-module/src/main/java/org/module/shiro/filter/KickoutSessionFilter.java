@@ -19,15 +19,15 @@ import org.apache.shiro.web.filter.AccessControlFilter;
 import org.apache.shiro.web.util.WebUtils;
 import org.module.helper.commons.LoggerHelper;
 import org.module.shiro.cache.VCache;
-import org.module.shiro.manager.TokenManager;
 import org.module.shiro.session.ShiroSessionRepository;
+import org.module.shiro.token.manager.TokenManager;
 
 /**
  * 
  * 类: KickoutSessionFilter <br>
  * 描述: 相同帐号登录控制 <br>
  * 作者: zhy<br>
- * 时间: 2017年6月30日 下午2:52:31
+ * 时间: 2017年7月3日 上午10:31:32
  */
 @SuppressWarnings({ "unchecked", "static-access" })
 public class KickoutSessionFilter extends AccessControlFilter {
@@ -77,7 +77,7 @@ public class KickoutSessionFilter extends AccessControlFilter {
 		infoMap = null == infoMap ? new LinkedHashMap<String, Serializable>() : infoMap;
 
 		// 获取tokenId
-		String userCode = TokenManager.getToken().getCode();
+		String userCode = TokenManager.getUserCode();
 
 		// 如果已经包含当前Session，并且是同一个用户，跳过。
 		if (infoMap.containsKey(userCode) && infoMap.containsValue(sessionId)) {

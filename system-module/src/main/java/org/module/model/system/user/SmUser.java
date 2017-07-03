@@ -10,6 +10,8 @@ import org.module.model.BaseModel;
 @Table(name = "sm_user", database = "systemmodule", comment = "用户表")
 public class SmUser extends BaseModel {
 
+	public static final String SUCCESS_STATUS="0";
+	
 	@Column(name = "user_name", isNull = false, comment = "用户名")
 	private String userName;
 
@@ -33,6 +35,9 @@ public class SmUser extends BaseModel {
 
 	@Column(name = "we_chat", comment = "微信号")
 	private String weChat;
+	
+	@Column(name = "status", comment = "用户状态")
+	private String status;
 
 	public SmUser() {
 	}
@@ -46,6 +51,7 @@ public class SmUser extends BaseModel {
 		this.eMail = user.geteMail();
 		this.qq = user.getQq();
 		this.weChat = user.getWeChat();
+		this.status=user.getStatus();
 	}
 
 	/**
@@ -124,6 +130,14 @@ public class SmUser extends BaseModel {
 
 	public void setWeChat(String weChat) {
 		this.weChat = weChat;
+	}
+
+	public String getStatus() {
+		return status;
+	}
+
+	public void setStatus(String status) {
+		this.status = status;
 	}
 
 }

@@ -16,7 +16,7 @@ import org.apache.shiro.subject.Subject;
 import org.apache.shiro.web.filter.AccessControlFilter;
 import org.apache.shiro.web.util.WebUtils;
 import org.module.helper.commons.LoggerHelper;
-import org.module.shiro.manager.CustomSessionManager;
+import org.module.shiro.session.CustomSessionManager;
 import org.module.shiro.session.SessionStatus;
 
 /**
@@ -24,7 +24,7 @@ import org.module.shiro.session.SessionStatus;
  * 类: SimpleAuthFilter <br>
  * 描述: 判断是否踢出 <br>
  * 作者: zhy<br>
- * 时间: 2017年6月30日 下午2:53:25
+ * 时间: 2017年7月3日 上午10:41:50
  */
 public class SimpleAuthFilter extends AccessControlFilter {
 

@@ -1,4 +1,5 @@
-package org.module.shiro;
+package org.module.shiro.token;
+
 
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.AccountException;
@@ -12,12 +13,9 @@ import org.apache.shiro.authz.SimpleAuthorizationInfo;
 import org.apache.shiro.realm.AuthorizingRealm;
 import org.apache.shiro.subject.PrincipalCollection;
 import org.apache.shiro.subject.SimplePrincipalCollection;
-import org.module.helper.commons.LoggerHelper;
 import org.module.model.system.user.SmUser;
 import org.module.result.EntityResult;
-import org.module.service.system.user.ISmRoleService;
 import org.module.service.system.user.ISmUserService;
-import org.module.shiro.token.ShiroToken;
 import org.springframework.beans.factory.annotation.Autowired;
 
 /**
@@ -25,14 +23,12 @@ import org.springframework.beans.factory.annotation.Autowired;
  * 类: SampleRealm <br>
  * 描述: shiro 认证 + 授权 重写 <br>
  * 作者: zhy<br>
- * 时间: 2017年6月30日 下午2:54:25
+ * 时间: 2017年7月3日 上午10:56:11
  */
 public class SampleRealm extends AuthorizingRealm {
 
 	@Autowired
 	ISmUserService userService;
-	@Autowired
-	ISmRoleService roleService;
 
 	public SampleRealm() {
 		super();
@@ -43,21 +39,21 @@ public class SampleRealm extends AuthorizingRealm {
 	 */
 	protected AuthenticationInfo doGetAuthenticationInfo(AuthenticationToken authcToken)
 			throws AuthenticationException {
-
 		ShiroToken token = (ShiroToken) authcToken;
 		EntityResult result = userService.login(token.getUsername(), token.getPswd());
-		if (result.getCode() == 404) {
-			throw new AccountException("帐号或密码不正确！");
-			/**
-			 * 如果用户的status为禁用。那么就抛出<code>DisabledAccountException</code>
-			 */
-		} else if (result.getCode() == 500) {
-			throw new DisabledAccountException("帐号已经禁止登录！");
+		if (result.getCode() == 0) {
+			SmUser user = (SmUser) result.getEntity();
+			if (SmUser.SUCCESS_STATUS.equals(user.getStatus())) {
+				throw new DisabledAccountException("帐号已经禁止登录！");
+			} else {
+				/**
+				 * 添加登录日志
+				 */
+				return new SimpleAuthenticationInfo(result.getEntity(), user.getPassword(), getName());
+			}
 		} else {
-			LoggerHelper.info(SampleRealm.class, "登录成功");
+			throw new AccountException("帐号或密码不正确！");
 		}
-		SmUser user = (SmUser) result.getEntity();
-		return new SimpleAuthenticationInfo(result.getEntity(), user.getPassword(), getName());
 	}
 
 	/**
@@ -66,12 +62,12 @@ public class SampleRealm extends AuthorizingRealm {
 	@Override
 	protected AuthorizationInfo doGetAuthorizationInfo(PrincipalCollection principals) {
 
-		// Long userId = TokenManager.getUserId();
+//		String userCode = TokenManager.getUserCode();
 		SimpleAuthorizationInfo info = new SimpleAuthorizationInfo();
 		// 根据用户ID查询角色（role），放入到Authorization里。
 		// Set<String> roles = roleService.findRoleByUserId(userId);
 		// info.setRoles(roles);
-		// 根据用户ID查询权限（permission），放入到Authorization里。
+		// // 根据用户ID查询权限（permission），放入到Authorization里。
 		// Set<String> permissions =
 		// permissionService.findPermissionByUserId(userId);
 		// info.setStringPermissions(permissions);

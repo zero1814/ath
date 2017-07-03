@@ -7,44 +7,32 @@ import org.module.model.system.user.SmUser;
 
 /**
  * 
- * 类: UserOnline <br>
- * 描述: session信息 <br>
+ * 类: UserOnlineBo <br>
+ * 描述: Session + User Bo <br>
  * 作者: zhy<br>
- * 时间: 2017年6月30日 下午2:06:52
+ * 时间: 2017年7月3日 上午10:58:03
  */
-public class UserOnline extends SmUser implements Serializable {
+public class UserOnlineBo extends SmUser implements Serializable {
 
 	private static final long serialVersionUID = 1L;
-	/**
-	 * Session Id
-	 */
-	private String sessionId;
-	/**
-	 * Session Host
-	 */
-	private String host;
-	/**
-	 * Session创建时间
-	 */
-	private Date startTime;
 
-	/**
-	 * Session最后交互时间
-	 */
+	// Session Id
+	private String sessionId;
+	// Session Host
+	private String host;
+	// Session创建时间
+	private Date startTime;
+	// Session最后交互时间
 	private Date lastAccess;
-	/**
-	 * Session timeout
-	 */
+	// Session timeout
 	private long timeout;
-	/**
-	 * session 是否踢出
-	 */
+	// session 是否踢出
 	private boolean sessionStatus = Boolean.TRUE;
 
-	public UserOnline() {
+	public UserOnlineBo() {
 	}
 
-	public UserOnline(SmUser user) {
+	public UserOnlineBo(SmUser user) {
 		super(user);
 	}
 
@@ -94,10 +82,6 @@ public class UserOnline extends SmUser implements Serializable {
 
 	public void setSessionStatus(boolean sessionStatus) {
 		this.sessionStatus = sessionStatus;
-	}
-
-	public static long getSerialversionuid() {
-		return serialVersionUID;
 	}
 
 }

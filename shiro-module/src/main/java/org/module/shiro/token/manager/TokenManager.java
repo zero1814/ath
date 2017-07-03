@@ -1,13 +1,14 @@
-package org.module.shiro.manager;
+package org.module.shiro.token.manager;
 
 import java.util.List;
 
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.session.Session;
 import org.apache.shiro.subject.SimplePrincipalCollection;
-import org.module.commons.util.SpringUtil;
+import org.module.commons.util.SpringContextUtil;
 import org.module.model.system.user.SmUser;
-import org.module.shiro.SampleRealm;
+import org.module.shiro.session.CustomSessionManager;
+import org.module.shiro.token.SampleRealm;
 import org.module.shiro.token.ShiroToken;
 
 /**
@@ -15,13 +16,13 @@ import org.module.shiro.token.ShiroToken;
  * 类: TokenManager <br>
  * 描述: Shiro管理下的Token工具类 <br>
  * 作者: zhy<br>
- * 时间: 2017年6月30日 下午2:54:01
+ * 时间: 2017年7月3日 上午11:05:41
  */
 public class TokenManager {
 	// 用户登录管理
-	public static final SampleRealm realm = SpringUtil.getBean("sampleRealm", SampleRealm.class);
+	public static final SampleRealm realm = SpringContextUtil.getBean("sampleRealm", SampleRealm.class);
 	// 用户session管理
-	public static final CustomSessionManager customSessionManager = SpringUtil.getBean("customSessionManager",
+	public static final CustomSessionManager customSessionManager = SpringContextUtil.getBean("customSessionManager",
 			CustomSessionManager.class);
 
 	/**
@@ -41,6 +42,24 @@ public class TokenManager {
 	 */
 	public static Session getSession() {
 		return SecurityUtils.getSubject().getSession();
+	}
+
+	/**
+	 * 获取当前用户NAME
+	 * 
+	 * @return
+	 */
+	public static String getRealName() {
+		return getToken().getRealName();
+	}
+
+	/**
+	 * 获取当前用户ID
+	 * 
+	 * @return
+	 */
+	public static String getUserCode() {
+		return getToken() == null ? null : getToken().getCode();
 	}
 
 	/**
@@ -137,7 +156,7 @@ public class TokenManager {
 	 * @param id
 	 *            用户ID
 	 */
-	public static void clearUserAuthByUserId(String... userCodes) {
+	public static void clearUserAuthByUserCode(String... userCodes) {
 
 		if (null == userCodes || userCodes.length == 0)
 			return;
@@ -157,6 +176,6 @@ public class TokenManager {
 		if (null == userCodes || userCodes.size() == 0) {
 			return;
 		}
-		clearUserAuthByUserId(userCodes.toArray(new String[0]));
+		clearUserAuthByUserCode(userCodes.toArray(new String[0]));
 	}
 }

@@ -9,7 +9,7 @@ import org.module.shiro.session.ShiroSessionRepository;
  * 类: CustomSessionListener <br>
  * 描述: shiro 回话 监听 <br>
  * 作者: zhy<br>
- * 时间: 2017年6月30日 下午2:53:33
+ * 时间: 2017年7月3日 上午10:42:30
  */
 public class CustomSessionListener implements SessionListener {
 
@@ -20,7 +20,6 @@ public class CustomSessionListener implements SessionListener {
 	 */
 	@Override
 	public void onStart(Session session) {
-		// TODO
 		System.out.println("on start");
 	}
 
@@ -29,7 +28,6 @@ public class CustomSessionListener implements SessionListener {
 	 */
 	@Override
 	public void onStop(Session session) {
-		// TODO
 		System.out.println("on stop");
 	}
 

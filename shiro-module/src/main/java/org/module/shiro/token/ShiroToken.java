@@ -7,11 +7,11 @@ import org.apache.shiro.authc.UsernamePasswordToken;
  * 类: ShiroToken <br>
  * 描述: Shiro token <br>
  * 作者: zhy<br>
- * 时间: 2017年6月30日 下午2:10:47
+ * 时间: 2017年7月3日 上午10:34:55
  */
 public class ShiroToken extends UsernamePasswordToken implements java.io.Serializable {
 
-	private static final long serialVersionUID = 395706601274116170L;
+	private static final long serialVersionUID = -6451794657814516274L;
 
 	public ShiroToken(String username, String pswd) {
 		super(username, pswd);

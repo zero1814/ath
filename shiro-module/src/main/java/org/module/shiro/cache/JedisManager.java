@@ -1,4 +1,4 @@
-package org.module.shiro.manager;
+package org.module.shiro.cache;
 
 import java.util.Collection;
 import java.util.HashSet;
@@ -8,7 +8,6 @@ import org.apache.commons.lang3.StringUtils;
 import org.apache.shiro.session.Session;
 import org.module.commons.util.SerializeUtil;
 import org.module.helper.commons.LoggerHelper;
-import org.module.shiro.cache.JedisShiroSessionRepository;
 
 import redis.clients.jedis.Jedis;
 import redis.clients.jedis.JedisPool;
@@ -19,7 +18,7 @@ import redis.clients.jedis.exceptions.JedisConnectionException;
  * 类: JedisManager <br>
  * 描述: Redis Manager Utils <br>
  * 作者: zhy<br>
- * 时间: 2017年6月30日 下午1:59:36
+ * 时间: 2017年7月3日 上午10:25:00
  */
 public class JedisManager {
 
@@ -54,13 +53,6 @@ public class JedisManager {
 	public void returnResource(Jedis jedis, boolean isBroken) {
 		if (jedis == null)
 			return;
-		/**
-		 * @deprecated starting from Jedis 3.0 this method will not be exposed.
-		 *             Resource cleanup should be done using @see
-		 *             {@link redis.clients.jedis.Jedis#close()} if (isBroken){
-		 *             getJedisPool().returnBrokenResource(jedis); }else{
-		 *             getJedisPool().returnResource(jedis); }
-		 */
 		jedis.close();
 	}
 
@@ -123,7 +115,11 @@ public class JedisManager {
 	}
 
 	/**
-	 * 获取所有Session
+	 * 
+	 * 方法: AllSession <br>
+	 * 描述: 获取所有Session <br>
+	 * 作者: zhy<br>
+	 * 时间: 2017年7月3日 上午10:25:37
 	 * 
 	 * @param dbIndex
 	 * @param redisShiroSession

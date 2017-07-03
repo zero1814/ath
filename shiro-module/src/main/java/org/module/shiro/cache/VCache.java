@@ -6,8 +6,7 @@ import java.util.Set;
 import java.util.TreeSet;
 
 import org.module.commons.util.SerializeUtil;
-import org.module.commons.util.SpringUtil;
-import org.module.shiro.manager.JedisManager;
+import org.module.commons.util.SpringContextUtil;
 
 import redis.clients.jedis.Jedis;
 
@@ -16,12 +15,12 @@ import redis.clients.jedis.Jedis;
  * 类: VCache <br>
  * 描述: 简单封装的Cache <br>
  * 作者: zhy<br>
- * 时间: 2017年6月30日 下午2:55:24
+ * 时间: 2017年7月3日 上午10:32:11
  */
 @SuppressWarnings("unchecked")
 public class VCache {
 
-	final static JedisManager J = SpringUtil.getBean("jedisManager", JedisManager.class);
+	final static JedisManager J = SpringContextUtil.getBean("jedisManager", JedisManager.class);
 
 	private VCache() {
 	}
