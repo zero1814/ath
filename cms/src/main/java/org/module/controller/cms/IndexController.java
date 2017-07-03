@@ -2,20 +2,29 @@ package org.module.controller.cms;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+
+import org.apache.commons.lang3.StringUtils;
+import org.module.controller.BaseController;
 import org.module.helper.commons.CodeHelper;
 import org.module.model.system.menu.SmMenu;
 import org.module.model.system.user.SmUser;
 import org.module.result.EntityResult;
 import org.module.service.cms.IndexService;
 import org.module.service.system.user.ISmUserService;
+import org.module.shiro.token.manager.TokenManager;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.util.UrlPathHelper;
+
 
 @Controller
-public class IndexController {
+public class IndexController extends BaseController{
 
 	@Autowired
 	private IndexService service;
@@ -45,7 +54,21 @@ public class IndexController {
 	@RequestMapping("login")
 	@ResponseBody
 	public EntityResult login(String userName, String password) {
-		return userService.login(userName, password);
+		EntityResult result = userService.login(userName, password);
+		SmUser user = (SmUser) result.getEntity();
+		TokenManager.login(user, false);
+		return result;
+	}
+	
+	@SuppressWarnings("unchecked")
+	@RequestMapping(value="kickedOut",method=RequestMethod.GET)
+	public ModelAndView kickedOut(HttpServletRequest request,UrlPathHelper pp){
+		//如果是踢出后，来源地址是：http://shiro.itboy.net/u/login.shtml;JSESSIONID=4f1538d9-df19-48c8-b4b1-aadacadde23a
+		//如果来源是null，那么就重定向到首页。这个时候，如果首页是要登录，那就会跳转到登录页
+		if(StringUtils.isBlank(request.getHeader("Referer"))){
+			return redirect("/");
+		}
+		return new ModelAndView("jsp/system/user/kicked_out");
 	}
 
 	@RequestMapping("register")

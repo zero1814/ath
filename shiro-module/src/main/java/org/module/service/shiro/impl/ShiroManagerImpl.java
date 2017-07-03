@@ -49,7 +49,7 @@ public class ShiroManagerImpl implements ShiroManager {
 	 * @return
 	 */
 	private String getFixedAuthRule() {
-		String fileName = "shiro_base_auth.ini";
+		String fileName = "shiro.ini";
 		ClassPathResource cp = new ClassPathResource(fileName);
 		INI4j ini = null;
 		try {
@@ -64,9 +64,7 @@ public class ShiroManagerImpl implements ShiroManager {
 			String value = ini.get(section, key);
 			sb.append(key).append(" = ").append(value).append(CRLF);
 		}
-
 		return sb.toString();
-
 	}
 
 	// 此方法加同步锁

@@ -34,7 +34,7 @@ public class SimpleAuthFilter extends AccessControlFilter {
 
 		HttpServletRequest httpRequest = ((HttpServletRequest) request);
 		String url = httpRequest.getRequestURI();
-		if (url.startsWith("/open/")) {
+		if (url.startsWith("/")) {
 			return Boolean.TRUE;
 		}
 		Subject subject = getSubject(request, response);
@@ -72,7 +72,7 @@ public class SimpleAuthFilter extends AccessControlFilter {
 		 */
 		WebUtils.saveRequest(request);
 		// 再重定向
-		WebUtils.issueRedirect(request, response, "/open/kickedOut.shtml");
+		WebUtils.issueRedirect(request, response, "/jsp/system/user/kicked_out");
 		return false;
 	}
 

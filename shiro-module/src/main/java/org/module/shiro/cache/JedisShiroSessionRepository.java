@@ -19,11 +19,10 @@ import org.module.shiro.session.ShiroSessionRepository;
  */
 @SuppressWarnings("unchecked")
 public class JedisShiroSessionRepository implements ShiroSessionRepository {
-	public static final String REDIS_SHIRO_SESSION = "sojson-shiro-demo-session:";
+	public static final String REDIS_SHIRO_SESSION = "ath-cms-session";
 	// 这里有个小BUG，因为Redis使用序列化后，Key反序列化回来发现前面有一段乱码，解决的办法是存储缓存不序列化
-	public static final String REDIS_SHIRO_ALL = "*sojson-shiro-demo-session:*";
+	public static final String REDIS_SHIRO_ALL = "*ath-cms-session*";
 	private static final int SESSION_VAL_TIME_SPAN = 18000;
-	private static final int DB_INDEX = 1;
 
 	private JedisManager jedisManager;
 
@@ -44,7 +43,7 @@ public class JedisShiroSessionRepository implements ShiroSessionRepository {
 			byte[] value = SerializeUtil.serialize(session);
 			long sessionTimeOut = session.getTimeout() / 1000;
 			Long expireTime = sessionTimeOut + SESSION_VAL_TIME_SPAN + (5 * 60);
-			getJedisManager().saveValueByKey(DB_INDEX, key, value, expireTime.intValue());
+			getJedisManager().saveValueByKey(key, value, expireTime.intValue());
 		} catch (Exception e) {
 			LoggerHelper.error(getClass(), "save session error，id:" + session.getId());
 		}
@@ -56,7 +55,7 @@ public class JedisShiroSessionRepository implements ShiroSessionRepository {
 			throw new NullPointerException("session id is empty");
 		}
 		try {
-			getJedisManager().deleteByKey(DB_INDEX, SerializeUtil.serialize(buildRedisSessionKey(id)));
+			getJedisManager().deleteByKey(SerializeUtil.serialize(buildRedisSessionKey(id)));
 		} catch (Exception e) {
 			LoggerHelper.error(getClass(), "删除session出现异常，id:" + id);
 		}
@@ -68,7 +67,7 @@ public class JedisShiroSessionRepository implements ShiroSessionRepository {
 			throw new NullPointerException("session id is empty");
 		Session session = null;
 		try {
-			byte[] value = getJedisManager().getValueByKey(DB_INDEX, SerializeUtil.serialize(buildRedisSessionKey(id)));
+			byte[] value = getJedisManager().getValueByKey(SerializeUtil.serialize(buildRedisSessionKey(id)));
 			session = SerializeUtil.deserialize(value, Session.class);
 		} catch (Exception e) {
 			LoggerHelper.error(getClass(), "获取session异常，id:" + id);
@@ -80,7 +79,7 @@ public class JedisShiroSessionRepository implements ShiroSessionRepository {
 	public Collection<Session> getAllSessions() {
 		Collection<Session> sessions = null;
 		try {
-			sessions = getJedisManager().AllSession(DB_INDEX, REDIS_SHIRO_SESSION);
+			sessions = getJedisManager().AllSession(REDIS_SHIRO_SESSION);
 		} catch (Exception e) {
 			LoggerHelper.error(getClass(), "获取全部session异常");
 		}

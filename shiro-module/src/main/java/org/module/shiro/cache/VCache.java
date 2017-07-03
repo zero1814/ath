@@ -1,5 +1,6 @@
 package org.module.shiro.cache;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
@@ -8,7 +9,7 @@ import java.util.TreeSet;
 import org.module.commons.util.SerializeUtil;
 import org.module.commons.util.SpringContextUtil;
 
-import redis.clients.jedis.Jedis;
+import redis.clients.jedis.JedisCluster;
 
 /**
  * 
@@ -20,7 +21,7 @@ import redis.clients.jedis.Jedis;
 @SuppressWarnings("unchecked")
 public class VCache {
 
-	final static JedisManager J = SpringContextUtil.getBean("jedisManager", JedisManager.class);
+	final static JedisCluster cluster = SpringContextUtil.getBean("jedisCluster", JedisCluster.class);
 
 	private VCache() {
 	}
@@ -34,18 +35,14 @@ public class VCache {
 	 * @return
 	 */
 	public static <T> T get(String key, Class<T>... requiredType) {
-		Jedis jds = null;
-		boolean isBroken = false;
 		try {
-			jds = J.getJedis();
-			jds.select(0);
 			byte[] skey = SerializeUtil.serialize(key);
-			return SerializeUtil.deserialize(jds.get(skey), requiredType);
+			byte[] sval = cluster.get(skey);
+			return SerializeUtil.deserialize(sval, requiredType);
 		} catch (Exception e) {
-			isBroken = true;
 			e.printStackTrace();
 		} finally {
-			returnResource(jds, isBroken);
+			returnResource();
 		}
 		return null;
 	}
@@ -57,19 +54,14 @@ public class VCache {
 	 * @param value
 	 */
 	public static void set(Object key, Object value) {
-		Jedis jds = null;
-		boolean isBroken = false;
 		try {
-			jds = J.getJedis();
-			jds.select(0);
 			byte[] skey = SerializeUtil.serialize(key);
 			byte[] svalue = SerializeUtil.serialize(value);
-			jds.set(skey, svalue);
+			cluster.set(skey, svalue);
 		} catch (Exception e) {
-			isBroken = true;
 			e.printStackTrace();
 		} finally {
-			returnResource(jds, isBroken);
+			returnResource();
 		}
 	}
 
@@ -82,19 +74,14 @@ public class VCache {
 	 *            （秒）
 	 */
 	public static void setex(Object key, Object value, int timer) {
-		Jedis jds = null;
-		boolean isBroken = false;
 		try {
-			jds = J.getJedis();
-			jds.select(0);
 			byte[] skey = SerializeUtil.serialize(key);
 			byte[] svalue = SerializeUtil.serialize(value);
-			jds.setex(skey, timer, svalue);
+			cluster.setex(skey, timer, svalue);
 		} catch (Exception e) {
-			isBroken = true;
 			e.printStackTrace();
 		} finally {
-			returnResource(jds, isBroken);
+			returnResource();
 		}
 
 	}
@@ -111,14 +98,10 @@ public class VCache {
 	 * @return
 	 */
 	public static <T> T getVByMap(String mapkey, String key, Class<T> requiredType) {
-		Jedis jds = null;
-		boolean isBroken = false;
 		try {
-			jds = J.getJedis();
-			jds.select(0);
 			byte[] mkey = SerializeUtil.serialize(mapkey);
 			byte[] skey = SerializeUtil.serialize(key);
-			List<byte[]> result = jds.hmget(mkey, skey);
+			List<byte[]> result = cluster.hmget(mkey, skey);
 			if (null != result && result.size() > 0) {
 				byte[] x = result.get(0);
 				T resultObj = SerializeUtil.deserialize(x, requiredType);
@@ -126,10 +109,9 @@ public class VCache {
 			}
 
 		} catch (Exception e) {
-			isBroken = true;
 			e.printStackTrace();
 		} finally {
-			returnResource(jds, isBroken);
+			returnResource();
 		}
 		return null;
 	}
@@ -144,20 +126,15 @@ public class VCache {
 	 *            map里的value
 	 */
 	public static void setVByMap(String mapkey, String key, Object value) {
-		Jedis jds = null;
-		boolean isBroken = false;
 		try {
-			jds = J.getJedis();
-			jds.select(0);
 			byte[] mkey = SerializeUtil.serialize(mapkey);
 			byte[] skey = SerializeUtil.serialize(key);
 			byte[] svalue = SerializeUtil.serialize(value);
-			jds.hset(mkey, skey, svalue);
+			cluster.hset(mkey, skey, svalue);
 		} catch (Exception e) {
-			isBroken = true;
 			e.printStackTrace();
 		} finally {
-			returnResource(jds, isBroken);
+			returnResource();
 		}
 
 	}
@@ -170,23 +147,18 @@ public class VCache {
 	 * @return
 	 */
 	public static Object delByMapKey(String mapKey, String... dkey) {
-		Jedis jds = null;
-		boolean isBroken = false;
 		try {
-			jds = J.getJedis();
-			jds.select(0);
 			byte[][] dx = new byte[dkey.length][];
 			for (int i = 0; i < dkey.length; i++) {
 				dx[i] = SerializeUtil.serialize(dkey[i]);
 			}
 			byte[] mkey = SerializeUtil.serialize(mapKey);
-			Long result = jds.hdel(mkey, dx);
+			Long result = cluster.hdel(mkey, dx);
 			return result;
 		} catch (Exception e) {
-			isBroken = true;
 			e.printStackTrace();
 		} finally {
-			returnResource(jds, isBroken);
+			returnResource();
 		}
 		return new Long(0);
 	}
@@ -202,24 +174,19 @@ public class VCache {
 	 * @return
 	 */
 	public static <T> Set<T> getVByList(String setKey, Class<T> requiredType) {
-		Jedis jds = null;
-		boolean isBroken = false;
 		try {
-			jds = J.getJedis();
-			jds.select(0);
 			byte[] lkey = SerializeUtil.serialize(setKey);
 			Set<T> set = new TreeSet<T>();
-			Set<byte[]> xx = jds.smembers(lkey);
+			Set<byte[]> xx = cluster.smembers(lkey);
 			for (byte[] bs : xx) {
 				T t = SerializeUtil.deserialize(bs, requiredType);
 				set.add(t);
 			}
 			return set;
 		} catch (Exception e) {
-			isBroken = true;
 			e.printStackTrace();
 		} finally {
-			returnResource(jds, isBroken);
+			returnResource();
 		}
 		return null;
 	}
@@ -231,18 +198,13 @@ public class VCache {
 	 * @return
 	 */
 	public static Long getLenBySet(String setKey) {
-		Jedis jds = null;
-		boolean isBroken = false;
 		try {
-			jds = J.getJedis();
-			jds.select(0);
-			Long result = jds.scard(setKey);
+			Long result = cluster.scard(setKey);
 			return result;
 		} catch (Exception e) {
-			isBroken = true;
 			e.printStackTrace();
 		} finally {
-			returnResource(jds, isBroken);
+			returnResource();
 		}
 		return null;
 	}
@@ -254,23 +216,18 @@ public class VCache {
 	 * @return
 	 */
 	public static Long delSetByKey(String key, String... dkey) {
-		Jedis jds = null;
-		boolean isBroken = false;
 		try {
-			jds = J.getJedis();
-			jds.select(0);
 			Long result = 0L;
 			if (null == dkey) {
-				result = jds.srem(key);
+				result = cluster.srem(key);
 			} else {
-				result = jds.del(key);
+				result = cluster.del(key);
 			}
 			return result;
 		} catch (Exception e) {
-			isBroken = true;
 			e.printStackTrace();
 		} finally {
-			returnResource(jds, isBroken);
+			returnResource();
 		}
 		return new Long(0);
 	}
@@ -282,18 +239,13 @@ public class VCache {
 	 * @return
 	 */
 	public static String srandmember(String key) {
-		Jedis jds = null;
-		boolean isBroken = false;
 		try {
-			jds = J.getJedis();
-			jds.select(0);
-			String result = jds.srandmember(key);
+			String result = cluster.srandmember(key);
 			return result;
 		} catch (Exception e) {
-			isBroken = true;
 			e.printStackTrace();
 		} finally {
-			returnResource(jds, isBroken);
+			returnResource();
 		}
 		return null;
 	}
@@ -305,17 +257,12 @@ public class VCache {
 	 * @param value
 	 */
 	public static void setVBySet(String setKey, String value) {
-		Jedis jds = null;
-		boolean isBroken = false;
 		try {
-			jds = J.getJedis();
-			jds.select(0);
-			jds.sadd(setKey, value);
+			cluster.sadd(setKey, value);
 		} catch (Exception e) {
-			isBroken = true;
 			e.printStackTrace();
 		} finally {
-			returnResource(jds, isBroken);
+			returnResource();
 		}
 	}
 
@@ -326,18 +273,13 @@ public class VCache {
 	 * @return
 	 */
 	public static Set<String> getSetByKey(String key) {
-		Jedis jds = null;
-		boolean isBroken = false;
 		try {
-			jds = J.getJedis();
-			jds.select(0);
-			Set<String> result = jds.smembers(key);
+			Set<String> result = cluster.smembers(key);
 			return result;
 		} catch (Exception e) {
-			isBroken = true;
 			e.printStackTrace();
 		} finally {
-			returnResource(jds, isBroken);
+			returnResource();
 		}
 		return null;
 
@@ -350,19 +292,14 @@ public class VCache {
 	 * @param value
 	 */
 	public static void setVByList(String listKey, Object value) {
-		Jedis jds = null;
-		boolean isBroken = false;
 		try {
-			jds = J.getJedis();
-			jds.select(0);
 			byte[] lkey = SerializeUtil.serialize(listKey);
 			byte[] svalue = SerializeUtil.serialize(value);
-			jds.rpush(lkey, svalue);
+			cluster.rpush(lkey, svalue);
 		} catch (Exception e) {
-			isBroken = true;
 			e.printStackTrace();
 		} finally {
-			returnResource(jds, isBroken);
+			returnResource();
 		}
 	}
 
@@ -377,24 +314,19 @@ public class VCache {
 	 * @return
 	 */
 	public static <T> List<T> getVByList(String listKey, int start, int end, Class<T> requiredType) {
-		Jedis jds = null;
-		boolean isBroken = false;
 		try {
-			jds = J.getJedis();
-			jds.select(0);
 			byte[] lkey = SerializeUtil.serialize(listKey);
 			List<T> list = new ArrayList<T>();
-			List<byte[]> xx = jds.lrange(lkey, start, end);
+			List<byte[]> xx = cluster.lrange(lkey, start, end);
 			for (byte[] bs : xx) {
 				T t = SerializeUtil.deserialize(bs, requiredType);
 				list.add(t);
 			}
 			return list;
 		} catch (Exception e) {
-			isBroken = true;
 			e.printStackTrace();
 		} finally {
-			returnResource(jds, isBroken);
+			returnResource();
 		}
 		return null;
 	}
@@ -406,19 +338,14 @@ public class VCache {
 	 * @return
 	 */
 	public static Long getLenByList(String listKey) {
-		Jedis jds = null;
-		boolean isBroken = false;
 		try {
-			jds = J.getJedis();
-			jds.select(0);
 			byte[] lkey = SerializeUtil.serialize(listKey);
-			Long result = jds.llen(lkey);
+			Long result = cluster.llen(lkey);
 			return result;
 		} catch (Exception e) {
-			isBroken = true;
 			e.printStackTrace();
 		} finally {
-			returnResource(jds, isBroken);
+			returnResource();
 		}
 		return null;
 	}
@@ -430,22 +357,17 @@ public class VCache {
 	 * @return
 	 */
 	public static Long delByKey(String... dkey) {
-		Jedis jds = null;
-		boolean isBroken = false;
 		try {
-			jds = J.getJedis();
-			jds.select(0);
 			byte[][] dx = new byte[dkey.length][];
 			for (int i = 0; i < dkey.length; i++) {
 				dx[i] = SerializeUtil.serialize(dkey[i]);
 			}
-			Long result = jds.del(dx);
+			Long result = cluster.del(dx);
 			return result;
 		} catch (Exception e) {
-			isBroken = true;
 			e.printStackTrace();
 		} finally {
-			returnResource(jds, isBroken);
+			returnResource();
 		}
 		return new Long(0);
 	}
@@ -457,18 +379,13 @@ public class VCache {
 	 * @return
 	 */
 	public static boolean exists(String existskey) {
-		Jedis jds = null;
-		boolean isBroken = false;
 		try {
-			jds = J.getJedis();
-			jds.select(0);
 			byte[] lkey = SerializeUtil.serialize(existskey);
-			return jds.exists(lkey);
+			return cluster.exists(lkey);
 		} catch (Exception e) {
-			isBroken = true;
 			e.printStackTrace();
 		} finally {
-			returnResource(jds, isBroken);
+			returnResource();
 		}
 		return false;
 	}
@@ -479,14 +396,13 @@ public class VCache {
 	 * @param jedis
 	 * @param isBroken
 	 */
-	public static void returnResource(Jedis jedis, boolean isBroken) {
-		if (jedis == null)
+	public static void returnResource() {
+		if (cluster == null)
 			return;
-		// if (isBroken)
-		// J.getJedisPool().returnBrokenResource(jedis);
-		// else
-		// J.getJedisPool().returnResource(jedis);
-		// 版本问题
-		jedis.close();
+		try {
+			cluster.close();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
 }

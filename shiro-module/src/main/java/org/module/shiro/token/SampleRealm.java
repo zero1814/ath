@@ -13,10 +13,10 @@ import org.apache.shiro.authz.SimpleAuthorizationInfo;
 import org.apache.shiro.realm.AuthorizingRealm;
 import org.apache.shiro.subject.PrincipalCollection;
 import org.apache.shiro.subject.SimplePrincipalCollection;
+import org.module.commons.annotation.Inject;
 import org.module.model.system.user.SmUser;
 import org.module.result.EntityResult;
 import org.module.service.system.user.ISmUserService;
-import org.springframework.beans.factory.annotation.Autowired;
 
 /**
  * 
@@ -27,7 +27,7 @@ import org.springframework.beans.factory.annotation.Autowired;
  */
 public class SampleRealm extends AuthorizingRealm {
 
-	@Autowired
+	@Inject
 	ISmUserService userService;
 
 	public SampleRealm() {

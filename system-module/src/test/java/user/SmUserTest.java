@@ -23,6 +23,7 @@ public class SmUserTest extends BaseTest {
 	@Autowired
 	private ISmUserService service;
 
+	@Test
 	public void insert() {
 		SmUser entity = new SmUser();
 		entity.setCode(CodeHelper.getUniqueCode("SU"));
@@ -32,6 +33,7 @@ public class SmUserTest extends BaseTest {
 		entity.seteMail("11111@11.com");
 		entity.setPhone("13522231552");
 		entity.setCreateUser("test");
+		entity.setStatus("0");
 		service.insertSelective(entity);
 	}
 
@@ -47,7 +49,6 @@ public class SmUserTest extends BaseTest {
 		service.updateByCode(entity);
 	}
 
-	@Test
 	public void sel() {
 		EntityResult result = service.login("test", "123456");
 		System.out.println(JSON.toJSON(result));
