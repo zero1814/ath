@@ -79,7 +79,7 @@ var User = {
 	login:function(){
 		var param = $("#loginFrm").serializeArray();
 		$.ajax({
-			url: 'system/user/login.htm',
+			url: 'sublogin.htm',
 			type: "POST",
 			data: param,
 			dataType : "json",
@@ -103,19 +103,19 @@ var User = {
 		//$("#registerFrm").validate();
 		var param = $("#registerFrm").serializeArray();
 		$.ajax({
-			url: "system/user/register.htm",
+			url: "subregister.htm",
 			type: "POST",
 			data: param,
 			dataType : "json",
 			success: function(result) {
 				layer.alert("注册成功", function() {
-					window.parent.location.href="jsp/system/user/login.jsp";
+					window.parent.location.href="login.htm";
 				});
 			},
 			error: function(result) {
 				layer.alert('注册失败，失败原因:' + JSON.stringify(result),function(index){
 					layer.close(index);
-					window.parent.location.href="jsp/system/user/register.jsp";
+					window.parent.location.href="register.htm";
 				});
 			}
 		});

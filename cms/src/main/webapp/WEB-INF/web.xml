@@ -75,6 +75,6 @@
 		<location>/jsp/error/500.jsp</location>
 	</error-page>
 	<welcome-file-list>
-		<welcome-file>jsp/system/user/login.jsp</welcome-file>
+		<welcome-file>login.htm</welcome-file>
 	</welcome-file-list>
 </web-app>

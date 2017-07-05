@@ -226,7 +226,6 @@
 			<version>${activemq.version}</version>
 		</dependency>
 		<!-- cache -->
-
 		<!-- redis -->
 		<dependency>
 			<groupId>redis.clients</groupId>
@@ -248,6 +247,11 @@
 			<groupId>org.apache.shiro</groupId>
 			<artifactId>shiro-spring</artifactId>
 			<version>${shiro.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.aspectj</groupId>
+			<artifactId>aspectjweaver</artifactId>
+			<version>1.8.10</version>
 		</dependency>
 	</dependencies>
 	<build>

@@ -22,7 +22,7 @@
 	<sql id="Base_Column_List">
 		id, uid, code, user_name, password, real_name, head_pic,
 		phone, e_mail, qq,
-		we_chat,`status`
+		we_chat,`status`,
 		create_user,
 		DATE_FORMAT(create_time,'%Y-%m-%d
 		%H:%i:%s') as

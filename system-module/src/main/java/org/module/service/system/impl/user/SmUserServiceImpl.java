@@ -38,7 +38,7 @@ public class SmUserServiceImpl extends BaseServiceImpl<SmUser, SmUserMapper, SmU
 	public EntityResult login(String userName, String password) {
 		SmUserDto entity = new SmUserDto();
 		entity.setUserName(userName);
-		entity.setPassword(MD5Util.md5Hex(password));
+		entity.setPassword(password);
 		EntityResult result = super.selectEntity(entity);
 		if (result.getCode() == 0) {
 			RedisString.instance().setValue(CacheKey.USER + "_" + entity.getUserName(),

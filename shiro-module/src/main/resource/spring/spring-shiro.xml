@@ -106,7 +106,7 @@
 		<property name="arguments" ref="jedisShiroSessionRepository" />
 	</bean>
 	<!-- 授权 认证 -->
-	<bean id="sampleRealm" class="org.module.shiro.token.SampleRealm"></bean>
+	<bean id="sampleRealm" class="org.module.shiro.realm.SampleRealm"></bean>
 	<!-- Session Manager -->
 	<bean id="sessionManager"
 		class="org.apache.shiro.web.session.mgt.DefaultWebSessionManager">

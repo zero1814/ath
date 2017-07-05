@@ -74,4 +74,29 @@ http://www.springframework.org/schema/aop/spring-aop-4.2.xsd">
 	<bean id="druid-stat-interceptor"
 		class="com.alibaba.druid.support.spring.stat.DruidStatInterceptor">
 	</bean>
+	<!-- 事务配置 -->
+	<bean id="transactionManager"
+		class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+		<property name="dataSource" ref="dataSource" />
+	</bean>
+	<!-- 定义事务通知 -->
+	<tx:advice id="txAdvice" transaction-manager="transactionManager">
+		<!-- 定义方法的过滤规则 -->
+		<tx:attributes>
+			<!-- 所有方法都使用事务 -->
+			<tx:method name="*" propagation="REQUIRED" />
+			<!-- 定义所有get开头的方法都是只读的 -->
+			<tx:method name="get*" read-only="true" />
+			<tx:method name="select*" read-only="true" />
+			<tx:method name="find*" read-only="true" />
+		</tx:attributes>
+	</tx:advice>
+	<!-- 定义AOP配置 -->
+	<aop:config>
+		<!-- 定义一个切入点 -->
+		<aop:pointcut expression="execution (* org.module.service.*.*(..))"
+			id="services" />
+		<!-- 对切入点和事务的通知，进行适配 -->
+		<aop:advisor advice-ref="txAdvice" pointcut-ref="services" />
+	</aop:config>
 </beans>
