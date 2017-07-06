@@ -160,7 +160,8 @@
 		select count(1) from systemmodule.sm_page where parent_code
 		= #{parentCode,jdbcType=VARCHAR}
 	</select>
-	<select id="findPages" resultMap="BaseResultMap" parameterType="org.module.dto.system.page.SmPageDto">
+	<select id="findPages" resultMap="BaseResultMap"
+		parameterType="org.module.dto.system.page.SmPageDto">
 		select
 		<include refid="Base_Column_List" />
 		from systemmodule.sm_page
@@ -168,7 +169,7 @@
 			is_deleted = 0
 			and url != ""
 			<if test="flagAble != null">
-			 and flag_able = ${#flagAble,jdbcType=INTEGER}
+				and flag_able = ${#flagAble,jdbcType=INTEGER}
 			</if>
 		</where>
 	</select>

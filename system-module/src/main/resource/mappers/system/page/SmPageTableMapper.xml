@@ -92,7 +92,8 @@
 		update_time
 		FROM
 		systemmodule.sm_page_table AS t
-		LEFT JOIN systemmodule.sm_page AS p
+		LEFT JOIN
+		systemmodule.sm_page AS p
 		ON
 		t.page_code = p.`code`
 		<where>

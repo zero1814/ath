@@ -49,15 +49,18 @@
 		m.create_time,
 		'%Y-%m-%d
 		%H:%i:%s'
-		) AS create_time,
+		) AS
+		create_time,
 		m.update_user,
 		DATE_FORMAT(
 		m.update_time,
-		'%Y-%m-%d %H:%i:%s'
+		'%Y-%m-%d
+		%H:%i:%s'
 		) AS update_time
 		FROM
 		systemmodule.sm_menu AS m
-		LEFT JOIN systemmodule.sm_page AS p ON m.page_code = p.`code`
+		LEFT JOIN
+		systemmodule.sm_page AS p ON m.page_code = p.`code`
 		where
 		m.`code`=#{code,jdbcType=VARCHAR}
 	</select>
@@ -161,7 +164,9 @@
 		#{parentCode,jdbcType=VARCHAR}
 	</select>
 	<!-- 判断是否包含子菜单 -->
-	<select id="isExistsChildMenu" parameterType="java.lang.String" resultType="java.lang.Integer">
-		select count(1) from systemmodule.sm_menu where parent_code = #{parentCode,jdbcType=VARCHAR} 
+	<select id="isExistsChildMenu" parameterType="java.lang.String"
+		resultType="java.lang.Integer">
+		select count(1) from systemmodule.sm_menu where parent_code
+		= #{parentCode,jdbcType=VARCHAR}
 	</select>
 </mapper>

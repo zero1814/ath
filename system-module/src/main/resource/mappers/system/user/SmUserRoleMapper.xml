@@ -20,7 +20,8 @@
 		select
 		<include refid="Base_Column_List" />
 		from systemmodule.sm_user_role
-		where `user_code`=#{userCode,jdbcType=VARCHAR}
+		where
+		`user_code`=#{userCode,jdbcType=VARCHAR}
 	</select>
 	<delete id="deleteByUserCode" parameterType="java.lang.String">
 		delete from

@@ -59,7 +59,7 @@
 		</trim>
 	</insert>
 	<update id="updateByCode" parameterType="org.module.model.system.user.SmRole">
-	update systemmodule.sm_role
+		update systemmodule.sm_role
 		<set>
 			<if test="name != null and name!=''">
 				`name` = #{name,jdbcType=VARCHAR},

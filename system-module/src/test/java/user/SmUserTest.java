@@ -8,6 +8,7 @@ import org.module.helper.commons.CodeHelper;
 import org.module.model.system.user.SmUser;
 import org.module.result.EntityResult;
 import org.module.result.RootResult;
+import org.module.service.log.ILmLoginService;
 import org.module.service.system.user.ISmUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
@@ -22,6 +23,8 @@ public class SmUserTest extends BaseTest {
 
 	@Autowired
 	private ISmUserService service;
+	@Autowired
+	private ILmLoginService loginService;
 
 	public void insert() {
 		SmUser entity = new SmUser();
@@ -60,8 +63,9 @@ public class SmUserTest extends BaseTest {
 
 	@Test
 	public void login() {
-		String userName = "test";
-		String password = MD5Util.md5Hex("123456");
-		System.out.println(service.login(userName, password));
+//		String userName = "test";
+//		String password = MD5Util.md5Hex("123456");
+//		System.out.println(service.login(userName, password));
+		System.out.println(JSON.toJSON(loginService.selectByUserCode("SU881770262515675136")));
 	}
 }

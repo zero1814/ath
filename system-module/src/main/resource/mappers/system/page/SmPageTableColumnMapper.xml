@@ -94,7 +94,8 @@
 		</set>
 		where `code`=#{code,jdbcType=VARCHAR}
 	</update>
-	<select id="findEntityAll" parameterType="org.module.dto.system.page.SmPageTableColumnDto" resultMap="BaseResultMap">
+	<select id="findEntityAll" parameterType="org.module.dto.system.page.SmPageTableColumnDto"
+		resultMap="BaseResultMap">
 		select
 		<include refid="Base_Column_List" />
 		from systemmodule.sm_page_table_column
