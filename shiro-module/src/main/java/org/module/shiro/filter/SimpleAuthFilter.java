@@ -31,7 +31,7 @@ public class SimpleAuthFilter extends AccessControlFilter {
 	@Override
 	protected boolean isAccessAllowed(ServletRequest request, ServletResponse response, Object mappedValue)
 			throws Exception {
-
+		LoggerHelper.info(getClass(), "进入SimpleAuthFilter的isAccessAllowed方法");
 		HttpServletRequest httpRequest = ((HttpServletRequest) request);
 		String url = httpRequest.getRequestURI();
 		if (url.startsWith("/")) {
@@ -56,7 +56,7 @@ public class SimpleAuthFilter extends AccessControlFilter {
 
 	@Override
 	protected boolean onAccessDenied(ServletRequest request, ServletResponse response) throws Exception {
-
+		LoggerHelper.info(getClass(), "进入SimpleAuthFilter的onAccessDenied方法");
 		// 先退出
 		Subject subject = getSubject(request, response);
 		subject.logout();

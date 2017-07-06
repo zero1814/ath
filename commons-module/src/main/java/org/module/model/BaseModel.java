@@ -9,14 +9,16 @@ import java.io.Serializable;
  * 作者: zhy<br>
  * 时间: 2016年7月27日 上午9:32:32
  */
-public class BaseModel {
+public class BaseModel implements Serializable {
+
+	private static final long serialVersionUID = 1L;
 
 	private Integer id;
 
 	private String uid;
 
 	private String code;
-
+	
 	private String createUser;
 
 	private String createTime;

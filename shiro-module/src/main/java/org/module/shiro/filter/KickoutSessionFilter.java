@@ -45,7 +45,7 @@ public class KickoutSessionFilter extends AccessControlFilter {
 	@Override
 	protected boolean isAccessAllowed(ServletRequest request, ServletResponse response, Object mappedValue)
 			throws Exception {
-
+		LoggerHelper.info(getClass(), "进入KickoutSessionFilter的isAccessAllowed方法");
 		HttpServletRequest httpRequest = ((HttpServletRequest) request);
 		String url = httpRequest.getRequestURI();
 		Subject subject = getSubject(request, response);
@@ -116,7 +116,7 @@ public class KickoutSessionFilter extends AccessControlFilter {
 
 	@Override
 	protected boolean onAccessDenied(ServletRequest request, ServletResponse response) throws Exception {
-
+		LoggerHelper.info(getClass(), "进入KickoutSessionFilter的onAccessDenied方法");
 		// 先退出
 		Subject subject = getSubject(request, response);
 		subject.logout();
