@@ -11,6 +11,8 @@ import java.util.List;
  */
 public class TreeModel extends BaseModel {
 
+	private static final long serialVersionUID = -7978315041625771262L;
+
 	private String text;
 
 	private List<? extends TreeModel> nodes;

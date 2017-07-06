@@ -10,6 +10,8 @@ import org.module.model.TreeModel;
 @Table(name = "sm_page", database = "systemmodule", comment = "页面表")
 public class SmPage extends TreeModel {
 
+	private static final long serialVersionUID = -3798180583074393160L;
+
 	@Column(name = "parent_code", defaultValue = "0", comment = "父级编码")
 	private String parentCode;
 

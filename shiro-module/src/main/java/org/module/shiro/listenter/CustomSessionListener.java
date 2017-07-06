@@ -20,7 +20,6 @@ public class CustomSessionListener implements SessionListener {
 	 */
 	@Override
 	public void onStart(Session session) {
-		System.out.println("on start");
 	}
 
 	/**
@@ -28,7 +27,6 @@ public class CustomSessionListener implements SessionListener {
 	 */
 	@Override
 	public void onStop(Session session) {
-		System.out.println("on stop");
 	}
 
 	@Override

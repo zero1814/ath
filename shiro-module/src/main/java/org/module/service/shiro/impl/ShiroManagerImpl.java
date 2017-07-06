@@ -70,9 +70,6 @@ public class ShiroManagerImpl implements ShiroManager {
 	// 此方法加同步锁
 	@Override
 	public synchronized void reCreateFilterChains() {
-		// ShiroFilterFactoryBean shiroFilterFactoryBean =
-		// (ShiroFilterFactoryBean)
-		// SpringContextUtil.getBean("shiroFilterFactoryBean");
 		AbstractShiroFilter shiroFilter = null;
 		try {
 			shiroFilter = (AbstractShiroFilter) shiroFilterFactoryBean.getObject();

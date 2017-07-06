@@ -10,6 +10,8 @@ import org.module.model.BaseModel;
 @Table(name = "sm_user_role", database = "systemmodule", comment = "用户角色关系表")
 public class SmUserRole extends BaseModel {
 
+	private static final long serialVersionUID = 4094509176481334549L;
+
 	@Column(name = "user_code", isNull = false, comment = "用户编码")
 	private String userCode;
 

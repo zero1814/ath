@@ -8,6 +8,8 @@ import org.module.model.BaseModel;
 @Table(name = "sm_page_table_column", database = "systemmodule", comment = "页面列表显示字段设置表")
 public class SmPageTableColumn extends BaseModel {
 
+	private static final long serialVersionUID = -4233724525116029494L;
+
 	@Column(name = "table_code", isNull = false, comment = "表编码")
 	private String tableCode;
 

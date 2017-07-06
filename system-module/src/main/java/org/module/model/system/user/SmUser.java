@@ -10,6 +10,8 @@ import org.module.model.BaseModel;
 @Table(name = "sm_user", database = "systemmodule", comment = "用户表")
 public class SmUser extends BaseModel {
 
+	private static final long serialVersionUID = -4880208613160544086L;
+
 	public static final String SUCCESS_STATUS="0";
 	
 	@Column(name = "user_name", isNull = false, comment = "用户名")

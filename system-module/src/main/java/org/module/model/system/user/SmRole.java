@@ -7,6 +7,8 @@ import org.module.model.BaseModel;
 @Table(name = "sm_role", database = "systemmodule", comment = "角色表")
 public class SmRole extends BaseModel{
 
+	private static final long serialVersionUID = 7679446187453564912L;
+	
 	@Column(name = "名称", isNull = false, comment = "角色名称")
 	private String name;
 

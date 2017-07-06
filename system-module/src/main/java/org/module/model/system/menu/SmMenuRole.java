@@ -7,6 +7,8 @@ import org.module.model.BaseModel;
 @Table(name = "sm_menu_role", database = "systemmodule", comment = "菜单角色关系表")
 public class SmMenuRole extends BaseModel {
 
+	private static final long serialVersionUID = 1083465713324856361L;
+
 	@Column(name = "menu_code", isNull = false, comment = "菜单编码")
 	private String menuCode;
 

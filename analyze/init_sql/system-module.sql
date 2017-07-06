@@ -30,11 +30,23 @@ CREATE TABLE sm_user (
 	e_mail VARCHAR (50) NOT NULL COMMENT '电子邮箱',
 	qq VARCHAR (50) DEFAULT '' COMMENT 'qq号码',
 	we_chat VARCHAR (50) DEFAULT '' COMMENT '微信号',
+	`status` VARCHAR (50) NOT NULL COMMENT '用户状态',
 	create_user VARCHAR (50) NOT NULL COMMENT '创建人',
 	create_time datetime NOT NULL COMMENT '创建时间',
 	update_user VARCHAR (50) NOT NULL COMMENT '最后修改人',
 	update_time datetime NOT NULL COMMENT '最后修改时间'
 ) COMMENT '用户表';
+
+
+drop table if exists sm_user_login;
+create table  sm_user_login(
+id int primary key AUTO_INCREMENT COMMENT '主键',
+uid varchar(50) not null COMMENT 'uuid',
+user_code varchar(50) not null UNIQUE COMMENT '用户编码',
+
+create_user varchar(50) not null COMMENT '创建人',
+create_time datetime not null COMMENT '创建时间'
+)comment;
 
 DROP TABLE
 IF EXISTS sm_role;

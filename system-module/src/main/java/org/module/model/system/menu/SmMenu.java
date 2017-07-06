@@ -11,6 +11,8 @@ import org.module.model.system.page.SmPage;
 @Table(name = "sm_menu", database = "systemmodule", comment = "菜单表")
 public class SmMenu extends TreeModel {
 
+	private static final long serialVersionUID = 2394239530168081583L;
+
 	@Column(name = "parent_code", comment = "父级编码")
 	private String parentCode;
 

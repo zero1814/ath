@@ -23,7 +23,6 @@ public class SmUserTest extends BaseTest {
 	@Autowired
 	private ISmUserService service;
 
-	@Test
 	public void insert() {
 		SmUser entity = new SmUser();
 		entity.setCode(CodeHelper.getUniqueCode("SU"));
@@ -57,5 +56,12 @@ public class SmUserTest extends BaseTest {
 	public void del() {
 		RootResult result = service.deleteByCode("SU869808549973192704");
 		System.out.println(JSON.toJSON(result));
+	}
+
+	@Test
+	public void login() {
+		String userName = "test";
+		String password = MD5Util.md5Hex("123456");
+		System.out.println(service.login(userName, password));
 	}
 }

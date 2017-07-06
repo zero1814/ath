@@ -2,14 +2,19 @@ package org.module.service.system.impl.user;
 
 import org.module.cache.CacheKey;
 import org.module.cache.RedisString;
+import org.module.commons.util.DateUtil;
 import org.module.commons.util.MD5Util;
 import org.module.dto.system.user.SmUserDto;
 import org.module.helper.UserHelper;
+import org.module.helper.commons.WebHelper;
 import org.module.mapper.system.user.SmUserMapper;
+import org.module.model.log.user.LmLogin;
 import org.module.model.system.user.SmUser;
 import org.module.result.EntityResult;
 import org.module.service.impl.BaseServiceImpl;
+import org.module.service.log.ILmLoginService;
 import org.module.service.system.user.ISmUserService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.alibaba.fastjson.JSON;
@@ -23,6 +28,9 @@ import com.alibaba.fastjson.JSON;
  */
 @Service
 public class SmUserServiceImpl extends BaseServiceImpl<SmUser, SmUserMapper, SmUserDto> implements ISmUserService {
+
+	@Autowired
+	private ILmLoginService logService;
 
 	/**
 	 * 
@@ -43,6 +51,15 @@ public class SmUserServiceImpl extends BaseServiceImpl<SmUser, SmUserMapper, SmU
 		if (result.getCode() == 0) {
 			RedisString.instance().setValue(CacheKey.USER + "_" + entity.getUserName(),
 					JSON.toJSONString(result.getEntity()));
+			/**
+			 * 记录登录日志
+			 */
+			SmUser user = (SmUser) result.getEntity();
+			LmLogin login = new LmLogin();
+			login.setUserCode(user.getCode());
+			login.setIp(WebHelper.getIpAddress());
+			login.setLoginTime(DateUtil.getSysDateTime());
+			logService.insertSelective(login);
 		}
 		return result;
 	}

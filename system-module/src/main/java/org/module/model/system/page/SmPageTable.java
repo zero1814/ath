@@ -8,6 +8,8 @@ import org.module.model.BaseModel;
 @Table(name = "sm_page_table", database = "systemmodule", comment = "页面列表显示设置表")
 public class SmPageTable extends BaseModel {
 
+	private static final long serialVersionUID = -8726988704956565193L;
+
 	@Column(name = "name", isNull = false, comment = "名称")
 	private String name;
 
