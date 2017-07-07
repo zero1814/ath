@@ -255,36 +255,4 @@
 			<version>1.8.10</version>
 		</dependency>
 	</dependencies>
-	<build>
-		<finalName>${project.name}</finalName>
-		<sourceDirectory>src/main/java</sourceDirectory>
-		<plugins>
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-compiler-plugin</artifactId>
-				<configuration>
-					<defaultLibBundleDir>lib</defaultLibBundleDir>
-					<source>1.8</source>
-					<target>1.8</target>
-					<encoding>UTF-8</encoding>
-				</configuration>
-			</plugin>
-		</plugins>
-		<resources>
-			<resource>
-				<directory>src/main/java</directory>
-				<!-- 此配置不可缺，否则mybatis的Mapper.xml将会丢失 -->
-				<includes>
-					<include>**/*.properties</include>
-					<include>**/*.xml</include>
-				</includes>
-				<!-- 是否替换资源中的属性 -->
-				<filtering>false</filtering>
-			</resource>
-			<!--指定资源的位置 -->
-			<resource>
-				<directory>src/main/resources</directory>
-			</resource>
-		</resources>
-	</build>
 </project>
