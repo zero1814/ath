@@ -11,6 +11,8 @@ import org.module.model.BaseModel;
  */
 public class DmColumnType extends BaseModel {
 
+	private static final long serialVersionUID = 1369420691310735330L;
+
 	private String name;
 
 	private String value;

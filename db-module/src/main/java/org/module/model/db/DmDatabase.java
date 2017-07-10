@@ -11,6 +11,8 @@ import org.module.model.BaseModel;
  */
 public class DmDatabase extends BaseModel {
 
+	private static final long serialVersionUID = -8642350631705283190L;
+
 	private String name;
 
 	private String enName;

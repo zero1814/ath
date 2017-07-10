@@ -11,6 +11,8 @@ import org.module.model.BaseModel;
  */
 public class DmTableIndex extends BaseModel {
 
+	private static final long serialVersionUID = -7235835755406825771L;
+
 	private String tableCode;
 
 	private String name;

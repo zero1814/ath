@@ -11,6 +11,8 @@ import org.module.model.BaseModel;
  */
 public class DmTableSql extends BaseModel {
 
+	private static final long serialVersionUID = -6192846379477056822L;
+
 	private String tableCode;
 
 	private String name;
