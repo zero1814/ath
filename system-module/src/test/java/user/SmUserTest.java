@@ -60,9 +60,9 @@ public class SmUserTest extends BaseTest {
 
 	@Test
 	public void login() {
-		String userName = "test";
-		String password = MD5Util.md5Hex("123456");
-		EntityResult result = service.login(userName, password);
-		System.out.println(JSON.toJSON(result));
+		 String userName = "test";
+		 String password = MD5Util.md5Hex("123456");
+		 EntityResult result = service.login(userName, password);
+		 System.out.println(JSON.toJSON(result));
 	}
 }
