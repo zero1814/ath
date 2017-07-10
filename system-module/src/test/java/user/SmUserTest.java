@@ -1,6 +1,5 @@
 package user;
 
-import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.module.commons.base.BaseTest;
 import org.module.commons.util.MD5Util;
@@ -56,13 +55,5 @@ public class SmUserTest extends BaseTest {
 	public void del() {
 		RootResult result = service.deleteByCode("SU869808549973192704");
 		System.out.println(JSON.toJSON(result));
-	}
-
-	@Test
-	public void login() {
-		 String userName = "test";
-		 String password = MD5Util.md5Hex("123456");
-		 EntityResult result = service.login(userName, password);
-		 System.out.println(JSON.toJSON(result));
 	}
 }

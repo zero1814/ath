@@ -7,7 +7,6 @@ import org.springframework.web.servlet.view.RedirectView;
 
 public class BaseController {
 
-	@SuppressWarnings("unchecked")
 	public ModelAndView redirect(String redirectUrl, Map<String, Object>... parament) {
 		ModelAndView view = new ModelAndView(new RedirectView(redirectUrl));
 		if (null != parament && parament.length > 0) {

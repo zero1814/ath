@@ -60,5 +60,6 @@ public class SmMenuTest {
 
 	@Test
 	public void findAll() {
+		
 	}
 }
