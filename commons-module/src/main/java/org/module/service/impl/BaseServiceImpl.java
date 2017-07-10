@@ -33,6 +33,8 @@ public class BaseServiceImpl<T extends BaseModel, M extends BaseMapper<T, DTO>, 
 	@Autowired
 	private M mapper;
 
+	@Autowired
+
 	/**
 	 * 
 	 * 方法: insertSelective <br>

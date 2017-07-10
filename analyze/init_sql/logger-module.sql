@@ -26,3 +26,16 @@ CREATE TABLE lm_login (
 	login_time datetime NOT NULL COMMENT '登录时间'
 ) COMMENT '用户登录日志表';
 
+DROP TABLE
+IF EXISTS lm_operate;
+
+CREATE TABLE lm_operate (
+	id INT PRIMARY KEY AUTO_INCREMENT COMMENT '主键',
+	uid VARCHAR (50) NOT NULL COMMENT 'uuid',
+	operate_type VARCHAR (50) NOT NULL UNIQUE COMMENT '操作类型',
+	class_path VARCHAR (100) NOT NULL COMMENT '操作类及方法路径',
+	request_data VARCHAR (500) NOT NULL COMMENT '请求参数',
+	response_data VARCHAR (500) NOT NULL COMMENT '响应参数',
+	create_user VARCHAR (50) NOT NULL COMMENT '创建人',
+	create_time datetime NOT NULL COMMENT '创建时间'
+) COMMENT '用户操作日志表';
