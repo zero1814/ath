@@ -18,7 +18,7 @@ public class WebHelper {
 			InetAddress address = InetAddress.getLocalHost();
 			ip = address.getHostAddress();
 		} catch (UnknownHostException e) {
-			LoggerHelper.error(WebHelper.class, "获取ip地址报错，错误原因:" + e.getMessage());
+			LoggerBaseHelper.error(WebHelper.class, "获取ip地址报错，错误原因:" + e.getMessage());
 			e.printStackTrace();
 		}
 		return ip;

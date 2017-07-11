@@ -12,7 +12,7 @@ import java.util.TreeSet;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import org.module.helper.commons.LoggerHelper;
+import org.module.helper.commons.LoggerBaseHelper;
 
 import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
@@ -282,7 +282,7 @@ public class StringUtils extends org.apache.commons.lang3.StringUtils {
 			value = java.net.URLEncoder.encode(value, "utf-8");
 			return value;
 		} catch (UnsupportedEncodingException e) {
-			LoggerHelper.error(StringUtils.class, "字符串转换为URLCode失败,value:" + value);
+			LoggerBaseHelper.error(StringUtils.class, "字符串转换为URLCode失败,value:" + value);
 			e.printStackTrace();
 			return null;
 		}
@@ -299,7 +299,7 @@ public class StringUtils extends org.apache.commons.lang3.StringUtils {
 			value = java.net.URLDecoder.decode(value, "utf-8");
 			return value;
 		} catch (UnsupportedEncodingException e) {
-			LoggerHelper.error(StringUtils.class, "URLCode转换为字符串失败;value:" + value);
+			LoggerBaseHelper.error(StringUtils.class, "URLCode转换为字符串失败;value:" + value);
 			e.printStackTrace();
 			return null;
 		}

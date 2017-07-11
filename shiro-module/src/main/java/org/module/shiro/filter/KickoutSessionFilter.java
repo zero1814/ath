@@ -17,7 +17,7 @@ import org.apache.shiro.session.Session;
 import org.apache.shiro.subject.Subject;
 import org.apache.shiro.web.filter.AccessControlFilter;
 import org.apache.shiro.web.util.WebUtils;
-import org.module.helper.commons.LoggerHelper;
+import org.module.logger.LoggerHelper;
 import org.module.shiro.cache.VCache;
 import org.module.shiro.session.ShiroSessionRepository;
 import org.module.shiro.token.manager.TokenManager;

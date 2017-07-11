@@ -17,17 +17,12 @@
 	<dependencies>
 		<dependency>
 			<groupId>cn.com</groupId>
-			<artifactId>commons-module</artifactId>
+			<artifactId>logger-module</artifactId>
 			<version>0.0.1-SNAPSHOT</version>
 		</dependency>
 		<dependency>
 			<groupId>cn.com</groupId>
 			<artifactId>system-module</artifactId>
-			<version>0.0.1-SNAPSHOT</version>
-		</dependency>
-		<dependency>
-			<groupId>cn.com</groupId>
-			<artifactId>logger-module</artifactId>
 			<version>0.0.1-SNAPSHOT</version>
 		</dependency>
 		<dependency>

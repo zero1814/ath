@@ -6,7 +6,7 @@ import java.util.Collection;
 import org.apache.shiro.session.Session;
 import org.apache.shiro.session.UnknownSessionException;
 import org.apache.shiro.session.mgt.eis.AbstractSessionDAO;
-import org.module.helper.commons.LoggerHelper;
+import org.module.logger.LoggerHelper;
 import org.module.shiro.session.ShiroSessionRepository;
 
 /**

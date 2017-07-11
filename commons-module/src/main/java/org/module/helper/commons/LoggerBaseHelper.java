@@ -1,5 +1,6 @@
 package org.module.helper.commons;
 
+import org.module.base.BaseClass;
 import org.module.base.BaseLog;
 
 /**
@@ -9,7 +10,7 @@ import org.module.base.BaseLog;
  * 作者: zhy<br>
  * 时间: 2017年6月26日 下午2:15:06
  */
-public class LoggerHelper {
+public class LoggerBaseHelper extends BaseClass{
 	public static BaseLog logger = new BaseLog();
 
 	/**

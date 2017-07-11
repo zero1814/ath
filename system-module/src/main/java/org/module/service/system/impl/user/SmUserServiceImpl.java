@@ -4,17 +4,13 @@ import org.module.cache.CacheKey;
 import org.module.cache.RedisString;
 import org.module.dto.system.user.SmUserDto;
 import org.module.helper.UserHelper;
-import org.module.helper.commons.WebHelper;
+import org.module.logger.LoggerHelper;
 import org.module.mapper.system.user.SmUserMapper;
-import org.module.model.logger.user.LmLogin;
 import org.module.model.system.user.SmUser;
 import org.module.result.EntityResult;
 import org.module.service.impl.BaseServiceImpl;
-import org.module.service.logger.user.ILmLoginService;
 import org.module.service.system.user.ISmUserService;
-import org.module.util.DateUtil;
 import org.module.util.MD5Util;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.alibaba.fastjson.JSON;
@@ -28,9 +24,6 @@ import com.alibaba.fastjson.JSON;
  */
 @Service
 public class SmUserServiceImpl extends BaseServiceImpl<SmUser, SmUserMapper, SmUserDto> implements ISmUserService {
-
-	@Autowired
-	private ILmLoginService logService;
 
 	/**
 	 * 
@@ -50,16 +43,11 @@ public class SmUserServiceImpl extends BaseServiceImpl<SmUser, SmUserMapper, SmU
 		EntityResult result = super.selectEntity(entity);
 		if (result.getCode() == 0) {
 			SmUser user = (SmUser) result.getEntity();
-			RedisString.instance().setValue(CacheKey.USER + "_" + entity.getUserName(),
-					JSON.toJSONString(result.getEntity()));
+			RedisString.instance().setValue(CacheKey.USER + "_" + entity.getUserName(), JSON.toJSONString(user));
 			/**
 			 * 记录登录日志
 			 */
-			LmLogin log = new LmLogin();
-			log.setUserCode(user.getCode());
-			log.setIp(WebHelper.getIpAddress());
-			log.setLoginTime(DateUtil.getSysDateTime());
-			logService.insertSelective(log);
+			LoggerHelper.instance().login(user.getCode());
 		}
 		return result;
 	}
