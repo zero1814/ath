@@ -3,8 +3,9 @@ package org.module.service.system.impl.user;
 import org.module.cache.CacheKey;
 import org.module.cache.RedisString;
 import org.module.dto.system.user.SmUserDto;
-import org.module.helper.UserHelper;
+import org.module.factory.UserFactory;
 import org.module.helper.commons.LoggerHelper;
+import org.module.helper.commons.WebHelper;
 import org.module.mapper.system.user.SmUserMapper;
 import org.module.model.system.user.SmUser;
 import org.module.result.EntityResult;
@@ -43,12 +44,17 @@ public class SmUserServiceImpl extends BaseServiceImpl<SmUser, SmUserMapper, SmU
 		EntityResult result = super.selectEntity(entity);
 		if (result.getCode() == 0) {
 			SmUser user = (SmUser) result.getEntity();
-			RedisString.instance().setValue(CacheKey.USER + "_" + entity.getUserName(), JSON.toJSONString(user));
+			RedisString.instance().setValue(CacheKey.SESSION_USER_KEY + WebHelper.getSession().getId(),
+					JSON.toJSONString(user));
 			/**
 			 * 记录登录日志
 			 */
 			LoggerHelper.instance().login(user.getCode());
 		}
+		/**
+		 * 添加操作日志
+		 */
+		LoggerHelper.instance().operate(getClass(), JSON.toJSONString(entity), JSON.toJSONString(result), "login");
 		return result;
 	}
 
@@ -62,7 +68,7 @@ public class SmUserServiceImpl extends BaseServiceImpl<SmUser, SmUserMapper, SmU
 	 */
 	@Override
 	public EntityResult register(SmUser entity) {
-		String userCode = UserHelper.intance().userInfo().getCode();
+		String userCode = UserFactory.instance().userInfo().getCode();
 		entity.setCreateUser(userCode);
 		entity.setPassword(MD5Util.md5Hex(entity.getPassword()));
 		EntityResult result = super.insertSelective(entity);
@@ -70,7 +76,7 @@ public class SmUserServiceImpl extends BaseServiceImpl<SmUser, SmUserMapper, SmU
 			/**
 			 * 注册成功后存储用户信息到redis中
 			 */
-			RedisString.instance().setValue(CacheKey.USER + "_" + entity.getUserName(),
+			RedisString.instance().setValue(CacheKey.SESSION_USER_KEY + WebHelper.getSession().getId(),
 					JSON.toJSONString(result.getEntity()));
 		}
 		return result;
