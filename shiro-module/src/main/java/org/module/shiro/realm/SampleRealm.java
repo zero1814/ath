@@ -14,7 +14,7 @@ import org.apache.shiro.realm.AuthorizingRealm;
 import org.apache.shiro.subject.PrincipalCollection;
 import org.apache.shiro.subject.SimplePrincipalCollection;
 import org.module.factory.system.UserFactory;
-import org.module.logger.LoggerHelper;
+import org.module.helper.commons.LoggerHelper;
 import org.module.model.system.user.SmUser;
 import org.module.result.EntityResult;
 import org.module.shiro.token.ShiroToken;

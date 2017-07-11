@@ -1,13 +1,23 @@
-package org.module.logger;
+package org.module.helper.commons;
+
+import java.util.UUID;
 
 import org.module.annotation.commons.Inject;
-import org.module.helper.commons.LoggerBaseHelper;
-import org.module.helper.commons.WebHelper;
+import org.module.mapper.logger.user.LmLoginMapper;
 import org.module.model.logger.user.LmLogin;
-import org.module.service.logger.user.ILmLoginService;
 import org.module.util.DateUtil;
 
+/**
+ * 
+ * 类: LogHelper <br>
+ * 描述: 日志帮助类 <br>
+ * 作者: zhy<br>
+ * 时间: 2017年6月26日 下午2:15:06
+ */
 public class LoggerHelper extends LoggerBaseHelper {
+
+	@Inject
+	private LmLoginMapper loginMapper;
 
 	private static LoggerHelper self;
 
@@ -18,24 +28,12 @@ public class LoggerHelper extends LoggerBaseHelper {
 		return self;
 	}
 
-	@Inject
-	private ILmLoginService loginService;
-
-	/**
-	 * 
-	 * 方法: login <br>
-	 * 描述: 添加登录日志 <br>
-	 * 作者: zhy<br>
-	 * 时间: 2017年7月11日 上午9:16:17
-	 * 
-	 * @param userCode
-	 */
 	public void login(String userCode) {
 		LmLogin entity = new LmLogin();
+		entity.setUid(UUID.randomUUID().toString().replace("-", ""));
 		entity.setUserCode(userCode);
 		entity.setIp(WebHelper.getIpAddress());
 		entity.setLoginTime(DateUtil.getSysDateTime());
-		loginService.insertSelective(entity);
+		loginMapper.insertSelective(entity);
 	}
-
 }

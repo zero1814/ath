@@ -6,11 +6,12 @@ import org.module.base.BaseLog;
 /**
  * 
  * 类: LogHelper <br>
- * 描述: 日志帮助类 <br>
+ * 描述: 日志帮助基类 <br>
  * 作者: zhy<br>
  * 时间: 2017年6月26日 下午2:15:06
  */
-public class LoggerBaseHelper extends BaseClass{
+public class LoggerBaseHelper extends BaseClass {
+
 	public static BaseLog logger = new BaseLog();
 
 	/**

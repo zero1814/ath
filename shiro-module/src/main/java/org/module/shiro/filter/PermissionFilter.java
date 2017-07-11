@@ -12,7 +12,7 @@ import org.apache.shiro.subject.Subject;
 import org.apache.shiro.util.StringUtils;
 import org.apache.shiro.web.filter.AccessControlFilter;
 import org.apache.shiro.web.util.WebUtils;
-import org.module.logger.LoggerHelper;
+import org.module.helper.commons.LoggerHelper;
 
 /**
  * 

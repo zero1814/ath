@@ -8,7 +8,7 @@ import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpServletRequest;
 
-import org.module.logger.LoggerHelper;
+import org.module.helper.commons.LoggerHelper;
 
 import net.sf.json.JSONObject;
 

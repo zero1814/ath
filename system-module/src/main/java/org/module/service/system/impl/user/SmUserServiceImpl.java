@@ -4,7 +4,7 @@ import org.module.cache.CacheKey;
 import org.module.cache.RedisString;
 import org.module.dto.system.user.SmUserDto;
 import org.module.helper.UserHelper;
-import org.module.logger.LoggerHelper;
+import org.module.helper.commons.LoggerHelper;
 import org.module.mapper.system.user.SmUserMapper;
 import org.module.model.system.user.SmUser;
 import org.module.result.EntityResult;

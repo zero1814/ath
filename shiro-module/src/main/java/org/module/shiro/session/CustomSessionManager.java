@@ -10,7 +10,7 @@ import java.util.Set;
 import org.apache.shiro.session.Session;
 import org.apache.shiro.subject.SimplePrincipalCollection;
 import org.apache.shiro.subject.support.DefaultSubjectContext;
-import org.module.logger.LoggerHelper;
+import org.module.helper.commons.LoggerHelper;
 import org.module.model.shiro.UserOnlineBo;
 import org.module.model.system.user.SmUser;
 import org.module.shiro.CustomShiroSessionDAO;

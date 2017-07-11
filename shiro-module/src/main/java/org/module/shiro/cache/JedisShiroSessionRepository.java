@@ -4,7 +4,7 @@ import java.io.Serializable;
 import java.util.Collection;
 
 import org.apache.shiro.session.Session;
-import org.module.logger.LoggerHelper;
+import org.module.helper.commons.LoggerHelper;
 import org.module.shiro.session.CustomSessionManager;
 import org.module.shiro.session.SessionStatus;
 import org.module.shiro.session.ShiroSessionRepository;

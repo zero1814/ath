@@ -5,7 +5,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.apache.commons.lang3.StringUtils;
-import org.module.helper.commons.LoggerBaseHelper;
+import org.module.helper.commons.LoggerHelper;
 
 public class CookieUtil {
 
@@ -32,7 +32,7 @@ public class CookieUtil {
 			cookie.setPath("/");
 			response.addCookie(cookie);
 		} catch (Exception ex) {
-			LoggerBaseHelper.error(CookieUtil.class, "创建Cookies发生异常！");
+			LoggerHelper.error(CookieUtil.class, "创建Cookies发生异常！");
 		}
 	}
 
@@ -62,7 +62,7 @@ public class CookieUtil {
 				bool = true;
 			}
 		} catch (Exception ex) {
-			LoggerBaseHelper.error(CookieUtil.class, "清空Cookies发生异常！");
+			LoggerHelper.error(CookieUtil.class, "清空Cookies发生异常！");
 		}
 		return bool;
 	}
@@ -91,7 +91,7 @@ public class CookieUtil {
 				bool = true;
 			}
 		} catch (Exception ex) {
-			LoggerBaseHelper.error(CookieUtil.class, "清空Cookies发生异常！");
+			LoggerHelper.error(CookieUtil.class, "清空Cookies发生异常！");
 		}
 		return bool;
 	}
@@ -118,7 +118,7 @@ public class CookieUtil {
 
 			}
 		} catch (Exception ex) {
-			LoggerBaseHelper.error(CookieUtil.class, "获取Cookies发生异常！");
+			LoggerHelper.error(CookieUtil.class, "获取Cookies发生异常！");
 		}
 		return string;
 	}

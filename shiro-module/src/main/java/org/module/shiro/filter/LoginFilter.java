@@ -7,7 +7,7 @@ import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
 
 import org.apache.shiro.web.filter.AccessControlFilter;
-import org.module.logger.LoggerHelper;
+import org.module.helper.commons.LoggerHelper;
 import org.module.model.system.user.SmUser;
 import org.module.shiro.token.manager.TokenManager;
 
