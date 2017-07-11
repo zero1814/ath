@@ -3,7 +3,7 @@ package org.module.web.loader;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 
-import org.module.commons.util.SpringContextUtil;
+import org.module.util.SpringContextUtil;
 import org.module.web.init.PropertiesInit;
 import org.module.web.listener.ServerletListener;
 import org.springframework.web.WebApplicationInitializer;

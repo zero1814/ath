@@ -1,8 +1,8 @@
 package org.module.model.system.page;
 
-import org.module.commons.annotation.db.Column;
-import org.module.commons.annotation.db.Table;
-import org.module.commons.annotation.obj.Attribute;
+import org.module.annotation.mapper.db.Column;
+import org.module.annotation.mapper.db.Table;
+import org.module.annotation.mapper.obj.Attribute;
 import org.module.model.BaseModel;
 
 @Table(name = "sm_page_table", database = "systemmodule", comment = "页面列表显示设置表")

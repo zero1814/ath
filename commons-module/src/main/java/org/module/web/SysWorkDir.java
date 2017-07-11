@@ -1,7 +1,7 @@
 package org.module.web;
 
 import org.apache.commons.lang.StringUtils;
-import org.module.commons.base.BaseClass;
+import org.module.base.BaseClass;
 import org.module.helper.commons.IoHelper;
 
 /**

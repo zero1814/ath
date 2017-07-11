@@ -2,9 +2,9 @@ package org.module.model.system.user;
 
 import java.util.List;
 
-import org.module.commons.annotation.db.Column;
-import org.module.commons.annotation.db.Table;
-import org.module.commons.annotation.obj.Attribute;
+import org.module.annotation.mapper.db.Column;
+import org.module.annotation.mapper.db.Table;
+import org.module.annotation.mapper.obj.Attribute;
 import org.module.model.BaseModel;
 
 @Table(name = "sm_user", database = "systemmodule", comment = "用户表")
@@ -12,8 +12,8 @@ public class SmUser extends BaseModel {
 
 	private static final long serialVersionUID = -4880208613160544086L;
 
-	public static final String SUCCESS_STATUS="0";
-	
+	public static final String SUCCESS_STATUS = "0";
+
 	@Column(name = "user_name", isNull = false, comment = "用户名")
 	private String userName;
 
@@ -37,7 +37,7 @@ public class SmUser extends BaseModel {
 
 	@Column(name = "we_chat", comment = "微信号")
 	private String weChat;
-	
+
 	@Column(name = "status", comment = "用户状态")
 	private String status;
 
@@ -53,7 +53,7 @@ public class SmUser extends BaseModel {
 		this.eMail = user.geteMail();
 		this.qq = user.getQq();
 		this.weChat = user.getWeChat();
-		this.status=user.getStatus();
+		this.status = user.getStatus();
 	}
 
 	/**

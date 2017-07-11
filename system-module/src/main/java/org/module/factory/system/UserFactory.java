@@ -1,7 +1,7 @@
 package org.module.factory.system;
 
-import org.module.commons.annotation.Inject;
-import org.module.commons.base.BaseClass;
+import org.module.annotation.commons.Inject;
+import org.module.base.BaseClass;
 import org.module.result.EntityResult;
 import org.module.service.system.user.ISmUserService;
 

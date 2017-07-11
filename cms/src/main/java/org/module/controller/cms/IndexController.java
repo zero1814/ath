@@ -5,7 +5,6 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 
 import org.apache.commons.lang3.StringUtils;
-import org.module.commons.util.MD5Util;
 import org.module.controller.BaseController;
 import org.module.helper.commons.CodeHelper;
 import org.module.model.system.menu.SmMenu;
@@ -14,6 +13,7 @@ import org.module.result.EntityResult;
 import org.module.service.cms.IndexService;
 import org.module.service.system.user.ISmUserService;
 import org.module.shiro.token.manager.TokenManager;
+import org.module.util.MD5Util;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;

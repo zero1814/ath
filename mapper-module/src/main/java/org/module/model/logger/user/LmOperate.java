@@ -1,11 +1,11 @@
 package org.module.model.logger.user;
 
-import org.module.commons.annotation.db.Column;
-import org.module.commons.annotation.db.Table;
+import org.module.annotation.mapper.db.Column;
+import org.module.annotation.mapper.db.Table;
 import org.module.model.BaseModel;
 
-@Table(name="lm_operate",database="loggermodule",comment="用户操作日志表")
-public class LmOperate extends BaseModel{
+@Table(name = "lm_operate", database = "loggermodule", comment = "用户操作日志表")
+public class LmOperate extends BaseModel {
 
 	private static final long serialVersionUID = 8293860240498574792L;
 
@@ -52,7 +52,5 @@ public class LmOperate extends BaseModel{
 	public void setResponseData(String responseData) {
 		this.responseData = responseData;
 	}
-	
-	
 
 }

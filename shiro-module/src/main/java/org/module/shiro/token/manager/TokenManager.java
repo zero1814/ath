@@ -5,11 +5,11 @@ import java.util.List;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.session.Session;
 import org.apache.shiro.subject.SimplePrincipalCollection;
-import org.module.commons.util.SpringContextUtil;
 import org.module.model.system.user.SmUser;
 import org.module.shiro.realm.SampleRealm;
 import org.module.shiro.session.CustomSessionManager;
 import org.module.shiro.token.ShiroToken;
+import org.module.util.SpringContextUtil;
 
 /**
  * 

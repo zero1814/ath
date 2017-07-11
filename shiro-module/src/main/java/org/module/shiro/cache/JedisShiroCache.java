@@ -5,8 +5,8 @@ import java.util.Set;
 
 import org.apache.shiro.cache.Cache;
 import org.apache.shiro.cache.CacheException;
-import org.module.commons.util.SerializeUtil;
 import org.module.helper.commons.LoggerHelper;
+import org.module.util.SerializeUtil;
 
 /**
  * 

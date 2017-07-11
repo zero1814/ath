@@ -2,9 +2,9 @@ package org.module.shiro;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.module.commons.util.MD5Util;
 import org.module.model.system.user.SmUser;
 import org.module.shiro.token.manager.TokenManager;
+import org.module.util.MD5Util;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 

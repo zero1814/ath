@@ -1,7 +1,7 @@
 package org.module.model.system.user;
 
-import org.module.commons.annotation.db.Column;
-import org.module.commons.annotation.db.Table;
+import org.module.annotation.mapper.db.Column;
+import org.module.annotation.mapper.db.Table;
 import org.module.model.BaseModel;
 
 @Table(name = "sm_role", database = "systemmodule", comment = "角色表")

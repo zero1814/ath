@@ -6,8 +6,8 @@ import java.util.List;
 import java.util.Set;
 import java.util.TreeSet;
 
-import org.module.commons.util.SerializeUtil;
-import org.module.commons.util.SpringContextUtil;
+import org.module.util.SerializeUtil;
+import org.module.util.SpringContextUtil;
 
 import redis.clients.jedis.JedisCluster;
 

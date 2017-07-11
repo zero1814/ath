@@ -5,8 +5,8 @@ import java.util.HashSet;
 import java.util.Set;
 
 import org.apache.shiro.session.Session;
-import org.module.commons.util.SerializeUtil;
 import org.module.helper.commons.LoggerHelper;
+import org.module.util.SerializeUtil;
 
 import redis.clients.jedis.JedisCluster;
 

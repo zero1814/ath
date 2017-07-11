@@ -1,6 +1,6 @@
 package org.module.helper.commons;
 
-import org.module.commons.util.UniqueIdUtil;
+import org.module.util.UniqueIdUtil;
 
 public class CodeHelper {
 

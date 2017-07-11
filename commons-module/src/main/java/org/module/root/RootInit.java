@@ -1,6 +1,6 @@
 package org.module.root;
 
-import org.module.commons.base.BaseClass;
+import org.module.base.BaseClass;
 
 /**
  * 各种初始化调用类

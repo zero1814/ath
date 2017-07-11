@@ -2,9 +2,9 @@ package org.module.model.system.page;
 
 import java.util.List;
 
-import org.module.commons.annotation.db.Column;
-import org.module.commons.annotation.db.Table;
-import org.module.commons.annotation.obj.Attribute;
+import org.module.annotation.mapper.db.Column;
+import org.module.annotation.mapper.db.Table;
+import org.module.annotation.mapper.obj.Attribute;
 import org.module.model.TreeModel;
 
 @Table(name = "sm_page_group", database = "systemmodule", comment = "页面分组表")

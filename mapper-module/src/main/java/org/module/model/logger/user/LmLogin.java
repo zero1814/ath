@@ -1,7 +1,7 @@
 package org.module.model.logger.user;
 
-import org.module.commons.annotation.db.Column;
-import org.module.commons.annotation.db.Table;
+import org.module.annotation.mapper.db.Column;
+import org.module.annotation.mapper.db.Table;
 import org.module.model.BaseModel;
 
 @Table(name = "lm_login", database = "loggermodule", comment = "用户登录日志表")

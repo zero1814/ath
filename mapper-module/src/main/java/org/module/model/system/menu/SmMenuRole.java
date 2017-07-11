@@ -1,7 +1,7 @@
 package org.module.model.system.menu;
 
-import org.module.commons.annotation.db.Column;
-import org.module.commons.annotation.db.Table;
+import org.module.annotation.mapper.db.Column;
+import org.module.annotation.mapper.db.Table;
 import org.module.model.BaseModel;
 
 @Table(name = "sm_menu_role", database = "systemmodule", comment = "菜单角色关系表")

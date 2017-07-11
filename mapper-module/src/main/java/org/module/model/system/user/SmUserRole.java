@@ -2,9 +2,9 @@ package org.module.model.system.user;
 
 import java.util.List;
 
-import org.module.commons.annotation.db.Column;
-import org.module.commons.annotation.db.Table;
-import org.module.commons.annotation.obj.Attribute;
+import org.module.annotation.mapper.db.Column;
+import org.module.annotation.mapper.db.Table;
+import org.module.annotation.mapper.obj.Attribute;
 import org.module.model.BaseModel;
 
 @Table(name = "sm_user_role", database = "systemmodule", comment = "用户角色关系表")

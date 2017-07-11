@@ -4,8 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
-import org.module.commons.base.BaseClass;
-import org.module.commons.util.DateUtil;
+import org.module.base.BaseClass;
 import org.module.dto.BaseDto;
 import org.module.mapper.BaseMapper;
 import org.module.model.BaseModel;
@@ -14,6 +13,7 @@ import org.module.result.EntityResult;
 import org.module.result.PageResult;
 import org.module.result.RootResult;
 import org.module.service.IBaseService;
+import org.module.util.DateUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 
 /**
@@ -32,8 +32,6 @@ public class BaseServiceImpl<T extends BaseModel, M extends BaseMapper<T, DTO>, 
 
 	@Autowired
 	private M mapper;
-
-	@Autowired
 
 	/**
 	 * 

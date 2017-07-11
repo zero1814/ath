@@ -1,6 +1,6 @@
 package org.module.helper.commons;
 
-import org.module.commons.base.BaseLog;
+import org.module.base.BaseLog;
 
 /**
  * 

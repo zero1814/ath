@@ -3,8 +3,8 @@ package org.module.controller.cms;
 import java.io.File;
 import java.util.UUID;
 
-import org.module.commons.util.file.prop.PropConfig;
 import org.module.result.UploadResult;
+import org.module.util.file.prop.PropConfig;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
