@@ -32,16 +32,16 @@
 		parameterType="java.lang.String">
 		select
 		<include refid="Base_Column_List" />
-		from systemodule.sm_database
+		from systemmodule.sm_database
 		where `code` = #{code,jdbcType=VARCHAR}
 	</select>
 	<delete id="deleteByCode" parameterType="java.lang.String">
 		delete from
-		systemodule.sm_database
+		systemmodule.sm_database
 		where `code` = #{code,jdbcType=VARCHAR}
 	</delete>
 	<insert id="insertSelective" parameterType="org.module.model.system.db.SmDatabase">
-		insert into systemodule.sm_database
+		insert into systemmodule.sm_database
 		<trim prefix="(" suffix=")" suffixOverrides=",">
 			uid,
 			`code`,
@@ -82,7 +82,7 @@
 		</trim>
 	</insert>
 	<update id="updateByCode" parameterType="org.module.model.system.db.SmDatabase">
-		update systemodule.sm_database
+		update systemmodule.sm_database
 		<set>
 			<if test="driver != null and driver != ''">
 				driver = #{driver,jdbcType=VARCHAR},
@@ -110,7 +110,7 @@
 		resultMap="BaseResultMap">
 		select
 		<include refid="Base_Column_List" />
-		from systemodule.sm_database
+		from systemmodule.sm_database
 		<where>
 			1=1
 			<if test="name != null and name != ''">
@@ -122,7 +122,7 @@
 	<select id="findEntityAllCountToPage" parameterType="org.module.dto.system.db.SmDatabaseDto"
 		resultType="java.lang.Integer">
 		select count(1)
-		from systemodule.sm_database
+		from systemmodule.sm_database
 		<where>
 			1=1
 			<if test="name != null and name != ''">

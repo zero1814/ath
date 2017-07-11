@@ -65,17 +65,21 @@ public class LoggerHelper extends LoggerBaseHelper {
 	 * @param userCode
 	 */
 	public void operate(Class<?> clazz, String request, String response, String type) {
-		String userCode = UserFactory.instance().userInfo().getCode();
-		if (StringUtils.isNotBlank(userCode)) {
-			LmOperate entity = new LmOperate();
-			entity.setUid(UUID.randomUUID().toString().replace("-", ""));
-			entity.setClassPath(clazz.getCanonicalName());
-			entity.setRequestData(request);
-			entity.setResponseData(response);
-			entity.setOperateType(type);
-			entity.setCreateUser(UserFactory.instance().userInfo().getCode());
-			entity.setCreateTime(DateUtil.getSysDateTime());
-			operateMapper.insertSelective(entity);
+		try {
+			String userCode = UserFactory.instance().userInfo().getCode();
+			if (StringUtils.isNotBlank(userCode)) {
+				LmOperate entity = new LmOperate();
+				entity.setUid(UUID.randomUUID().toString().replace("-", ""));
+				entity.setClassPath(clazz.getCanonicalName());
+				entity.setRequestData(request);
+				entity.setResponseData(response);
+				entity.setOperateType(type);
+				entity.setCreateUser(userCode);
+				entity.setCreateTime(DateUtil.getSysDateTime());
+				operateMapper.insertSelective(entity);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
 		}
 	}
 }
