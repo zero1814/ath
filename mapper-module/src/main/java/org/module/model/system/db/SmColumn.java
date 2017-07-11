@@ -16,9 +16,6 @@ public class SmColumn extends BaseModel {
 	@Column(name = "name", isNull = false, comment = "字段名称")
 	private String name;
 
-	@Column(name = "show_name", isNull = false, comment = "展示字段名称")
-	private String showName;
-
 	@Column(name = "column_note", comment = "字段描述")
 	private String columnNote;
 
@@ -54,14 +51,6 @@ public class SmColumn extends BaseModel {
 
 	public void setName(String name) {
 		this.name = name;
-	}
-
-	public String getShowName() {
-		return showName;
-	}
-
-	public void setShowName(String showName) {
-		this.showName = showName;
 	}
 
 	public String getColumnNote() {

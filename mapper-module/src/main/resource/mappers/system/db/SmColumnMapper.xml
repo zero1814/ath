@@ -7,7 +7,6 @@
 		<result column="code" property="code" jdbcType="VARCHAR" />
 		<result column="table_code" property="tableCode" jdbcType="VARCHAR" />
 		<result column="name" property="name" jdbcType="VARCHAR" />
-		<result column="show_name" property="showName" jdbcType="VARCHAR" />
 		<result column="column_note" property="columnNote" jdbcType="VARCHAR" />
 		<result column="column_type" property="columnType" jdbcType="VARCHAR" />
 		<result column="column_length" property="columnLength"
@@ -22,7 +21,7 @@
 		<result column="update_time" property="updateTime" jdbcType="VARCHAR" />
 	</resultMap>
 	<sql id="Base_Column_List">
-		id, uid, code, table_code, name, show_name, column_note,
+		id, uid, code, table_code, name, column_note,
 		column_type,
 		column_length,
 		numeric_scale, column_sort, column_key,
@@ -54,7 +53,6 @@
 			`code`,
 			table_code,
 			`name`,
-			show_name,
 			<if test="columnNote != null and columnNote != ''">
 				column_note,
 			</if>
@@ -81,7 +79,6 @@
 			#{code,jdbcType=VARCHAR},
 			#{tableCode,jdbcType=VARCHAR},
 			#{name,jdbcType=VARCHAR},
-			#{showName,jdbcType=VARCHAR},
 			<if test="columnNote != null and columnNote != ''">
 				#{columnNote,jdbcType=VARCHAR},
 			</if>
@@ -111,9 +108,6 @@
 		<set>
 			<if test="name != null and name !=''">
 				name = #{name,jdbcType=VARCHAR},
-			</if>
-			<if test="showName != null and showName != ''">
-				show_name = #{showName,jdbcType=VARCHAR},
 			</if>
 			<if test="columnNote != null and columnNote !=''">
 				column_note = #{columnNote,jdbcType=VARCHAR},

@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="org.module.mapper.system.db.SmFiledMapper">
+	<resultMap id="BaseResultMap" type="org.module.model.system.db.SmFiled">
+		<id column="id" property="id" jdbcType="INTEGER" />
+		<result column="uid" property="uid" jdbcType="VARCHAR" />
+		<result column="code" property="code" jdbcType="VARCHAR" />
+		<result column="name" property="name" jdbcType="VARCHAR" />
+		<result column="table_code" property="tableCode" jdbcType="VARCHAR" />
+		<result column="column_code" property="columnCode" jdbcType="VARCHAR" />
+		<result column="field_type" property="fieldType" jdbcType="VARCHAR" />
+		<result column="sort_add" property="sortAdd" jdbcType="INTEGER" />
+		<result column="sort_edit" property="sortEdit" jdbcType="INTEGER" />
+		<result column="sort_chart" property="sortChart" jdbcType="INTEGER" />
+		<result column="sort_book" property="sortBook" jdbcType="INTEGER" />
+		<result column="sort_inquery" property="sortInquery" jdbcType="INTEGER" />
+		<result column="create_user" property="createUser" jdbcType="VARCHAR" />
+		<result column="create_time" property="createTime" jdbcType="VARCHAR" />
+		<result column="update_user" property="updateUser" jdbcType="VARCHAR" />
+		<result column="update_time" property="updateTime" jdbcType="VARCHAR" />
+	</resultMap>
+	<sql id="Base_Column_List">
+		id, uid, code, name, table_code, column_code, field_note,
+		field_type,
+		sort_add, sort_edit,
+		sort_chart, sort_book, sort_inquery,
+		create_user,
+		DATE_FORMAT(create_time,'%Y-%m-%d
+		%H:%i:%s') as
+		create_time,
+		update_user,
+		DATE_FORMAT(update_time,'%Y-%m-%d %H:%i:%s')
+		as
+		update_time
+	</sql>
+	<select id="selectByCode" resultMap="BaseResultMap"
+		parameterType="java.lang.String">
+		select
+		<include refid="Base_Column_List" />
+		from systemmodule.sm_filed
+		where `code` = #{code,jdbcType=VARCHAR}
+	</select>
+	<delete id="deleteByCode" parameterType="java.lang.String">
+		delete from
+		systemmodule.sm_filed
+		where `code` = #{code,jdbcType=VARCHAR}
+	</delete>
+	<insert id="insertSelective" parameterType="org.module.model.system.db.SmFiled">
+		insert into systemmodule.sm_filed
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			uid,
+			`code`,
+			`name`,
+			table_code,
+			column_code,
+			<if test="fieldType != null">
+				field_type,
+			</if>
+			<if test="sortAdd != null">
+				sort_add,
+			</if>
+			<if test="sortEdit != null">
+				sort_edit,
+			</if>
+			<if test="sortChart != null">
+				sort_chart,
+			</if>
+			<if test="sortBook != null">
+				sort_book,
+			</if>
+			<if test="sortInquery != null">
+				sort_inquery,
+			</if>
+			create_user,
+			create_time,
+			update_user,
+			update_time,
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			#{uid,jdbcType=VARCHAR},
+			#{code,jdbcType=VARCHAR},
+			#{name,jdbcType=VARCHAR},
+			#{tableCode,jdbcType=VARCHAR},
+			#{columnCode,jdbcType=VARCHAR},
+			#{fieldType,jdbcType=VARCHAR},
+			<if test="sortAdd != null">
+				#{sortAdd,jdbcType=INTEGER},
+			</if>
+			<if test="sortEdit != null">
+				#{sortEdit,jdbcType=INTEGER},
+			</if>
+			<if test="sortChart != null">
+				#{sortChart,jdbcType=INTEGER},
+			</if>
+			<if test="sortBook != null">
+				#{sortBook,jdbcType=INTEGER},
+			</if>
+			<if test="sortInquery != null">
+				#{sortInquery,jdbcType=INTEGER},
+			</if>
+			#{createUser,jdbcType=VARCHAR},
+			#{createTime,jdbcType=VARCHAR},
+			#{updateUser,jdbcType=VARCHAR},
+			#{updateTime,jdbcType=VARCHAR},
+		</trim>
+	</insert>
+	<update id="updateByCode" parameterType="org.module.model.system.db.SmFiled">
+		update systemmodule.sm_filed
+		<set>
+			<if test="name != null and name != ''">
+				`name` = #{name,jdbcType=VARCHAR},
+			</if>
+			<if test="fieldType != null and fieldType != ''">
+				field_type = #{fieldType,jdbcType=VARCHAR},
+			</if>
+			<if test="sortAdd != null">
+				sort_add = #{sortAdd,jdbcType=INTEGER},
+			</if>
+			<if test="sortEdit != null">
+				sort_edit = #{sortEdit,jdbcType=INTEGER},
+			</if>
+			<if test="sortChart != null">
+				sort_chart = #{sortChart,jdbcType=INTEGER},
+			</if>
+			<if test="sortBook != null">
+				sort_book = #{sortBook,jdbcType=INTEGER},
+			</if>
+			<if test="sortInquery != null">
+				sort_inquery = #{sortInquery,jdbcType=INTEGER},
+			</if>
+			update_user = #{updateUser,jdbcType=VARCHAR},
+			update_time =
+			#{updateTime,jdbcType=VARCHAR},
+		</set>
+		where `code` = #{code,jdbcType=VARCHAR}
+	</update>
+
+	<select id="findEntityAllToPage" parameterType="org.module.dto.system.db.SmFiledDto"
+		resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from systemmodule.sm_filed
+		<where>
+			table_code = #{tableCode,jdbcType=VARCHAR}
+			<if test="name != null and name != ''">
+				and `name` = #{name,jdbcType=VARCHAR}
+			</if>
+		</where>
+		limit #{start,jdbcType=INTEGER},#{pageSize,jdbcType=INTEGER}
+	</select>
+	<select id="findEntityAllCountToPage" parameterType="org.module.dto.system.db.SmFiledDto"
+		resultType="java.lang.Integer">
+		select count(1)
+		from systemmodule.sm_filed
+		<where>
+			table_code = #{tableCode,jdbcType=VARCHAR}
+			<if test="name != null and name != ''">
+				and `name` = #{name,jdbcType=VARCHAR}
+			</if>
+		</where>
+	</select>
+</mapper>
