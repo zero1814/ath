@@ -1,19 +1,25 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="org.module.mapper.system.page.SmPageGroupMapper">
-	<resultMap id="BaseResultMap" type="org.module.model.system.page.SmPageGroup">
+<mapper namespace="org.module.mapper.system.db.SmDatabaseMapper">
+	<resultMap id="BaseResultMap" type="org.module.model.system.db.SmDatabase">
 		<id column="id" property="id" jdbcType="INTEGER" />
 		<result column="uid" property="uid" jdbcType="VARCHAR" />
 		<result column="code" property="code" jdbcType="VARCHAR" />
 		<result column="name" property="name" jdbcType="VARCHAR" />
-		<result column="parent_code" property="parentCode" jdbcType="VARCHAR" />
+		<result column="driver" property="driver" jdbcType="VARCHAR" />
+		<result column="url" property="url" jdbcType="VARCHAR" />
+		<result column="user_name" property="userName" jdbcType="VARCHAR" />
+		<result column="password" property="password" jdbcType="VARCHAR" />
+		<result column="remark" property="remark" jdbcType="VARCHAR" />
 		<result column="create_user" property="createUser" jdbcType="VARCHAR" />
 		<result column="create_time" property="createTime" jdbcType="VARCHAR" />
 		<result column="update_user" property="updateUser" jdbcType="VARCHAR" />
 		<result column="update_time" property="updateTime" jdbcType="VARCHAR" />
 	</resultMap>
 	<sql id="Base_Column_List">
-		id, uid, code, name, create_user,
+		id, uid, code, name, driver, url, user_name, password,
+		remark,
+		create_user,
 		DATE_FORMAT(create_time,'%Y-%m-%d
 		%H:%i:%s') as
 		create_time,
@@ -26,22 +32,28 @@
 		parameterType="java.lang.String">
 		select
 		<include refid="Base_Column_List" />
-		from systemmodule.sm_page_group
-		where `code`=#{code,jdbcType=VARCHAR}
+		from systemodule.sm_database
+		where `code` = #{code,jdbcType=VARCHAR}
 	</select>
 	<delete id="deleteByCode" parameterType="java.lang.String">
 		delete from
-		systemmodule.sm_page_group
-		where `code`=#{code,jdbcType=VARCHAR}
+		systemodule.sm_database
+		where `code` = #{code,jdbcType=VARCHAR}
 	</delete>
-	<insert id="insertSelective" parameterType="org.module.model.system.page.SmPageGroup">
-		insert into systemmodule.sm_page_group
+	<insert id="insertSelective" parameterType="org.module.model.system.db.SmDatabase">
+		insert into systemodule.sm_database
 		<trim prefix="(" suffix=")" suffixOverrides=",">
 			uid,
 			`code`,
 			`name`,
-			<if test="parentCode != null and parentCode != ''">
-				parent_code,
+			driver,
+			url,
+			user_name,
+			<if test="password != null and password != ''">
+				password,
+			</if>
+			<if test="remark != null and remark != ''">
+				remark,
 			</if>
 			create_user,
 			create_time,
@@ -52,8 +64,14 @@
 			#{uid,jdbcType=VARCHAR},
 			#{code,jdbcType=VARCHAR},
 			#{name,jdbcType=VARCHAR},
-			<if test="parentCode != null and parentCode != ''">
-				#{parentCode,jdbcType=VARCHAR},
+			#{driver,jdbcType=VARCHAR},
+			#{url,jdbcType=VARCHAR},
+			#{userName,jdbcType=VARCHAR},
+			<if test="password != null and password != ''">
+				#{password,jdbcType=VARCHAR},
+			</if>
+			<if test="remark != null and remark != ''">
+				#{remark,jdbcType=VARCHAR},
 			</if>
 			#{createUser,jdbcType=VARCHAR},
 			STR_TO_DATE(#{createTime,jdbcType=VARCHAR},'%Y-%m-%d
@@ -63,49 +81,52 @@
 			%H:%i:%s'),
 		</trim>
 	</insert>
-	<update id="updateByCode" parameterType="org.module.model.system.page.SmPageGroup">
-		update systemmodule.sm_page_group
+	<update id="updateByCode" parameterType="org.module.model.system.db.SmDatabase">
+		update systemodule.sm_database
 		<set>
-			<if test="name != null and name != ''">
-				`name` = #{name,jdbcType=VARCHAR},
+			<if test="driver != null and driver != ''">
+				driver = #{driver,jdbcType=VARCHAR},
 			</if>
-			<if test="parentCode != null and parentCode != ''">
-				parent_code = #{parentCode,jdbcType=VARCHAR},
+			<if test="url != null and url != ''">
+				url = #{url,jdbcType=VARCHAR},
+			</if>
+			<if test="userName != null and userName != ''">
+				user_name = #{userName,jdbcType=VARCHAR},
+			</if>
+			<if test="password != null and password !=''">
+				password = #{password,jdbcType=VARCHAR},
+			</if>
+			<if test="remark != null and remark != ''">
+				remark = #{remark,jdbcType=VARCHAR},
 			</if>
 			update_user = #{updateUser,jdbcType=VARCHAR},
 			update_time =
 			STR_TO_DATE(#{updateTime,jdbcType=VARCHAR},'%Y-%m-%d %H:%i:%s'),
 		</set>
-		where `code`=#{code,jdbcType=VARCHAR}
+		where `code` = #{code,jdbcType=VARCHAR}
 	</update>
-	<select id="findDataAll" resultMap="BaseResultMap"
-		parameterType="java.lang.String">
-		select
-		<include refid="Base_Column_List" />
-		from systemmodule.sm_page_group where parent_code =
-		#{parentCode,jdbcType=VARCHAR}
-	</select>
 
-	<select id="findEntityAllToPage" parameterType="org.module.dto.system.page.SmPageGroupDto"
+	<select id="findEntityAllToPage" parameterType="org.module.dto.system.db.SmDatabaseDto"
 		resultMap="BaseResultMap">
 		select
 		<include refid="Base_Column_List" />
-		from systemmodule.sm_page_group
+		from systemodule.sm_database
 		<where>
 			1=1
 			<if test="name != null and name != ''">
-				and name = #{name,jdbcType=VARCHAR},
+				and `name` = #{name,jdbcType=VARCHAR}
 			</if>
 		</where>
 		limit #{start,jdbcType=INTEGER},#{pageSize,jdbcType=INTEGER}
 	</select>
-	<select id="findEntityAllCountToPage" parameterType="org.module.dto.system.page.SmPageGroupDto"
+	<select id="findEntityAllCountToPage" parameterType="org.module.dto.system.db.SmDatabaseDto"
 		resultType="java.lang.Integer">
-		select count(1) from systemmodule.sm_page_group
+		select count(1)
+		from systemodule.sm_database
 		<where>
 			1=1
 			<if test="name != null and name != ''">
-				and name = #{name,jdbcType=VARCHAR},
+				and `name` = #{name,jdbcType=VARCHAR}
 			</if>
 		</where>
 	</select>

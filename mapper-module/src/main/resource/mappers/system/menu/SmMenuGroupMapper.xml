@@ -79,6 +79,7 @@
 				and name = #{name,jdbcType=VARCHAR},
 			</if>
 		</where>
+		limit #{start,jdbcType=INTEGER},#{pageSize,jdbcType=INTEGER}
 	</select>
 	<select id="findEntityAllCountToPage" parameterType="org.module.dto.system.menu.SmMenuGroupDto"
 		resultType="java.lang.Integer">

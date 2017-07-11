@@ -3,7 +3,7 @@ package org.module.service.system.impl.user;
 import org.module.cache.CacheKey;
 import org.module.cache.RedisString;
 import org.module.dto.system.user.SmUserDto;
-import org.module.factory.UserFactory;
+import org.module.helper.commons.CodeHelper;
 import org.module.helper.commons.LoggerHelper;
 import org.module.helper.commons.WebHelper;
 import org.module.mapper.system.user.SmUserMapper;
@@ -68,7 +68,7 @@ public class SmUserServiceImpl extends BaseServiceImpl<SmUser, SmUserMapper, SmU
 	 */
 	@Override
 	public EntityResult register(SmUser entity) {
-		String userCode = UserFactory.instance().userInfo().getCode();
+		String userCode = CodeHelper.getUniqueCode("SU");
 		entity.setCreateUser(userCode);
 		entity.setPassword(MD5Util.md5Hex(entity.getPassword()));
 		EntityResult result = super.insertSelective(entity);
