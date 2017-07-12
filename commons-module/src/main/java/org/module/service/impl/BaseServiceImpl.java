@@ -148,10 +148,6 @@ public class BaseServiceImpl<T extends BaseModel, M extends BaseMapper<T, DTO>, 
 		}
 		logger.logInfo(this.getClass().getName() + "，执行selectByEntity方法结束");
 
-		/**
-		 * 添加操作日志
-		 */
-		LoggerHelper.instance().operate(getClass(), JSON.toJSONString(dto), JSON.toJSONString(result), "selectEntity");
 		return result;
 	}
 
@@ -263,10 +259,6 @@ public class BaseServiceImpl<T extends BaseModel, M extends BaseMapper<T, DTO>, 
 			logger.logError(this.getClass().getName() + "执行selectByCode方法失败，失败原因:" + e.getMessage());
 		}
 		logger.logInfo(this.getClass().getName() + "，执行selectByCode方法结束");
-		/**
-		 * 添加操作日志
-		 */
-		LoggerHelper.instance().operate(getClass(), JSON.toJSONString(code), JSON.toJSONString(result), "selectByCode");
 		return result;
 	}
 
@@ -307,11 +299,6 @@ public class BaseServiceImpl<T extends BaseModel, M extends BaseMapper<T, DTO>, 
 			logger.logError(this.getClass().getName() + "执行findEntityToPage方法失败，失败原因:" + e.getMessage());
 		}
 		logger.logInfo(this.getClass().getName() + "，执行findEntityToPage方法结束");
-		/**
-		 * 添加操作日志
-		 */
-		LoggerHelper.instance().operate(getClass(), JSON.toJSONString(dto), JSON.toJSONString(result),
-				"findEntityToPage");
 		return result;
 	}
 
@@ -335,10 +322,6 @@ public class BaseServiceImpl<T extends BaseModel, M extends BaseMapper<T, DTO>, 
 			logger.logError(this.getClass().getName() + "执行findDataAll方法失败，失败原因:" + e.getMessage());
 		}
 		logger.logInfo(this.getClass().getName() + "，执行findDataAll方法结束");
-		/**
-		 * 添加操作日志
-		 */
-		LoggerHelper.instance().operate(getClass(), JSON.toJSONString(dto), JSON.toJSONString(result), "findDataAll");
 		return result;
 	}
 }

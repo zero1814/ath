@@ -1,7 +1,7 @@
 var MenuGroup = {
 	Layer: '',
 	data: function() {
-		columns = [{
+		var columns = [{
 			checkbox: true
 		}, {
 			field: 'code',
@@ -23,7 +23,7 @@ var MenuGroup = {
 			field: 'operate',
 			title: '操作',
 			formatter: initOperate
-		}]
+		}];
 		Table.init("table", "system/menu/group/data.htm", columns, MenuGroup.searchParam());
 	},
 	searchParam: function() {
