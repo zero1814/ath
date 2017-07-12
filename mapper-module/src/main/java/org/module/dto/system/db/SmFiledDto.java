@@ -4,16 +4,26 @@ import org.module.dto.BaseDto;
 
 public class SmFiledDto extends BaseDto {
 
-	private String name;
+	private String fileCode;
+
+	private String fileName;
 
 	private String tableCode;
 
-	public String getName() {
-		return name;
+	public String getFileCode() {
+		return fileCode;
 	}
 
-	public void setName(String name) {
-		this.name = name;
+	public void setFileCode(String fileCode) {
+		this.fileCode = fileCode;
+	}
+
+	public String getFileName() {
+		return fileName;
+	}
+
+	public void setFileName(String fileName) {
+		this.fileName = fileName;
 	}
 
 	public String getTableCode() {

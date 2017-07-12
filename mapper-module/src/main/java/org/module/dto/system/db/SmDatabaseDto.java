@@ -4,14 +4,14 @@ import org.module.dto.BaseDto;
 
 public class SmDatabaseDto extends BaseDto {
 
-	private String name;
+	private String dbName;
 
-	public String getName() {
-		return name;
+	public String getDbName() {
+		return dbName;
 	}
 
-	public void setName(String name) {
-		this.name = name;
+	public void setDbName(String dbName) {
+		this.dbName = dbName;
 	}
 
 }

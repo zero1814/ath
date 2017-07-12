@@ -7,32 +7,43 @@ import org.module.model.BaseModel;
 @Table(name = "sm_database", database = "systemmodule", comment = "数据库维护表")
 public class SmDatabase extends BaseModel {
 
-	private static final long serialVersionUID = 9083228086220244225L;
+	private static final long serialVersionUID = -5343056862098669105L;
 
-	@Column(name = "name", isNull = false, comment = "名称")
-	private String name;
+	@Column(name = "db_code",  isNull=false,comment = "数据库编码")
+	private String dbCode;
 
-	@Column(name = "driver", isNull = false, comment = "驱动")
+	@Column(name = "db_name", isNull=false, comment = "数据库名称")
+	private String dbName;
+
+	@Column(name = "driver", isNull=false, comment = "驱动")
 	private String driver;
 
-	@Column(name = "url", isNull = false, comment = "链接地址")
+	@Column(name = "url", isNull=false, comment = "链接地址")
 	private String url;
 
-	@Column(name = "user_name", comment = "密码")
+	@Column(name = "user_name", isNull=false, comment = "用户名")
 	private String userName;
 
-	@Column(name = "password", isNull = false, comment = "名称")
+	@Column(name = "password", comment = "密码")
 	private String password;
 
 	@Column(name = "remark", comment = "备注")
 	private String remark;
 
-	public String getName() {
-		return name;
+	public String getDbCode() {
+		return dbCode;
 	}
 
-	public void setName(String name) {
-		this.name = name;
+	public void setDbCode(String dbCode) {
+		this.dbCode = dbCode;
+	}
+
+	public String getDbName() {
+		return dbName;
+	}
+
+	public void setDbName(String dbName) {
+		this.dbName = dbName;
 	}
 
 	public String getDriver() {

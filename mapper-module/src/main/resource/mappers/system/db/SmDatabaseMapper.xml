@@ -4,8 +4,8 @@
 	<resultMap id="BaseResultMap" type="org.module.model.system.db.SmDatabase">
 		<id column="id" property="id" jdbcType="INTEGER" />
 		<result column="uid" property="uid" jdbcType="VARCHAR" />
-		<result column="code" property="code" jdbcType="VARCHAR" />
-		<result column="name" property="name" jdbcType="VARCHAR" />
+		<result column="db_code" property="dbCode" jdbcType="VARCHAR" />
+		<result column="db_name" property="dbName" jdbcType="VARCHAR" />
 		<result column="driver" property="driver" jdbcType="VARCHAR" />
 		<result column="url" property="url" jdbcType="VARCHAR" />
 		<result column="user_name" property="userName" jdbcType="VARCHAR" />
@@ -17,8 +17,8 @@
 		<result column="update_time" property="updateTime" jdbcType="VARCHAR" />
 	</resultMap>
 	<sql id="Base_Column_List">
-		id, uid, code, name, driver, url, user_name, password,
-		remark,
+		id, uid, db_code, db_name, driver, url, user_name,
+		password, remark,
 		create_user,
 		DATE_FORMAT(create_time,'%Y-%m-%d
 		%H:%i:%s') as
@@ -36,21 +36,20 @@
 		where `code` = #{code,jdbcType=VARCHAR}
 	</select>
 	<delete id="deleteByCode" parameterType="java.lang.String">
-		delete from
-		systemmodule.sm_database
+		delete from systemmodule.sm_database
 		where `code` = #{code,jdbcType=VARCHAR}
 	</delete>
 	<insert id="insertSelective" parameterType="org.module.model.system.db.SmDatabase">
 		insert into systemmodule.sm_database
 		<trim prefix="(" suffix=")" suffixOverrides=",">
 			uid,
-			`code`,
-			`name`,
+			db_code,
+			db_name,
 			driver,
 			url,
 			user_name,
 			<if test="password != null and password != ''">
-				password,
+				`password`,
 			</if>
 			<if test="remark != null and remark != ''">
 				remark,
@@ -62,8 +61,8 @@
 		</trim>
 		<trim prefix="values (" suffix=")" suffixOverrides=",">
 			#{uid,jdbcType=VARCHAR},
-			#{code,jdbcType=VARCHAR},
-			#{name,jdbcType=VARCHAR},
+			#{dbCode,jdbcType=VARCHAR},
+			#{dbName,jdbcType=VARCHAR},
 			#{driver,jdbcType=VARCHAR},
 			#{url,jdbcType=VARCHAR},
 			#{userName,jdbcType=VARCHAR},
@@ -84,7 +83,10 @@
 	<update id="updateByCode" parameterType="org.module.model.system.db.SmDatabase">
 		update systemmodule.sm_database
 		<set>
-			<if test="driver != null and driver != ''">
+			<if test="dbName != null and dbName != ''">
+				db_name = #{dbName,jdbcType=VARCHAR},
+			</if>
+			<if test="driver != null and driver !='' ">
 				driver = #{driver,jdbcType=VARCHAR},
 			</if>
 			<if test="url != null and url != ''">
@@ -93,10 +95,10 @@
 			<if test="userName != null and userName != ''">
 				user_name = #{userName,jdbcType=VARCHAR},
 			</if>
-			<if test="password != null and password !=''">
-				password = #{password,jdbcType=VARCHAR},
+			<if test="password != null and password != ''">
+				`password` = #{password,jdbcType=VARCHAR},
 			</if>
-			<if test="remark != null and remark != ''">
+			<if test="remark != null and remark !=''">
 				remark = #{remark,jdbcType=VARCHAR},
 			</if>
 			update_user = #{updateUser,jdbcType=VARCHAR},
@@ -105,7 +107,6 @@
 		</set>
 		where `code` = #{code,jdbcType=VARCHAR}
 	</update>
-
 	<select id="findEntityAllToPage" parameterType="org.module.dto.system.db.SmDatabaseDto"
 		resultMap="BaseResultMap">
 		select
@@ -113,11 +114,10 @@
 		from systemmodule.sm_database
 		<where>
 			1=1
-			<if test="name != null and name != ''">
-				and `name` = #{name,jdbcType=VARCHAR}
+			<if test="dbName != null and dbName != ''">
+				and `db_name` = #{dbName,jdbcType=VARCHAR}
 			</if>
 		</where>
-		limit #{start,jdbcType=INTEGER},#{pageSize,jdbcType=INTEGER}
 	</select>
 	<select id="findEntityAllCountToPage" parameterType="org.module.dto.system.db.SmDatabaseDto"
 		resultType="java.lang.Integer">
@@ -125,8 +125,8 @@
 		from systemmodule.sm_database
 		<where>
 			1=1
-			<if test="name != null and name != ''">
-				and `name` = #{name,jdbcType=VARCHAR}
+			<if test="dbName != null and dbName != ''">
+				and `db_name` = #{dbName,jdbcType=VARCHAR}
 			</if>
 		</where>
 	</select>

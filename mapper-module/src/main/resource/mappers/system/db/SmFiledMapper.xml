@@ -4,11 +4,17 @@
 	<resultMap id="BaseResultMap" type="org.module.model.system.db.SmFiled">
 		<id column="id" property="id" jdbcType="INTEGER" />
 		<result column="uid" property="uid" jdbcType="VARCHAR" />
-		<result column="code" property="code" jdbcType="VARCHAR" />
-		<result column="name" property="name" jdbcType="VARCHAR" />
 		<result column="table_code" property="tableCode" jdbcType="VARCHAR" />
-		<result column="column_code" property="columnCode" jdbcType="VARCHAR" />
+		<result column="field_code" property="fieldCode" jdbcType="VARCHAR" />
+		<result column="field_name" property="fieldName" jdbcType="VARCHAR" />
 		<result column="field_type" property="fieldType" jdbcType="VARCHAR" />
+		<result column="field_length" property="fieldLength" jdbcType="INTEGER" />
+		<result column="numeric_scale" property="numericScale"
+			jdbcType="INTEGER" />
+		<result column="is_nullable" property="isNullable" jdbcType="INTEGER" />
+		<result column="field_default" property="fieldDefault"
+			jdbcType="INTEGER" />
+		<result column="field_key" property="fieldKey" jdbcType="VARCHAR" />
 		<result column="sort_add" property="sortAdd" jdbcType="INTEGER" />
 		<result column="sort_edit" property="sortEdit" jdbcType="INTEGER" />
 		<result column="sort_chart" property="sortChart" jdbcType="INTEGER" />
@@ -20,10 +26,13 @@
 		<result column="update_time" property="updateTime" jdbcType="VARCHAR" />
 	</resultMap>
 	<sql id="Base_Column_List">
-		id, uid, code, name, table_code, column_code, field_note,
-		field_type,
+		id, uid, table_code, field_code, field_name, field_type,
+		field_length,
+		numeric_scale,
+		field_key,is_nullable,field_default,
 		sort_add, sort_edit,
-		sort_chart, sort_book, sort_inquery,
+		sort_chart,
+		sort_book, sort_inquery,
 		create_user,
 		DATE_FORMAT(create_time,'%Y-%m-%d
 		%H:%i:%s') as
@@ -49,12 +58,24 @@
 		insert into systemmodule.sm_filed
 		<trim prefix="(" suffix=")" suffixOverrides=",">
 			uid,
-			`code`,
-			`name`,
 			table_code,
-			column_code,
-			<if test="fieldType != null">
-				field_type,
+			field_code,
+			field_name,
+			field_type,
+			<if test="fieldLength != null">
+				field_length,
+			</if>
+			<if test="numericScale != null">
+				numeric_scale,
+			</if>
+			<if test="isNullable != null">
+				is_nullable,
+			</if>
+			<if test="fieldDefault != null and fieldDefault != ''">
+				field_default
+			</if>
+			<if test="fieldKey != null and fieldKey != ''">
+				field_key,
 			</if>
 			<if test="sortAdd != null">
 				sort_add,
@@ -78,11 +99,25 @@
 		</trim>
 		<trim prefix="values (" suffix=")" suffixOverrides=",">
 			#{uid,jdbcType=VARCHAR},
-			#{code,jdbcType=VARCHAR},
-			#{name,jdbcType=VARCHAR},
 			#{tableCode,jdbcType=VARCHAR},
-			#{columnCode,jdbcType=VARCHAR},
+			#{fieldCode,jdbcType=VARCHAR},
+			#{fieldName,jdbcType=VARCHAR},
 			#{fieldType,jdbcType=VARCHAR},
+			<if test="fieldLength != null">
+				#{fieldLength,jdbcType=INTEGER},
+			</if>
+			<if test="numericScale != null">
+				#{numericScale,jdbcType=INTEGER},
+			</if>
+			<if test="isNullable != null">
+				#{isNullable,jdbcType=INTEGER},
+			</if>
+			<if test="fieldDefault != null and fieldDefault != ''">
+				#{fieldDefault,jdbcType=VARCHAR},
+			</if>
+			<if test="fieldKey != null and fieldKey != ''">
+				#{fieldKey,jdbcType=VARCHAR},
+			</if>
 			<if test="sortAdd != null">
 				#{sortAdd,jdbcType=INTEGER},
 			</if>
@@ -99,19 +134,33 @@
 				#{sortInquery,jdbcType=INTEGER},
 			</if>
 			#{createUser,jdbcType=VARCHAR},
-			#{createTime,jdbcType=VARCHAR},
+			STR_TO_DATE(#{createTime,jdbcType=VARCHAR},'%Y-%m-%d
+			%H:%i:%s'),
 			#{updateUser,jdbcType=VARCHAR},
-			#{updateTime,jdbcType=VARCHAR},
+			STR_TO_DATE(#{updateTime,jdbcType=VARCHAR},'%Y-%m-%d
+			%H:%i:%s'),
 		</trim>
 	</insert>
 	<update id="updateByCode" parameterType="org.module.model.system.db.SmFiled">
 		update systemmodule.sm_filed
 		<set>
-			<if test="name != null and name != ''">
-				`name` = #{name,jdbcType=VARCHAR},
+			<if test="fieldName != null and fieldName != ''">
+				field_name = #{fieldName,jdbcType=VARCHAR},
 			</if>
 			<if test="fieldType != null and fieldType != ''">
 				field_type = #{fieldType,jdbcType=VARCHAR},
+			</if>
+			<if test="fieldLength != null">
+				field_length = #{fieldLength,jdbcType=INTEGER},
+			</if>
+			<if test="numericScale != null">
+				numeric_scale = #{numericScale,jdbcType=INTEGER},
+			</if>
+			<if test="isNullable != null">
+				is_nullable=#{isNullable,jdbcType=INTEGER},
+			</if>
+			<if test="fieldDefault != null and fieldDefault != ''">
+				field_default = #{fieldDefault,jdbcType=VARCHAR},
 			</if>
 			<if test="sortAdd != null">
 				sort_add = #{sortAdd,jdbcType=INTEGER},
@@ -130,33 +179,65 @@
 			</if>
 			update_user = #{updateUser,jdbcType=VARCHAR},
 			update_time =
-			#{updateTime,jdbcType=VARCHAR},
+			STR_TO_DATE(#{updateTime,jdbcType=VARCHAR},'%Y-%m-%d %H:%i:%s'),
 		</set>
 		where `code` = #{code,jdbcType=VARCHAR}
 	</update>
-
 	<select id="findEntityAllToPage" parameterType="org.module.dto.system.db.SmFiledDto"
 		resultMap="BaseResultMap">
 		select
 		<include refid="Base_Column_List" />
 		from systemmodule.sm_filed
 		<where>
-			table_code = #{tableCode,jdbcType=VARCHAR}
-			<if test="name != null and name != ''">
-				and `name` = #{name,jdbcType=VARCHAR}
+			table_code =#{tableCode,jdbcType=VARCHAR}
+			<if test="fileCode != null and fileCode != ''">
+				and file_code = #{fileCode,jdbcType=VARCHAR}
+			</if>
+			<if test="fileName != null and fileName != ''">
+				and file_name = #{fileName,jdbcType=VARCHAR}
 			</if>
 		</where>
-		limit #{start,jdbcType=INTEGER},#{pageSize,jdbcType=INTEGER}
 	</select>
 	<select id="findEntityAllCountToPage" parameterType="org.module.dto.system.db.SmFiledDto"
 		resultType="java.lang.Integer">
 		select count(1)
 		from systemmodule.sm_filed
 		<where>
-			table_code = #{tableCode,jdbcType=VARCHAR}
-			<if test="name != null and name != ''">
-				and `name` = #{name,jdbcType=VARCHAR}
+			table_code =#{tableCode,jdbcType=VARCHAR}
+			<if test="fileCode != null and fileCode != ''">
+				and file_code = #{fileCode,jdbcType=VARCHAR}
+			</if>
+			<if test="fileName != null and fileName != ''">
+				and file_name = #{fileName,jdbcType=VARCHAR}
 			</if>
 		</where>
 	</select>
+	<!-- 数据表新添加字段 -->
+	<update id="insertTableColumn" parameterType="org.module.model.system.db.SmFiled">
+		alter table ${tableCode}
+		Add column ${fieldCode}
+		${fieldType}
+		<if test="isNullable == 1">
+			not null
+		</if>
+		<if test="fieldDefault != null and fieldDefault != ''">
+			default ${fieldDefault}
+		</if>
+	</update>
+	<!-- 数据表修改字段 -->
+	<update id="editTableColumn" parameterType="org.module.model.system.db.SmFiled">
+		alter table ${tableCode} modify column ${fieldCode} ${fieldType}
+		<if test="fieldLength != 0">
+			(${fieldLength}
+			<if test="numericScale != 0">
+				,${numericScale}
+			</if>
+			)
+		</if>
+	</update>
+	<!-- 数据表删除字段 -->
+	<update id="dropTableColumn" parameterType="org.module.model.system.db.SmFiled">
+		alter table
+		${tableCode} drop column ${fieldCode}
+	</update>
 </mapper>

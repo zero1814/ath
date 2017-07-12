@@ -249,16 +249,14 @@ CREATE TABLE sm_user_role (
 	create_time datetime NOT NULL COMMENT '创建时间'
 ) COMMENT '用户角色关系表';
 
--- 数据相关维护表
+#################数据相关维护表######################
 
-DROP TABLE
-IF EXISTS sm_database;
 
 CREATE TABLE sm_database (
 	id INT PRIMARY KEY AUTO_INCREMENT COMMENT '主键',
 	uid VARCHAR (50) NOT NULL COMMENT 'uuid',
-	`code` VARCHAR (50) NOT NULL UNIQUE COMMENT '编码',
-	`name` VARCHAR (20) NOT NULL UNIQUE COMMENT '名称',
+	db_code VARCHAR (50) NOT NULL UNIQUE COMMENT '编码',
+	db_name VARCHAR (20) NOT NULL UNIQUE COMMENT '名称',
 	driver VARCHAR (100) NOT NULL COMMENT '驱动',
 	url VARCHAR (50) NOT NULL COMMENT '链接地址',
 	user_name VARCHAR (50) NOT NULL COMMENT '用户名',
@@ -276,38 +274,17 @@ IF EXISTS sm_table;
 CREATE TABLE sm_table (
 	id INT PRIMARY KEY AUTO_INCREMENT COMMENT '主键',
 	uid VARCHAR (50) NOT NULL COMMENT 'uuid',
-	`code` VARCHAR (50) NOT NULL UNIQUE COMMENT '编码',
-	db_name VARCHAR (50) NOT NULL COMMENT '数据库编码名称',
-	`name` VARCHAR (50) NOT NULL COMMENT '数据表名称',
+	db_code VARCHAR (50) NOT NULL COMMENT '数据库编码名称',
+	table_code VARCHAR (50) NOT NULL UNIQUE COMMENT '数据表编码',
+	table_name VARCHAR (50) NOT NULL COMMENT '数据表名称',
+	type VARCHAR (50) DEFAULT 'table' COMMENT '数据表类型 table数据表 view视图',
 	remark VARCHAR (500) DEFAULT '' COMMENT '备注',
 	create_user VARCHAR (50) NOT NULL COMMENT '创建人',
 	create_time datetime NOT NULL COMMENT '创建时间',
 	update_user VARCHAR (50) NOT NULL COMMENT '最后修改人',
 	update_time datetime NOT NULL COMMENT '最后修改时间',
-	UNIQUE db_table (db_name, `name`) COMMENT '数据表唯一键约束'
+	UNIQUE db_table (db_code, table_name) COMMENT '数据表唯一键约束'
 ) COMMENT '数据表维护表';
-
-DROP TABLE
-IF EXISTS sm_column;
-
-CREATE TABLE sm_column (
-	id INT PRIMARY KEY AUTO_INCREMENT COMMENT '主键',
-	uid VARCHAR (50) NOT NULL COMMENT 'uuid',
-	`code` VARCHAR (50) NOT NULL UNIQUE COMMENT '编码',
-	table_code VARCHAR (50) NOT NULL COMMENT '数据表编码',
-	`name` VARCHAR (50) NOT NULL COMMENT '字段名称',
-	column_note VARCHAR (200) DEFAULT '' COMMENT '字段描述',
-	column_type VARCHAR (100) NOT NULL COMMENT '字段类型',
-	column_length INT DEFAULT 0 COMMENT '字段长度',
-	numeric_scale INT DEFAULT 0 COMMENT '字段小数点保留位数',
-	column_sort INT DEFAULT 0 COMMENT '字段排序',
-	column_key VARCHAR (10) DEFAULT '' COMMENT '字段索引类型',
-	create_user VARCHAR (50) NOT NULL COMMENT '创建人',
-	create_time datetime NOT NULL COMMENT '创建时间',
-	update_user VARCHAR (50) NOT NULL COMMENT '最后修改人',
-	update_time datetime NOT NULL COMMENT '最后修改时间',
-	UNIQUE table_column (table_code, `code`) COMMENT '数据表字段唯一键'
-) COMMENT '数据表字段维护表';
 
 DROP TABLE
 IF EXISTS sm_filed;
@@ -315,12 +292,15 @@ IF EXISTS sm_filed;
 CREATE TABLE sm_filed (
 	id INT PRIMARY KEY AUTO_INCREMENT COMMENT '主键',
 	uid VARCHAR (50) NOT NULL COMMENT 'uuid',
-	`code` VARCHAR (50) NOT NULL UNIQUE COMMENT '编码',
-	`name` VARCHAR (45) NOT NULL COMMENT '字段名称',
 	table_code VARCHAR (50) NOT NULL COMMENT '数据表编码',
-	column_code VARCHAR (50) NOT NULL COMMENT '数据列名',
-	field_note VARCHAR (50) NOT NULL COMMENT '字段名称',
+	field_code VARCHAR (50) NOT NULL UNIQUE COMMENT '字段编码',
+	field_name VARCHAR (45) NOT NULL COMMENT '字段名称',
 	field_type VARCHAR (50) NOT NULL COMMENT '字段类型',
+	field_length INT DEFAULT 0 COMMENT '字段长度',
+	numeric_scale INT DEFAULT 0 COMMENT '字段小数点保留位数',
+	is_nullable INT DEFAULT 0 COMMENT '是否可以为空 0 可以 1 不可以 ',
+	field_default VARCHAR (20) DEFAULT '' COMMENT '字段默认值',
+	field_key VARCHAR (10) DEFAULT '' COMMENT '字段索引类型',
 	sort_add INT DEFAULT 0 COMMENT '排序添加',
 	sort_edit INT DEFAULT 0 COMMENT '排序修改',
 	sort_chart INT DEFAULT 0 COMMENT '排序列表',
@@ -330,5 +310,5 @@ CREATE TABLE sm_filed (
 	create_time datetime NOT NULL COMMENT '创建时间',
 	update_user VARCHAR (50) NOT NULL COMMENT '最后修改人',
 	update_time datetime NOT NULL COMMENT '最后修改时间',
-	UNIQUE table_column (table_code, column_code) COMMENT '数据表字段唯一键'
+	UNIQUE table_column (table_code, field_code) COMMENT '数据表字段唯一键'
 ) COMMENT '页面显示字段维护表';
