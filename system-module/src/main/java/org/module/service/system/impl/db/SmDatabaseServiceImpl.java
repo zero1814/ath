@@ -42,7 +42,7 @@ public class SmDatabaseServiceImpl extends BaseServiceImpl<SmDatabase, SmDatabas
 			result.setCode(-1);
 			result.setMessage("同步失败，失败原因：" + e.getMessage());
 		}
-		return null;
+		return result;
 	}
 
 }
