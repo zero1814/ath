@@ -41,7 +41,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	                <div class="form-group">
 	                    <input type="password" name="password" class="form-control" placeholder="密码">
 	                </div>
-	                <a href="javascript:void(0)" onclick="User.login();" class="btn btn-primary block full-width m-b">登 录</a>
+	                <a id="login_sub" href="javascript:void(0)" onclick="User.login();" class="btn btn-primary block full-width m-b">登 录</a>
 	                <p class="text-muted text-center"> <a href="<%=basePath %>jsp/system/user/forget_password.jsp"><small>忘记密码了？</small></a> | <a href="jsp/system/user/register.jsp">注册一个新账号</a>
 	                </p>
 	            </form>
@@ -53,6 +53,14 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <script src="assets/commons/js/system/user/user.js" type="text/javascript"></script>
 <script src="assets/plugins/layer/layer.js"></script>
 <script src="assets/commons/js/usepublic.js"></script>
+<script type="text/javascript">
+document.onkeydown = function(e){
+    if(!e) e = window.event;//火狐中是 window.event
+    if((e.keyCode || e.which) == 13){
+    	User.login();
+    }
+}
+</script>
 </body>
 
 </html>

@@ -1,8 +1,8 @@
 package org.module.mapper.system.db;
 
-import org.module.dto.system.db.SmFiledDto;
+import org.module.dto.system.db.SmFieldDto;
 import org.module.mapper.BaseMapper;
-import org.module.model.system.db.SmFiled;
+import org.module.model.system.db.SmField;
 
 /**
  * 
@@ -11,7 +11,7 @@ import org.module.model.system.db.SmFiled;
  * 作者: zhy<br>
  * 时间: 2017年7月12日 上午11:22:30
  */
-public interface SmFiledMapper extends BaseMapper<SmFiled, SmFiledDto> {
+public interface SmFieldMapper extends BaseMapper<SmField, SmFieldDto> {
 
 	/**
 	 * 
@@ -23,7 +23,7 @@ public interface SmFiledMapper extends BaseMapper<SmFiled, SmFiledDto> {
 	 * @param entity
 	 * @return
 	 */
-	int insertTableColumn(SmFiled entity);
+	int insertTableColumn(SmField entity);
 
 	/**
 	 * 
@@ -35,7 +35,7 @@ public interface SmFiledMapper extends BaseMapper<SmFiled, SmFiledDto> {
 	 * @param entity
 	 * @return
 	 */
-	int editTableColumn(SmFiled entity);
+	int editTableColumn(SmField entity);
 
 	/**
 	 * 
@@ -47,6 +47,6 @@ public interface SmFiledMapper extends BaseMapper<SmFiled, SmFiledDto> {
 	 * @param entity
 	 * @return
 	 */
-	int dropTableColumn(SmFiled entity);
+	int dropTableColumn(SmField entity);
 
 }

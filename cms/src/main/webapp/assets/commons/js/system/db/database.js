@@ -26,7 +26,23 @@ var DataBase = {
 		}, {
 			field : 'updateTime',
 			title : '最后修改时间'
-		} ];
+		} ,{
+			field : 'table',
+			title : '查看表',
+			formatter:function(value, row, index){
+				var html = "<a style='margin:10px;' class='btn btn-info btn-sm' href='system/db/table/index.htm?dbCode="+row.dbCode+"'>查看</a>";
+				return html;
+			}
+		},{
+			field : 'operate',
+			title : '操作',
+			formatter:function(value, row, index) {
+				var code = row.dbCode;
+				var html = "<a style='margin:10px;' class='btn btn-info btn-sm' href='javacript:void(0)' onclick='DataBase.openEdit(\""+code+"\")'>编辑</a>";
+				html += "<a style='margin:10px;' class='btn btn-info btn-sm' href='javacript:void(0)' onclick='DataBase.del(\"" + code + "\")'>删除</a>";
+				return html;
+			}
+		}];
 		Table.init("table", "system/db/database/data.htm", columns, DataBase
 				.searchParam());
 	},

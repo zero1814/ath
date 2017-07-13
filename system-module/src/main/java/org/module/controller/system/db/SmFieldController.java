@@ -1,49 +1,45 @@
 package org.module.controller.system.db;
 
-import org.module.dto.system.db.SmDatabaseDto;
-import org.module.model.system.db.SmDatabase;
+import org.module.dto.system.db.SmFieldDto;
+import org.module.model.system.db.SmField;
 import org.module.result.EntityResult;
 import org.module.result.PageResult;
 import org.module.result.RootResult;
-import org.module.service.system.db.ISmDatabaseService;
+import org.module.service.system.db.ISmFiledService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
-@RequestMapping("system/db/database/")
-public class SmDatabaseController {
+@RequestMapping("system/db/field/")
+public class SmFieldController {
 
 	@Autowired
-	private ISmDatabaseService service;
+	private ISmFiledService service;
 
 	@RequestMapping("index")
-	public String index() {
-		return "jsp/system/db/database/index";
+	public String index(String tableCode, ModelMap model) {
+		model.addAttribute("tableCode", tableCode != null ? tableCode : "");
+		return "jsp/system/db/filed/index";
 	}
 
 	@RequestMapping("data")
 	@ResponseBody
-	public PageResult data(SmDatabaseDto dto) {
+	public PageResult data(SmFieldDto dto) {
 		return service.findEntityToPage(dto);
 	}
-
-	@RequestMapping("sync")
-	@ResponseBody
-	public RootResult sync() {
-		return service.sync();
-	}
-
+	
 	@RequestMapping("edit")
 	@ResponseBody
-	public EntityResult edit(SmDatabase entity) {
+	public EntityResult edit(SmField entity){
 		return service.updateByCode(entity);
 	}
-
+	
 	@RequestMapping("del")
 	@ResponseBody
-	public RootResult del(String dbCode) {
-		return service.deleteByCode(dbCode);
+	public RootResult del(String filedCode){
+		return service.deleteByCode(filedCode);
 	}
 }

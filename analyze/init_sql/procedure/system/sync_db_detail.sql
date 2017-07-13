@@ -43,7 +43,7 @@ BEGIN
 	);
 
 #添加数据表字段到sm_field
-INSERT INTO systemmodule.sm_filed (
+INSERT INTO systemmodule.sm_field (
 	`uid`,
 	table_code,
 	field_code,
@@ -108,7 +108,7 @@ AND concat(a.TABLE_NAME, a.column_name) NOT IN (
 	SELECT
 		concat(table_name, field_code)
 	FROM
-		systemmodule.sm_filed
+		systemmodule.sm_field
 );
 
 END

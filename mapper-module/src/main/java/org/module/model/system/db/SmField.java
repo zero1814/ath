@@ -5,7 +5,7 @@ import org.module.annotation.mapper.db.Table;
 import org.module.model.BaseModel;
 
 @Table(name = "sm_filed", database = "systemmodule", comment = "页面显示字段维护表")
-public class SmFiled extends BaseModel {
+public class SmField extends BaseModel {
 
 	private static final long serialVersionUID = 5837827207956341076L;
 

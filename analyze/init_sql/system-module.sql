@@ -219,9 +219,9 @@ CREATE TABLE sm_table (
 ) COMMENT '数据表维护表';
 
 DROP TABLE
-IF EXISTS sm_filed;
+IF EXISTS sm_field;
 
-CREATE TABLE sm_filed (
+CREATE TABLE sm_field (
 	id INT PRIMARY KEY AUTO_INCREMENT COMMENT '主键',
 	uid VARCHAR (50) NOT NULL COMMENT 'uuid',
 	table_code VARCHAR (50) NOT NULL COMMENT '数据表编码',

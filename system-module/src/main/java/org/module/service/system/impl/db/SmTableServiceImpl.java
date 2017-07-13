@@ -1,10 +1,15 @@
 package org.module.service.system.impl.db;
 
+import org.module.dto.system.db.SmFieldDto;
 import org.module.dto.system.db.SmTableDto;
 import org.module.mapper.system.db.SmTableMapper;
 import org.module.model.system.db.SmTable;
+import org.module.result.DataResult;
+import org.module.result.RootResult;
 import org.module.service.impl.BaseServiceImpl;
+import org.module.service.system.db.ISmFiledService;
 import org.module.service.system.db.ISmTableService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 /**
@@ -16,5 +21,27 @@ import org.springframework.stereotype.Service;
  */
 @Service
 public class SmTableServiceImpl extends BaseServiceImpl<SmTable, SmTableMapper, SmTableDto> implements ISmTableService {
+
+	@Autowired
+	private ISmFiledService filedService;
+
+	@Override
+	public RootResult deleteByCode(String tableCode) {
+		RootResult result = new RootResult();
+		SmFieldDto dto = new SmFieldDto();
+		dto.setTableCode(tableCode);
+		DataResult filedResult = filedService.findDataAll(dto);
+		if (filedResult.getCode() == 0) {
+			if (filedResult.getData() != null && filedResult.getData().size() > 0) {
+				result.setCode(-1);
+				result.setMessage("数据表中存在数据字段信息，请先删除数据字段信息");
+			} else {
+				result = super.deleteByCode(tableCode);
+			}
+		} else {
+			result = filedResult;
+		}
+		return result;
+	}
 
 }

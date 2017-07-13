@@ -33,11 +33,11 @@
 		select
 		<include refid="Base_Column_List" />
 		from systemmodule.sm_database
-		where `code` = #{code,jdbcType=VARCHAR}
+		where `db_code` = #{dbCode,jdbcType=VARCHAR}
 	</select>
 	<delete id="deleteByCode" parameterType="java.lang.String">
 		delete from systemmodule.sm_database
-		where `code` = #{code,jdbcType=VARCHAR}
+		where `db_code` = #{dbCode,jdbcType=VARCHAR}
 	</delete>
 	<insert id="insertSelective" parameterType="org.module.model.system.db.SmDatabase">
 		insert into systemmodule.sm_database
@@ -105,7 +105,7 @@
 			update_time =
 			STR_TO_DATE(#{updateTime,jdbcType=VARCHAR},'%Y-%m-%d %H:%i:%s'),
 		</set>
-		where `code` = #{code,jdbcType=VARCHAR}
+		where `db_code` = #{dbCode,jdbcType=VARCHAR}
 	</update>
 	<select id="findEntityAllToPage" parameterType="org.module.dto.system.db.SmDatabaseDto"
 		resultMap="BaseResultMap">
@@ -118,6 +118,7 @@
 				and `db_name` = #{dbName,jdbcType=VARCHAR}
 			</if>
 		</where>
+		limit #{start,jdbcType=INTEGER},#{pageSize,jdbcType=INTEGER}
 	</select>
 	<select id="findEntityAllCountToPage" parameterType="org.module.dto.system.db.SmDatabaseDto"
 		resultType="java.lang.Integer">

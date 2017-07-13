@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="org.module.mapper.system.db.SmFiledMapper">
-	<resultMap id="BaseResultMap" type="org.module.model.system.db.SmFiled">
+<mapper namespace="org.module.mapper.system.db.SmFieldMapper">
+	<resultMap id="BaseResultMap" type="org.module.model.system.db.SmField">
 		<id column="id" property="id" jdbcType="INTEGER" />
 		<result column="uid" property="uid" jdbcType="VARCHAR" />
 		<result column="table_code" property="tableCode" jdbcType="VARCHAR" />
@@ -46,16 +46,18 @@
 		parameterType="java.lang.String">
 		select
 		<include refid="Base_Column_List" />
-		from systemmodule.sm_filed
-		where `code` = #{code,jdbcType=VARCHAR}
+		from systemmodule.sm_field
+		where `field_code` =
+		#{fieldCode,jdbcType=VARCHAR}
 	</select>
 	<delete id="deleteByCode" parameterType="java.lang.String">
 		delete from
-		systemmodule.sm_filed
-		where `code` = #{code,jdbcType=VARCHAR}
+		systemmodule.sm_field
+		where `field_code` =
+		#{fieldCode,jdbcType=VARCHAR}
 	</delete>
-	<insert id="insertSelective" parameterType="org.module.model.system.db.SmFiled">
-		insert into systemmodule.sm_filed
+	<insert id="insertSelective" parameterType="org.module.model.system.db.SmField">
+		insert into systemmodule.sm_field
 		<trim prefix="(" suffix=")" suffixOverrides=",">
 			uid,
 			table_code,
@@ -141,8 +143,8 @@
 			%H:%i:%s'),
 		</trim>
 	</insert>
-	<update id="updateByCode" parameterType="org.module.model.system.db.SmFiled">
-		update systemmodule.sm_filed
+	<update id="updateByCode" parameterType="org.module.model.system.db.SmField">
+		update systemmodule.sm_field
 		<set>
 			<if test="fieldName != null and fieldName != ''">
 				field_name = #{fieldName,jdbcType=VARCHAR},
@@ -181,39 +183,43 @@
 			update_time =
 			STR_TO_DATE(#{updateTime,jdbcType=VARCHAR},'%Y-%m-%d %H:%i:%s'),
 		</set>
-		where `code` = #{code,jdbcType=VARCHAR}
+		where `field_code` = #{fieldCode,jdbcType=VARCHAR}
 	</update>
-	<select id="findEntityAllToPage" parameterType="org.module.dto.system.db.SmFiledDto"
+	<select id="findEntityAllToPage" parameterType="org.module.dto.system.db.SmFieldDto"
 		resultMap="BaseResultMap">
 		select
 		<include refid="Base_Column_List" />
-		from systemmodule.sm_filed
+		from systemmodule.sm_field
 		<where>
-			table_code =#{tableCode,jdbcType=VARCHAR}
-			<if test="fileCode != null and fileCode != ''">
-				and file_code = #{fileCode,jdbcType=VARCHAR}
+			1=1
+			<if test="tableCode != null and tableCode != ''">
+				and table_code =#{tableCode,jdbcType=VARCHAR}
 			</if>
-			<if test="fileName != null and fileName != ''">
-				and file_name = #{fileName,jdbcType=VARCHAR}
+			<if test="fieldCode != null and fieldCode != ''">
+				and filed_code = #{fieldCode,jdbcType=VARCHAR}
+			</if>
+			<if test="fieldName != null and fieldName != ''">
+				and file_name = #{fieldName,jdbcType=VARCHAR}
 			</if>
 		</where>
+		limit #{start,jdbcType=INTEGER},#{pageSize,jdbcType=INTEGER}
 	</select>
-	<select id="findEntityAllCountToPage" parameterType="org.module.dto.system.db.SmFiledDto"
+	<select id="findEntityAllCountToPage" parameterType="org.module.dto.system.db.SmFieldDto"
 		resultType="java.lang.Integer">
 		select count(1)
-		from systemmodule.sm_filed
+		from systemmodule.sm_field
 		<where>
 			table_code =#{tableCode,jdbcType=VARCHAR}
-			<if test="fileCode != null and fileCode != ''">
-				and file_code = #{fileCode,jdbcType=VARCHAR}
+			<if test="fieldCode != null and fieldCode != ''">
+				and filed_code = #{fieldCode,jdbcType=VARCHAR}
 			</if>
-			<if test="fileName != null and fileName != ''">
-				and file_name = #{fileName,jdbcType=VARCHAR}
+			<if test="fieldName != null and fieldName != ''">
+				and file_name = #{fieldName,jdbcType=VARCHAR}
 			</if>
 		</where>
 	</select>
 	<!-- 数据表新添加字段 -->
-	<update id="insertTableColumn" parameterType="org.module.model.system.db.SmFiled">
+	<update id="insertTableColumn" parameterType="org.module.model.system.db.SmField">
 		alter table ${tableCode}
 		Add column ${fieldCode}
 		${fieldType}
@@ -225,7 +231,7 @@
 		</if>
 	</update>
 	<!-- 数据表修改字段 -->
-	<update id="editTableColumn" parameterType="org.module.model.system.db.SmFiled">
+	<update id="editTableColumn" parameterType="org.module.model.system.db.SmField">
 		alter table ${tableCode} modify column ${fieldCode} ${fieldType}
 		<if test="fieldLength != 0">
 			(${fieldLength}
@@ -236,8 +242,27 @@
 		</if>
 	</update>
 	<!-- 数据表删除字段 -->
-	<update id="dropTableColumn" parameterType="org.module.model.system.db.SmFiled">
+	<update id="dropTableColumn" parameterType="org.module.model.system.db.SmField">
 		alter table
 		${tableCode} drop column ${fieldCode}
 	</update>
+
+	<select id="findEntityAll" parameterType="org.module.dto.system.db.SmFieldDto"
+		resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from systemmodule.sm_field
+		<where>
+			1=1
+			<if test="tableCode != null and tableCode != ''">
+				and table_code =#{tableCode,jdbcType=VARCHAR}
+			</if>
+			<if test="fieldCode != null and fieldCode != ''">
+				and filed_code = #{fieldCode,jdbcType=VARCHAR}
+			</if>
+			<if test="fieldName != null and fieldName != ''">
+				and field_name = #{fieldName,jdbcType=VARCHAR}
+			</if>
+		</where>
+	</select>
 </mapper>

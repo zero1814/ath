@@ -1,11 +1,14 @@
 package org.module.service.system.impl.db;
 
 import org.module.dto.system.db.SmDatabaseDto;
+import org.module.dto.system.db.SmTableDto;
 import org.module.mapper.system.db.SmDatabaseMapper;
 import org.module.model.system.db.SmDatabase;
+import org.module.result.DataResult;
 import org.module.result.RootResult;
 import org.module.service.impl.BaseServiceImpl;
 import org.module.service.system.db.ISmDatabaseService;
+import org.module.service.system.db.ISmTableService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -22,6 +25,8 @@ public class SmDatabaseServiceImpl extends BaseServiceImpl<SmDatabase, SmDatabas
 
 	@Autowired
 	private SmDatabaseMapper mapper;
+	@Autowired
+	private ISmTableService tableService;
 
 	/**
 	 * 
@@ -41,6 +46,25 @@ public class SmDatabaseServiceImpl extends BaseServiceImpl<SmDatabase, SmDatabas
 			e.printStackTrace();
 			result.setCode(-1);
 			result.setMessage("同步失败，失败原因：" + e.getMessage());
+		}
+		return result;
+	}
+
+	@Override
+	public RootResult deleteByCode(String dbCode) {
+		RootResult result = new RootResult();
+		SmTableDto dto = new SmTableDto();
+		dto.setDbCode(dbCode);
+		DataResult tableResult = tableService.findDataAll(dto);
+		if (tableResult.getCode() == 0) {
+			if (tableResult.getData() != null && tableResult.getData().size() > 0) {
+				result.setCode(-1);
+				result.setMessage("数据库中包含表数据，请先删除数据表信息");
+			} else {
+				result = super.deleteByCode(dbCode);
+			}
+		} else {
+			result = tableResult;
 		}
 		return result;
 	}

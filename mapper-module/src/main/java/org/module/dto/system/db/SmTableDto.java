@@ -4,11 +4,24 @@ import org.module.dto.BaseDto;
 
 public class SmTableDto extends BaseDto {
 
+	private String dbCode;
+	
 	private String tableCode;
 
 	private String tableName;
 
 	private String type;
+
+	
+	
+	
+	public String getDbCode() {
+		return dbCode;
+	}
+
+	public void setDbCode(String dbCode) {
+		this.dbCode = dbCode;
+	}
 
 	public String getTableCode() {
 		return tableCode;

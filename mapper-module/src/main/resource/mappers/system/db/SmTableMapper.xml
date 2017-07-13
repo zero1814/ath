@@ -30,12 +30,14 @@
 		select
 		<include refid="Base_Column_List" />
 		from systemmodule.sm_table
-		where `code` = #{code,jdbcType=VARCHAR}
+		where `table_code` =
+		#{tableCode,jdbcType=VARCHAR}
 	</select>
 	<delete id="deleteByCode" parameterType="java.lang.String">
 		delete from
 		systemmodule.sm_table
-		where `code` = #{code,jdbcType=VARCHAR}
+		where `table_code` =
+		#{tableCode,jdbcType=VARCHAR}
 	</delete>
 	<insert id="insertSelective" parameterType="org.module.model.system.db.SmTable">
 		insert into systemmodule.sm_table
@@ -87,7 +89,7 @@
 			update_time =
 			STR_TO_DATE(#{updateTime,jdbcType=VARCHAR},'%Y-%m-%d %H:%i:%s'),
 		</set>
-		where `code` = #{code,jdbcType=VARCHAR}
+		where `table_code` = #{tableCode,jdbcType=VARCHAR}
 	</update>
 	<select id="findEntityAllToPage" parameterType="org.module.dto.system.db.SmTableDto"
 		resultMap="BaseResultMap">
@@ -96,6 +98,30 @@
 		from systemmodule.sm_table
 		<where>
 			1=1
+			<if test="dbCode != null and dbCode !=''">
+				and db_code = #{dbCode,jdbcType=VARCHAR}
+			</if>
+			<if test="tableCode != null and tableCode !=''">
+				and table_code = #{tableCode,jdbcType=VARCHAR}
+			</if>
+			<if test="tableName != null and tableName !=''">
+				and table_name = #{tableName,jdbcType=VARCHAR}
+			</if>
+			<if test="type != null and type !=''">
+				and type = #{type,jdbcType=VARCHAR}
+			</if>
+		</where>
+		limit #{start,jdbcType=INTEGER},#{pageSize,jdbcType=INTEGER}
+	</select>
+	<select id="findEntityAllCountToPage" parameterType="org.module.dto.system.db.SmTableDto"
+		resultType="java.lang.Integer">
+		select count(1)
+		from systemmodule.sm_table
+		<where>
+			1=1
+			<if test="dbCode != null and dbCode !=''">
+				and db_code = #{dbCode,jdbcType=VARCHAR}
+			</if>
 			<if test="tableCode != null and tableCode !=''">
 				and table_code = #{tableCode,jdbcType=VARCHAR}
 			</if>
@@ -107,12 +133,15 @@
 			</if>
 		</where>
 	</select>
-	<select id="findEntityAllCountToPage" parameterType="org.module.dto.system.db.SmTableDto"
-		resultType="java.lang.Integer">
-		select count(1)
+	<select id="findEntityAll" parameterType="org.module.dto.system.db.SmTableDto" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
 		from systemmodule.sm_table
 		<where>
 			1=1
+			<if test="dbCode != null and dbCode !=''">
+				and db_code = #{dbCode,jdbcType=VARCHAR}
+			</if>
 			<if test="tableCode != null and tableCode !=''">
 				and table_code = #{tableCode,jdbcType=VARCHAR}
 			</if>
