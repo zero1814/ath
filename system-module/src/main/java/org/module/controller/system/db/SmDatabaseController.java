@@ -2,6 +2,7 @@ package org.module.controller.system.db;
 
 import org.module.dto.system.db.SmDatabaseDto;
 import org.module.result.PageResult;
+import org.module.result.RootResult;
 import org.module.service.system.db.ISmDatabaseService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -24,5 +25,11 @@ public class SmDatabaseController {
 	@ResponseBody
 	public PageResult data(SmDatabaseDto dto) {
 		return service.findEntityToPage(dto);
+	}
+
+	@RequestMapping("sync")
+	@ResponseBody
+	public RootResult sync() {
+		return service.sync();
 	}
 }

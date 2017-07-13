@@ -130,4 +130,7 @@
 			</if>
 		</where>
 	</select>
+	<insert id="sync">
+		{call sync_db_detail}
+	</insert>
 </mapper>

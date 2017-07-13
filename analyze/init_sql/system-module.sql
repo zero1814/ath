@@ -98,11 +98,11 @@ CREATE TABLE sm_menu (
 	update_user VARCHAR (50) NOT NULL COMMENT '最后修改人',
 	update_time datetime NOT NULL COMMENT '最后修改时间'
 ) COMMENT '系统菜单表';
-INSERT INTO sm_menu(uid,`code`,group_code,page_code,`name`,create_user,create_time,update_user,update_time)VALUES(REPLACE (UUID(), '-', ''),'SM1000','SMG1000','SP1000','菜单管理','admin',now(),'admin',now());
+INSERT INTO sm_menu(uid,`code`,group_code,page_code,`name`,create_user,create_time,update_user,update_time)VALUES(REPLACE (UUID(), '-', ''),'SM1000','SMG1000','0','菜单管理','admin',now(),'admin',now());
 INSERT INTO sm_menu(uid,`code`,parent_code,group_code,page_code,`name`,create_user,create_time,update_user,update_time)VALUES(REPLACE (UUID(), '-', ''),'SM10001000','SM1000','SMG1000','SP10001000','菜单组管理','admin',now(),'admin',now());
-INSERT INTO sm_menu(uid,`code`,group_code,page_code,`name`,create_user,create_time,update_user,update_time)VALUES(REPLACE (UUID(), '-', ''),'SM1001','SMG1000','SP1000','页面管理','admin',now(),'admin',now());
+INSERT INTO sm_menu(uid,`code`,group_code,page_code,`name`,create_user,create_time,update_user,update_time)VALUES(REPLACE (UUID(), '-', ''),'SM1001','SMG1000','0','页面管理','admin',now(),'admin',now());
 INSERT INTO sm_menu(uid,`code`,parent_code,group_code,page_code,`name`,create_user,create_time,update_user,update_time)VALUES(REPLACE (UUID(), '-', ''),'SM10011000','SM1001','SMG1000','SP10011000','页面组管理','admin',now(),'admin',now());
-INSERT INTO sm_menu(uid,`code`,group_code,page_code,`name`,create_user,create_time,update_user,update_time)VALUES(REPLACE (UUID(), '-', ''),'SM1002','SMG1000','SP2000','数据管理','admin',now(),'admin',now());
+INSERT INTO sm_menu(uid,`code`,group_code,page_code,`name`,create_user,create_time,update_user,update_time)VALUES(REPLACE (UUID(), '-', ''),'SM1002','SMG1000','0','数据管理','admin',now(),'admin',now());
 INSERT INTO sm_menu(uid,`code`,parent_code,group_code,page_code,`name`,create_user,create_time,update_user,update_time)VALUES(REPLACE (UUID(), '-', ''),'SM10021000','SM1001','SMG1000','SP20001000','数据库管理','admin',now(),'admin',now());
 
 ############# 用户相关 ########################

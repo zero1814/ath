@@ -45,7 +45,8 @@
 	<div class="row">
 		<div class="col-sm-12">
 			<div class="btn-group hidden-xs" role="table">
-				<a href="javascript:void(0)" onclick="DataBase.openAdd();" class="btn btn-w-m btn-info">添加</a>
+				<a style="margin:5px;" href="javascript:void(0)" onclick="DataBase.openAdd();" class="btn btn-w-m btn-info">添加</a>
+				<a style="margin:5px;" href="javascript:void(0)" onclick="DataBase.sync();" class="btn btn-w-m btn-info">同步数据</a>
 			</div>
 			<table id="table" data-height="400" data-mobile-responsive="true">
 			</table>
