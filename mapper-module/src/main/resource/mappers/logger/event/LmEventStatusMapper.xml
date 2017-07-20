@@ -18,11 +18,11 @@
 		parameterType="java.lang.String">
 		select
 		<include refid="Base_Column_List" />
-		from lm_event_status
+		from loggermodule.lm_event_status
 		where event_code = #{eventCode,jdbcType=VARCHAR}
 	</select>
 	<insert id="insertSelective" parameterType="org.module.model.logger.event.LmEventStatus">
-		insert into lm_event_status
+		insert into loggermodule.lm_event_status
 		<trim prefix="(" suffix=")" suffixOverrides=",">
 			uid,
 			event_code,

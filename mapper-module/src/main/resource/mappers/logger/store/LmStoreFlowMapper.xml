@@ -20,11 +20,11 @@
 		parameterType="java.lang.String">
 		select
 		<include refid="Base_Column_List" />
-		from lm_store_flow
+		from loggermodule.lm_store_flow
 		where store_code = #{storeCode,jdbcType=VARCHAR}
 	</select>
 	<insert id="insertSelective" parameterType="org.module.model.logger.store.LmStoreFlow">
-		insert into lm_store_flow
+		insert into loggermodule.lm_store_flow
 		<trim prefix="(" suffix=")" suffixOverrides=",">
 			uid,
 			store_code,

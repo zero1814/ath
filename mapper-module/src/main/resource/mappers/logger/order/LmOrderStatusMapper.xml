@@ -23,11 +23,11 @@
 		parameterType="java.lang.String">
 		select
 		<include refid="Base_Column_List" />
-		from lm_order_status
+		from loggermodule.lm_order_status
 		where order_code = #{orderCode,jdbcType=VARCHAR}
 	</select>
 	<insert id="insertSelective" parameterType="org.module.model.logger.order.LmOrderStatus">
-		insert into lm_order_status
+		insert into loggermodule.lm_order_status
 		<trim prefix="(" suffix=")" suffixOverrides=",">
 			uid,
 			order_code,

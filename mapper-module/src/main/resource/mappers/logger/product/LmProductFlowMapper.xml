@@ -20,11 +20,11 @@
 		parameterType="java.lang.String">
 		select
 		<include refid="Base_Column_List" />
-		from lm_product_flow
+		from loggermodule.lm_product_flow
 		where product_code = #{productCode,jdbcType=VARCHAR}
 	</select>
 	<insert id="insertSelective" parameterType="org.module.model.logger.product.LmProductFlow">
-		insert into lm_product_flow
+		insert into loggermodule.lm_product_flow
 		<trim prefix="(" suffix=")" suffixOverrides=",">
 			uid,
 			product_code,
