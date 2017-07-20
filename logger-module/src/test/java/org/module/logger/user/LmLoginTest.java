@@ -14,15 +14,15 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 @ContextConfiguration(locations = { "classpath:spring/spring.xml", "classpath:spring/spring-mybatis.xml" })
 public class LmLoginTest {
 
-	@Autowired
-	private ILmLoginService service;
-
-	@Test
 	public void insert() {
-		LmLogin entity = new LmLogin();
-		entity.setUserCode("21111");
-		entity.setIp(WebHelper.getIpAddress());
-		entity.setLoginTime(DateUtil.getSysDateTime());
-		service.insertSelective(entity);
+	}
+
+	public void edit() {
+	}
+
+	public void sel() {
+	}
+
+	public void del() {
 	}
 }

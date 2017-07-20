@@ -8,4 +8,15 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 @ContextConfiguration(locations = { "classpath:spring/spring.xml", "classpath:spring/spring-mybatis.xml" })
 public class LmEventFlowTest {
 
+	public void insert() {
+	}
+
+	public void edit() {
+	}
+
+	public void sel() {
+	}
+
+	public void del() {
+	}
 }
