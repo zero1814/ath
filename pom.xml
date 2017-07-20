@@ -16,6 +16,7 @@
 		<module>cms</module>
 		<module>shiro-module</module>
 		<module>mapper-module</module>
+		<module>logger-module</module>
 	</modules>
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
