@@ -19,7 +19,7 @@
 		<result column="update_time" property="updateTime" jdbcType="VARCHAR" />
 	</resultMap>
 	<sql id="Base_Column_List">
-		id, uid, code, name, event_type, description, start_time,
+		id, uid, `code`, `name`, event_type, description, start_time,
 		end_time,
 		event_status,
 		event_pic_url, event_url, create_user,
@@ -84,7 +84,7 @@
 		update ordermodule.om_event_info
 		<set>
 			<if test="name != null and name !=''">
-				name = #{name,jdbcType=VARCHAR},
+				`name` = #{name,jdbcType=VARCHAR},
 			</if>
 			<if test="eventType != null">
 				event_type = #{eventType,jdbcType=VARCHAR},

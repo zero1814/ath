@@ -22,11 +22,11 @@
 		<result column="update_time" property="updateTime" jdbcType="VARCHAR" />
 	</resultMap>
 	<sql id="Base_Column_List">
-		id, uid, code, name, product_code, cost_price,
+		id, uid, `code`, `name`, product_code, cost_price,
 		market_price, sell_price,
 		stock_num,
 		security_stock_num, sku_pic_url,
-		status, mini_order, create_user,
+		`status`, mini_order, create_user,
 		DATE_FORMAT(create_time,'%Y-%m-%d
 		%H:%i:%s') as
 		create_time,

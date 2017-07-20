@@ -33,13 +33,13 @@
 		select
 		<include refid="Base_Column_List" />
 		from ordermodule.om_order_evaluation
-		where `code` =
-		#{code,jdbcType=VARCHAR}
+		where `order_code` = #{orderCode,jdbcType=VARCHAR}
 	</select>
 	<delete id="deleteByCode" parameterType="java.lang.String">
 		delete from
 		ordermodule.om_order_evaluation
-		where `code` = #{code,jdbcType=VARCHAR}
+		where `order_code` =
+		#{orderCode,jdbcType=VARCHAR}
 	</delete>
 	<insert id="insertSelective" parameterType="org.module.model.order.order.OmOrderEvaluation">
 		insert into ordermodule.om_order_evaluation

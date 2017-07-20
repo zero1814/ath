@@ -27,7 +27,7 @@
 		<result column="update_time" property="updateTime" jdbcType="VARCHAR" />
 	</resultMap>
 	<sql id="Base_Column_List">
-		id, uid, code, name, store_code, product_type,
+		id, uid, `code`, `name`, store_code, product_type,
 		product_status,
 		cost_price, min_sell_price,
 		max_sell_price, product_url,

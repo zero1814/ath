@@ -36,13 +36,14 @@
 		select
 		<include refid="Base_Column_List" />
 		from ordermodule.om_order_detail
-		where `code` =
-		#{code,jdbcType=VARCHAR}
+		where `order_code` =
+		#{orderCode,jdbcType=VARCHAR}
 	</select>
 	<delete id="deleteByPrimaryKey" parameterType="java.lang.String">
 		delete from
 		ordermodule.om_order_detail
-		where `code` = #{code,jdbcType=VARCHAR}
+		where `order_code` =
+		#{orderCode,jdbcType=VARCHAR}
 	</delete>
 	<insert id="insertSelective" parameterType="org.module.model.order.order.OmOrderDetail">
 		insert into ordermodule.om_order_detail
@@ -115,6 +116,6 @@
 			update_time =
 			STR_TO_DATE(#{updateTime,jdbcType=VARCHAR},'%Y-%m-%d %H:%i:%s'),
 		</set>
-		where `code` = #{code,jdbcType=VARCHAR}
+		where `order_code` = #{orderCode,jdbcType=VARCHAR}
 	</update>
 </mapper>

@@ -13,7 +13,7 @@
 		<result column="update_time" property="updateTime" jdbcType="VARCHAR" />
 	</resultMap>
 	<sql id="Base_Column_List">
-		id, uid, code, parent_code, name, create_user,
+		id, uid, `code`, parent_code, `name`, create_user,
 		DATE_FORMAT(create_time,'%Y-%m-%d
 		%H:%i:%s') as
 		create_time,
