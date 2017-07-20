@@ -1,4 +1,4 @@
-package org.module.logger;
+package org.module.logger.user;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
