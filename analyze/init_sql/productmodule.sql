@@ -18,7 +18,7 @@ USE productmodule;
 DROP TABLE
 IF EXISTS pm_define;
 
-CREATE TABLE pm_product_type (
+CREATE TABLE pm_define (
 	id INT PRIMARY KEY AUTO_INCREMENT COMMENT '主键',
 	uid VARCHAR (50) NOT NULL COMMENT 'uuid',
 	`code` VARCHAR (50) NOT NULL UNIQUE COMMENT '编码',
@@ -94,8 +94,8 @@ CREATE TABLE pm_sku_info (
 	stock_num INT DEFAULT 0 COMMENT '库存数',
 	security_stock_num INT DEFAULT 0 COMMENT '安全库存',
 	sku_pic_url VARCHAR (200) DEFAULT '' COMMENT '产品图片',
-	sku_status VARCHAR (50) NOT NULL COMMENT 'sku状态',
-	mini_order INT DEFAULT 1 COMMENT '起订数量',
+	`status` VARCHAR (50) NOT NULL COMMENT 'sku状态',
+	mini_order INT DEFAULT 1 COMMENT '最小起订数量',
 	create_user VARCHAR (50) NOT NULL COMMENT '创建人',
 	create_time datetime NOT NULL COMMENT '创建时间',
 	update_user VARCHAR (50) NOT NULL COMMENT '最后修改人',

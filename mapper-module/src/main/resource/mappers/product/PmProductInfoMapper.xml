@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="org.module.mapper.product.PmProductInfoMapper">
+	<resultMap id="BaseResultMap" type="org.module.model.product.PmProductInfo">
+		<id column="id" property="id" jdbcType="INTEGER" />
+		<result column="uid" property="uid" jdbcType="VARCHAR" />
+		<result column="code" property="code" jdbcType="VARCHAR" />
+		<result column="name" property="name" jdbcType="VARCHAR" />
+		<result column="store_code" property="storeCode" jdbcType="VARCHAR" />
+		<result column="product_type" property="productType" jdbcType="VARCHAR" />
+		<result column="product_status" property="productStatus"
+			jdbcType="VARCHAR" />
+		<result column="cost_price" property="costPrice" jdbcType="DECIMAL" />
+		<result column="min_sell_price" property="minSellPrice"
+			jdbcType="DECIMAL" />
+		<result column="max_sell_price" property="maxSellPrice"
+			jdbcType="DECIMAL" />
+		<result column="product_url" property="productUrl" jdbcType="VARCHAR" />
+		<result column="product_pic" property="productPic" jdbcType="VARCHAR" />
+		<result column="product_label" property="productLabel"
+			jdbcType="VARCHAR" />
+		<result column="product_specification" property="productSpecification"
+			jdbcType="VARCHAR" />
+		<result column="create_user" property="createUser" jdbcType="VARCHAR" />
+		<result column="create_time" property="createTime" jdbcType="VARCHAR" />
+		<result column="update_user" property="updateUser" jdbcType="VARCHAR" />
+		<result column="update_time" property="updateTime" jdbcType="VARCHAR" />
+	</resultMap>
+	<sql id="Base_Column_List">
+		id, uid, code, name, store_code, product_type,
+		product_status,
+		cost_price, min_sell_price,
+		max_sell_price, product_url,
+		product_pic, product_label, product_specification,
+		create_user,
+		DATE_FORMAT(create_time,'%Y-%m-%d
+		%H:%i:%s') as
+		create_time,
+		update_user,
+		DATE_FORMAT(update_time,'%Y-%m-%d %H:%i:%s')
+		as
+		update_time
+	</sql>
+	<select id="selectByCode" resultMap="BaseResultMap"
+		parameterType="java.lang.String">
+		select
+		<include refid="Base_Column_List" />
+		from productmodule.pm_product_info
+		where `code` =
+		#{code,jdbcType=VARCHAR}
+	</select>
+	<delete id="deleteByCode" parameterType="java.lang.String">
+		delete from
+		productmodule.pm_product_info
+		where `code` = #{code,jdbcType=VARCHAR}
+	</delete>
+	<insert id="insertSelective" parameterType="org.module.model.product.PmProductInfo">
+		insert into productmodule.pm_product_info
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			uid,
+			code,
+			name,
+			store_code,
+			product_type,
+			product_status,
+			<if test="costPrice != null">
+				cost_price,
+			</if>
+			<if test="minSellPrice != null">
+				min_sell_price,
+			</if>
+			<if test="maxSellPrice != null">
+				max_sell_price,
+			</if>
+			product_url,
+			product_pic,
+			<if test="productLabel != null and productLabel !=''">
+				product_label,
+			</if>
+			<if test="productSpecification != null and productSpecification !=''">
+				product_specification,
+			</if>
+			create_user,
+			create_time,
+			update_user,
+			update_time,
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			#{uid,jdbcType=VARCHAR},
+			#{code,jdbcType=VARCHAR},
+			#{name,jdbcType=VARCHAR},
+			#{storeCode,jdbcType=VARCHAR},
+			#{productType,jdbcType=VARCHAR},
+			#{productStatus,jdbcType=VARCHAR},
+			<if test="costPrice != null">
+				#{costPrice,jdbcType=DECIMAL},
+			</if>
+			<if test="minSellPrice != null">
+				#{minSellPrice,jdbcType=DECIMAL},
+			</if>
+			<if test="maxSellPrice != null">
+				#{maxSellPrice,jdbcType=DECIMAL},
+			</if>
+			#{productUrl,jdbcType=VARCHAR},
+			#{productPic,jdbcType=VARCHAR},
+			<if test="productLabel != null and productLabel !=''">
+				#{productLabel,jdbcType=VARCHAR},
+			</if>
+			<if test="productSpecification != null and productSpecification !=''">
+				#{productSpecification,jdbcType=VARCHAR},
+			</if>
+			#{createUser,jdbcType=VARCHAR},
+			STR_TO_DATE(#{createTime,jdbcType=VARCHAR},'%Y-%m-%d
+			%H:%i:%s'),
+			#{updateUser,jdbcType=VARCHAR},
+			STR_TO_DATE(#{updateTime,jdbcType=VARCHAR},'%Y-%m-%d
+			%H:%i:%s'),
+		</trim>
+	</insert>
+	<update id="updateByCode" parameterType="org.module.model.product.PmProductInfo">
+		update productmodule.pm_product_info
+		<set>
+			<if test="name != null and name !=''">
+				name = #{name,jdbcType=VARCHAR},
+			</if>
+			<if test="productType != null and productType !=''">
+				product_type = #{productType,jdbcType=VARCHAR},
+			</if>
+			<if test="productStatus != null and productStatus !=''">
+				product_status = #{productStatus,jdbcType=VARCHAR},
+			</if>
+			<if test="costPrice != null">
+				cost_price = #{costPrice,jdbcType=DECIMAL},
+			</if>
+			<if test="minSellPrice != null">
+				min_sell_price = #{minSellPrice,jdbcType=DECIMAL},
+			</if>
+			<if test="maxSellPrice != null">
+				max_sell_price = #{maxSellPrice,jdbcType=DECIMAL},
+			</if>
+			<if test="productUrl != null and productUrl !=''">
+				product_url = #{productUrl,jdbcType=VARCHAR},
+			</if>
+			<if test="productPic != null and productPic !=''">
+				product_pic = #{productPic,jdbcType=VARCHAR},
+			</if>
+			<if test="productLabel != null and productLabel !=''">
+				product_label = #{productLabel,jdbcType=VARCHAR},
+			</if>
+			<if test="productSpecification != null and productSpecification !=''">
+				product_specification =
+				#{productSpecification,jdbcType=VARCHAR},
+			</if>
+			update_user = #{updateUser,jdbcType=VARCHAR},
+			update_time =
+			#{updateTime,jdbcType=VARCHAR},
+		</set>
+		where `code` = #{code,jdbcType=VARCHAR}
+	</update>
+</mapper>

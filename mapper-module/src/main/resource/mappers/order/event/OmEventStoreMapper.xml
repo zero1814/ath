@@ -14,7 +14,12 @@
 	</resultMap>
 	<sql id="Base_Column_List">
 		id, uid, event_code, store_code, is_all, create_user,
-		create_time,update_user,
+		DATE_FORMAT(create_time,'%Y-%m-%d
+		%H:%i:%s') as
+		create_time,
+		update_user,
+		DATE_FORMAT(update_time,'%Y-%m-%d %H:%i:%s')
+		as
 		update_time
 	</sql>
 	<select id="selectByCode" resultMap="BaseResultMap"
@@ -51,9 +56,11 @@
 				#{isAll,jdbcType=INTEGER},
 			</if>
 			#{createUser,jdbcType=VARCHAR},
-			#{createTime,jdbcType=VARCHAR},
+			STR_TO_DATE(#{createTime,jdbcType=VARCHAR},'%Y-%m-%d
+			%H:%i:%s'),
 			#{updateUser,jdbcType=VARCHAR},
-			#{updateTime,jdbcType=VARCHAR},
+			STR_TO_DATE(#{updateTime,jdbcType=VARCHAR},'%Y-%m-%d
+			%H:%i:%s'),
 		</trim>
 	</insert>
 	<update id="updateByPrimaryKeySelective" parameterType="org.module.model.order.event.OmEventStore">
@@ -64,7 +71,7 @@
 			</if>
 			update_user = #{updateUser,jdbcType=VARCHAR},
 			update_time =
-			#{updateTime,jdbcType=VARCHAR},
+			STR_TO_DATE(#{updateTime,jdbcType=VARCHAR},'%Y-%m-%d %H:%i:%s'),
 		</set>
 		where `code` = #{code,jdbcType=VARCHAR}
 	</update>

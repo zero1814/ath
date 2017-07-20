@@ -23,14 +23,18 @@
 		id, uid, order_code, product_code, sku_code, store_code,
 		evaluate_type, evaluate_score,
 		evaluate_content,evaluate_pic,
-		create_user, create_time
+		create_user,
+		DATE_FORMAT(create_time,'%Y-%m-%d
+		%H:%i:%s') as
+		create_time
 	</sql>
 	<select id="selectByCode" resultMap="BaseResultMap"
 		parameterType="java.lang.String">
 		select
 		<include refid="Base_Column_List" />
 		from ordermodule.om_order_evaluation
-		where `code` = #{code,jdbcType=VARCHAR}
+		where `code` =
+		#{code,jdbcType=VARCHAR}
 	</select>
 	<delete id="deleteByCode" parameterType="java.lang.String">
 		delete from
@@ -62,7 +66,8 @@
 			#{evaluateScore,jdbcType=INTEGER},
 			#{evaluateContent,jdbcType=VARCHAR},
 			#{createUser,jdbcType=VARCHAR},
-			#{createTime,jdbcType=VARCHAR},
+			STR_TO_DATE(#{createTime,jdbcType=VARCHAR},'%Y-%m-%d
+			%H:%i:%s'),
 			#{evaluatePic,jdbcType=LONGVARCHAR},
 		</trim>
 	</insert>

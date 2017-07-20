@@ -25,7 +25,13 @@
 		order_source,
 		order_money, payed_money,
 		outer_code, store_code,
-		asale_code, create_user, create_time, update_user,
+		asale_code, create_user,
+		DATE_FORMAT(create_time,'%Y-%m-%d
+		%H:%i:%s') as
+		create_time,
+		update_user,
+		DATE_FORMAT(update_time,'%Y-%m-%d %H:%i:%s')
+		as
 		update_time
 	</sql>
 	<select id="selectByCode" resultMap="BaseResultMap"
@@ -76,9 +82,11 @@
 			#{storeCode,jdbcType=VARCHAR},
 			#{asaleCode,jdbcType=VARCHAR},
 			#{createUser,jdbcType=VARCHAR},
-			#{createTime,jdbcType=VARCHAR},
+			STR_TO_DATE(#{createTime,jdbcType=VARCHAR},'%Y-%m-%d
+			%H:%i:%s'),
 			#{updateUser,jdbcType=VARCHAR},
-			#{updateTime,jdbcType=VARCHAR},
+			STR_TO_DATE(#{updateTime,jdbcType=VARCHAR},'%Y-%m-%d
+			%H:%i:%s'),
 		</trim>
 	</insert>
 	<update id="updateByCode" parameterType="org.module.model.order.order.OmOrderInfo">
@@ -92,7 +100,7 @@
 			</if>
 			update_user = #{updateUser,jdbcType=VARCHAR},
 			update_time =
-			#{updateTime,jdbcType=VARCHAR},
+			STR_TO_DATE(#{updateTime,jdbcType=VARCHAR},'%Y-%m-%d %H:%i:%s'),
 		</set>
 		where `code` = #{code,jdbcType=VARCHAR}
 	</update>

@@ -1,20 +1,19 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="org.module.mapper.order.order.OmOrderPaymentMapper">
-	<resultMap id="BaseResultMap" type="org.module.model.order.order.OmOrderPayment">
+<mapper namespace="org.module.mapper.product.PmAuthorityLogoMapper">
+	<resultMap id="BaseResultMap" type="org.module.model.product.PmAuthorityLogo">
 		<id column="id" property="id" jdbcType="INTEGER" />
 		<result column="uid" property="uid" jdbcType="VARCHAR" />
 		<result column="code" property="code" jdbcType="VARCHAR" />
 		<result column="name" property="name" jdbcType="VARCHAR" />
-		<result column="gateway" property="gateway" jdbcType="VARCHAR" />
-		<result column="status" property="status" jdbcType="VARCHAR" />
+		<result column="pic_url" property="picUrl" jdbcType="VARCHAR" />
 		<result column="create_user" property="createUser" jdbcType="VARCHAR" />
 		<result column="create_time" property="createTime" jdbcType="VARCHAR" />
 		<result column="update_user" property="updateUser" jdbcType="VARCHAR" />
 		<result column="update_time" property="updateTime" jdbcType="VARCHAR" />
 	</resultMap>
 	<sql id="Base_Column_List">
-		id, uid, code, name, gateway, status, create_user,
+		id, uid, `code`, `name`, pic_url, create_user,
 		DATE_FORMAT(create_time,'%Y-%m-%d
 		%H:%i:%s') as
 		create_time,
@@ -27,23 +26,22 @@
 		parameterType="java.lang.String">
 		select
 		<include refid="Base_Column_List" />
-		from ordermodule.om_order_payment
+		from productmodule.pm_authority_logo
 		where `code` =
 		#{code,jdbcType=VARCHAR}
 	</select>
 	<delete id="deleteByCode" parameterType="java.lang.String">
 		delete from
-		ordermodule.om_order_payment
+		productmodule.pm_authority_logo
 		where `code` = #{code,jdbcType=VARCHAR}
 	</delete>
-	<insert id="insertSelective" parameterType="org.module.model.order.order.OmOrderPayment">
-		insert into ordermodule.om_order_payment
+	<insert id="insertSelective" parameterType="org.module.model.product.PmAuthorityLogo">
+		insert into productmodule.pm_authority_logo
 		<trim prefix="(" suffix=")" suffixOverrides=",">
 			uid,
 			`code`,
 			`name`,
-			gateway,
-			`status`,
+			pic_url,
 			create_user,
 			create_time,
 			update_user,
@@ -53,8 +51,7 @@
 			#{uid,jdbcType=VARCHAR},
 			#{code,jdbcType=VARCHAR},
 			#{name,jdbcType=VARCHAR},
-			#{gateway,jdbcType=VARCHAR},
-			#{status,jdbcType=VARCHAR},
+			#{picUrl,jdbcType=VARCHAR},
 			#{createUser,jdbcType=VARCHAR},
 			STR_TO_DATE(#{createTime,jdbcType=VARCHAR},'%Y-%m-%d
 			%H:%i:%s'),
@@ -63,21 +60,18 @@
 			%H:%i:%s'),
 		</trim>
 	</insert>
-	<update id="updateByCode" parameterType="org.module.model.order.order.OmOrderPayment">
-		update ordermodule.om_order_payment
+	<update id="updateByPrimaryKeySelective" parameterType="org.module.model.product.PmAuthorityLogo">
+		update productmodule.pm_authority_logo
 		<set>
-			<if test="name != null and name != ''">
+			<if test="name != null and name !=''">
 				`name` = #{name,jdbcType=VARCHAR},
 			</if>
-			<if test="gateway != null and gateway!=''">
-				gateway = #{gateway,jdbcType=VARCHAR},
-			</if>
-			<if test="status != null and status !=''">
-				`status` = #{status,jdbcType=VARCHAR},
+			<if test="picUrl != null and picUrl !=''">
+				pic_url = #{picUrl,jdbcType=VARCHAR},
 			</if>
 			update_user = #{updateUser,jdbcType=VARCHAR},
 			update_time =
-			STR_TO_DATE(#{updateTime,jdbcType=VARCHAR},'%Y-%m-%d %H:%i:%s'),
+			#{updateTime,jdbcType=VARCHAR},
 		</set>
 		where `code` = #{code,jdbcType=VARCHAR}
 	</update>

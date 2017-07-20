@@ -23,7 +23,12 @@
 		cost_price,
 		sell_price,
 		sku_num, coupon_price, show_price, create_user,
-		create_time, update_user,
+		DATE_FORMAT(create_time,'%Y-%m-%d
+		%H:%i:%s') as
+		create_time,
+		update_user,
+		DATE_FORMAT(update_time,'%Y-%m-%d %H:%i:%s')
+		as
 		update_time
 	</sql>
 	<select id="selectByPrimaryKey" resultMap="BaseResultMap"
@@ -31,7 +36,8 @@
 		select
 		<include refid="Base_Column_List" />
 		from ordermodule.om_order_detail
-		where `code` = #{code,jdbcType=VARCHAR}
+		where `code` =
+		#{code,jdbcType=VARCHAR}
 	</select>
 	<delete id="deleteByPrimaryKey" parameterType="java.lang.String">
 		delete from
@@ -68,16 +74,18 @@
 			#{couponPrice,jdbcType=DECIMAL},
 			#{showPrice,jdbcType=DECIMAL},
 			#{createUser,jdbcType=VARCHAR},
-			#{createTime,jdbcType=VARCHAR},
+			STR_TO_DATE(#{createTime,jdbcType=VARCHAR},'%Y-%m-%d
+			%H:%i:%s'),
 			#{updateUser,jdbcType=VARCHAR},
-			#{updateTime,jdbcType=VARCHAR},
+			STR_TO_DATE(#{updateTime,jdbcType=VARCHAR},'%Y-%m-%d
+			%H:%i:%s'),
 		</trim>
 	</insert>
 	<update id="updateByCode" parameterType="org.module.model.order.order.OmOrderDetail">
 		update ordermodule.om_order_detail
 		<set>
 			<if test="orderCode != null">
-				order_code = #{orderCode,jdbcType=VARCHAR},
+				ord*er_code = #{orderCode,jdbcType=VARCHAR},
 			</if>
 			<if test="skuCode != null">
 				sku_code = #{skuCode,jdbcType=VARCHAR},
@@ -105,7 +113,7 @@
 			</if>
 			update_user = #{updateUser,jdbcType=VARCHAR},
 			update_time =
-			#{updateTime,jdbcType=VARCHAR},
+			STR_TO_DATE(#{updateTime,jdbcType=VARCHAR},'%Y-%m-%d %H:%i:%s'),
 		</set>
 		where `code` = #{code,jdbcType=VARCHAR}
 	</update>
