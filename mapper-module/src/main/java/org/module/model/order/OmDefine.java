@@ -12,7 +12,7 @@ public class OmDefine extends TreeModel {
 	@Column(name = "name", isNull = false, comment = "名称")
 	private String name;
 
-	@Column(name = "parent_code", isNull = false, comment = "父级编码")
+	@Column(name = "parent_code", defaultValue = "0", comment = "父级编码")
 	private String parentCode;
 
 	public String getName() {
