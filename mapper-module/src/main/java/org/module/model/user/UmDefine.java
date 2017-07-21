@@ -31,4 +31,8 @@ public class UmDefine extends TreeModel {
 		this.name = name;
 	}
 
+	@Override
+	public String getText() {
+		return this.name;
+	}
 }

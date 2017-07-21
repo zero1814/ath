@@ -32,16 +32,16 @@
 		parameterType="java.lang.String">
 		select
 		<include refid="Base_Column_List" />
-		from um_user_address
+		from usermodule.um_user_address
 		where `code` = #{code,jdbcType=VARCHAR}
 	</select>
 	<delete id="deleteByCodek" parameterType="java.lang.String">
 		delete from
-		um_user_address
+		usermodule.um_user_address
 		where `code` = #{code,jdbcType=VARCHAR}
 	</delete>
 	<insert id="insertSelective" parameterType="org.module.model.user.UmUserAddress">
-		insert into um_user_address
+		insert into usermodule.um_user_address
 		<trim prefix="(" suffix=")" suffixOverrides=",">
 			uid,
 			`code`,
@@ -72,7 +72,7 @@
 		</trim>
 	</insert>
 	<update id="updateByCode" parameterType="org.module.model.user.UmUserAddress">
-		update um_user_address
+		update usermodule.um_user_address
 		<set>
 			<if test="provinceCity != null and provinceCity !=''">
 				province_city = #{provinceCity,jdbcType=VARCHAR},

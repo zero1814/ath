@@ -22,16 +22,16 @@
 		parameterType="java.lang.String">
 		select
 		<include refid="Base_Column_List" />
-		from um_user_collect
+		from usermodule.um_user_address
 		where `code` = #{code,jdbcType=VARCHAR}
 	</select>
 	<delete id="deleteByCode" parameterType="java.lang.String">
 		delete from
-		um_user_collect
+		usermodule.um_user_address
 		where `code` = #{code,jdbcType=VARCHAR}
 	</delete>
 	<insert id="insertSelective" parameterType="org.module.model.user.UmUserCollect">
-		insert into um_user_collect
+		insert into usermodule.um_user_address
 		<trim prefix="(" suffix=")" suffixOverrides=",">
 			uid,
 			`code`,

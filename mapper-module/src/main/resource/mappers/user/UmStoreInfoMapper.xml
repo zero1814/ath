@@ -30,16 +30,16 @@
 		parameterType="java.lang.String">
 		select
 		<include refid="Base_Column_List" />
-		from um_store_info
+		from usermodule.um_store_info
 		where `code` = #{code,jdbcType=VARCHAR}
 	</select>
 	<delete id="deleteByCode" parameterType="java.lang.String">
 		delete from
-		um_store_info
+		usermodule.um_store_info
 		where `code` = #{code,jdbcType=VARCHAR}
 	</delete>
 	<insert id="insertSelective" parameterType="org.module.model.user.UmStoreInfo">
-		insert into um_store_info
+		insert into usermodule.um_store_info
 		<trim prefix="(" suffix=")" suffixOverrides=",">
 			uid,
 			`code`,
@@ -68,7 +68,7 @@
 		</trim>
 	</insert>
 	<update id="updateByCode" parameterType="org.module.model.user.UmStoreInfo">
-		update um_store_info
+		update usermodule.um_store_info
 		<set>
 			<if test="name != null and name !=''">
 				`name` = #{name,jdbcType=VARCHAR},

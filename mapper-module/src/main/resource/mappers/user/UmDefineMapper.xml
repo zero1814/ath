@@ -26,15 +26,16 @@
 		parameterType="java.lang.String">
 		select
 		<include refid="Base_Column_List" />
-		from um_define
+		from usermodule.um_define
 		where `code` = #{code,jdbcType=VARCHAR}
 	</select>
 	<delete id="deleteByCode" parameterType="java.lang.String">
-		delete from um_define
+		delete from
+		usermodule.um_define
 		where `code` = #{code,jdbcType=VARCHAR}
 	</delete>
 	<insert id="insertSelective" parameterType="org.module.model.user.UmDefine">
-		insert into um_define
+		insert into usermodule.um_define
 		<trim prefix="(" suffix=")" suffixOverrides=",">
 			uid,
 			`code`,
@@ -63,7 +64,7 @@
 		</trim>
 	</insert>
 	<update id="updateByCode" parameterType="org.module.model.user.UmDefine">
-		update um_define
+		update usermodule.um_define
 		<set>
 			<if test="parentCode != null and parentCode !=''">
 				parent_code = #{parentCode,jdbcType=VARCHAR},
@@ -77,4 +78,13 @@
 		</set>
 		where `code` = #{code,jdbcType=VARCHAR}
 	</update>
+	<select id="findEntityAll" parameterType="org.module.dto.user.UmDefineDto"
+		resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from usermodule.um_define
+		<where>
+			parent_code = #{parentCode,jdbcType=VARCHAR}
+		</where>
+	</select>
 </mapper>
