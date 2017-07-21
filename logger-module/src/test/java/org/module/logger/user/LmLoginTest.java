@@ -1,12 +1,6 @@
 package org.module.logger.user;
 
-import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.module.helper.commons.WebHelper;
-import org.module.model.logger.user.LmLogin;
-import org.module.service.logger.user.ILmLoginService;
-import org.module.util.DateUtil;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 

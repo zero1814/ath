@@ -6,7 +6,6 @@ import java.util.UUID;
 
 import org.module.base.BaseClass;
 import org.module.dto.BaseDto;
-import org.module.helper.commons.LoggerHelper;
 import org.module.mapper.BaseMapper;
 import org.module.model.BaseModel;
 import org.module.result.DataResult;
@@ -16,8 +15,6 @@ import org.module.result.RootResult;
 import org.module.service.IBaseService;
 import org.module.util.DateUtil;
 import org.springframework.beans.factory.annotation.Autowired;
-
-import com.alibaba.fastjson.JSON;
 
 /**
  * 
@@ -69,11 +66,6 @@ public class BaseServiceImpl<T extends BaseModel, M extends BaseMapper<T, DTO>, 
 			logger.logError(this.getClass().getName() + "执行insertSelective方法失败，失败原因:" + e.getMessage());
 		}
 		logger.logInfo(this.getClass().getName() + "，执行insertSelective方法结束");
-		/**
-		 * 添加操作日志
-		 */
-		LoggerHelper.instance().operate(getClass(), JSON.toJSONString(entity), JSON.toJSONString(result),
-				"insertSelective");
 		return result;
 	}
 
@@ -110,11 +102,6 @@ public class BaseServiceImpl<T extends BaseModel, M extends BaseMapper<T, DTO>, 
 			logger.logError(this.getClass().getName() + "执行updateByCode方法失败，失败原因:" + e.getMessage());
 		}
 		logger.logInfo(this.getClass().getName() + "，执行updateByCode方法结束");
-		/**
-		 * 添加操作日志
-		 */
-		LoggerHelper.instance().operate(getClass(), JSON.toJSONString(entity), JSON.toJSONString(result),
-				"updateByCode");
 		return result;
 	}
 
@@ -186,10 +173,6 @@ public class BaseServiceImpl<T extends BaseModel, M extends BaseMapper<T, DTO>, 
 			logger.logError(this.getClass().getName() + "执行deleteByCode方法失败，失败原因:" + e.getMessage());
 		}
 		logger.logInfo(this.getClass().getName() + "，执行deleteByCode方法结束");
-		/**
-		 * 添加操作日志
-		 */
-		LoggerHelper.instance().operate(getClass(), JSON.toJSONString(code), JSON.toJSONString(result), "deleteByCode");
 		return result;
 	}
 
@@ -224,11 +207,6 @@ public class BaseServiceImpl<T extends BaseModel, M extends BaseMapper<T, DTO>, 
 			logger.logError(this.getClass().getName() + "执行deleteByCodes方法失败，失败原因:" + e.getMessage());
 		}
 		logger.logInfo(this.getClass().getName() + "，执行deleteByCodes方法结束");
-		/**
-		 * 添加操作日志
-		 */
-		LoggerHelper.instance().operate(getClass(), JSON.toJSONString(codes), JSON.toJSONString(result),
-				"deleteByCodes");
 		return result;
 	}
 

@@ -4,6 +4,7 @@ import org.module.dto.BaseDto;
 import org.module.mapper.logger.user.LmOperateMapper;
 import org.module.model.logger.user.LmOperate;
 import org.module.service.impl.BaseServiceImpl;
+import org.springframework.stereotype.Service;
 
 /**
  * 
@@ -12,6 +13,7 @@ import org.module.service.impl.BaseServiceImpl;
  * 作者: zhy<br>
  * 时间: 2017年7月10日 下午6:42:11
  */
+@Service
 public class LmOperateServiceImpl extends BaseServiceImpl<LmOperate, LmOperateMapper, BaseDto> {
 
 }

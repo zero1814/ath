@@ -16,7 +16,7 @@
 		%H:%i:%s') as
 		create_time
 	</sql>
-	<select id="selectByCode" resultMap="ResultMapWithBLOBs"
+	<select id="selectByStoreCode" resultMap="BaseResultMap"
 		parameterType="java.lang.String">
 		select
 		<include refid="Base_Column_List" />

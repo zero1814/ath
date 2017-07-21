@@ -15,7 +15,7 @@
 		DATE_FORMAT(create_time,'%Y-%m-%d
 		%H:%i:%s') as create_time
 	</sql>
-	<select id="selectByCode" resultMap="BaseResultMap"
+	<select id="selectByEventCode" resultMap="BaseResultMap"
 		parameterType="java.lang.String">
 		select
 		<include refid="Base_Column_List" />

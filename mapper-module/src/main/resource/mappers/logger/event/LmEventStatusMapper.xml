@@ -5,35 +5,42 @@
 		<id column="id" property="id" jdbcType="INTEGER" />
 		<result column="uid" property="uid" jdbcType="VARCHAR" />
 		<result column="event_code" property="eventCode" jdbcType="VARCHAR" />
-		<result column="status" property="status" jdbcType="VARCHAR" />
+		<result column="before_status" property="beforeStatus"
+			jdbcType="VARCHAR" />
+		<result column="current_status" property="currentStatus"
+			jdbcType="VARCHAR" />
 		<result column="create_user" property="createUser" jdbcType="VARCHAR" />
 		<result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
 	</resultMap>
 	<sql id="Base_Column_List">
-		id, uid, event_code, status, create_user,
+		id, uid, event_code, before_status,current_status,
+		create_user,
 		DATE_FORMAT(create_time,'%Y-%m-%d
 		%H:%i:%s') as create_time
 	</sql>
-	<select id="selectByCode" resultMap="BaseResultMap"
+	<select id="selectByEventCode" resultMap="BaseResultMap"
 		parameterType="java.lang.String">
 		select
 		<include refid="Base_Column_List" />
 		from loggermodule.lm_event_status
-		where event_code = #{eventCode,jdbcType=VARCHAR}
+		where event_code =
+		#{eventCode,jdbcType=VARCHAR}
 	</select>
 	<insert id="insertSelective" parameterType="org.module.model.logger.event.LmEventStatus">
 		insert into loggermodule.lm_event_status
 		<trim prefix="(" suffix=")" suffixOverrides=",">
 			uid,
 			event_code,
-			`status`,
+			`before_status`,
+			current_status,
 			create_user,
 			create_time,
 		</trim>
 		<trim prefix="values (" suffix=")" suffixOverrides=",">
 			#{uid,jdbcType=VARCHAR},
 			#{eventCode,jdbcType=VARCHAR},
-			#{status,jdbcType=VARCHAR},
+			#{beforeStatus,jdbcType=VARCHAR},
+			#{currentStatus,jdbcType=VARCHAR},
 			#{createUser,jdbcType=VARCHAR},
 			STR_TO_DATE(#{createTime,jdbcType=VARCHAR},'%Y-%m-%d
 			%H:%i:%s'),
