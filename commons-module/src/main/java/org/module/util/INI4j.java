@@ -21,7 +21,6 @@ public class INI4j {
 
 	/**
 	 * 用linked hash map 来保持有序的读取
-	 * 
 	 */
 	final LinkedHashMap<String, LinkedHashMap<String, String>> coreMap = new LinkedHashMap<String, LinkedHashMap<String, String>>();
 	/**
@@ -30,33 +29,41 @@ public class INI4j {
 	String currentSection = null;
 
 	/**
-	 * 读取
+	 * 
+	 * 标题: 构造器 <br>
+	 * 描述: 读取 <br>
+	 * 作者: zhy<br>
+	 * 时间: 2017年7月21日 下午5:54:16
 	 * 
 	 * @param file
-	 *            文件
 	 * @throws FileNotFoundException
 	 */
 	public INI4j(File file) throws FileNotFoundException {
 		this.init(new BufferedReader(new FileReader(file)));
 	}
 
-	/***
-	 * 重载读取
+	/**
+	 * 
+	 * 标题: 构造器 <br>
+	 * 描述: 重载读取 <br>
+	 * 作者: zhy<br>
+	 * 时间: 2017年7月21日 下午5:54:30
 	 * 
 	 * @param path
-	 *            给文件路径
 	 * @throws FileNotFoundException
 	 */
 	public INI4j(String path) throws FileNotFoundException {
 		this.init(new BufferedReader(new FileReader(path)));
 	}
 
-	/***
-	 * 重载读取
+	/**
+	 * 
+	 * 标题: 构造器 <br>
+	 * 描述: 重载读取 <br>
+	 * 作者: zhy<br>
+	 * 时间: 2017年7月21日 下午5:54:38
 	 * 
 	 * @param source
-	 *            ClassPathResource 文件，如果文件在resource 里，那么直接 new
-	 *            ClassPathResource("file name");
 	 * @throws IOException
 	 */
 	public INI4j(ClassPathResource source) throws IOException {
@@ -73,7 +80,11 @@ public class INI4j {
 	}
 
 	/**
-	 * 读取文件
+	 * 
+	 * 方法: read <br>
+	 * 描述: 读取文件 <br>
+	 * 作者: zhy<br>
+	 * 时间: 2017年7月21日 下午5:54:46
 	 * 
 	 * @param reader
 	 * @throws IOException
@@ -86,7 +97,11 @@ public class INI4j {
 	}
 
 	/**
-	 * 转换
+	 * 
+	 * 方法: parseLine <br>
+	 * 描述: 转换 <br>
+	 * 作者: zhy<br>
+	 * 时间: 2017年7月21日 下午5:54:52
 	 * 
 	 * @param line
 	 */
@@ -109,7 +124,11 @@ public class INI4j {
 	}
 
 	/**
-	 * 增加新的Key和Value
+	 * 
+	 * 方法: addKeyValue <br>
+	 * 描述: 增加新的Key和Value <br>
+	 * 作者: zhy<br>
+	 * 时间: 2017年7月21日 下午5:55:00
 	 * 
 	 * @param currentSection
 	 * @param key
@@ -124,7 +143,11 @@ public class INI4j {
 	}
 
 	/**
-	 * 增加Section
+	 * 
+	 * 方法: addSection <br>
+	 * 描述: 增加Section <br>
+	 * 作者: zhy<br>
+	 * 时间: 2017年7月21日 下午5:55:06
 	 * 
 	 * @param section
 	 */
@@ -137,7 +160,11 @@ public class INI4j {
 	}
 
 	/**
-	 * 获取配置文件指定Section和指定子键的值
+	 * 
+	 * 方法: get <br>
+	 * 描述: 获取配置文件指定Section和指定子键的值 <br>
+	 * 作者: zhy<br>
+	 * 时间: 2017年7月21日 下午5:55:13
 	 * 
 	 * @param section
 	 * @param key
@@ -151,7 +178,11 @@ public class INI4j {
 	}
 
 	/**
-	 * 获取配置文件指定Section的子键和值
+	 * 
+	 * 方法: get <br>
+	 * 描述: 获取配置文件指定Section的子键和值 <br>
+	 * 作者: zhy<br>
+	 * 时间: 2017年7月21日 下午5:55:21
 	 * 
 	 * @param section
 	 * @return
@@ -161,7 +192,11 @@ public class INI4j {
 	}
 
 	/**
-	 * 获取这个配置文件的节点和值
+	 * 
+	 * 方法: get <br>
+	 * 描述: 获取这个配置文件的节点和值 <br>
+	 * 作者: zhy<br>
+	 * 时间: 2017年7月21日 下午5:55:29
 	 * 
 	 * @return
 	 */

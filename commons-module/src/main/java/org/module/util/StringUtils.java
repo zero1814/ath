@@ -20,10 +20,13 @@ import net.sf.json.JSONObject;
 public class StringUtils extends org.apache.commons.lang3.StringUtils {
 
 	/**
-	 * 一次性判断多个或单个对象为空。
+	 * 
+	 * 方法: isBlank <br>
+	 * 描述: 一次性判断多个或单个对象为空。 <br>
+	 * 作者: zhy<br>
+	 * 时间: 2017年7月21日 下午5:55:50
 	 * 
 	 * @param objects
-	 * @author zhou-baicheng
 	 * @return 只要有一个元素为Blank，则返回true
 	 */
 	public static boolean isBlank(Object... objects) {
@@ -56,10 +59,13 @@ public class StringUtils extends org.apache.commons.lang3.StringUtils {
 	}
 
 	/**
-	 * 一次性判断多个或单个对象不为空。
+	 * 
+	 * 方法: isNotBlank <br>
+	 * 描述: 一次性判断多个或单个对象不为空。 <br>
+	 * 作者: zhy<br>
+	 * 时间: 2017年7月21日 下午5:56:04
 	 * 
 	 * @param objects
-	 * @author zhou-baicheng
 	 * @return 只要有一个元素不为Blank，则返回true
 	 */
 	public static boolean isNotBlank(Object... objects) {
@@ -87,7 +93,11 @@ public class StringUtils extends org.apache.commons.lang3.StringUtils {
 	}
 
 	/**
-	 * 判断一个字符串在数组中存在几个
+	 * 
+	 * 方法: indexOf <br>
+	 * 描述: 判断一个字符串在数组中存在几个 <br>
+	 * 作者: zhy<br>
+	 * 时间: 2017年7月21日 下午5:56:18
 	 * 
 	 * @param baseStr
 	 * @param strings
@@ -107,7 +117,11 @@ public class StringUtils extends org.apache.commons.lang3.StringUtils {
 	}
 
 	/**
-	 * 判断一个字符串是否为JSONObject,是返回JSONObject,不是返回null
+	 * 
+	 * 方法: isJSONObject <br>
+	 * 描述: 判断一个字符串是否为JSONObject,是返回JSONObject,不是返回null <br>
+	 * 作者: zhy<br>
+	 * 时间: 2017年7月21日 下午5:56:27
 	 * 
 	 * @param args
 	 * @return
@@ -125,7 +139,11 @@ public class StringUtils extends org.apache.commons.lang3.StringUtils {
 	}
 
 	/**
-	 * 判断一个字符串是否为JSONArray,是返回JSONArray,不是返回null
+	 * 
+	 * 方法: isJSONArray <br>
+	 * 描述: 判断一个字符串是否为JSONArray,是返回JSONArray,不是返回null <br>
+	 * 作者: zhy<br>
+	 * 时间: 2017年7月21日 下午5:56:35
 	 * 
 	 * @param args
 	 * @return
@@ -158,12 +176,14 @@ public class StringUtils extends org.apache.commons.lang3.StringUtils {
 	}
 
 	/**
-	 * 将 Strig 进行 BASE64 编码
+	 * 
+	 * 方法: getBASE64 <br>
+	 * 描述: 将 Strig 进行 BASE64 编码 <br>
+	 * 作者: zhy<br>
+	 * 时间: 2017年7月21日 下午5:56:44
 	 * 
 	 * @param str
-	 *            [要编码的字符串]
 	 * @param bf
-	 *            [true|false,true:去掉结尾补充的'=',false:不做处理]
 	 * @return
 	 */
 	@SuppressWarnings("restriction")
@@ -179,7 +199,11 @@ public class StringUtils extends org.apache.commons.lang3.StringUtils {
 	}
 
 	/**
-	 * 把Map转换成get请求参数类型,如 {"name"=20,"age"=30} 转换后变成 name=20&age=30
+	 * 
+	 * 方法: mapToGet <br>
+	 * 描述: 把Map转换成get请求参数类型,如 {"name"=20,"age"=30} 转换后变成 name=20&age=30 <br>
+	 * 作者: zhy<br>
+	 * 时间: 2017年7月21日 下午5:56:52
 	 * 
 	 * @param map
 	 * @return
@@ -198,7 +222,11 @@ public class StringUtils extends org.apache.commons.lang3.StringUtils {
 	}
 
 	/**
-	 * 把一串参数字符串,转换成Map 如"?a=3&b=4" 转换为Map{a=3,b=4}
+	 * 
+	 * 方法: getToMap <br>
+	 * 描述: 把一串参数字符串,转换成Map 如"?a=3&b=4" 转换为Map{a=3,b=4} <br>
+	 * 作者: zhy<br>
+	 * 时间: 2017年7月21日 下午5:56:59
 	 * 
 	 * @param args
 	 * @return
@@ -237,7 +265,11 @@ public class StringUtils extends org.apache.commons.lang3.StringUtils {
 	}
 
 	/**
-	 * 转换成Unicode
+	 * 
+	 * 方法: toUnicode <br>
+	 * 描述: 转换成Unicode <br>
+	 * 作者: zhy<br>
+	 * 时间: 2017年7月21日 下午5:57:07
 	 * 
 	 * @param str
 	 * @return
@@ -258,7 +290,11 @@ public class StringUtils extends org.apache.commons.lang3.StringUtils {
 	}
 
 	/**
-	 * 合并数据
+	 * 
+	 * 方法: merge <br>
+	 * 描述: 合并数据 <br>
+	 * 作者: zhy<br>
+	 * 时间: 2017年7月21日 下午5:57:13
 	 * 
 	 * @param v
 	 * @return
@@ -272,7 +308,11 @@ public class StringUtils extends org.apache.commons.lang3.StringUtils {
 	}
 
 	/**
-	 * 字符串转urlcode
+	 * 
+	 * 方法: strToUrlcode <br>
+	 * 描述: 字符串转urlcode <br>
+	 * 作者: zhy<br>
+	 * 时间: 2017年7月21日 下午5:57:21
 	 * 
 	 * @param value
 	 * @return
@@ -289,7 +329,11 @@ public class StringUtils extends org.apache.commons.lang3.StringUtils {
 	}
 
 	/**
-	 * urlcode转字符串
+	 * 
+	 * 方法: urlcodeToStr <br>
+	 * 描述: urlcode转字符串 <br>
+	 * 作者: zhy<br>
+	 * 时间: 2017年7月21日 下午5:57:27
 	 * 
 	 * @param value
 	 * @return
@@ -306,7 +350,11 @@ public class StringUtils extends org.apache.commons.lang3.StringUtils {
 	}
 
 	/**
-	 * 判断字符串是否包含汉字
+	 * 
+	 * 方法: containsCN <br>
+	 * 描述: 判断字符串是否包含汉字 <br>
+	 * 作者: zhy<br>
+	 * 时间: 2017年7月21日 下午5:57:35
 	 * 
 	 * @param txt
 	 * @return
@@ -327,7 +375,11 @@ public class StringUtils extends org.apache.commons.lang3.StringUtils {
 	}
 
 	/**
-	 * 去掉HTML代码
+	 * 
+	 * 方法: removeHtml <br>
+	 * 描述: 去掉HTML代码 <br>
+	 * 作者: zhy<br>
+	 * 时间: 2017年7月21日 下午5:57:44
 	 * 
 	 * @param news
 	 * @return
@@ -365,7 +417,11 @@ public class StringUtils extends org.apache.commons.lang3.StringUtils {
 	}
 
 	/**
-	 * 把数组的空数据去掉
+	 * 
+	 * 方法: array2Empty <br>
+	 * 描述: 把数组的空数据去掉 <br>
+	 * 作者: zhy<br>
+	 * 时间: 2017年7月21日 下午5:57:53
 	 * 
 	 * @param array
 	 * @return
@@ -381,7 +437,11 @@ public class StringUtils extends org.apache.commons.lang3.StringUtils {
 	}
 
 	/**
-	 * 把数组转换成set
+	 * 
+	 * 方法: array2Set <br>
+	 * 描述: 把数组转换成set <br>
+	 * 作者: zhy<br>
+	 * 时间: 2017年7月21日 下午5:57:59
 	 * 
 	 * @param array
 	 * @return
@@ -396,12 +456,6 @@ public class StringUtils extends org.apache.commons.lang3.StringUtils {
 		return set;
 	}
 
-	/**
-	 * serializable toString
-	 * 
-	 * @param serializable
-	 * @return
-	 */
 	public static String toString(Serializable serializable) {
 		if (null == serializable) {
 			return null;

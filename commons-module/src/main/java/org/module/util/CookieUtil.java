@@ -68,12 +68,17 @@ public class CookieUtil {
 	}
 
 	/**
-	 * 清空Cookie操作 clearCookie
+	 * 
+	 * 方法: clearCookie <br>
+	 * 描述: 清空Cookie操作 clearCookie <br>
+	 * 作者: zhy<br>
+	 * 时间: 2017年7月21日 下午5:58:21
 	 * 
 	 * @param request
 	 * @param response
-	 * @return boolean
-	 * @author JIANG FEI Jun 19, 2014 10:12:17 AM
+	 * @param name
+	 * @param domain
+	 * @return
 	 */
 	public static boolean clearCookie(HttpServletRequest request, HttpServletResponse response, String name,
 			String domain) {
@@ -97,11 +102,15 @@ public class CookieUtil {
 	}
 
 	/**
-	 * 获取指定cookies的值 findCookieByName
+	 * 
+	 * 方法: findCookieByName <br>
+	 * 描述: 获取指定cookies的值 findCookieByName <br>
+	 * 作者: zhy<br>
+	 * 时间: 2017年7月21日 下午5:58:31
 	 * 
 	 * @param request
 	 * @param name
-	 * @return String
+	 * @return
 	 */
 	public static String findCookieByName(HttpServletRequest request, String name) {
 		Cookie[] cookies = request.getCookies();

@@ -1,24 +1,9 @@
 package org.module.util;
 
-/**
- * This class provides convenient functions to convert hex string to byte array
- * and vice versa.
- * 
- * @author 99bill
- *
- */
 public class HexUtil {
 
 	private HexUtil() {
 	}
-
-	/**
-	 * Converts a byte array to hex string.
-	 * 
-	 * @param b
-	 *            - the input byte array
-	 * @return hex string representation of b.
-	 */
 
 	public static String toHexString(byte[] b) {
 		StringBuffer sb = new StringBuffer();
@@ -29,13 +14,6 @@ public class HexUtil {
 		return sb.toString();
 	}
 
-	/**
-	 * Converts a hex string into a byte array.
-	 * 
-	 * @param s
-	 *            - string to be converted
-	 * @return byte array converted from s
-	 */
 	public static byte[] toByteArray(String s) {
 		byte[] buf = new byte[s.length() / 2];
 		int j = 0;
