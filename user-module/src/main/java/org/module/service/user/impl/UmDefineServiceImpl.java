@@ -31,8 +31,7 @@ public class UmDefineServiceImpl extends BaseServiceImpl<UmDefine, UmDefineMappe
 		TreeResult result = new TreeResult();
 		try {
 			result.setCode(0);
-			result.setTreeText(PropHelper.getConfig("user.tree.rootName"));
-			result.setTreeCode(PropHelper.getConfig("user.tree.rootCode"));
+			result.setTreeText(PropHelper.getConfig("user.tree.text"));
 			List<UmDefine> list = data("0");
 			result.setData(list);
 			result.setMessage("查询菜单成功");

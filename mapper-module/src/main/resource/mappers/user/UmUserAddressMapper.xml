@@ -35,7 +35,7 @@
 		from usermodule.um_user_address
 		where `code` = #{code,jdbcType=VARCHAR}
 	</select>
-	<delete id="deleteByCodek" parameterType="java.lang.String">
+	<delete id="deleteByCode" parameterType="java.lang.String">
 		delete from
 		usermodule.um_user_address
 		where `code` = #{code,jdbcType=VARCHAR}
