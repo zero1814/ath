@@ -1,5 +1,8 @@
 package org.module.util;
 
+import java.io.File;
+import java.util.Locale;
+
 import freemarker.template.Configuration;
 
 /**
@@ -20,4 +23,15 @@ public class FreeMarkerUtil {
 		}
 		return self;
 	}
+
+	public void createHtml(String ftlPath) {
+		try {
+			config = new Configuration(Configuration.VERSION_2_3_23);
+			config.setEncoding(Locale.CHINA, "UTF-8");
+			config.setDirectoryForTemplateLoading(new File(ftlPath));
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+
 }
