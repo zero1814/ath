@@ -32,7 +32,7 @@ IF EXISTS lm_operate;
 CREATE TABLE lm_operate (
 	id INT PRIMARY KEY AUTO_INCREMENT COMMENT '主键',
 	uid VARCHAR (50) NOT NULL COMMENT 'uuid',
-	operate_type VARCHAR (50) NOT NULL UNIQUE COMMENT '操作类型',
+	operate_type VARCHAR (50) NOT NULL COMMENT '操作类型',
 	class_path VARCHAR (100) NOT NULL COMMENT '操作类及方法路径',
 	request_data VARCHAR (500) NOT NULL COMMENT '请求参数',
 	response_data VARCHAR (500) NOT NULL COMMENT '响应参数',
@@ -47,23 +47,12 @@ CREATE TABLE lm_order_status (
 	id INT PRIMARY KEY AUTO_INCREMENT COMMENT '主键',
 	uid VARCHAR (50) NOT NULL COMMENT 'uuid',
 	order_code VARCHAR (50) NOT NULL COMMENT '订单编码',
+	order_json text COMMENT '订单信息',
 	current_status VARCHAR (50) NOT NULL COMMENT '订单当前状态',
 	next_status VARCHAR (50) NOT NULL COMMENT '订单下一阶段状态',
 	create_user VARCHAR (50) NOT NULL COMMENT '创建人',
 	create_time datetime NOT NULL COMMENT '创建时间'
 ) COMMENT '订单状态更新日志';
-
-DROP TABLE
-IF EXISTS lm_order_create;
-
-CREATE TABLE lm_order_create (
-	id INT PRIMARY KEY AUTO_INCREMENT COMMENT '主键',
-	uid VARCHAR (50) NOT NULL COMMENT 'uuid',
-	order_code VARCHAR (50) NOT NULL COMMENT '订单编码',
-	order_json text COMMENT '订单信息',
-	create_user VARCHAR (50) NOT NULL COMMENT '创建人',
-	create_time datetime NOT NULL COMMENT '创建时间'
-) COMMENT '订单创建日志表';
 
 DROP TABLE
 IF EXISTS lm_order_return;
@@ -89,7 +78,7 @@ CREATE TABLE lm_product_flow (
 	flow_status VARCHAR (50) NOT NULL COMMENT '审批状态',
 	create_user VARCHAR (50) NOT NULL COMMENT '创建人',
 	create_time datetime NOT NULL COMMENT '创建时间'
-) COMMENT '商品审核日';
+) COMMENT '商品审核日志';
 
 DROP TABLE
 IF EXISTS lm_store_flow;
@@ -98,6 +87,7 @@ CREATE TABLE lm_store_flow (
 	id INT PRIMARY KEY AUTO_INCREMENT COMMENT '主键',
 	uid VARCHAR (50) NOT NULL COMMENT 'uuid',
 	store_code VARCHAR (50) NOT NULL UNIQUE COMMENT '编码',
+	store_json text COMMENT '店铺详情',
 	flow_status VARCHAR (50) NOT NULL COMMENT '审核状态',
 	create_user VARCHAR (50) NOT NULL COMMENT '创建人',
 	create_time datetime NOT NULL COMMENT '创建时间'
@@ -110,6 +100,7 @@ CREATE TABLE lm_event_flow (
 	id INT PRIMARY KEY AUTO_INCREMENT COMMENT '主键',
 	uid VARCHAR (50) NOT NULL COMMENT 'uuid',
 	event_code VARCHAR (50) NOT NULL COMMENT '活动编码',
+	event_json text COMMENT '活动详情',
 	flow_status VARCHAR (50) NOT NULL COMMENT '活动状态',
 	create_user VARCHAR (50) NOT NULL COMMENT '创建人',
 	create_time datetime NOT NULL COMMENT '创建时间'
@@ -122,7 +113,8 @@ CREATE TABLE lm_event_status (
 	id INT PRIMARY KEY AUTO_INCREMENT COMMENT '主键',
 	uid VARCHAR (50) NOT NULL COMMENT 'uuid',
 	event_code VARCHAR (50) NOT NULL COMMENT '活动编码',
-	`status` VARCHAR (50) NOT NULL COMMENT '活动状态',
+	before_status varchar(50) not null COMMENT '活动之前状态',
+	current_status VARCHAR (50) NOT NULL COMMENT '当前活动状态',
 	create_user VARCHAR (50) NOT NULL COMMENT '创建人',
 	create_time datetime NOT NULL COMMENT '创建时间'
 ) COMMENT '活动状态变更日志';

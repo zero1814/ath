@@ -5,6 +5,7 @@
 	<div class="row">
 		<form id="editFrm" method="post" class="form-horizontal">
 			<input type="hidden" name="code" id="code" value="${menu.code }">
+			<input type="hidden" name="groupCode" id="groupCode" value="${menu.groupCode }">
 			<div class="form-group">
 				<label class="col-sm-4 control-label">名称</label>
 				<div class="col-sm-4">

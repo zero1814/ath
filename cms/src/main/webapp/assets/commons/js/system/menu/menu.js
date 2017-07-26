@@ -47,7 +47,7 @@ var Menu = {
 			layer.close(Menu.Layer);
 		}
 	},
-	add:function(){
+	add:function(groupCode){
 		var param = $("#addFrm").serializeArray();
 		$.ajax({
 			url: "system/menu/add.htm",
@@ -57,7 +57,7 @@ var Menu = {
 			success: function(result) {
 				layer.alert(result.message, function() {
 					layer.close(Menu.Layer);
-					window.parent.location.href="system/menu/index.htm?groupCode="+$("#groupCode").val();
+					window.parent.location.href="system/menu/index.htm?groupCode="+groupCode;
 				});
 			},
 			error: function(result) {
@@ -68,7 +68,7 @@ var Menu = {
 			}
 		});
 	},
-	edit:function(code){
+	edit:function(){
 		layer.confirm('您确认要编辑选中的菜单吗？', {
 			btn: ['确认', '取消']
 			// 按钮
