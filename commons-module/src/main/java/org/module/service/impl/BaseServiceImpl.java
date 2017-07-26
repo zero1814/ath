@@ -16,6 +16,9 @@ import org.module.service.IBaseService;
 import org.module.util.DateUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
+
 /**
  * 
  * 类: BaseServiceImpl <br>
@@ -259,16 +262,16 @@ public class BaseServiceImpl<T extends BaseModel, M extends BaseMapper<T, DTO>, 
 			if (dto.getPageSize() == null) {
 				dto.setPageSize(10);
 			}
-			dto.setStart((dto.getPageNumber() - 1) * dto.getPageSize());
+			PageHelper.startPage(dto.getPageNumber(), dto.getPageSize());
 			List<T> list = mapper.findEntityAllToPage(dto);
 			if (list == null || list.size() <= 0) {
 				list = new ArrayList<T>();
 			}
-			int total = mapper.findEntityAllCountToPage(dto);
+			PageInfo<T> page = new PageInfo<T>(list);
 			result.setCode(0);
 			result.setMessage("获取分页数据成功");
-			result.setRows(list);
-			result.setTotal(total);
+			result.setRows(page.getList());
+			result.setTotal(new Long(page.getTotal()).intValue());
 			logger.logInfo(this.getClass().getName() + "，执行findEntityToPage方法成功");
 		} catch (Exception e) {
 			e.printStackTrace();

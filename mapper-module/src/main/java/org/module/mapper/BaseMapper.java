@@ -121,16 +121,4 @@ public interface BaseMapper<T extends BaseModel, DTO extends BaseDto> {
 	 * @return
 	 */
 	List<T> findEntityAllToPage(DTO dto);
-
-	/**
-	 * 
-	 * 方法: findEntityAllCount <br>
-	 * 描述: 根据对象属性查询所有对象总数 <br>
-	 * 作者: zhy<br>
-	 * 时间: 2016年8月1日 下午1:39:53
-	 * 
-	 * @param entity
-	 * @return
-	 */
-	int findEntityAllCountToPage(DTO dto);
 }
