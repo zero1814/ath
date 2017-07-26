@@ -118,18 +118,6 @@
 				and `db_name` = #{dbName,jdbcType=VARCHAR}
 			</if>
 		</where>
-		limit #{start,jdbcType=INTEGER},#{pageSize,jdbcType=INTEGER}
-	</select>
-	<select id="findEntityAllCountToPage" parameterType="org.module.dto.system.db.SmDatabaseDto"
-		resultType="java.lang.Integer">
-		select count(1)
-		from systemmodule.sm_database
-		<where>
-			1=1
-			<if test="dbName != null and dbName != ''">
-				and `db_name` = #{dbName,jdbcType=VARCHAR}
-			</if>
-		</where>
 	</select>
 	<insert id="sync">
 		{call sync_db_detail}

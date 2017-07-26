@@ -202,21 +202,6 @@
 				and file_name = #{fieldName,jdbcType=VARCHAR}
 			</if>
 		</where>
-		limit #{start,jdbcType=INTEGER},#{pageSize,jdbcType=INTEGER}
-	</select>
-	<select id="findEntityAllCountToPage" parameterType="org.module.dto.system.db.SmFieldDto"
-		resultType="java.lang.Integer">
-		select count(1)
-		from systemmodule.sm_field
-		<where>
-			table_code =#{tableCode,jdbcType=VARCHAR}
-			<if test="fieldCode != null and fieldCode != ''">
-				and filed_code = #{fieldCode,jdbcType=VARCHAR}
-			</if>
-			<if test="fieldName != null and fieldName != ''">
-				and file_name = #{fieldName,jdbcType=VARCHAR}
-			</if>
-		</where>
 	</select>
 	<!-- 数据表新添加字段 -->
 	<update id="insertTableColumn" parameterType="org.module.model.system.db.SmField">

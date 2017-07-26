@@ -111,27 +111,6 @@
 				and type = #{type,jdbcType=VARCHAR}
 			</if>
 		</where>
-		limit #{start,jdbcType=INTEGER},#{pageSize,jdbcType=INTEGER}
-	</select>
-	<select id="findEntityAllCountToPage" parameterType="org.module.dto.system.db.SmTableDto"
-		resultType="java.lang.Integer">
-		select count(1)
-		from systemmodule.sm_table
-		<where>
-			1=1
-			<if test="dbCode != null and dbCode !=''">
-				and db_code = #{dbCode,jdbcType=VARCHAR}
-			</if>
-			<if test="tableCode != null and tableCode !=''">
-				and table_code = #{tableCode,jdbcType=VARCHAR}
-			</if>
-			<if test="tableName != null and tableName !=''">
-				and table_name = #{tableName,jdbcType=VARCHAR}
-			</if>
-			<if test="type != null and type !=''">
-				and type = #{type,jdbcType=VARCHAR}
-			</if>
-		</where>
 	</select>
 	<select id="findEntityAll" parameterType="org.module.dto.system.db.SmTableDto" resultMap="BaseResultMap">
 		select
