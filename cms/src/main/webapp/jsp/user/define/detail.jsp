@@ -18,5 +18,5 @@
 		<a href="javascript:void(0)" style="margin: 15px;" class="btn btn-w-m btn-danger" onclick="Define.del('${define.code}')">删除</a>
 	</div>
 </div>
-<script src="assets/commons/js/user/define.js"></script>
+<script src="assets/commons/js/product/define.js"></script>
 <%@ include file="../../common/footer.jsp" %>

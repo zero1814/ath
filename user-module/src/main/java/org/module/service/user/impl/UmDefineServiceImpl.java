@@ -3,7 +3,6 @@ package org.module.service.user.impl;
 import java.util.List;
 
 import org.module.dto.user.UmDefineDto;
-import org.module.helper.commons.PropHelper;
 import org.module.mapper.user.UmDefineMapper;
 import org.module.model.user.UmDefine;
 import org.module.result.TreeResult;
@@ -31,7 +30,7 @@ public class UmDefineServiceImpl extends BaseServiceImpl<UmDefine, UmDefineMappe
 		TreeResult result = new TreeResult();
 		try {
 			result.setCode(0);
-			result.setTreeText(PropHelper.getConfig("user.tree.text"));
+			result.setTreeText("参数列表");
 			List<UmDefine> list = data("0");
 			result.setData(list);
 			result.setMessage("查询菜单成功");

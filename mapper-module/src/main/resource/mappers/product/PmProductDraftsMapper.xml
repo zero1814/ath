@@ -157,7 +157,7 @@
 			</if>
 			update_user = #{updateUser,jdbcType=VARCHAR},
 			update_time =
-			#{updateTime,jdbcType=VARCHAR},
+			STR_TO_DATE(#{updateTime,jdbcType=VARCHAR},'%Y-%m-%d %H:%i:%s'),
 			<if test="productJson != null and productJson !=''">
 				product_json = #{productJson,jdbcType=LONGVARCHAR},
 			</if>

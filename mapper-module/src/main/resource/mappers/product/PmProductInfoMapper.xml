@@ -25,6 +25,10 @@
 		<result column="create_time" property="createTime" jdbcType="VARCHAR" />
 		<result column="update_user" property="updateUser" jdbcType="VARCHAR" />
 		<result column="update_time" property="updateTime" jdbcType="VARCHAR" />
+		<collection property="store" ofType="org.module.model.user.UmStoreInfo">
+			<result column="store_code" property="code" jdbcType="VARCHAR" />
+			<result column="store_name" property="name" jdbcType="VARCHAR" />
+		</collection>
 	</resultMap>
 	<sql id="Base_Column_List">
 		id, uid, `code`, `name`, store_code, product_type,
@@ -153,8 +157,10 @@
 			</if>
 			update_user = #{updateUser,jdbcType=VARCHAR},
 			update_time =
-			#{updateTime,jdbcType=VARCHAR},
+			STR_TO_DATE(#{updateTime,jdbcType=VARCHAR},'%Y-%m-%d %H:%i:%s'),
 		</set>
 		where `code` = #{code,jdbcType=VARCHAR}
 	</update>
+	<select id="findEntityAllToPage" parameterType="org.module.dto.product.PmProductInfoDto"
+		resultMap="BaseResultMap"></select>
 </mapper>

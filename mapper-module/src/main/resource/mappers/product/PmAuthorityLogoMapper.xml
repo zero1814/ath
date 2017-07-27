@@ -71,7 +71,7 @@
 			</if>
 			update_user = #{updateUser,jdbcType=VARCHAR},
 			update_time =
-			#{updateTime,jdbcType=VARCHAR},
+			STR_TO_DATE(#{updateTime,jdbcType=VARCHAR},'%Y-%m-%d %H:%i:%s'),
 		</set>
 		where `code` = #{code,jdbcType=VARCHAR}
 	</update>

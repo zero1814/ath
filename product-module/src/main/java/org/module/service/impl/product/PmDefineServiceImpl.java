@@ -29,9 +29,7 @@ public class PmDefineServiceImpl extends BaseServiceImpl<PmDefine, PmDefineMappe
 	@Override
 	public RootResult deleteByCode(String code) {
 		RootResult result = new RootResult();
-		PmDefineDto dto = new PmDefineDto();
-		dto.setParentCode(code);
-		List<PmDefine> list = mapper.findDataAll(dto);
+		List<PmDefine> list = mapper.findDefineByParentCode(code);
 		if (list != null && list.size() > 0) {
 			result.setCode(-1);
 			result.setMessage("此项中包含子项，请先删除子项后再进行操作");
@@ -78,14 +76,10 @@ public class PmDefineServiceImpl extends BaseServiceImpl<PmDefine, PmDefineMappe
 	 * @return
 	 */
 	private List<PmDefine> data(String parentCode) {
-		PmDefineDto dto = new PmDefineDto();
-		dto.setParentCode(parentCode);
-		List<PmDefine> list = mapper.findDataAll(dto);
+		List<PmDefine> list = mapper.findDefineByParentCode(parentCode);
 		if (list != null && list.size() > 0) {
 			for (PmDefine d : list) {
-				PmDefineDto sbDto = new PmDefineDto();
-				sbDto.setParentCode(d.getCode());
-				List<PmDefine> sub = mapper.findDataAll(sbDto);
+				List<PmDefine> sub = mapper.findDefineByParentCode(d.getCode());
 				if (sub != null && sub.size() > 0) {
 					d.setNodes(sub);
 				}

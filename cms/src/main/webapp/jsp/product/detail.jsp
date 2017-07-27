@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ include file="../../common/header.jsp" %>
+<%@ include file="../common/header.jsp" %>
 <div class="wrapper wrapper-content animated fadeInRight">
 	<div class="row" style="font-size:18px;">
         <ul class="list-group">
@@ -41,4 +41,4 @@
 	</div>
 </div>
 <script src="assets/commons/js/system/menu/menu.js"></script>
-<%@ include file="../../common/footer.jsp" %>
+<%@ include file="../common/footer.jsp" %>

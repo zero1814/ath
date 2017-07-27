@@ -15,8 +15,7 @@ public interface PmDefineMapper extends BaseMapper<PmDefine, PmDefineDto> {
 	 * 时间: 2017年6月1日 上午10:42:43
 	 * 
 	 * @param parentCode
-	 * @param groupCode
 	 * @return
 	 */
-	List<PmDefine> findDataAll(PmDefineDto dto);
+	List<PmDefine> findDefineByParentCode(String parentCode);
 }

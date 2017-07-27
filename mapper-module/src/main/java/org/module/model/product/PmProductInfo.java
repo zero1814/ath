@@ -4,7 +4,9 @@ import java.math.BigDecimal;
 
 import org.module.annotation.mapper.db.Column;
 import org.module.annotation.mapper.db.Table;
+import org.module.annotation.mapper.obj.Attribute;
 import org.module.model.BaseModel;
+import org.module.model.user.UmStoreInfo;
 
 @Table(name = "pm_product_info", database = "productmodule", comment = "商品表")
 public class PmProductInfo extends BaseModel {
@@ -44,8 +46,19 @@ public class PmProductInfo extends BaseModel {
 	@Column(name = "product_specification", comment = "商品规格")
 	private String productSpecification;
 
+	@Attribute(name = "store", description = "店铺")
+	private UmStoreInfo store;
+
 	public String getName() {
 		return name;
+	}
+
+	public UmStoreInfo getStore() {
+		return store;
+	}
+
+	public void setStore(UmStoreInfo store) {
+		this.store = store;
 	}
 
 	public void setName(String name) {

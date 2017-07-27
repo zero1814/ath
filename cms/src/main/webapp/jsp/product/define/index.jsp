@@ -5,10 +5,7 @@
 	<div class="col-sm-4">
 		<ol class="breadcrumb">
 			<li>
-				系统相关
-			</li>
-			<li>
-				商品管理
+				商品相关
 			</li>
 			<li>
 				<strong>参数管理</strong>

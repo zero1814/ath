@@ -1,10 +1,15 @@
 package org.module.service.impl.product;
 
+import java.util.List;
+
 import org.module.dto.product.PmProductInfoDto;
+import org.module.mapper.product.PmDefineMapper;
 import org.module.mapper.product.PmProductInfoMapper;
+import org.module.model.product.PmDefine;
 import org.module.model.product.PmProductInfo;
 import org.module.service.impl.BaseServiceImpl;
 import org.module.service.product.IPmProductInfoService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 /**
@@ -17,5 +22,25 @@ import org.springframework.stereotype.Service;
 @Service
 public class PmProductInfoServiceImpl extends BaseServiceImpl<PmProductInfo, PmProductInfoMapper, PmProductInfoDto>
 		implements IPmProductInfoService {
+
+	@Autowired
+	private PmDefineMapper defineMapper;
+
+	/**
+	 * 
+	 * 方法: getProductStatus <br>
+	 * 
+	 * @return
+	 * @see org.module.service.product.IPmProductInfoService#getProductStatus()
+	 */
+	@Override
+	public List<PmDefine> getProductStatus() {
+		return defineMapper.findDefineByParentCode("PD890473682797850624");
+	}
+
+	@Override
+	public List<PmDefine> getProductType() {
+		return defineMapper.findDefineByParentCode("PD890494291313422336");
+	}
 
 }

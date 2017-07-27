@@ -67,14 +67,13 @@
 		update productmodule.pm_define
 		<set>
 			`name` = #{name,jdbcType=VARCHAR},
-			update_user =
-			#{updateUser,jdbcType=VARCHAR},
+			update_user = #{updateUser,jdbcType=VARCHAR},
 			update_time =
-			#{updateTime,jdbcType=VARCHAR},
+			STR_TO_DATE(#{updateTime,jdbcType=VARCHAR},'%Y-%m-%d %H:%i:%s'),
 		</set>
 		where `code` = #{code,jdbcType=VARCHAR}
 	</update>
-	<select id="findDataAll" parameterType="org.module.dto.product.PmDefineDto"
+	<select id="findDefineByParentCode" parameterType="java.lang.String"
 		resultMap="BaseResultMap">
 		select
 		`code`, `name`

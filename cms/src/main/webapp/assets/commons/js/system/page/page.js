@@ -58,12 +58,7 @@ var Page = {
 			dataType : "json",
 			success: function(result) {
 				if(result.code == 0) {
-					layer.confirm('添加成功，是否为菜单设置权限？', {
-						// 按钮
-						btn: ['是', '否']
-					}, function() {
-						window.location.href="system/page/permission.htm?code="+result.entity.code;
-					},function(){
+					layer.alert(result.message, function() {
 						layer.close(Page.Layer);
 						window.parent.location.href="system/page/index.htm?groupCode="+group;
 					});
