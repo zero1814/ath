@@ -162,14 +162,22 @@
 	</select>
 	<select id="findPages" resultMap="BaseResultMap"
 		parameterType="org.module.dto.system.page.SmPageDto">
-		select
-		<include refid="Base_Column_List" />
-		from systemmodule.sm_page
+		SELECT
+		p.`code`,
+		p.parent_code,
+		p.group_code,
+		CONCAT(g.`name`, '-', p.`name`) AS `name`,
+		p.url,
+		p.param,
+		p.flag_able
+		FROM
+		systemmodule.sm_page AS p
+		LEFT JOIN systemmodule.sm_page_group AS g ON p.group_code = g.`code`
 		<where>
-			is_deleted = 0
-			and url != ""
+			and p.is_deleted = 0
+			and p.url != ""
 			<if test="flagAble != null">
-				and flag_able = ${#flagAble,jdbcType=INTEGER}
+				and p.flag_able = ${#flagAble,jdbcType=INTEGER}
 			</if>
 		</where>
 	</select>

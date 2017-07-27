@@ -3,6 +3,7 @@ package org.module.service.impl.product;
 import java.util.List;
 
 import org.module.dto.product.PmProductInfoDto;
+import org.module.helper.commons.PropHelper;
 import org.module.mapper.product.PmDefineMapper;
 import org.module.mapper.product.PmProductInfoMapper;
 import org.module.model.product.PmDefine;
@@ -35,12 +36,12 @@ public class PmProductInfoServiceImpl extends BaseServiceImpl<PmProductInfo, PmP
 	 */
 	@Override
 	public List<PmDefine> getProductStatus() {
-		return defineMapper.findDefineByParentCode("PD890473682797850624");
+		return defineMapper.findDefineByParentCode(PropHelper.getConfig("product.statusCode"));
 	}
 
 	@Override
 	public List<PmDefine> getProductType() {
-		return defineMapper.findDefineByParentCode("PD890494291313422336");
+		return defineMapper.findDefineByParentCode(PropHelper.getConfig("product.typeCode"));
 	}
 
 }

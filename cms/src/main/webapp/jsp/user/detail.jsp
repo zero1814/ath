@@ -40,5 +40,5 @@
 		<a href="javascript:void(0)" style="margin: 15px;" class="btn btn-w-m btn-danger" onclick="Menu.del('${menu.code}','${menu.groupCode}')">删除</a>
 	</div>
 </div>
-<script src="assets/commons/js/system/menu/menu.js"></script>
+<script src="assets/commons/js/user/store.js"></script>
 <%@ include file="../common/footer.jsp" %>

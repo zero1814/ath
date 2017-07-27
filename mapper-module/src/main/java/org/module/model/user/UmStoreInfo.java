@@ -2,6 +2,7 @@ package org.module.model.user;
 
 import org.module.annotation.mapper.db.Column;
 import org.module.annotation.mapper.db.Table;
+import org.module.annotation.mapper.obj.Attribute;
 import org.module.model.BaseModel;
 
 @Table(name = "um_store_info", database = "usermodule", comment = "店铺表")
@@ -20,6 +21,9 @@ public class UmStoreInfo extends BaseModel {
 
 	@Column(name = "status", isNull = false, comment = "状态")
 	private String status;
+
+	@Attribute(name = "statusDefine", description = "状态参数")
+	private UmDefine statusDefine;
 
 	public String getName() {
 		return name;

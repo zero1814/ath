@@ -18,5 +18,5 @@
 		</form>
 	</div>
 </div>
-<script src="assets/commons/js/product/define.js"></script>
+<script src="assets/commons/js/user/define.js"></script>
 <%@ include file="../../common/footer.jsp" %>

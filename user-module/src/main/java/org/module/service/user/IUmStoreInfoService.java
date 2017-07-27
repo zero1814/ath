@@ -1,6 +1,9 @@
 package org.module.service.user;
 
+import java.util.List;
+
 import org.module.dto.user.UmStoreInfoDto;
+import org.module.model.user.UmDefine;
 import org.module.model.user.UmStoreInfo;
 import org.module.service.IBaseService;
 
@@ -13,4 +16,5 @@ import org.module.service.IBaseService;
  */
 public interface IUmStoreInfoService extends IBaseService<UmStoreInfo, UmStoreInfoDto> {
 
+	List<UmDefine> getStoreStatus();
 }

@@ -78,13 +78,13 @@
 		</set>
 		where `code` = #{code,jdbcType=VARCHAR}
 	</update>
-	<select id="findEntityAll" parameterType="org.module.dto.user.UmDefineDto"
+	<select id="findDefineByParentCode" parameterType="java.lang.String"
 		resultMap="BaseResultMap">
 		select
-		<include refid="Base_Column_List" />
-		from usermodule.um_define
-		<where>
-			parent_code = #{parentCode,jdbcType=VARCHAR}
-		</where>
+		`code`, `name`
+		from productmodule.pm_define
+		where
+		`parent_code` =
+		#{parentCode,jdbcType=VARCHAR}
 	</select>
 </mapper>

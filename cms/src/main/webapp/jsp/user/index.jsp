@@ -5,13 +5,10 @@
 	<div class="col-sm-4">
 		<ol class="breadcrumb">
 			<li>
-				系统相关
+				店铺相关
 			</li>
 			<li>
-				菜单管理
-			</li>
-			<li>
-				<strong>菜单管理</strong>
+				<strong>店铺管理</strong>
 			</li>
 		</ol>
 	</div>
@@ -21,7 +18,7 @@
 		<div class="col-sm-5">
 			<div class="ibox float-e-margins">
 				<div class="ibox-title">
-					<h5>菜单列表</h5>
+					<h5>店铺列表</h5>
 				</div>
 				<div class="ibox-content">
 					<div id="treeview"></div>
@@ -41,7 +38,7 @@
 <%@ include file="../common/footer.jsp" %>
 <script src="assets/plugins/bootstrap/plugins/bootstrap-treeview/js/bootstrap-treeview.min.js"></script>
 <script src="assets/commons/js/tree.js"></script>
-<script src="assets/commons/js/system/menu/menu.js"></script>
+<script src="assets/commons/js/user/store.js"></script>
 <script>
 	$(document).ready(function() {
 		Menu.init('${groupCode}');

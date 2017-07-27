@@ -13,10 +13,10 @@
         </ul>
 	</div>
 	<div class="row" style="text-align: center;">
-		<a href="product/define/addindex.htm?parentCode=${define.code }" style="margin: 15px;" class="btn btn-w-m btn-info">添加子项</a>
-		<a href="product/define/editindex.htm?code=${define.code }" style="margin: 15px;" class="btn btn-w-m btn-warning">编辑</a>
+		<a href="user/define/addindex.htm?parentCode=${define.code }" style="margin: 15px;" class="btn btn-w-m btn-info">添加子项</a>
+		<a href="user/define/editindex.htm?code=${define.code }" style="margin: 15px;" class="btn btn-w-m btn-warning">编辑</a>
 		<a href="javascript:void(0)" style="margin: 15px;" class="btn btn-w-m btn-danger" onclick="Define.del('${define.code}')">删除</a>
 	</div>
 </div>
-<script src="assets/commons/js/product/define.js"></script>
+<script src="assets/commons/js/user/define.js"></script>
 <%@ include file="../../common/footer.jsp" %>

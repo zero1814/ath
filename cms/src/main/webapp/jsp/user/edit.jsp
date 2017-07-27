@@ -57,5 +57,5 @@
 		</form>
 	</div>
 </div>
-<script src="assets/commons/js/system/menu/menu.js"></script>
+<script src="assets/commons/js/user/store.js"></script>
 <%@ include file="../common/footer.jsp" %>

@@ -32,8 +32,20 @@ public class UmDefineController {
 		return service.treeData();
 	}
 
+	@RequestMapping("detail")
+	public String detail(String code, ModelMap model) {
+		EntityResult result = service.selectByCode(code);
+		if (result.getCode() == 0) {
+			model.addAttribute("define", result.getEntity());
+			return "jsp/user/define/detail";
+		} else {
+			return "jsp/error/404";
+		}
+	}
+
 	@RequestMapping("addindex")
-	public String addIndex() {
+	public String addIndex(String parentCode,ModelMap model) {
+		model.addAttribute("parentCode", parentCode);
 		return "jsp/user/define/add";
 	}
 
@@ -54,12 +66,12 @@ public class UmDefineController {
 	}
 
 	@RequestMapping("editindex")
-	public String editIndex(String code,ModelMap model) {
+	public String editIndex(String code, ModelMap model) {
 		EntityResult result = service.selectByCode(code);
-		if(result.getCode() == 0){
+		if (result.getCode() == 0) {
 			model.addAttribute("define", result.getEntity());
 			return "jsp/user/define/edit";
-		}else{
+		} else {
 			return "jsp/error/404";
 		}
 	}
