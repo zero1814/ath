@@ -2,7 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ include file="../../../common/header.jsp" %>
 <div  class="wrapper wrapper-content animated fadeInRight">
-	<div class="row">
+	<div class="row" style="width: 96%;margin: auto;">
 		<form id="addFrm" method="post" class="form-horizontal">
 			<div class="form-group">
 				<label class="col-sm-4 control-label">名称</label>

@@ -1,8 +1,10 @@
 package org.module.controller.system.menu;
 
 import org.module.dto.system.menu.SmMenuGroupDto;
+import org.module.factory.UserFactory;
 import org.module.helper.commons.CodeHelper;
 import org.module.model.system.menu.SmMenuGroup;
+import org.module.model.system.user.SmUser;
 import org.module.result.EntityResult;
 import org.module.result.PageResult;
 import org.module.result.RootResult;
@@ -39,9 +41,17 @@ public class SmMenuGroupController {
 	@RequestMapping("add")
 	@ResponseBody
 	public RootResult add(SmMenuGroup entity) {
-		entity.setCode(CodeHelper.getUniqueCode("SMG"));
-		entity.setCreateUser("add");
-		return service.insertSelective(entity);
+		RootResult result = new RootResult();
+		SmUser user = UserFactory.instance().userInfo();
+		if (user != null) {
+			entity.setCode(CodeHelper.getUniqueCode("SMG"));
+			entity.setCreateUser(user.getCode());
+			result = service.insertSelective(entity);
+		} else {
+			result.setCode(-1);
+			result.setMessage("用户尚未登录");
+		}
+		return result;
 	}
 
 	@RequestMapping("editindex")
@@ -50,7 +60,7 @@ public class SmMenuGroupController {
 		if (result.getCode() == 0) {
 			model.addAttribute("group", result.getEntity());
 			return "jsp/system/menu/group/edit";
-		}else{
+		} else {
 			return "jsp/error/404";
 		}
 	}
@@ -58,14 +68,30 @@ public class SmMenuGroupController {
 	@RequestMapping("edit")
 	@ResponseBody
 	public RootResult edit(SmMenuGroup entity) {
-		entity.setUpdateUser("edit");
-		return service.updateByCode(entity);
+		RootResult result = new RootResult();
+		SmUser user = UserFactory.instance().userInfo();
+		if (user != null) {
+			entity.setUpdateUser(user.getCode());
+			result = service.updateByCode(entity);
+		} else {
+			result.setCode(-1);
+			result.setMessage("用户尚未登录");
+		}
+		return result;
 	}
 
 	@RequestMapping("del")
 	@ResponseBody
 	public RootResult del(String code) {
-		return service.deleteByCode(code);
+		RootResult result = new RootResult();
+		SmUser user = UserFactory.instance().userInfo();
+		if (user != null) {
+			result = service.deleteByCode(code);
+		} else {
+			result.setCode(-1);
+			result.setMessage("用户尚未登录");
+		}
+		return result;
 	}
 
 }

@@ -11,6 +11,7 @@
 		<result column="name" property="name" jdbcType="VARCHAR" />
 		<result column="icon" property="icon" jdbcType="VARCHAR" />
 		<result column="flag_able" property="flagAble" jdbcType="INTEGER" />
+		<result column="sort" property="sort" jdbcType="INTEGER" />
 		<result column="create_user" property="createUser" jdbcType="VARCHAR" />
 		<result column="create_time" property="createTime" jdbcType="VARCHAR" />
 		<result column="update_user" property="updateUser" jdbcType="VARCHAR" />
@@ -22,7 +23,7 @@
 	</resultMap>
 	<sql id="Base_Column_List">
 		id, uid, code, parent_code, group_code, page_code, name,
-		icon, flag_able,
+		icon, flag_able,sort,
 		create_user,
 		DATE_FORMAT(create_time,'%Y-%m-%d
 		%H:%i:%s') as
@@ -42,6 +43,7 @@
 		m.`name`,
 		m.icon,
 		m.flag_able,
+		m.sort,
 		p.`name` as page_name,
 		p.url,
 		m.create_user,
@@ -88,6 +90,9 @@
 			<if test="flagAble != null">
 				flag_able,
 			</if>
+			<if test="sort != null">
+				sort,
+			</if>
 			create_user,
 			create_time,
 			update_user,
@@ -109,6 +114,9 @@
 			</if>
 			<if test="flagAble != null">
 				#{flagAble,jdbcType=INTEGER},
+			</if>
+			<if test="sort != null">
+				#{sort,jdbcType=INTEGER},
 			</if>
 			#{createUser,jdbcType=VARCHAR},
 			STR_TO_DATE(#{createTime,jdbcType=VARCHAR},'%Y-%m-%d
@@ -139,6 +147,9 @@
 			<if test="flagAble != null">
 				flag_able = #{flagAble,jdbcType=INTEGER},
 			</if>
+			<if test="sort != null">
+				sort = #{sort,jdbcType=INTEGER},
+			</if>
 			update_user = #{updateUser,jdbcType=VARCHAR},
 			update_time =
 			STR_TO_DATE(#{updateTime,jdbcType=VARCHAR},'%Y-%m-%d %H:%i:%s'),
@@ -151,6 +162,7 @@
 		m.`code`,
 		m.`name`,
 		m.icon,
+		m.sort,
 		IFNULL(p.url,'') as url
 		FROM
 		systemmodule.sm_menu AS m
@@ -162,6 +174,7 @@
 		#{groupCode,jdbcType=VARCHAR}
 		and m.parent_code =
 		#{parentCode,jdbcType=VARCHAR}
+		order by m.sort desc,m.create_time asc
 	</select>
 	<!-- 判断是否包含子菜单 -->
 	<select id="isExistsChildMenu" parameterType="java.lang.String"

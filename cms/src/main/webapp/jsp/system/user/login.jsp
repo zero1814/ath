@@ -36,10 +36,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	            <h3>欢迎使用 ATH</h3>
 	            <form class="m-t" role="form" id="loginFrm">
 	                <div class="form-group">
-	                    <input type="text" name="userName" class="form-control" placeholder="用户名">
+	                    <input value="admin" type="text" name="userName" class="form-control" placeholder="用户名">
 	                </div>
 	                <div class="form-group">
-	                    <input type="password" name="password" class="form-control" placeholder="密码">
+	                    <input value="888888" type="password" name="password" class="form-control" placeholder="密码">
 	                </div>
 	                <a id="login_sub" href="javascript:void(0)" onclick="User.login();" class="btn btn-primary block full-width m-b">登 录</a>
 	                <p class="text-muted text-center"> <a href="<%=basePath %>jsp/system/user/forget_password.jsp"><small>忘记密码了？</small></a> | <a href="jsp/system/user/register.jsp">注册一个新账号</a>

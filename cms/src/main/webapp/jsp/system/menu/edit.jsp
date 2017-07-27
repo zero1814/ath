@@ -39,6 +39,12 @@
 				</div>
 			</div>
 			<div class="form-group">
+				<label class="col-sm-4 control-label">排序</label>
+				<div class="col-sm-4">
+					<input name="sort" id="sort" onkeyup="checkVal(this);" value="${menu.sort }" type="text" class="form-control">
+				</div>
+			</div>
+			<div class="form-group">
 				<div class="col-sm-8">
 					<label class="col-sm-4 control-label">权限</label>
 					<a href="javascript:void(0)" class="btn btn-w-m btn-info">设置</a>
@@ -52,4 +58,14 @@
 	</div>
 </div>
 <script src="assets/commons/js/system/menu/menu.js"></script>
+<script type="text/javascript">
+ function checkVal(obj){
+	 var v = $(obj).val();
+	 if(UsePublic.isNumber(v)){
+		 $(obj).val(v);
+	 }else{
+		 $(obj).val("");
+	 }
+ }
+</script>
 <%@ include file="../../common/footer.jsp" %>

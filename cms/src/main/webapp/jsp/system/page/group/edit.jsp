@@ -12,11 +12,11 @@
 				</div>
 			</div>
 			<div style="text-align: center;" class="form-group">
-				<a href="javascript:void(0)" class="btn btn-w-m btn-info" onclick="MenuGroup.edit()">保存</a>
-				<a href="javascript:void(0)" class="btn btn-w-m btn-default" onclick="MenuGroup.closeLayer()">取消</a>
+				<a href="javascript:void(0)" class="btn btn-w-m btn-info" onclick="PageGroup.edit()">编辑</a>
+				<a href="javascript:void(0)" onclick="PageGroup.closeLayer();" class="btn btn-w-m btn-default">取消</a>
 			</div>
 		</form>
 	</div>
 </div>
-<script src="assets/commons/js/system/menu/menu.group.js"></script>
+<script src="assets/commons/js/system/page/page.group.js"></script>
 <%@ include file="../../../common/footer.jsp" %>

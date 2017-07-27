@@ -19,6 +19,17 @@
             <li class="list-group-item">
             	图标:<strong style="margin:15px;"><c:if test="${menu.icon !='' }"><i class="fa ${menu.icon }"></i></c:if></strong>
             </li>
+            <li class="list-group-item">
+            	是否可用:<strong style="margin:15px;">
+            		<c:choose>
+            			<c:when test="${menu.flagAble ==0 }">可用</c:when>
+            			<c:otherwise>不可用</c:otherwise>
+            		</c:choose>
+            	</strong>
+            </li>
+            <li class="list-group-item">
+            	排序:<strong style="margin:15px;">${menu.sort }</strong>
+            </li>
         </ul>
 	</div>
 	<div class="row" style="text-align: center;">

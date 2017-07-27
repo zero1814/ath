@@ -31,17 +31,41 @@
 </macro>
 
 <#-- 添加页面 -->
-<macro page_add>
+<macro page_add e_list>
+<@page_header />
+<div  class="wrapper wrapper-content animated fadeInRight">
+	<div class="row">
+		<form id="addFrm" method="post" class="form-horizontal">
+			<#list e_list as e>
+				<div class="form-group">
+					<label class="col-sm-4 control-label">${e.name}</label>
+					<div class="col-sm-4">
+						<input name="name" id="${e.code}" value="${e.code}" type="text" class="form-control">
+					</div>
+				</div>
+			</#list>
+		</form>
+	</div>
+</div>
+<@page_footer />
 </macro>
 <#-- 编辑页面 -->
 <macro page_edit>
+<@page_header />
+<@page_footer />
 </macro>
 <#-- 数据详情页面 -->
 <macro page_detail>
+<@page_header />
+<@page_footer />
 </macro>
 <#-- 数据集合页面 -->
 <macro page_data>
+<@page_header />
+<@page_footer />
 </macro>
 <#-- 树型数据页面 -->
 <macro page_tree>
+<@page_header />
+<@page_footer />
 </macro>

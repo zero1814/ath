@@ -37,8 +37,19 @@ public class SmMenu extends TreeModel {
 	@Column(name = "flag_able", comment = "是否可用 0 可用 1 不可用")
 	private Integer flagAble;
 
+	@Column(name = "sort", defaultValue = "0", comment = "排序")
+	private Integer sort;
+
 	@Attribute(name = "childs", description = "子级菜单集合")
 	private List<SmMenu> childs;
+
+	public Integer getSort() {
+		return sort;
+	}
+
+	public void setSort(Integer sort) {
+		this.sort = sort;
+	}
 
 	public SmMenuGroup getGroup() {
 		return group;

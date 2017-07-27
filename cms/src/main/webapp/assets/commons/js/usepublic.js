@@ -105,8 +105,8 @@ var UsePublic = {
 			url: urlVal,
 			type: "POST",
 			data: paramVal,
+			dataType : "json",
 			success: function(result) {
-				result = JSON.parse(result);
 				if(result.code == 0) {
 					layer.alert('添加成功', function(index) {
 						layer.close(index);
@@ -141,8 +141,8 @@ var UsePublic = {
 			url: urlVal,
 			type: "POST",
 			data: paramVal,
+			dataType : "json",
 			success: function(result) {
-				result = JSON.parse(result);
 				if(result.code == 0) {
 					layer.alert('编辑成功', function(index) {
 						layer.close(index);
@@ -184,8 +184,8 @@ var UsePublic = {
 				url: urlVal,
 				type: "POST",
 				data: paramVal,
+				dataType : "json",
 				success: function(result) {
-					result = JSON.parse(result);
 					if(result.code == 0) {
 						layer.alert('删除成功', function(index) {
 							layer.close(index);

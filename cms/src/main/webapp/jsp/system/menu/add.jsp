@@ -38,6 +38,12 @@
 					</select>
 				</div>
 			</div>
+			<div class="form-group">
+				<label class="col-sm-4 control-label">排序</label>
+				<div class="col-sm-4">
+					<input name="sort" id="sort" onkeyup="checkVal(this);" value="" type="text" class="form-control">
+				</div>
+			</div>
 			<div style="text-align: center;" class="form-group">
 				<a href="javascript:void(0)" class="btn btn-w-m btn-info" onclick="Menu.add('${groupCode}')">保存</a>
 				<a href="system/menu/detail.htm?code=${parentCode }" class="btn btn-w-m btn-default">取消</a>
@@ -46,4 +52,14 @@
 	</div>
 </div>
 <script src="assets/commons/js/system/menu/menu.js"></script>
+<script type="text/javascript">
+ function checkVal(obj){
+	 var v = $(obj).val();
+	 if(UsePublic.isNumber(v)){
+		 $(obj).val(v);
+	 }else{
+		 $(obj).val("");
+	 }
+ }
+</script>
 <%@ include file="../../common/footer.jsp" %>
