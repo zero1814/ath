@@ -5,6 +5,7 @@ import org.module.mapper.product.PmSkuInfoMapper;
 import org.module.model.product.PmSkuInfo;
 import org.module.service.impl.BaseServiceImpl;
 import org.module.service.product.IPmSkuInfoService;
+import org.springframework.stereotype.Service;
 
 /**
  * 
@@ -13,6 +14,7 @@ import org.module.service.product.IPmSkuInfoService;
  * 作者: zhy<br>
  * 时间: 2017年7月27日 上午9:45:48
  */
+@Service
 public class PmSkuInfoServiceImpl extends BaseServiceImpl<PmSkuInfo, PmSkuInfoMapper, PmSkuInfoDto>
 		implements IPmSkuInfoService {
 

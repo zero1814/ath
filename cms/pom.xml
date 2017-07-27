@@ -17,6 +17,11 @@
 	<dependencies>
 		<dependency>
 			<groupId>cn.com</groupId>
+			<artifactId>shiro-module</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
+		</dependency>
+		<dependency>
+			<groupId>cn.com</groupId>
 			<artifactId>commons-module</artifactId>
 			<version>0.0.1-SNAPSHOT</version>
 		</dependency>
@@ -32,12 +37,7 @@
 		</dependency>
 		<dependency>
 			<groupId>cn.com</groupId>
-			<artifactId>db-module</artifactId>
-			<version>0.0.1-SNAPSHOT</version>
-		</dependency>
-		<dependency>
-			<groupId>cn.com</groupId>
-			<artifactId>shiro-module</artifactId>
+			<artifactId>product-module</artifactId>
 			<version>0.0.1-SNAPSHOT</version>
 		</dependency>
 		<dependency>

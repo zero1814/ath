@@ -5,6 +5,7 @@ import org.module.mapper.product.PmProductInfoMapper;
 import org.module.model.product.PmProductInfo;
 import org.module.service.impl.BaseServiceImpl;
 import org.module.service.product.IPmProductInfoService;
+import org.springframework.stereotype.Service;
 
 /**
  * 
@@ -13,6 +14,7 @@ import org.module.service.product.IPmProductInfoService;
  * 作者: zhy<br>
  * 时间: 2017年7月27日 上午9:44:30
  */
+@Service
 public class PmProductInfoServiceImpl extends BaseServiceImpl<PmProductInfo, PmProductInfoMapper, PmProductInfoDto>
 		implements IPmProductInfoService {
 

@@ -22,14 +22,14 @@
 		as
 		update_time
 	</sql>
-	<select id="selectByPrimaryKey" resultMap="BaseResultMap"
+	<select id="selectByCode" resultMap="BaseResultMap"
 		parameterType="java.lang.String">
 		select
 		<include refid="Base_Column_List" />
 		from productmodule.pm_define
 		where `code` = #{code,jdbcType=VARCHAR}
 	</select>
-	<delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+	<delete id="deleteByCode" parameterType="java.lang.String">
 		delete from
 		productmodule.pm_define
 		where `code` = #{code,jdbcType=VARCHAR}
@@ -74,4 +74,13 @@
 		</set>
 		where `code` = #{code,jdbcType=VARCHAR}
 	</update>
+	<select id="findDataAll" parameterType="org.module.dto.product.PmDefineDto"
+		resultMap="BaseResultMap">
+		select
+		`code`, `name`
+		from productmodule.pm_define
+		where
+		`parent_code` =
+		#{parentCode,jdbcType=VARCHAR}
+	</select>
 </mapper>

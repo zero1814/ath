@@ -2,10 +2,10 @@ package org.module.model.product;
 
 import org.module.annotation.mapper.db.Column;
 import org.module.annotation.mapper.db.Table;
-import org.module.model.BaseModel;
+import org.module.model.TreeModel;
 
 @Table(name = "pm_define", database = "productmodule", comment = "商品参数表，存储类型，状态，标签等")
-public class PmDefine extends BaseModel {
+public class PmDefine extends TreeModel {
 
 	private static final long serialVersionUID = -1338795044175087529L;
 
@@ -29,6 +29,11 @@ public class PmDefine extends BaseModel {
 
 	public void setName(String name) {
 		this.name = name;
+	}
+
+	@Override
+	public String getText() {
+		return this.name;
 	}
 
 }
