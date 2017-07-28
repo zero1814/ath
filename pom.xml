@@ -15,7 +15,6 @@
 		<module>system-module</module>
 		<module>cms</module>
 		<module>shiro-module</module>
-		<module>mapper-module</module>
 		<module>logger-module</module>
 		<module>order-module</module>
 		<module>product-module</module>
