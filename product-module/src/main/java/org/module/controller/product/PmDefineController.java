@@ -1,6 +1,5 @@
 package org.module.controller.product;
 
-import org.module.factory.UserFactory;
 import org.module.helper.commons.CodeHelper;
 import org.module.model.product.PmDefine;
 import org.module.model.system.user.SmUser;
@@ -8,6 +7,7 @@ import org.module.result.EntityResult;
 import org.module.result.RootResult;
 import org.module.result.TreeResult;
 import org.module.service.product.IPmDefineService;
+import org.module.system.factory.UserFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;

@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="org.module.mapper.system.user.SmUserRoleMapper">
+	<resultMap id="BaseResultMap" type="org.module.model.system.user.SmUserRole">
+		<id column="id" property="id" jdbcType="INTEGER" />
+		<result column="uid" property="uid" jdbcType="VARCHAR" />
+		<result column="user_code" property="userCode" jdbcType="VARCHAR" />
+		<result column="role_code" property="roleCode" jdbcType="VARCHAR" />
+		<result column="create_user" property="createUser" jdbcType="VARCHAR" />
+		<result column="create_time" property="createTime" jdbcType="VARCHAR" />
+	</resultMap>
+	<sql id="Base_Column_List">
+		id, uid, user_code, role_code, create_user,
+		DATE_FORMAT(create_time,'%Y-%m-%d
+		%H:%i:%s') as
+		create_time
+	</sql>
+	<select id="selectByUserCode" resultMap="BaseResultMap"
+		parameterType="java.lang.String">
+		select
+		<include refid="Base_Column_List" />
+		from systemmodule.sm_user_role
+		where
+		`user_code`=#{userCode,jdbcType=VARCHAR}
+	</select>
+	<delete id="deleteByUserCode" parameterType="java.lang.String">
+		delete from
+		systemmodule.sm_user_role where user_code =
+		#{userCode,jdbcType=VARCHAR}
+	</delete>
+	<insert id="insertSelective" parameterType="org.module.model.system.user.SmUserRole">
+		insert into systemmodule.sm_user_role
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			uid,
+			user_code,
+			role_code,
+			create_user,
+			create_time,
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			#{uid,jdbcType=VARCHAR},
+			#{userCode,jdbcType=VARCHAR},
+			#{roleCode,jdbcType=VARCHAR},
+			#{createUser,jdbcType=VARCHAR},
+			STR_TO_DATE(#{createTime,jdbcType=VARCHAR},'%Y-%m-%d
+			%H:%i:%s'),
+		</trim>
+	</insert>
+</mapper>

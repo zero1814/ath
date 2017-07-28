@@ -4,7 +4,6 @@ import org.module.cache.CacheKey;
 import org.module.cache.RedisString;
 import org.module.dto.system.user.SmUserDto;
 import org.module.helper.commons.CodeHelper;
-import org.module.helper.commons.LoggerHelper;
 import org.module.helper.commons.WebHelper;
 import org.module.mapper.system.user.SmUserMapper;
 import org.module.model.system.user.SmUser;
@@ -49,12 +48,10 @@ public class SmUserServiceImpl extends BaseServiceImpl<SmUser, SmUserMapper, SmU
 			/**
 			 * 记录登录日志
 			 */
-			LoggerHelper.instance().login(user.getCode());
 		}
 		/**
 		 * 添加操作日志
 		 */
-		LoggerHelper.instance().operate(getClass(), JSON.toJSONString(entity), JSON.toJSONString(result), "login");
 		return result;
 	}
 

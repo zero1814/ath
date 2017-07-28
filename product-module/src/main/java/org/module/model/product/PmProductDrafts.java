@@ -1,0 +1,146 @@
+package org.module.model.product;
+
+import java.math.BigDecimal;
+
+import org.module.annotation.db.Column;
+import org.module.annotation.db.Table;
+import org.module.model.BaseModel;
+
+@Table(name = "pm_product_drafts", database = "productmodule", comment = "商品草稿箱")
+public class PmProductDrafts extends BaseModel {
+
+	private static final long serialVersionUID = -7572193156199465396L;
+
+	@Column(name = "name", isNull = false, comment = "名称")
+	private String name;
+
+	@Column(name = "store_code", isNull = false, comment = "店铺编码")
+	private String storeCode;
+
+	@Column(name = "product_type", isNull = false, comment = "商品类型")
+	private String productType;
+
+	@Column(name = "product_status", isNull = false, comment = "商品状态")
+	private String productStatus;
+
+	@Column(name = "cost_price", defaultValue = "0.00", comment = "成本价")
+	private BigDecimal costPrice;
+
+	@Column(name = "min_sell_price", defaultValue = "0.00", comment = "销售价格最小")
+	private BigDecimal minSellPrice;
+
+	@Column(name = "max_sell_price", defaultValue = "0.00", comment = "销售价格最大")
+	private BigDecimal maxSellPrice;
+
+	@Column(name = "product_url", isNull = false, comment = "商品链接地址")
+	private String productUrl;
+
+	@Column(name = "product_pic", isNull = false, comment = "商品图片")
+	private String productPic;
+
+	@Column(name = "product_label", comment = "商品标签,数组存储")
+	private String productLabel;
+
+	@Column(name = "product_specification", comment = "商品规格")
+	private String productSpecification;
+
+	@Column(name = "product_json", isNull = false, comment = "保存商品信息")
+	private String productJson;
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public String getStoreCode() {
+		return storeCode;
+	}
+
+	public void setStoreCode(String storeCode) {
+		this.storeCode = storeCode;
+	}
+
+	public String getProductType() {
+		return productType;
+	}
+
+	public void setProductType(String productType) {
+		this.productType = productType;
+	}
+
+	public String getProductStatus() {
+		return productStatus;
+	}
+
+	public void setProductStatus(String productStatus) {
+		this.productStatus = productStatus;
+	}
+
+	public BigDecimal getCostPrice() {
+		return costPrice;
+	}
+
+	public void setCostPrice(BigDecimal costPrice) {
+		this.costPrice = costPrice;
+	}
+
+	public BigDecimal getMinSellPrice() {
+		return minSellPrice;
+	}
+
+	public void setMinSellPrice(BigDecimal minSellPrice) {
+		this.minSellPrice = minSellPrice;
+	}
+
+	public BigDecimal getMaxSellPrice() {
+		return maxSellPrice;
+	}
+
+	public void setMaxSellPrice(BigDecimal maxSellPrice) {
+		this.maxSellPrice = maxSellPrice;
+	}
+
+	public String getProductUrl() {
+		return productUrl;
+	}
+
+	public void setProductUrl(String productUrl) {
+		this.productUrl = productUrl;
+	}
+
+	public String getProductPic() {
+		return productPic;
+	}
+
+	public void setProductPic(String productPic) {
+		this.productPic = productPic;
+	}
+
+	public String getProductLabel() {
+		return productLabel;
+	}
+
+	public void setProductLabel(String productLabel) {
+		this.productLabel = productLabel;
+	}
+
+	public String getProductSpecification() {
+		return productSpecification;
+	}
+
+	public void setProductSpecification(String productSpecification) {
+		this.productSpecification = productSpecification;
+	}
+
+	public String getProductJson() {
+		return productJson;
+	}
+
+	public void setProductJson(String productJson) {
+		this.productJson = productJson;
+	}
+
+}

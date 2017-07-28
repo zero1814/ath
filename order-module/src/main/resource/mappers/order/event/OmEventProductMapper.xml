@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="org.module.mapper.order.event.OmEventProductMapper">
+	<resultMap id="BaseResultMap" type="org.module.model.order.event.OmEventProduct">
+		<id column="id" property="id" jdbcType="INTEGER" />
+		<result column="uid" property="uid" jdbcType="VARCHAR" />
+		<result column="event_code" property="eventCode" jdbcType="VARCHAR" />
+		<result column="store_code" property="storeCode" jdbcType="VARCHAR" />
+		<result column="product_code" property="productCode" jdbcType="VARCHAR" />
+		<result column="product_url" property="productUrl" jdbcType="VARCHAR" />
+		<result column="sku_code" property="skuCode" jdbcType="VARCHAR" />
+		<result column="sku_pic_url" property="skuPicUrl" jdbcType="VARCHAR" />
+		<result column="event_price" property="eventPrice" jdbcType="DECIMAL" />
+		<result column="event_sku_num" property="eventSkuNum" jdbcType="INTEGER" />
+		<result column="sort" property="sort" jdbcType="INTEGER" />
+		<result column="create_user" property="createUser" jdbcType="VARCHAR" />
+		<result column="create_time" property="createTime" jdbcType="VARCHAR" />
+		<result column="update_user" property="updateUser" jdbcType="VARCHAR" />
+		<result column="update_time" property="updateTime" jdbcType="VARCHAR" />
+	</resultMap>
+	<sql id="Base_Column_List">
+		id, uid, event_code, store_code, product_code, product_url,
+		sku_code,
+		sku_pic_url,
+		event_price, event_sku_num, sort, create_user,
+		DATE_FORMAT(create_time,'%Y-%m-%d
+		%H:%i:%s') as
+		create_time,
+		update_user,
+		DATE_FORMAT(update_time,'%Y-%m-%d %H:%i:%s')
+		as
+		update_time
+	</sql>
+	<select id="selectByCode" resultMap="BaseResultMap"
+		parameterType="java.lang.String">
+		select
+		<include refid="Base_Column_List" />
+		from ordermodule.om_event_product
+		where `event_code` = #{eventCode,jdbcType=VARCHAR}
+	</select>
+	<delete id="deleteByCode" parameterType="java.lang.String">
+		delete from
+		ordermodule.om_event_product
+		where `event_code` =
+		#{eventCode,jdbcType=VARCHAR}
+	</delete>
+	<insert id="insertSelective" parameterType="org.module.model.order.event.OmEventProduct">
+		insert into ordermodule.om_event_product
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			uid,
+			event_code,
+			store_code,
+			product_code,
+			product_url,
+			sku_code,
+			sku_pic_url,
+			event_price,
+			<if test="eventSkuNum != null">
+				event_sku_num,
+			</if>
+			<if test="sort != null">
+				sort,
+			</if>
+			create_user,
+			create_time,
+			update_user,
+			update_time,
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			#{uid,jdbcType=VARCHAR},
+			#{eventCode,jdbcType=VARCHAR},
+			#{storeCode,jdbcType=VARCHAR},
+			#{productCode,jdbcType=VARCHAR},
+			#{productUrl,jdbcType=VARCHAR},
+			#{skuCode,jdbcType=VARCHAR},
+			#{skuPicUrl,jdbcType=VARCHAR},
+			#{eventPrice,jdbcType=DECIMAL},
+			<if test="eventSkuNum != null">
+				#{eventSkuNum,jdbcType=INTEGER},
+			</if>
+			<if test="sort != null">
+				#{sort,jdbcType=INTEGER},
+			</if>
+			#{createUser,jdbcType=VARCHAR},
+			STR_TO_DATE(#{createTime,jdbcType=VARCHAR},'%Y-%m-%d
+			%H:%i:%s'),
+			#{updateUser,jdbcType=VARCHAR},
+			STR_TO_DATE(#{updateTime,jdbcType=VARCHAR},'%Y-%m-%d
+			%H:%i:%s'),
+		</trim>
+	</insert>
+	<update id="updateByCode" parameterType="org.module.model.order.event.OmEventProduct">
+		update ordermodule.om_event_product
+		<set>
+			<if test="eventPrice != null">
+				event_price = #{eventPrice,jdbcType=DECIMAL},
+			</if>
+			<if test="eventSkuNum != null">
+				event_sku_num = #{eventSkuNum,jdbcType=INTEGER},
+			</if>
+			<if test="sort != null">
+				sort = #{sort,jdbcType=INTEGER},
+			</if>
+			update_user = #{updateUser,jdbcType=VARCHAR},
+			update_time =
+			STR_TO_DATE(#{updateTime,jdbcType=VARCHAR},'%Y-%m-%d %H:%i:%s'),
+		</set>
+		where `event_code` = #{eventCode,jdbcType=VARCHAR}
+	</update>
+</mapper>

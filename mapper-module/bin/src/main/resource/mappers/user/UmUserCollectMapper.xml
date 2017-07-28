@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="org.module.mapper.user.UmUserCollectMapper">
+	<resultMap id="BaseResultMap" type="org.module.model.user.UmUserCollect">
+		<id column="id" property="id" jdbcType="INTEGER" />
+		<result column="uid" property="uid" jdbcType="VARCHAR" />
+		<result column="code" property="code" jdbcType="VARCHAR" />
+		<result column="user_code" property="userCode" jdbcType="VARCHAR" />
+		<result column="collect_type" property="collectType" jdbcType="VARCHAR" />
+		<result column="collect_code" property="collectCode" jdbcType="VARCHAR" />
+		<result column="create_user" property="createUser" jdbcType="VARCHAR" />
+		<result column="create_time" property="createTime" jdbcType="VARCHAR" />
+	</resultMap>
+	<sql id="Base_Column_List">
+		id, uid, `code`, user_code, collect_type, collect_code,
+		create_user,
+		DATE_FORMAT(create_time,'%Y-%m-%d
+		%H:%i:%s') as
+		create_time
+	</sql>
+	<select id="selectByCode" resultMap="BaseResultMap"
+		parameterType="java.lang.String">
+		select
+		<include refid="Base_Column_List" />
+		from usermodule.um_user_collect
+		where `code` = #{code,jdbcType=VARCHAR}
+	</select>
+	<delete id="deleteByCode" parameterType="java.lang.String">
+		delete from
+		usermodule.um_user_collect
+		where `code` = #{code,jdbcType=VARCHAR}
+	</delete>
+	<insert id="insertSelective" parameterType="org.module.model.user.UmUserCollect">
+		insert into usermodule.um_user_collect
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			uid,
+			`code`,
+			user_code,
+			collect_type,
+			collect_code,
+			create_user,
+			create_time,
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			#{uid,jdbcType=VARCHAR},
+			#{code,jdbcType=VARCHAR},
+			#{userCode,jdbcType=VARCHAR},
+			#{collectType,jdbcType=VARCHAR},
+			#{collectCode,jdbcType=VARCHAR},
+			#{createUser,jdbcType=VARCHAR},
+			STR_TO_DATE(#{createTime,jdbcType=VARCHAR},'%Y-%m-%d
+			%H:%i:%s'),
+		</trim>
+	</insert>
+</mapper>

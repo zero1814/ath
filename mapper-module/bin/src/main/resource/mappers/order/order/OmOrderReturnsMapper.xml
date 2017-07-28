@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="org.module.mapper.order.order.OmOrderReturnsMapper">
+	<resultMap id="BaseResultMap" type="org.module.model.order.order.OmOrderReturns">
+		<id column="id" property="id" jdbcType="INTEGER" />
+		<result column="uid" property="uid" jdbcType="VARCHAR" />
+		<result column="code" property="code" jdbcType="VARCHAR" />
+		<result column="order_code" property="orderCode" jdbcType="VARCHAR" />
+		<result column="return_type" property="returnType" jdbcType="VARCHAR" />
+		<result column="return_reason" property="returnReason"
+			jdbcType="VARCHAR" />
+		<result column="return_status" property="returnStatus"
+			jdbcType="VARCHAR" />
+		<result column="create_user" property="createUser" jdbcType="VARCHAR" />
+		<result column="create_time" property="createTime" jdbcType="VARCHAR" />
+		<result column="update_user" property="updateUser" jdbcType="VARCHAR" />
+		<result column="update_time" property="updateTime" jdbcType="VARCHAR" />
+	</resultMap>
+	<sql id="Base_Column_List">
+		id, uid, code, order_code, return_type, return_reason,
+		create_user,
+		DATE_FORMAT(create_time,'%Y-%m-%d
+		%H:%i:%s') as
+		create_time,
+		update_user,
+		DATE_FORMAT(update_time,'%Y-%m-%d %H:%i:%s')
+		as
+		update_time
+	</sql>
+	<select id="selectByCode" resultMap="BaseResultMap"
+		parameterType="java.lang.String">
+		select
+		<include refid="Base_Column_List" />
+		from ordermodule.om_order_returns
+		where `code` =
+		#{code,jdbcType=VARCHAR}
+	</select>
+	<delete id="deleteByCode" parameterType="java.lang.String">
+		delete from
+		ordermodule.om_order_returns
+		where `code` = #{code,jdbcType=VARCHAR}
+	</delete>
+	<insert id="insertSelective" parameterType="org.module.model.order.order.OmOrderReturns">
+		insert into ordermodule.om_order_returns
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			uid,
+			`code`,
+			order_code,
+			return_type,
+			return_reason,
+			return_status,
+			create_user,
+			create_time,
+			update_user,
+			update_time,
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			#{uid,jdbcType=VARCHAR},
+			#{code,jdbcType=VARCHAR},
+			#{orderCode,jdbcType=VARCHAR},
+			#{returnType,jdbcType=VARCHAR},
+			#{returnReason,jdbcType=VARCHAR},
+			#{returnStatus,jdbcType=VARCHAR},
+			#{createUser,jdbcType=VARCHAR},
+			STR_TO_DATE(#{createTime,jdbcType=VARCHAR},'%Y-%m-%d
+			%H:%i:%s'),
+			#{updateUser,jdbcType=VARCHAR},
+			STR_TO_DATE(#{updateTime,jdbcType=VARCHAR},'%Y-%m-%d
+			%H:%i:%s'),
+		</trim>
+	</insert>
+	<update id="updateByCode" parameterType="org.module.model.order.order.OmOrderReturns">
+		update ordermodule.om_order_returns
+		<set>
+			return_status = #{returnStatus,jdbcType=VARCHAR},
+			update_user = #{updateUser,jdbcType=VARCHAR},
+			update_time =
+			STR_TO_DATE(#{updateTime,jdbcType=VARCHAR},'%Y-%m-%d %H:%i:%s'),
+		</set>
+		where `code` = #{code,jdbcType=VARCHAR}
+	</update>
+</mapper>

@@ -1,7 +1,6 @@
 package org.module.controller.system.page;
 
 import org.module.dto.system.page.SmPageGroupDto;
-import org.module.factory.UserFactory;
 import org.module.helper.commons.CodeHelper;
 import org.module.model.system.page.SmPageGroup;
 import org.module.model.system.user.SmUser;
@@ -9,6 +8,7 @@ import org.module.result.EntityResult;
 import org.module.result.PageResult;
 import org.module.result.RootResult;
 import org.module.service.system.page.ISmPageGroupService;
+import org.module.system.factory.UserFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;

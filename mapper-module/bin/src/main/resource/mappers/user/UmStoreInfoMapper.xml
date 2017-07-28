@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="org.module.mapper.user.UmStoreInfoMapper">
+	<resultMap id="BaseResultMap" type="org.module.model.user.UmStoreInfo">
+		<id column="id" property="id" jdbcType="INTEGER" />
+		<result column="uid" property="uid" jdbcType="VARCHAR" />
+		<result column="code" property="code" jdbcType="VARCHAR" />
+		<result column="name" property="name" jdbcType="VARCHAR" />
+		<result column="store_url" property="storeUrl" jdbcType="VARCHAR" />
+		<result column="store_pic_url" property="storePicUrl" jdbcType="VARCHAR" />
+		<result column="status" property="status" jdbcType="VARCHAR" />
+		<result column="create_user" property="createUser" jdbcType="VARCHAR" />
+		<result column="create_time" property="createTime" jdbcType="VARCHAR" />
+		<result column="update_user" property="updateUser" jdbcType="VARCHAR" />
+		<result column="update_time" property="updateTime" jdbcType="VARCHAR" />
+	</resultMap>
+	<sql id="Base_Column_List">
+		id, uid, `code`, `name`, store_url, store_pic_url,
+		`status`,
+		create_user,
+		DATE_FORMAT(create_time,'%Y-%m-%d
+		%H:%i:%s') as
+		create_time,
+		update_user,
+		DATE_FORMAT(update_time,'%Y-%m-%d %H:%i:%s')
+		as
+		update_time
+	</sql>
+	<select id="selectByCode" resultMap="BaseResultMap"
+		parameterType="java.lang.String">
+		select
+		<include refid="Base_Column_List" />
+		from usermodule.um_store_info
+		where `code` = #{code,jdbcType=VARCHAR}
+	</select>
+	<delete id="deleteByCode" parameterType="java.lang.String">
+		delete from
+		usermodule.um_store_info
+		where `code` = #{code,jdbcType=VARCHAR}
+	</delete>
+	<insert id="insertSelective" parameterType="org.module.model.user.UmStoreInfo">
+		insert into usermodule.um_store_info
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			uid,
+			`code`,
+			`name`,
+			store_url,
+			store_pic_url,
+			`status`,
+			create_user,
+			create_time,
+			update_user,
+			update_time,
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			#{uid,jdbcType=VARCHAR},
+			#{code,jdbcType=VARCHAR},
+			#{name,jdbcType=VARCHAR},
+			#{storeUrl,jdbcType=VARCHAR},
+			#{storePicUrl,jdbcType=VARCHAR},
+			#{status,jdbcType=VARCHAR},
+			#{createUser,jdbcType=VARCHAR},
+			STR_TO_DATE(#{createTime,jdbcType=VARCHAR},'%Y-%m-%d
+			%H:%i:%s'),
+			#{updateUser,jdbcType=VARCHAR},
+			STR_TO_DATE(#{updateTime,jdbcType=VARCHAR},'%Y-%m-%d
+			%H:%i:%s'),
+		</trim>
+	</insert>
+	<update id="updateByCode" parameterType="org.module.model.user.UmStoreInfo">
+		update usermodule.um_store_info
+		<set>
+			<if test="name != null and name !=''">
+				`name` = #{name,jdbcType=VARCHAR},
+			</if>
+			<if test="storeUrl != null and storeUrl!='' ">
+				store_url = #{storeUrl,jdbcType=VARCHAR},
+			</if>
+			<if test="storePicUrl != null and storePicUrl !=''">
+				store_pic_url = #{storePicUrl,jdbcType=VARCHAR},
+			</if>
+			<if test="status != null and status !='' ">
+				`status` = #{status,jdbcType=VARCHAR},
+			</if>
+			update_user = #{updateUser,jdbcType=VARCHAR},
+			update_time =
+			STR_TO_DATE(#{updateTime,jdbcType=VARCHAR},'%Y-%m-%d %H:%i:%s'),
+		</set>
+		where `code` = #{code,jdbcType=VARCHAR}
+	</update>
+	<select id="findEntityAllToPage" parameterType="org.module.dto.user.UmStoreInfoDto"
+		resultMap="BaseResultMap">
+		SELECT
+		u.`code`,
+		u.`name`,
+		u.store_url,
+		u.store_pic_url,
+		u.`status`,
+		u.create_user,
+		DATE_FORMAT(
+		u.create_time,
+		'%Y-%m-%d
+		%H:%i:%s'
+		) AS
+		create_time,
+		u.update_user,
+		DATE_FORMAT(
+		u.update_time,
+		'%Y-%m-%d
+		%H:%i:%s'
+		) AS update_time (
+		SELECT
+		d.`name`
+		FROM
+		usermodule.um_define AS d
+		WHERE
+		d.`code` = u.`status`
+		) AS status_name
+		FROM
+		usermodule.um_store_info AS u
+		<where>
+			1=1
+			<if test="code != null and code != ''">
+				and u.`code` = #{code,jdbcType=VARCHAR}
+			</if>
+			<if test="name != null and name != ''">
+				and u.`name` = #{name,jdbcType=VARCHAR}
+			</if>
+			<if test="status != null and status != ''">
+				and u.`status` = #{status,jdbcType=VARCHAR}
+			</if>
+		</where>
+	</select>
+</mapper>
