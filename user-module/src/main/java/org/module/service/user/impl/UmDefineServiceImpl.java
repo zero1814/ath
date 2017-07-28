@@ -43,14 +43,10 @@ public class UmDefineServiceImpl extends BaseServiceImpl<UmDefine, UmDefineMappe
 	}
 
 	private List<UmDefine> data(String parentCode) {
-		UmDefineDto dto = new UmDefineDto();
-		dto.setParentCode(parentCode);
-		List<UmDefine> list = mapper.findEntityAll(dto);
+		List<UmDefine> list = mapper.findDefineByParentCode(parentCode);
 		if (list != null && list.size() > 0) {
 			for (UmDefine m : list) {
-				UmDefineDto sbDto = new UmDefineDto();
-				sbDto.setParentCode(m.getCode());
-				List<UmDefine> sub = mapper.findEntityAll(sbDto);
+				List<UmDefine> sub = mapper.findDefineByParentCode(m.getCode());
 				if (sub != null && sub.size() > 0) {
 					m.setNodes(sub);
 				}

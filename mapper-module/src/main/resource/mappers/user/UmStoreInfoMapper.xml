@@ -88,4 +88,47 @@
 		</set>
 		where `code` = #{code,jdbcType=VARCHAR}
 	</update>
+	<select id="findEntityAllToPage" parameterType="org.module.dto.user.UmStoreInfoDto"
+		resultMap="BaseResultMap">
+		SELECT
+		u.`code`,
+		u.`name`,
+		u.store_url,
+		u.store_pic_url,
+		u.`status`,
+		u.create_user,
+		DATE_FORMAT(
+		u.create_time,
+		'%Y-%m-%d
+		%H:%i:%s'
+		) AS
+		create_time,
+		u.update_user,
+		DATE_FORMAT(
+		u.update_time,
+		'%Y-%m-%d
+		%H:%i:%s'
+		) AS update_time (
+		SELECT
+		d.`name`
+		FROM
+		usermodule.um_define AS d
+		WHERE
+		d.`code` = u.`status`
+		) AS status_name
+		FROM
+		usermodule.um_store_info AS u
+		<where>
+			1=1
+			<if test="code != null and code != ''">
+				and u.`code` = #{code,jdbcType=VARCHAR}
+			</if>
+			<if test="name != null and name != ''">
+				and u.`name` = #{name,jdbcType=VARCHAR}
+			</if>
+			<if test="status != null and status != ''">
+				and u.`status` = #{status,jdbcType=VARCHAR}
+			</if>
+		</where>
+	</select>
 </mapper>

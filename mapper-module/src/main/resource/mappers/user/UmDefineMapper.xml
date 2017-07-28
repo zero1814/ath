@@ -82,7 +82,7 @@
 		resultMap="BaseResultMap">
 		select
 		`code`, `name`
-		from productmodule.pm_define
+		from usermodule.um_define
 		where
 		`parent_code` =
 		#{parentCode,jdbcType=VARCHAR}

@@ -41,6 +41,6 @@
 <script src="assets/commons/js/user/store.js"></script>
 <script>
 	$(document).ready(function() {
-		Menu.init('${groupCode}');
+		Store.data();
 	});
 </script>

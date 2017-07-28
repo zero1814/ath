@@ -5,10 +5,7 @@
 	<div class="col-sm-4">
 		<ol class="breadcrumb">
 			<li>
-				系统相关
-			</li>
-			<li>
-				菜单管理
+				店铺相关
 			</li>
 			<li>
 				<strong>菜单管理</strong>
@@ -16,34 +13,53 @@
 		</ol>
 	</div>
 </div>
+
 <div class="wrapper wrapper-content">
 	<div class="row">
-		<div class="col-sm-5">
-			<div class="ibox float-e-margins">
-				<div class="ibox-title">
-					<h5>菜单列表</h5>
+		<div class="col-sm-12">
+			<form method="get" class="form-horizontal">
+				<div class="form-group">
+					<label class="col-sm-4 control-label">店铺编码</label>
+					<div class="col-sm-4">
+						<input name="name" id="name" value="" type="text" class="form-control">
+					</div>
 				</div>
-				<div class="ibox-content">
-					<div id="treeview"></div>
+				<div class="form-group">
+					<label class="col-sm-4 control-label">店铺名称</label>
+					<div class="col-sm-4">
+						<input name="name" id="name" value="" type="text" class="form-control">
+					</div>
 				</div>
-			</div>
+				<div class="form-group">
+					<label class="col-sm-4 control-label">店铺状态</label>
+					<div class="col-sm-4">
+						<input name="name" id="name" value="" type="text" class="form-control">
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="col-sm-4 control-label"></label>
+					<div class="col-sm-4">
+						<a style="float: right;" href="javascript:void(0)" onclick="MenuGroup.search();" class="btn btn-w-m btn-info">查询</a>
+					</div>
+				</div>
+			</form>
 		</div>
-		<div class="col-sm-5">
-			<div class="ibox float-e-margins">
-				<div class="ibox-title"></div>
-				<div class="ibox-content" style="height: 800px;">
-					<iframe id="m_iframe" width="100%" height="100%" src="" frameborder="0" seamless></iframe>
-				</div>
+	</div>
+	<div class="row">
+		<div class="col-sm-12">
+			<div class="btn-group hidden-xs" role="table">
+				<a href="javascript:void(0)" onclick="MenuGroup.openAdd();" class="btn btn-w-m btn-info">添加</a>
 			</div>
+			<table id="table" data-height="400" data-mobile-responsive="true">
+			</table>
 		</div>
 	</div>
 </div>
-<%@ include file="../../common/footer.jsp" %>
-<script src="assets/plugins/bootstrap/plugins/bootstrap-treeview/js/bootstrap-treeview.min.js"></script>
-<script src="assets/commons/js/tree.js"></script>
-<script src="assets/commons/js/system/menu/menu.js"></script>
+<script src="assets/commons/js/table.js"></script>
+<script src="assets/commons/js/system/menu/menu.group.js"></script>
 <script>
 	$(document).ready(function() {
-		Menu.init('${groupCode}');
+		MenuGroup.data();
 	});
 </script>
+<%@ include file="../../common/footer.jsp" %>
