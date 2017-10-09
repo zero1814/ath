@@ -10,8 +10,8 @@ import org.apache.commons.configuration.PropertiesConfiguration;
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.module.base.BaseClass;
+import org.module.base.model.map.MStringMap;
 import org.module.helper.commons.IoHelper;
-import org.module.map.MStringMap;
 
 /**
  * 

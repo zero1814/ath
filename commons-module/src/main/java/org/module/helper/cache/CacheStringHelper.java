@@ -1,6 +1,6 @@
 package org.module.helper.cache;
 
-import org.module.annotation.commons.Inject;
+import org.module.annotation.Inject;
 import org.module.base.BaseClass;
 
 import redis.clients.jedis.JedisCluster;

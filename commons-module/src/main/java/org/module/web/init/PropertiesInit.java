@@ -1,7 +1,7 @@
 package org.module.web.init;
 
+import org.module.base.model.map.MStringMap;
 import org.module.cache.RedisHash;
-import org.module.map.MStringMap;
 import org.module.root.RootInit;
 import org.module.util.file.prop.PropLoad;
 
