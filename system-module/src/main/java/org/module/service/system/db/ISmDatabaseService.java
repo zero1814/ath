@@ -2,7 +2,7 @@ package org.module.service.system.db;
 
 import org.module.dto.system.db.SmDatabaseDto;
 import org.module.model.system.db.SmDatabase;
-import org.module.result.RootResult;
+import org.module.result.BaseResult;
 import org.module.service.IBaseService;
 
 /**
@@ -22,5 +22,5 @@ public interface ISmDatabaseService extends IBaseService<SmDatabase, SmDatabaseD
 	 * 时间: 2017年7月12日 下午5:55:35
 	 * @return
 	 */
-	RootResult sync();
+	BaseResult sync();
 }

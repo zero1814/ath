@@ -4,7 +4,7 @@ import org.module.dto.system.db.SmTableDto;
 import org.module.model.system.db.SmTable;
 import org.module.result.EntityResult;
 import org.module.result.PageResult;
-import org.module.result.RootResult;
+import org.module.result.BaseResult;
 import org.module.service.system.db.ISmTableService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -39,7 +39,7 @@ public class SmTableController {
 	
 	@RequestMapping("del")
 	@ResponseBody
-	public RootResult del(String tableCode){
+	public BaseResult del(String tableCode){
 		return service.deleteByCode(tableCode);
 	}
 }

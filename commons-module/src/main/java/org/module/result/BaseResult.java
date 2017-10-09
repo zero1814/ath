@@ -7,7 +7,7 @@ package org.module.result;
  * 作者: zhy<br>
  * 时间: 2016年9月17日 下午5:22:04
  */
-public class RootResult {
+public class BaseResult {
 
 	/**
 	 * 消息编码

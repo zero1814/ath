@@ -5,7 +5,7 @@ import org.junit.runner.RunWith;
 import org.module.helper.commons.CodeHelper;
 import org.module.model.system.menu.SmMenuGroup;
 import org.module.result.EntityResult;
-import org.module.result.RootResult;
+import org.module.result.BaseResult;
 import org.module.service.system.menu.ISmMenuGroupService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
@@ -43,7 +43,7 @@ public class SmMenuGroupTest {
 	}
 
 	public void del() {
-		RootResult result = service.deleteByCode("SMG869792468005023744");
+		BaseResult result = service.deleteByCode("SMG869792468005023744");
 		System.out.println(JSON.toJSON(result));
 	}
 }

@@ -13,7 +13,7 @@ import org.module.model.BaseModel;
  * 
  * @param <T>
  */
-public class PageResult extends RootResult {
+public class PageResult extends BaseResult {
 
 	private List<? extends BaseModel> rows;
 

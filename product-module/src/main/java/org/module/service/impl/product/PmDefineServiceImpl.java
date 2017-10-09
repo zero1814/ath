@@ -5,7 +5,7 @@ import java.util.List;
 import org.module.dto.product.PmDefineDto;
 import org.module.mapper.product.PmDefineMapper;
 import org.module.model.product.PmDefine;
-import org.module.result.RootResult;
+import org.module.result.BaseResult;
 import org.module.result.TreeResult;
 import org.module.service.impl.BaseServiceImpl;
 import org.module.service.product.IPmDefineService;
@@ -27,8 +27,8 @@ public class PmDefineServiceImpl extends BaseServiceImpl<PmDefine, PmDefineMappe
 	private PmDefineMapper mapper;
 
 	@Override
-	public RootResult deleteByCode(String code) {
-		RootResult result = new RootResult();
+	public BaseResult deleteByCode(String code) {
+		BaseResult result = new BaseResult();
 		List<PmDefine> list = mapper.findDefineByParentCode(code);
 		if (list != null && list.size() > 0) {
 			result.setCode(-1);

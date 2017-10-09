@@ -7,7 +7,7 @@ import org.module.model.BaseModel;
 import org.module.result.DataResult;
 import org.module.result.EntityResult;
 import org.module.result.PageResult;
-import org.module.result.RootResult;
+import org.module.result.BaseResult;
 
 /**
  * 
@@ -52,7 +52,7 @@ public interface IBaseService<T extends BaseModel, DTO extends BaseDto> {
 	 * @param code
 	 * @return
 	 */
-	RootResult deleteByCode(String code);
+	BaseResult deleteByCode(String code);
 
 	/**
 	 * 
@@ -64,7 +64,7 @@ public interface IBaseService<T extends BaseModel, DTO extends BaseDto> {
 	 * @param codes
 	 * @return
 	 */
-	RootResult deleteByCodes(List<String> codes);
+	BaseResult deleteByCodes(List<String> codes);
 
 	/**
 	 * 

@@ -4,7 +4,7 @@ import org.module.dto.user.UmStoreInfoDto;
 import org.module.model.user.UmStoreInfo;
 import org.module.result.EntityResult;
 import org.module.result.PageResult;
-import org.module.result.RootResult;
+import org.module.result.BaseResult;
 import org.module.service.user.IUmStoreInfoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -49,7 +49,7 @@ public class UmStoreInfoController {
 
 	@RequestMapping("add")
 	@ResponseBody
-	public RootResult add(UmStoreInfo entity) {
+	public BaseResult add(UmStoreInfo entity) {
 		return null;
 	}
 
@@ -67,13 +67,13 @@ public class UmStoreInfoController {
 
 	@RequestMapping("edit")
 	@ResponseBody
-	public RootResult edit(UmStoreInfo entity) {
+	public BaseResult edit(UmStoreInfo entity) {
 		return null;
 	}
 
 	@RequestMapping("del")
 	@ResponseBody
-	public RootResult del(String code) {
+	public BaseResult del(String code) {
 		return null;
 	}
 

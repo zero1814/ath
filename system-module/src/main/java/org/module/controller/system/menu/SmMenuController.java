@@ -3,7 +3,7 @@ package org.module.controller.system.menu;
 import org.module.helper.commons.CodeHelper;
 import org.module.model.system.menu.SmMenu;
 import org.module.result.EntityResult;
-import org.module.result.RootResult;
+import org.module.result.BaseResult;
 import org.module.result.TreeResult;
 import org.module.service.system.menu.ISmMenuService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -82,7 +82,7 @@ public class SmMenuController {
 
 	@RequestMapping("del")
 	@ResponseBody
-	public RootResult del(String code) {
+	public BaseResult del(String code) {
 		return service.deleteByCode(code);
 	}
 }

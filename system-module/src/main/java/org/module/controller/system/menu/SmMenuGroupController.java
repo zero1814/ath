@@ -6,7 +6,7 @@ import org.module.model.system.menu.SmMenuGroup;
 import org.module.model.system.user.SmUser;
 import org.module.result.EntityResult;
 import org.module.result.PageResult;
-import org.module.result.RootResult;
+import org.module.result.BaseResult;
 import org.module.service.system.menu.ISmMenuGroupService;
 import org.module.system.factory.UserFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -40,8 +40,8 @@ public class SmMenuGroupController {
 
 	@RequestMapping("add")
 	@ResponseBody
-	public RootResult add(SmMenuGroup entity) {
-		RootResult result = new RootResult();
+	public BaseResult add(SmMenuGroup entity) {
+		BaseResult result = new BaseResult();
 		SmUser user = UserFactory.instance().userInfo();
 		if (user != null) {
 			entity.setCode(CodeHelper.getUniqueCode("SMG"));
@@ -67,8 +67,8 @@ public class SmMenuGroupController {
 
 	@RequestMapping("edit")
 	@ResponseBody
-	public RootResult edit(SmMenuGroup entity) {
-		RootResult result = new RootResult();
+	public BaseResult edit(SmMenuGroup entity) {
+		BaseResult result = new BaseResult();
 		SmUser user = UserFactory.instance().userInfo();
 		if (user != null) {
 			entity.setUpdateUser(user.getCode());
@@ -82,8 +82,8 @@ public class SmMenuGroupController {
 
 	@RequestMapping("del")
 	@ResponseBody
-	public RootResult del(String code) {
-		RootResult result = new RootResult();
+	public BaseResult del(String code) {
+		BaseResult result = new BaseResult();
 		SmUser user = UserFactory.instance().userInfo();
 		if (user != null) {
 			result = service.deleteByCode(code);

@@ -7,7 +7,7 @@ import org.module.mapper.system.page.SmPageGroupMapper;
 import org.module.mapper.system.page.SmPageMapper;
 import org.module.model.system.page.SmPage;
 import org.module.model.system.page.SmPageGroup;
-import org.module.result.RootResult;
+import org.module.result.BaseResult;
 import org.module.result.TreeResult;
 import org.module.service.impl.BaseServiceImpl;
 import org.module.service.system.page.ISmPageService;
@@ -84,8 +84,8 @@ public class SmPageServiceImpl extends BaseServiceImpl<SmPage, SmPageMapper, SmP
 	}
 
 	@Override
-	public RootResult deleteByCode(String code) {
-		RootResult result = new RootResult();
+	public BaseResult deleteByCode(String code) {
+		BaseResult result = new BaseResult();
 		// 查询是否包含子页面
 		Integer isExistsChild = mapper.isExistsChildPage(code);
 		if (isExistsChild > 0) {

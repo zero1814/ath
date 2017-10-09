@@ -11,7 +11,7 @@ import org.module.model.BaseModel;
  * 作者: zhy<br>
  * 时间: 2017年6月12日 上午11:02:48
  */
-public class TreeResult extends RootResult {
+public class TreeResult extends BaseResult {
 
 	private String treeCode;
 	private String treeText;

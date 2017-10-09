@@ -4,7 +4,7 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.module.model.system.user.SmUserRole;
 import org.module.result.DataResult;
-import org.module.result.RootResult;
+import org.module.result.BaseResult;
 import org.module.service.system.user.ISmUserRoleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
@@ -34,7 +34,7 @@ public class SmUserRoleTest {
 
 	@Test
 	public void del() {
-		RootResult result = service.deleteByUserCode("1");
+		BaseResult result = service.deleteByUserCode("1");
 		System.out.println(JSON.toJSON(result));
 	}
 }

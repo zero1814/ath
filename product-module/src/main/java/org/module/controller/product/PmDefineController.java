@@ -4,7 +4,7 @@ import org.module.helper.commons.CodeHelper;
 import org.module.model.product.PmDefine;
 import org.module.model.system.user.SmUser;
 import org.module.result.EntityResult;
-import org.module.result.RootResult;
+import org.module.result.BaseResult;
 import org.module.result.TreeResult;
 import org.module.service.product.IPmDefineService;
 import org.module.system.factory.UserFactory;
@@ -52,8 +52,8 @@ public class PmDefineController {
 
 	@RequestMapping("add")
 	@ResponseBody
-	public RootResult add(PmDefine entity) {
-		RootResult result = new RootResult();
+	public BaseResult add(PmDefine entity) {
+		BaseResult result = new BaseResult();
 		SmUser user = UserFactory.instance().userInfo();
 		if (user != null) {
 			entity.setCode(CodeHelper.getUniqueCode("PD"));
@@ -80,8 +80,8 @@ public class PmDefineController {
 
 	@RequestMapping("edit")
 	@ResponseBody
-	public RootResult edit(PmDefine entity) {
-		RootResult result = new RootResult();
+	public BaseResult edit(PmDefine entity) {
+		BaseResult result = new BaseResult();
 		SmUser user = UserFactory.instance().userInfo();
 		if (user != null) {
 			entity.setUpdateUser(user.getCode());
@@ -95,8 +95,8 @@ public class PmDefineController {
 
 	@RequestMapping("del")
 	@ResponseBody
-	public RootResult del(String code) {
-		RootResult result = new RootResult();
+	public BaseResult del(String code) {
+		BaseResult result = new BaseResult();
 		SmUser user = UserFactory.instance().userInfo();
 		if (user != null) {
 			result = service.deleteByCode(code);

@@ -5,7 +5,7 @@ import org.junit.runner.RunWith;
 import org.module.helper.commons.CodeHelper;
 import org.module.model.system.page.SmPage;
 import org.module.result.EntityResult;
-import org.module.result.RootResult;
+import org.module.result.BaseResult;
 import org.module.service.system.page.ISmPageService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
@@ -71,7 +71,7 @@ public class SmPageTest {
 	}
 
 	public void del() {
-		RootResult result = service.deleteByCode("SP869797891529502720");
+		BaseResult result = service.deleteByCode("SP869797891529502720");
 		System.out.println(JSON.toJSON(result));
 	}
 

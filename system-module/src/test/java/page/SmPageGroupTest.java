@@ -6,7 +6,7 @@ import org.module.helper.commons.CodeHelper;
 import org.module.model.system.page.SmPageGroup;
 import org.module.result.DataResult;
 import org.module.result.EntityResult;
-import org.module.result.RootResult;
+import org.module.result.BaseResult;
 import org.module.service.system.page.ISmPageGroupService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
@@ -58,7 +58,7 @@ public class SmPageGroupTest {
 	}
 
 	public void del() {
-		RootResult result = service.deleteByCode("SPG870088104608788480");
+		BaseResult result = service.deleteByCode("SPG870088104608788480");
 		System.out.println(JSON.toJSON(result));
 	}
 	

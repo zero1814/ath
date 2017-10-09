@@ -5,7 +5,7 @@ import org.junit.runner.RunWith;
 import org.module.helper.commons.CodeHelper;
 import org.module.model.user.UmStoreInfo;
 import org.module.result.EntityResult;
-import org.module.result.RootResult;
+import org.module.result.BaseResult;
 import org.module.service.user.IUmStoreInfoService;
 import org.module.util.DateUtil;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -53,7 +53,7 @@ public class UmStoreInfoTest {
 
 	@Test
 	public void del() {
-		RootResult result = service.deleteByCode("USI888297482935595008");
+		BaseResult result = service.deleteByCode("USI888297482935595008");
 		System.out.println(JSON.toJSON(result));
 	}
 }

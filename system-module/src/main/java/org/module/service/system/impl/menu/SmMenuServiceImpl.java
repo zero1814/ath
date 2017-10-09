@@ -9,7 +9,7 @@ import org.module.mapper.system.page.SmPageMapper;
 import org.module.model.system.menu.SmMenu;
 import org.module.model.system.menu.SmMenuGroup;
 import org.module.model.system.page.SmPage;
-import org.module.result.RootResult;
+import org.module.result.BaseResult;
 import org.module.result.TreeResult;
 import org.module.service.impl.BaseServiceImpl;
 import org.module.service.system.menu.ISmMenuService;
@@ -88,8 +88,8 @@ public class SmMenuServiceImpl extends BaseServiceImpl<SmMenu, SmMenuMapper, SmM
 	}
 
 	@Override
-	public RootResult deleteByCode(String code) {
-		RootResult result = new RootResult();
+	public BaseResult deleteByCode(String code) {
+		BaseResult result = new BaseResult();
 		Integer isExistsChild = mapper.isExistsChildMenu(code);
 		if (isExistsChild > 0) {
 			result.setCode(-1);

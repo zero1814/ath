@@ -3,7 +3,7 @@ package org.module.service.system.user;
 import org.module.dto.system.user.SmUserRoleDto;
 import org.module.model.system.user.SmUserRole;
 import org.module.result.DataResult;
-import org.module.result.RootResult;
+import org.module.result.BaseResult;
 import org.module.service.IBaseService;
 
 /**
@@ -37,5 +37,5 @@ public interface ISmUserRoleService extends IBaseService<SmUserRole, SmUserRoleD
 	 * @param userCode
 	 * @return
 	 */
-	RootResult deleteByUserCode(String userCode);
+	BaseResult deleteByUserCode(String userCode);
 }

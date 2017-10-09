@@ -11,7 +11,7 @@ import org.module.model.BaseModel;
  * 作者: zhy<br>
  * 时间: 2016年9月17日 下午5:22:04
  */
-public class DataResult extends RootResult {
+public class DataResult extends BaseResult {
 
 	private List<? extends BaseModel> data;
 

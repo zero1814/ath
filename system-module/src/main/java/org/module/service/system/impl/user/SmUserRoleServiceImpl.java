@@ -6,7 +6,7 @@ import org.module.dto.system.user.SmUserRoleDto;
 import org.module.mapper.system.user.SmUserRoleMapper;
 import org.module.model.system.user.SmUserRole;
 import org.module.result.DataResult;
-import org.module.result.RootResult;
+import org.module.result.BaseResult;
 import org.module.service.impl.BaseServiceImpl;
 import org.module.service.system.user.ISmUserRoleService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -64,8 +64,8 @@ public class SmUserRoleServiceImpl extends BaseServiceImpl<SmUserRole, SmUserRol
 	 * @see org.module.service.system.user.ISmUserRoleService#deleteByUserCode(java.lang.String)
 	 */
 	@Override
-	public RootResult deleteByUserCode(String userCode) {
-		RootResult result = new RootResult();
+	public BaseResult deleteByUserCode(String userCode) {
+		BaseResult result = new BaseResult();
 		try {
 			mapper.deleteByUserCode(userCode);
 			result.setCode(0);

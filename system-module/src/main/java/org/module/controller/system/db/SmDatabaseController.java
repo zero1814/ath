@@ -4,7 +4,7 @@ import org.module.dto.system.db.SmDatabaseDto;
 import org.module.model.system.db.SmDatabase;
 import org.module.result.EntityResult;
 import org.module.result.PageResult;
-import org.module.result.RootResult;
+import org.module.result.BaseResult;
 import org.module.service.system.db.ISmDatabaseService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -31,7 +31,7 @@ public class SmDatabaseController {
 
 	@RequestMapping("sync")
 	@ResponseBody
-	public RootResult sync() {
+	public BaseResult sync() {
 		return service.sync();
 	}
 
@@ -43,7 +43,7 @@ public class SmDatabaseController {
 
 	@RequestMapping("del")
 	@ResponseBody
-	public RootResult del(String dbCode) {
+	public BaseResult del(String dbCode) {
 		return service.deleteByCode(dbCode);
 	}
 }

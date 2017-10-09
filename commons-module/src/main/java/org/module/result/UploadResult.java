@@ -7,7 +7,7 @@ package org.module.result;
  * 作者: zhy<br>
  * 时间: 2017年6月23日 下午5:13:38
  */
-public class UploadResult extends RootResult {
+public class UploadResult extends BaseResult {
 
 	private String path;
 

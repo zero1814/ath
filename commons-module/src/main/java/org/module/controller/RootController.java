@@ -4,7 +4,7 @@ import org.module.dto.BaseDto;
 import org.module.model.BaseModel;
 import org.module.result.EntityResult;
 import org.module.result.PageResult;
-import org.module.result.RootResult;
+import org.module.result.BaseResult;
 
 public abstract class RootController {
 
@@ -16,5 +16,5 @@ public abstract class RootController {
 
 	public abstract EntityResult edit(Class<? extends BaseModel> entity);
 
-	public abstract RootResult del(Object obj);
+	public abstract BaseResult del(Object obj);
 }

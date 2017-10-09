@@ -5,7 +5,7 @@ import org.module.base.BaseTest;
 import org.module.helper.commons.CodeHelper;
 import org.module.model.system.user.SmUser;
 import org.module.result.EntityResult;
-import org.module.result.RootResult;
+import org.module.result.BaseResult;
 import org.module.service.system.user.ISmUserService;
 import org.module.util.MD5Util;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -53,7 +53,7 @@ public class SmUserTest extends BaseTest {
 	}
 
 	public void del() {
-		RootResult result = service.deleteByCode("SU869808549973192704");
+		BaseResult result = service.deleteByCode("SU869808549973192704");
 		System.out.println(JSON.toJSON(result));
 	}
 }

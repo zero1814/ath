@@ -6,7 +6,7 @@ import org.module.dto.system.db.SmFieldDto;
 import org.module.mapper.system.db.SmFieldMapper;
 import org.module.model.system.db.SmField;
 import org.module.result.EntityResult;
-import org.module.result.RootResult;
+import org.module.result.BaseResult;
 import org.module.service.impl.BaseServiceImpl;
 import org.module.service.system.db.ISmFiledService;
 import org.module.util.StringUtils;
@@ -45,8 +45,8 @@ public class SmFiledServiceImpl extends BaseServiceImpl<SmField, SmFieldMapper, 
 	}
 
 	@Override
-	public RootResult deleteByCode(String code) {
-		RootResult result = new RootResult();
+	public BaseResult deleteByCode(String code) {
+		BaseResult result = new BaseResult();
 		EntityResult filedResult = super.selectByCode(code);
 		if (filedResult.getCode() == 0) {
 			SmField entity = (SmField) filedResult.getEntity();
@@ -62,8 +62,8 @@ public class SmFiledServiceImpl extends BaseServiceImpl<SmField, SmFieldMapper, 
 	}
 
 	@Override
-	public RootResult deleteByCodes(List<String> codes) {
-		RootResult result = new RootResult();
+	public BaseResult deleteByCodes(List<String> codes) {
+		BaseResult result = new BaseResult();
 		try {
 			for (String code : codes) {
 				EntityResult entityResult = super.selectByCode(code);

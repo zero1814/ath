@@ -5,7 +5,7 @@ import org.module.dto.system.db.SmTableDto;
 import org.module.mapper.system.db.SmTableMapper;
 import org.module.model.system.db.SmTable;
 import org.module.result.DataResult;
-import org.module.result.RootResult;
+import org.module.result.BaseResult;
 import org.module.service.impl.BaseServiceImpl;
 import org.module.service.system.db.ISmFiledService;
 import org.module.service.system.db.ISmTableService;
@@ -26,8 +26,8 @@ public class SmTableServiceImpl extends BaseServiceImpl<SmTable, SmTableMapper, 
 	private ISmFiledService filedService;
 
 	@Override
-	public RootResult deleteByCode(String tableCode) {
-		RootResult result = new RootResult();
+	public BaseResult deleteByCode(String tableCode) {
+		BaseResult result = new BaseResult();
 		SmFieldDto dto = new SmFieldDto();
 		dto.setTableCode(tableCode);
 		DataResult filedResult = filedService.findDataAll(dto);

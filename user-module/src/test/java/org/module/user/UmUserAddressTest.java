@@ -5,7 +5,7 @@ import org.junit.runner.RunWith;
 import org.module.helper.commons.CodeHelper;
 import org.module.model.user.UmUserAddress;
 import org.module.result.EntityResult;
-import org.module.result.RootResult;
+import org.module.result.BaseResult;
 import org.module.service.user.IUmUserAddressService;
 import org.module.util.DateUtil;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -55,7 +55,7 @@ public class UmUserAddressTest {
 
 	@Test
 	public void del() {
-		RootResult result = service.deleteByCode("UUA888298337994797056");
+		BaseResult result = service.deleteByCode("UUA888298337994797056");
 		System.out.println(JSON.toJSON(result));
 	}
 }

@@ -5,7 +5,7 @@ import org.junit.runner.RunWith;
 import org.module.helper.commons.CodeHelper;
 import org.module.model.system.user.SmRole;
 import org.module.result.EntityResult;
-import org.module.result.RootResult;
+import org.module.result.BaseResult;
 import org.module.service.system.user.ISmRoleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
@@ -43,7 +43,7 @@ public class SmRoleTest {
 
 	@Test
 	public void del() {
-		RootResult result = service.deleteByCode("SR869802533609009152");
+		BaseResult result = service.deleteByCode("SR869802533609009152");
 		System.out.println(JSON.toJSON(result));
 	}
 }

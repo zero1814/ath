@@ -11,7 +11,7 @@ import org.module.model.BaseModel;
 import org.module.result.DataResult;
 import org.module.result.EntityResult;
 import org.module.result.PageResult;
-import org.module.result.RootResult;
+import org.module.result.BaseResult;
 import org.module.service.IBaseService;
 import org.module.util.DateUtil;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -150,9 +150,9 @@ public class BaseServiceImpl<T extends BaseModel, M extends BaseMapper<T, DTO>, 
 	 * @see cn.com.ath.service.IBaseService#deleteByCode(java.lang.String)
 	 */
 	@Override
-	public RootResult deleteByCode(String code) {
+	public BaseResult deleteByCode(String code) {
 		logger.logInfo(this.getClass().getName() + "，开始执行deleteByCode方法");
-		RootResult result = new RootResult();
+		BaseResult result = new BaseResult();
 		try {
 			T t = mapper.selectByCode(code);
 			if (t != null) {
@@ -188,9 +188,9 @@ public class BaseServiceImpl<T extends BaseModel, M extends BaseMapper<T, DTO>, 
 	 * @see org.module.service.IBaseService#deleteByCodes(java.util.List)
 	 */
 	@Override
-	public RootResult deleteByCodes(List<String> codes) {
+	public BaseResult deleteByCodes(List<String> codes) {
 		logger.logInfo(this.getClass().getName() + "，开始执行deleteByCodes方法");
-		RootResult result = new RootResult();
+		BaseResult result = new BaseResult();
 		try {
 			if (codes != null && codes.size() > 0) {
 				int flag = mapper.deleteByCodes(codes);

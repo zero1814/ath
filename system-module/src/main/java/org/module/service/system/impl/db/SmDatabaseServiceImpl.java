@@ -5,7 +5,7 @@ import org.module.dto.system.db.SmTableDto;
 import org.module.mapper.system.db.SmDatabaseMapper;
 import org.module.model.system.db.SmDatabase;
 import org.module.result.DataResult;
-import org.module.result.RootResult;
+import org.module.result.BaseResult;
 import org.module.service.impl.BaseServiceImpl;
 import org.module.service.system.db.ISmDatabaseService;
 import org.module.service.system.db.ISmTableService;
@@ -36,8 +36,8 @@ public class SmDatabaseServiceImpl extends BaseServiceImpl<SmDatabase, SmDatabas
 	 * @see org.module.service.system.db.ISmDatabaseService#sync()
 	 */
 	@Override
-	public RootResult sync() {
-		RootResult result = new RootResult();
+	public BaseResult sync() {
+		BaseResult result = new BaseResult();
 		try {
 			mapper.sync();
 			result.setCode(0);
@@ -51,8 +51,8 @@ public class SmDatabaseServiceImpl extends BaseServiceImpl<SmDatabase, SmDatabas
 	}
 
 	@Override
-	public RootResult deleteByCode(String dbCode) {
-		RootResult result = new RootResult();
+	public BaseResult deleteByCode(String dbCode) {
+		BaseResult result = new BaseResult();
 		SmTableDto dto = new SmTableDto();
 		dto.setDbCode(dbCode);
 		DataResult tableResult = tableService.findDataAll(dto);

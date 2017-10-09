@@ -6,7 +6,7 @@ import org.module.base.BaseTest;
 import org.module.helper.commons.CodeHelper;
 import org.module.model.user.UmDefine;
 import org.module.result.EntityResult;
-import org.module.result.RootResult;
+import org.module.result.BaseResult;
 import org.module.result.TreeResult;
 import org.module.service.user.IUmDefineService;
 import org.module.util.DateUtil;
@@ -76,7 +76,7 @@ public class UmDefineTest extends BaseTest {
 	}
 
 	public void del() {
-		RootResult result = service.deleteByCode("UD888277548570505216");
+		BaseResult result = service.deleteByCode("UD888277548570505216");
 		System.out.println(JSON.toJSON(result));
 	}
 }

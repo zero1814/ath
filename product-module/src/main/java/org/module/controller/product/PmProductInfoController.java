@@ -6,7 +6,7 @@ import org.module.model.product.PmProductInfo;
 import org.module.model.system.user.SmUser;
 import org.module.result.EntityResult;
 import org.module.result.PageResult;
-import org.module.result.RootResult;
+import org.module.result.BaseResult;
 import org.module.service.product.IPmProductInfoService;
 import org.module.system.factory.UserFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -42,8 +42,8 @@ public class PmProductInfoController {
 
 	@RequestMapping("add")
 	@ResponseBody
-	public RootResult add(PmProductInfo entity) {
-		RootResult result = new RootResult();
+	public BaseResult add(PmProductInfo entity) {
+		BaseResult result = new BaseResult();
 		SmUser user = UserFactory.instance().userInfo();
 		if (user != null) {
 			entity.setCode(CodeHelper.getUniqueCode("PP"));
@@ -71,8 +71,8 @@ public class PmProductInfoController {
 
 	@RequestMapping("edit")
 	@ResponseBody
-	public RootResult edit(PmProductInfo entity) {
-		RootResult result = new RootResult();
+	public BaseResult edit(PmProductInfo entity) {
+		BaseResult result = new BaseResult();
 		SmUser user = UserFactory.instance().userInfo();
 		if (user != null) {
 			entity.setUpdateUser(user.getCode());
@@ -86,8 +86,8 @@ public class PmProductInfoController {
 
 	@RequestMapping("del")
 	@ResponseBody
-	public RootResult del(String code) {
-		RootResult result = new RootResult();
+	public BaseResult del(String code) {
+		BaseResult result = new BaseResult();
 		SmUser user = UserFactory.instance().userInfo();
 		if (user != null) {
 			result = service.deleteByCode(code);

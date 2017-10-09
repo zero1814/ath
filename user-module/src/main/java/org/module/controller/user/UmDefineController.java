@@ -4,7 +4,7 @@ import org.module.helper.commons.CodeHelper;
 import org.module.model.system.user.SmUser;
 import org.module.model.user.UmDefine;
 import org.module.result.EntityResult;
-import org.module.result.RootResult;
+import org.module.result.BaseResult;
 import org.module.result.TreeResult;
 import org.module.service.user.IUmDefineService;
 import org.module.system.factory.UserFactory;
@@ -51,8 +51,8 @@ public class UmDefineController {
 
 	@RequestMapping("add")
 	@ResponseBody
-	public RootResult add(UmDefine entity) {
-		RootResult result = new RootResult();
+	public BaseResult add(UmDefine entity) {
+		BaseResult result = new BaseResult();
 		SmUser user = UserFactory.instance().userInfo();
 		if (user != null) {
 			entity.setCode(CodeHelper.getUniqueCode("UD"));
@@ -78,8 +78,8 @@ public class UmDefineController {
 
 	@RequestMapping("edit")
 	@ResponseBody
-	public RootResult edit(UmDefine entity) {
-		RootResult result = new RootResult();
+	public BaseResult edit(UmDefine entity) {
+		BaseResult result = new BaseResult();
 		SmUser user = UserFactory.instance().userInfo();
 		if (user != null) {
 			entity.setUpdateUser(user.getCode());
@@ -93,8 +93,8 @@ public class UmDefineController {
 
 	@RequestMapping("del")
 	@ResponseBody
-	public RootResult del(String code) {
-		RootResult result = new RootResult();
+	public BaseResult del(String code) {
+		BaseResult result = new BaseResult();
 		SmUser user = UserFactory.instance().userInfo();
 		if (user != null) {
 			result = service.deleteByCode(code);
