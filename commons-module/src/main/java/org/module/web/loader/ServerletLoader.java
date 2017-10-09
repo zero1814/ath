@@ -21,7 +21,7 @@ import org.springframework.web.context.support.WebApplicationContextUtils;
  * 两种调用模式用{@linkplain #bFlagLoad}参数来防止重复调用
  * 
  * 
- * @author HJY
+ * @author zhy
  * 
  */
 public class ServerletLoader {
@@ -42,15 +42,15 @@ public class ServerletLoader {
 		if (!bFlagLoad) {
 			bFlagLoad = true;
 			try {
-				servletContext.log("Initializing HJY web core");
+				servletContext.log("Initializing ATH web core");
 				WebApplicationContext wac = WebApplicationContextUtils.getWebApplicationContext(servletContext);
 				SpringContextUtil.setApplicationContext(wac);
 				new PropertiesInit().init();
-				servletContext.log("Initializing HJY web core finished");
+				servletContext.log("Initializing ATH web core finished");
 
 			} catch (RuntimeException ex) {
 				flag = false;
-				servletContext.log("Error occurs in initializing HJY web core" + ex.getMessage());
+				servletContext.log("Error occurs in initializing ATH web core" + ex.getMessage());
 			}
 		}
 		return flag;
