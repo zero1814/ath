@@ -1,11 +1,10 @@
-package org.module.web.loader;
+package org.module.system.web.loader;
 
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 
+import org.module.system.web.init.PropertiesInit;
 import org.module.util.SpringContextUtil;
-import org.module.web.init.PropertiesInit;
-import org.module.web.listener.ServerletListener;
 import org.springframework.web.WebApplicationInitializer;
 import org.springframework.web.context.WebApplicationContext;
 import org.springframework.web.context.support.WebApplicationContextUtils;
@@ -75,4 +74,5 @@ public class ServerletLoader {
 	public synchronized boolean destory(ServletContext servletContext) {
 		return true;
 	}
+
 }

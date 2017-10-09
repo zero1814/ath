@@ -1,4 +1,4 @@
-package org.module.web.init;
+package org.module.system.web.init;
 
 import org.module.base.model.map.MStringMap;
 import org.module.cache.RedisHash;

@@ -1,9 +1,9 @@
-package org.module.web.listener;
+package org.module.system.web.listener;
 
 import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;
 
-import org.module.web.loader.ServerletLoader;
+import org.module.system.web.loader.ServerletLoader;
 
 /**
  * 
@@ -13,7 +13,6 @@ import org.module.web.loader.ServerletLoader;
  * 时间: 2017年10月9日 上午10:37:15
  */
 public class ServerletListener extends ServerletLoader implements ServletContextListener {
-
 	private ServerletLoader contextLoader;
 
 	public void contextInitialized(ServletContextEvent event) {
