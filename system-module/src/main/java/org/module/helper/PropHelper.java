@@ -1,8 +1,8 @@
 package org.module.helper;
 
 import org.module.commons.base.BaseClass;
-import org.module.file.PropConfig;
-import org.module.file.PropInfo;
+import org.module.file.prop.PropConfig;
+import org.module.file.prop.PropInfo;
 
 /**
  * 

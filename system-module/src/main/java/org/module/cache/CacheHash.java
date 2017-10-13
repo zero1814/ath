@@ -7,15 +7,15 @@ import org.module.commons.base.BaseClass;
 
 import redis.clients.jedis.JedisCluster;
 
-public class RedisHash extends BaseClass {
+public class CacheHash extends BaseClass {
 	@Inject
 	private JedisCluster cluster;
 
-	private static RedisHash self;
+	private static CacheHash self;
 
-	public static RedisHash instance() {
+	public static CacheHash instance() {
 		if (self == null) {
-			self = new RedisHash();
+			self = new CacheHash();
 		}
 		return self;
 	}

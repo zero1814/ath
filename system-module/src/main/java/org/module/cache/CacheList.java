@@ -12,16 +12,16 @@ import redis.clients.jedis.JedisCluster;
  * 作者: zhy<br>
  * 时间: 2017年5月5日 下午5:11:27
  */
-public class RedisList extends BaseClass {
+public class CacheList extends BaseClass {
 
 	@Inject
 	private JedisCluster cluster;
 
-	private static RedisList self;
+	private static CacheList self;
 
-	public static RedisList instance() {
+	public static CacheList instance() {
 		if (self == null) {
-			self = new RedisList();
+			self = new CacheList();
 		}
 		return self;
 	}

@@ -5,15 +5,15 @@ import org.module.commons.base.BaseClass;
 
 import redis.clients.jedis.JedisCluster;
 
-public class RedisByte extends BaseClass {
+public class CacheByte extends BaseClass {
 	@Inject
 	private JedisCluster cluster;
 
-	private static RedisByte self;
+	private static CacheByte self;
 
-	public static RedisByte instance() {
+	public static CacheByte instance() {
 		if (self == null) {
-			self = new RedisByte();
+			self = new CacheByte();
 		}
 		return self;
 	}

@@ -22,7 +22,7 @@ public class RegexHelper {
 	 * @return
 	 */
 	public static boolean password(String str) {
-		String pattern = PropHelper.getConfig("");
+		String pattern = PropHelper.getConfig("password");
 		boolean flag = false;
 		try {
 			Pattern r = Pattern.compile(pattern);
@@ -68,7 +68,7 @@ public class RegexHelper {
 	 * @return
 	 */
 	public static boolean isEmail(String str) {
-		String pattern = "^((https|http|ftp|rtsp|mms)?:\\/\\/)[^\\s]+";
+		String pattern = PropHelper.getInfo("system.regex.url");
 		boolean flag = false;
 		try {
 			Pattern r = Pattern.compile(pattern);

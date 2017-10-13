@@ -15,16 +15,16 @@ import redis.clients.jedis.JedisCluster;
  * 作者: zhy<br>
  * 时间: 2017年5月5日 下午4:21:05
  */
-public class RedisString extends BaseClass {
+public class CacheString extends BaseClass {
 
 	@Inject
 	private JedisCluster jedisCluster;
 
-	private static RedisString self;
+	private static CacheString self;
 
-	public static RedisString instance() {
+	public static CacheString instance() {
 		if (self == null) {
-			self = new RedisString();
+			self = new CacheString();
 		}
 		return self;
 	}
