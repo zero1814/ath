@@ -1,6 +1,6 @@
 package org.module.helper;
 
-import org.module.base.BaseClass;
+import org.module.commons.base.BaseClass;
 import org.module.file.PropConfig;
 import org.module.file.PropInfo;
 

@@ -2,8 +2,8 @@ package org.module.cache;
 
 import java.util.Map;
 
-import org.module.annotation.Inject;
-import org.module.base.BaseClass;
+import org.module.commons.annotation.Inject;
+import org.module.commons.base.BaseClass;
 
 import redis.clients.jedis.JedisCluster;
 

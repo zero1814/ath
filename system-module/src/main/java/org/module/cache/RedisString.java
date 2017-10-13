@@ -1,7 +1,7 @@
 package org.module.cache;
 
-import org.module.annotation.Inject;
-import org.module.base.BaseClass;
+import org.module.commons.annotation.Inject;
+import org.module.commons.base.BaseClass;
 
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;

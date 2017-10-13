@@ -2,7 +2,7 @@ package org.module.helper.cache;
 
 import java.util.Map;
 
-import org.module.annotation.Inject;
+import org.module.commons.annotation.Inject;
 
 import redis.clients.jedis.JedisCluster;
 
