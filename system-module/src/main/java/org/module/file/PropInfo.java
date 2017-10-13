@@ -1,15 +1,15 @@
-package org.module.util.file.prop;
+package org.module.file;
 
 import org.module.cache.RedisHash;
 
 /**
  * 
- * 类: PropConfig <br>
- * 描述: properties配置文件相关操作 <br>
+ * 类: PropInfo <br>
+ * 描述: 信息properties文件相关操作 <br>
  * 作者: zhy<br>
- * 时间: 2016年9月22日 下午10:36:56
+ * 时间: 2016年9月22日 下午10:37:21
  */
-public class PropConfig {
+public class PropInfo {
 
 	/**
 	 * 
@@ -22,6 +22,6 @@ public class PropConfig {
 	 * @return
 	 */
 	public static String getValue(String key) {
-		return RedisHash.instance().getFiled("config", key);
+		return RedisHash.instance().getFiled("info", key);
 	}
 }

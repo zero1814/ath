@@ -1,4 +1,4 @@
-package org.module.util.file.prop;
+package org.module.file;
 
 import java.io.File;
 import java.io.FileInputStream;
