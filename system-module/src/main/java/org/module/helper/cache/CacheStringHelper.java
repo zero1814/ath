@@ -1,11 +1,10 @@
 package org.module.helper.cache;
 
 import org.module.annotation.Inject;
-import org.module.base.BaseClass;
 
 import redis.clients.jedis.JedisCluster;
 
-public class CacheStringHelper extends BaseClass {
+public class CacheStringHelper {
 
 	@Inject
 	private JedisCluster cluster;
@@ -81,4 +80,5 @@ public class CacheStringHelper extends BaseClass {
 		}
 		return value;
 	}
+
 }

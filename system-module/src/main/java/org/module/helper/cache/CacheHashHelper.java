@@ -3,11 +3,10 @@ package org.module.helper.cache;
 import java.util.Map;
 
 import org.module.annotation.Inject;
-import org.module.base.BaseClass;
 
 import redis.clients.jedis.JedisCluster;
 
-public class CacheHashHelper extends BaseClass {
+public class CacheHashHelper {
 
 	@Inject
 	private JedisCluster cluster;
@@ -24,7 +23,7 @@ public class CacheHashHelper extends BaseClass {
 	/**
 	 * ==============string操作==============
 	 */
-	
+
 	/**
 	 * 
 	 * 方法: setValue <br>
@@ -78,7 +77,6 @@ public class CacheHashHelper extends BaseClass {
 		}
 	}
 
-
 	/**
 	 * ====================hash操作====================
 	 */
@@ -128,4 +126,5 @@ public class CacheHashHelper extends BaseClass {
 	public String getFiled(String key, String field) {
 		return cluster.hget(key, field);
 	}
+
 }
