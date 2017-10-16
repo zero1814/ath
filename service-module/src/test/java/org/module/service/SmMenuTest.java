@@ -11,8 +11,8 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import com.alibaba.fastjson.JSON;
 
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(locations = { "classpath:spring/spring-mapper.xml" })
-public class SmMenuService {
+@ContextConfiguration(locations = { "classpath:spring/spring-mapper.xml", "classpath:spring/spring-service.xml" })
+public class SmMenuTest {
 
 	@Autowired
 	private ISmMenuService service;
