@@ -30,8 +30,4 @@ public class SmMenuTest {
 		entity.setUid(UUID.randomUUID().toString().replaceAll("-", ""));
 		mapper.insertSelective(entity);
 	}
-
-	public void selByCode() {
-		SmMenu entity = mapper.selectByCode("");
-	}
 }
