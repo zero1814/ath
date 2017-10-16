@@ -5,6 +5,7 @@ import org.module.mapper.system.SmPagePermissionsMapper;
 import org.module.model.system.SmPagePermissions;
 import org.module.service.impl.BaseServiceImpl;
 import org.module.service.system.ISmPagePermissionsService;
+import org.springframework.stereotype.Service;
 
 /**
  * 
@@ -13,6 +14,7 @@ import org.module.service.system.ISmPagePermissionsService;
  * 作者: zhy<br>
  * 时间: 2017年10月16日 下午7:16:04
  */
+@Service
 public class SmPagePermissionsServiceImpl
 		extends BaseServiceImpl<SmPagePermissions, SmPagePermissionsMapper, SmPagePermissionsDto>
 		implements ISmPagePermissionsService {

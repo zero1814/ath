@@ -5,6 +5,7 @@ import org.module.mapper.system.SmPageMapper;
 import org.module.model.system.SmPage;
 import org.module.service.impl.BaseServiceImpl;
 import org.module.service.system.ISmPageService;
+import org.springframework.stereotype.Service;
 
 /**
  * 
@@ -13,6 +14,7 @@ import org.module.service.system.ISmPageService;
  * 作者: zhy<br>
  * 时间: 2017年10月16日 下午7:16:17
  */
+@Service
 public class SmPageServiceImpl extends BaseServiceImpl<SmPage, SmPageMapper, SmPageDto> implements ISmPageService {
 
 }

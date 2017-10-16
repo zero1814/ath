@@ -5,6 +5,7 @@ import org.module.mapper.system.SmUserRoleMapper;
 import org.module.model.system.SmUserRole;
 import org.module.service.impl.BaseServiceImpl;
 import org.module.service.system.ISmUserRoleService;
+import org.springframework.stereotype.Service;
 
 /**
  * 
@@ -13,6 +14,7 @@ import org.module.service.system.ISmUserRoleService;
  * 作者: zhy<br>
  * 时间: 2017年10月16日 下午7:17:13
  */
+@Service
 public class SmUserRoleServiceImpl extends BaseServiceImpl<SmUserRole, SmUserRoleMapper, SmUserRoleDto>
 		implements ISmUserRoleService {
 

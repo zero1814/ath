@@ -5,6 +5,7 @@ import org.module.mapper.system.SmUserMapper;
 import org.module.model.system.SmUser;
 import org.module.service.impl.BaseServiceImpl;
 import org.module.service.system.ISmUserService;
+import org.springframework.stereotype.Service;
 
 /**
  * 
@@ -13,6 +14,7 @@ import org.module.service.system.ISmUserService;
  * 作者: zhy<br>
  * 时间: 2017年10月16日 下午7:17:27
  */
+@Service
 public class SmUserServiceImpl extends BaseServiceImpl<SmUser, SmUserMapper, SmUserDto> implements ISmUserService {
 
 }

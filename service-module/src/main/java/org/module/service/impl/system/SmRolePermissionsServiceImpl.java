@@ -5,6 +5,7 @@ import org.module.mapper.system.SmRolePermissionsMapper;
 import org.module.model.system.SmRolePermissions;
 import org.module.service.impl.BaseServiceImpl;
 import org.module.service.system.ISmRolePermissionsService;
+import org.springframework.stereotype.Service;
 
 /**
  * 
@@ -13,6 +14,7 @@ import org.module.service.system.ISmRolePermissionsService;
  * 作者: zhy<br>
  * 时间: 2017年10月16日 下午7:16:34
  */
+@Service
 public class SmRolePermissionsServiceImpl
 		extends BaseServiceImpl<SmRolePermissions, SmRolePermissionsMapper, SmRolePermissionsDto>
 		implements ISmRolePermissionsService {
