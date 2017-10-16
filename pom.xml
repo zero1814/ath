@@ -14,6 +14,8 @@
 		<module>mapper-module</module>
 		<module>service-module</module>
     <module>cache-module</module>
+    <module>freemarker-module</module>
+    <module>manage</module>
   </modules>
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
