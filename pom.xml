@@ -12,7 +12,8 @@
 	<url>http://maven.apache.org</url>
 	<modules>
 		<module>commons-module</module>
-		<module>system-module</module>
+		<module>mapper-module</module>
+		<module>service-module</module>
 	</modules>
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
