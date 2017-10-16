@@ -17,13 +17,29 @@ SET utf8 COLLATE utf8_general_ci;
 USE systemmodule;
 
 DROP TABLE
+IF EXISTS sm_code;
+
+CREATE TABLE sm_code (
+	id INT PRIMARY KEY AUTO_INCREMENT COMMENT '主键',
+	uid VARCHAR (50) NOT NULL COMMENT 'uuid',
+	`code_start` VARCHAR (100) DEFAULT '' COMMENT '编码起始',
+	`date_apply` CHAR (6) DEFAULT '' COMMENT '日期参数',
+	`min_number` INT (11) DEFAULT '100000' COMMENT '最小数字',
+	`now_number` INT (11) DEFAULT '100000' COMMENT '当前数字',
+	`code_note` VARCHAR (45) DEFAULT '' COMMENT '备注',
+	`flag_date` INT (11) DEFAULT '1' COMMENT '是否日期列',
+	UNIQUE unique_code (code_start) COMMENT '唯一键约束'
+) COMMENT '编码维护表';
+
+############## 创建唯一标识编码生成存储过程 ###############
+DROP TABLE
 IF EXISTS sm_page;
 
 CREATE TABLE sm_page (
 	id INT PRIMARY KEY AUTO_INCREMENT COMMENT '主键',
 	uid VARCHAR (50) NOT NULL COMMENT 'uuid',
 	`code` VARCHAR (50) NOT NULL COMMENT '编码',
-	parent_code VARCHAR (50) NOT NULL COMMENT '父级编码',
+	parent_code VARCHAR (50) DEFAULT '0' COMMENT '父级编码',
 	`name` VARCHAR (50) NOT NULL COMMENT '名称',
 	`status` VARCHAR (50) NOT NULL COMMENT '状态',
 	create_user VARCHAR (50) NOT NULL COMMENT '创建人',
@@ -56,7 +72,7 @@ CREATE TABLE sm_menu (
 	id INT PRIMARY KEY AUTO_INCREMENT COMMENT '主键',
 	uid VARCHAR (50) NOT NULL COMMENT 'uuid',
 	`code` VARCHAR (50) NOT NULL COMMENT '编码',
-	parent_code VARCHAR (50) NOT NULL COMMENT '父级编码',
+	parent_code VARCHAR (50) DEFAULT '0' COMMENT '父级编码',
 	`name` VARCHAR (50) NOT NULL COMMENT '名称',
 	page_code VARCHAR (50) NOT NULL COMMENT '页面编码',
 	`status` VARCHAR (50) NOT NULL COMMENT '状态',
