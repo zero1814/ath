@@ -13,12 +13,6 @@
 	<modules>
 		<module>commons-module</module>
 		<module>system-module</module>
-		<module>cms</module>
-		<module>shiro-module</module>
-		<module>logger-module</module>
-		<module>order-module</module>
-		<module>product-module</module>
-		<module>user-module</module>
 	</modules>
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
