@@ -1,9 +1,8 @@
 package org.module.web.init;
 
+import org.module.base.map.MStringMap;
 import org.module.cache.RedisHash;
 import org.module.file.prop.PropLoad;
-import org.module.map.MStringMap;
-import org.module.root.RootInit;
 
 public class PropertiesInit extends RootInit {
 

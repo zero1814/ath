@@ -1,10 +1,10 @@
 package org.module.controller;
 
-import org.module.dto.BaseDto;
-import org.module.model.BaseModel;
-import org.module.result.EntityResult;
-import org.module.result.PageResult;
-import org.module.result.BaseResult;
+import org.module.base.dto.BaseDto;
+import org.module.base.model.BaseModel;
+import org.module.base.result.BaseResult;
+import org.module.base.result.EntityResult;
+import org.module.base.result.PageResult;
 
 public abstract class RootController {
 
