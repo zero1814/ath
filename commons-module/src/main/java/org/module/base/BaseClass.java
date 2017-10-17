@@ -4,7 +4,7 @@ package org.module.base;
 import java.lang.reflect.Field;
 
 import org.apache.commons.lang3.StringUtils;
-import org.module.annotation.commons.Inject;
+import org.module.annotation.Inject;
 import org.module.util.SpringContextUtil;
 import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.NoSuchBeanDefinitionException;
