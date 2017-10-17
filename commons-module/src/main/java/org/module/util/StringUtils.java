@@ -12,7 +12,7 @@ import java.util.TreeSet;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import org.module.helper.commons.LoggerHelper;
+import org.module.helper.LoggerHelper;
 
 import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;

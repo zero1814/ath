@@ -2,7 +2,9 @@ package org.module.util;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
+import java.util.GregorianCalendar;
 
 /**
  * 
@@ -17,9 +19,9 @@ public class DateUtil {
 
 	public static final String DATE_FORMAT_DATETIME = "yyyy-MM-dd HH:mm:ss"; // 年/月/日
 
-	public static final SimpleDateFormat sdfDateOnly = new SimpleDateFormat(DateUtil.DATE_FORMAT_DATEONLY);
+	public static final SimpleDateFormat SDF_DATE_ONLY = new SimpleDateFormat(DateUtil.DATE_FORMAT_DATEONLY);
 
-	public static final SimpleDateFormat sdfDateTime = new SimpleDateFormat(DateUtil.DATE_FORMAT_DATETIME);
+	public static final SimpleDateFormat SDF_DATE_TIME = new SimpleDateFormat(DateUtil.DATE_FORMAT_DATETIME);
 
 	/**
 	 * 
@@ -31,7 +33,7 @@ public class DateUtil {
 	 * @return
 	 */
 	public static String getSysDate() {
-		return sdfDateOnly.format(new Date());
+		return SDF_DATE_ONLY.format(new Date());
 	}
 
 	/**
@@ -44,7 +46,7 @@ public class DateUtil {
 	 * @return
 	 */
 	public static String getSysDateTime() {
-		return sdfDateTime.format(new Date());
+		return SDF_DATE_TIME.format(new Date());
 	}
 
 	/**
@@ -58,7 +60,7 @@ public class DateUtil {
 	 * @return
 	 */
 	public static String dateToString(Date date) {
-		return sdfDateOnly.format(date);
+		return SDF_DATE_ONLY.format(date);
 	}
 
 	/**
@@ -72,7 +74,7 @@ public class DateUtil {
 	 * @return
 	 */
 	public static String dateTimeToString(Date dateTime) {
-		return sdfDateTime.format(dateTime);
+		return SDF_DATE_TIME.format(dateTime);
 	}
 
 	/**
@@ -87,7 +89,7 @@ public class DateUtil {
 	 * @throws ParseException
 	 */
 	public static Date strToDate(String str) throws ParseException {
-		return sdfDateOnly.parse(str);
+		return SDF_DATE_ONLY.parse(str);
 	}
 
 	/**
@@ -102,6 +104,122 @@ public class DateUtil {
 	 * @throws ParseException
 	 */
 	public static Date strToDateTime(String str) throws ParseException {
-		return sdfDateTime.parse(str);
+		return SDF_DATE_TIME.parse(str);
 	}
+	
+	/**
+	 * ================= 周相关计算 ==============
+	 */
+	
+	/**
+	 * 
+	 * 方法: getWeekOfYear <br>
+	 * 描述: 获取当前时间所在年的周数 <br>
+	 * 作者: zhy<br>
+	 * 时间: 2017年10月17日 上午9:44:30
+	 * @param date
+	 * @return
+	 */
+    public static int getWeekOfYear(Date date) {
+        Calendar c = new GregorianCalendar();
+        c.setFirstDayOfWeek(Calendar.MONDAY);
+        c.setMinimalDaysInFirstWeek(7);
+        c.setTime(date);
+ 
+        return c.get(Calendar.WEEK_OF_YEAR);
+    }
+ 
+    /**
+     * 
+     * 方法: getMaxWeekNumOfYear <br>
+     * 描述: 获取当前时间所在年的最大周数 <br>
+     * 作者: zhy<br>
+     * 时间: 2017年10月17日 上午9:44:24
+     * @param year
+     * @return
+     */
+    public static int getMaxWeekNumOfYear(int year) {
+        Calendar c = new GregorianCalendar();
+        c.set(year, Calendar.DECEMBER, 31, 23, 59, 59);
+ 
+        return getWeekOfYear(c.getTime());
+    }
+ 
+    /**
+     * 
+     * 方法: getFirstDayOfWeek <br>
+     * 描述: 获取某年的第几周的开始日期 <br>
+     * 作者: zhy<br>
+     * 时间: 2017年10月17日 上午9:44:18
+     * @param year
+     * @param week
+     * @return
+     */
+    public static Date getFirstDayOfWeek(int year, int week) {
+        Calendar c = new GregorianCalendar();
+        c.set(Calendar.YEAR, year);
+        c.set(Calendar.MONTH, Calendar.JANUARY);
+        c.set(Calendar.DATE, 1);
+ 
+        Calendar cal = (GregorianCalendar) c.clone();
+        cal.add(Calendar.DATE, week * 7);
+ 
+        return getFirstDayOfWeek(cal.getTime());
+    }
+ 
+    /**
+     * 
+     * 方法: getLastDayOfWeek <br>
+     * 描述: 获取某年的第几周的结束日期 <br>
+     * 作者: zhy<br>
+     * 时间: 2017年10月17日 上午9:44:12
+     * @param year
+     * @param week
+     * @return
+     */
+    public static Date getLastDayOfWeek(int year, int week) {
+        Calendar c = new GregorianCalendar();
+        c.set(Calendar.YEAR, year);
+        c.set(Calendar.MONTH, Calendar.JANUARY);
+        c.set(Calendar.DATE, 1);
+ 
+        Calendar cal = (GregorianCalendar) c.clone();
+        cal.add(Calendar.DATE, week * 7);
+ 
+        return getLastDayOfWeek(cal.getTime());
+    }
+ 
+    /**
+     * 
+     * 方法: getFirstDayOfWeek <br>
+     * 描述: 获取当前时间所在周的开始日期 <br>
+     * 作者: zhy<br>
+     * 时间: 2017年10月17日 上午9:43:59
+     * @param date
+     * @return
+     */
+    public static Date getFirstDayOfWeek(Date date) {
+        Calendar c = new GregorianCalendar();
+        c.setFirstDayOfWeek(Calendar.MONDAY);
+        c.setTime(date);
+        c.set(Calendar.DAY_OF_WEEK, c.getFirstDayOfWeek()); // Monday
+        return c.getTime();
+    }
+ 
+    /**
+     * 
+     * 方法: getLastDayOfWeek <br>
+     * 描述: 获取当前时间所在周的结束日期 <br>
+     * 作者: zhy<br>
+     * 时间: 2017年10月17日 上午9:43:47
+     * @param date
+     * @return
+     */
+    public static Date getLastDayOfWeek(Date date) {
+        Calendar c = new GregorianCalendar();
+        c.setFirstDayOfWeek(Calendar.MONDAY);
+        c.setTime(date);
+        c.set(Calendar.DAY_OF_WEEK, c.getFirstDayOfWeek() + 6); // Sunday
+        return c.getTime();
+    }
 }

@@ -1,4 +1,4 @@
-package org.module.helper.commons;
+package org.module.helper;
 
 import org.module.base.BaseClass;
 import org.module.base.BaseLog;
