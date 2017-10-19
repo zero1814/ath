@@ -7,16 +7,16 @@ import org.module.base.BaseClass;
 
 import redis.clients.jedis.JedisCluster;
 
-public class CacheHashHelper extends BaseClass {
+public class CacheHelper extends BaseClass {
 
 	@Inject
 	private JedisCluster cluster;
 
-	private static CacheHashHelper self;
+	private static CacheHelper self;
 
-	public static CacheHashHelper instance() {
+	public static CacheHelper instance() {
 		if (self == null) {
-			self = new CacheHashHelper();
+			self = new CacheHelper();
 		}
 		return self;
 	}
