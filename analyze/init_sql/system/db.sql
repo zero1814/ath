@@ -20,10 +20,6 @@ CREATE TABLE sm_database (
 ) COMMENT '数据库维护表';
 
 insert into sm_database (uid,db_code,db_name,driver,url,user_name,`password`,remark,create_user,create_time,update_user,update_time)
-values(REPLACE (UUID(), '-', ''),'systemmodule','systemmodule','com.mysql.jdbc.Driver',
-'jdbc:mysql://localhost:3306/systemmodule?useUnicode=true&characterEncoding=UTF-8&zeroDateTimeBehavior=convertToNull','root','','系统模块相关表','sys',now(),'sys',now());
-
-insert into sm_database (uid,db_code,db_name,driver,url,user_name,`password`,remark,create_user,create_time,update_user,update_time)
 values(REPLACE (UUID(), '-', ''),'loggermodule','loggermodule','com.mysql.jdbc.Driver',
 'jdbc:mysql://localhost:3306/systemmodule?useUnicode=true&characterEncoding=UTF-8&zeroDateTimeBehavior=convertToNull','root','','系统模块相关表','sys',now(),'sys',now());
 
@@ -72,3 +68,19 @@ CREATE TABLE sm_field (
 	update_time datetime NOT NULL COMMENT '最后修改时间',
 	UNIQUE table_column (table_code, field_code) COMMENT '数据表字段唯一键'
 ) COMMENT '页面显示字段维护表';
+
+DROP TABLE
+IF EXISTS sm_field_type;
+
+CREATE TABLE sm_field_type (
+	id INT PRIMARY KEY AUTO_INCREMENT COMMENT '主键',
+	uid VARCHAR (50) NOT NULL COMMENT 'uuid',
+	`code` VARCHAR (50) NOT NULL UNIQUE COMMENT '编码',
+	`name` VARCHAR (50) NOT NULL COMMENT '名称',
+	short_name VARCHAR (50) NOT NULL COMMENT '英文简称',
+	remark VARCHAR (50) NOT NULL COMMENT '备注',
+	create_user VARCHAR (50) NOT NULL COMMENT '创建人',
+	create_time datetime NOT NULL COMMENT '创建时间',
+	update_user VARCHAR (50) NOT NULL COMMENT '最后修改人',
+	update_time datetime NOT NULL COMMENT '最后修改时间'
+) COMMENT '数据表字段前端显示类型';
