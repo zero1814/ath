@@ -22,62 +22,70 @@ public class CacheHashHelper extends BaseClass {
 	}
 
 	/**
-	 * ==============string操作==============
+	 * ====================String操作====================
 	 */
-	
+
 	/**
 	 * 
-	 * 方法: setValue <br>
-	 * 描述: 存储值 <br>
+	 * 方法: addCache <br>
+	 * 描述: 添加缓存 <br>
 	 * 作者: zhy<br>
-	 * 时间: 2017年5月5日 下午4:21:02
+	 * 时间: 2017年2月6日 下午5:19:34
 	 * 
 	 * @param key
 	 * @param value
 	 */
 	public void setValue(String key, String value) {
-		if (cluster.exists(key)) {
-			cluster.getSet(key, value);
-		} else {
-			cluster.set(key, value);
-		}
-
+		cluster.set(key, value);
 	}
 
 	/**
 	 * 
-	 * 方法: updateValue <br>
-	 * 描述: 根据key修改存储值 <br>
+	 * 方法: editValue <br>
+	 * 描述: 编辑缓存 <br>
 	 * 作者: zhy<br>
-	 * 时间: 2017年5月5日 下午4:24:46
+	 * 时间: 2017年2月6日 下午5:19:48
 	 * 
 	 * @param key
 	 * @param value
 	 */
 	public void updateValue(String key, String value) {
 		if (cluster.exists(key)) {
-			cluster.getSet(key, value);
+			cluster.del(key);
 		}
+		cluster.set(key, value);
 	}
 
 	/**
 	 * 
-	 * 方法: getValue <br>
-	 * 描述: 获取存储值 <br>
+	 * 方法: delCache <br>
+	 * 描述: 删除缓存 <br>
 	 * 作者: zhy<br>
-	 * 时间: 2017年5月5日 下午4:22:16
+	 * 时间: 2017年2月6日 下午5:20:22
+	 * 
+	 * @param key
+	 */
+	public void delValue(String key) {
+		cluster.del(key);
+	}
+
+	/**
+	 * 
+	 * 方法: getCacheValue <br>
+	 * 描述: 获取缓存值信息 <br>
+	 * 作者: zhy<br>
+	 * 时间: 2017年2月6日 下午5:45:53
 	 * 
 	 * @param key
 	 * @return
 	 */
 	public String getValue(String key) {
+		String value = "";
 		if (cluster.exists(key)) {
-			return cluster.get(key);
-		} else {
-			return null;
+			value = cluster.get(key);
 		}
+		return value;
 	}
-
 
 	/**
 	 * ====================hash操作====================
@@ -107,11 +115,27 @@ public class CacheHashHelper extends BaseClass {
 	 * @param field
 	 * @param value
 	 */
-	public void setFiled(String key, String field, String value) {
+	public void setFiledVal(String key, String field, String value) {
 		if (cluster.hexists(key, field)) {
 			cluster.hdel(key, field);
 		}
 		cluster.hset(key, field, value);
+	}
+
+	/**
+	 * 
+	 * 方法: updateValue <br>
+	 * 描述: 根据key修改存储值 <br>
+	 * 作者: zhy<br>
+	 * 时间: 2017年5月5日 下午4:24:46
+	 * 
+	 * @param key
+	 * @param value
+	 */
+	public void updateFiledVal(String key, String value) {
+		if (cluster.exists(key)) {
+			cluster.getSet(key, value);
+		}
 	}
 
 	/**
@@ -125,7 +149,23 @@ public class CacheHashHelper extends BaseClass {
 	 * @param field
 	 * @return
 	 */
-	public String getFiled(String key, String field) {
+	public String getFiledVal(String key, String field) {
 		return cluster.hget(key, field);
+	}
+
+	/**
+	 * 
+	 * 方法: delFiledVal <br>
+	 * 描述: 删除field的value值 <br>
+	 * 作者: zhy<br>
+	 * 时间: 2017年10月19日 下午1:59:21
+	 * 
+	 * @param key
+	 * @param field
+	 */
+	public void delFiledVal(String key, String field) {
+		if (cluster.hexists(key, field)) {
+			cluster.hdel(key, field);
+		}
 	}
 }
