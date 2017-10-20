@@ -4,7 +4,7 @@ import javax.servlet.http.HttpSession;
 
 import org.module.base.BaseClass;
 import org.module.cache.CacheKey;
-import org.module.cache.RedisString;
+import org.module.helper.CacheHelper;
 import org.module.helper.WebHelper;
 import org.module.model.system.user.SmUser;
 
@@ -37,7 +37,7 @@ public class UserFactory extends BaseClass {
 		if (session != null) {
 			String key = CacheKey.SESSION_USER_KEY + session.getId();
 			if (key != null) {
-				JSONObject obj = RedisString.instance().getJSONObject(key);
+				JSONObject obj = CacheHelper.getJSONObject(key);
 				if (obj != null) {
 					user = JSON.toJavaObject(obj, SmUser.class);
 				}

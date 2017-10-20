@@ -65,7 +65,7 @@ public class SmMenuServiceImpl extends BaseServiceImpl<SmMenu, SmMenuMapper, SmM
 	public TreeResult getMenus() {
 		TreeResult result = new TreeResult();
 		try {
-			String str = new CacheHelper().getValue("menu");
+			String str = CacheHelper.getValue("menu");
 			if (StringUtils.isNotBlank(str)) {
 				JSONObject obj = JSON.parseObject(str);
 				List<SmMenu> list = obj.toJavaObject(List.class);

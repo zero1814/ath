@@ -26,7 +26,7 @@ public class MenuInit extends RootInit {
 		try {
 			TreeResult result = service.treeData();
 			if (result.getCode() == 1) {
-				new CacheHelper().setValue("menu", JSON.toJSONString(result.getData()));
+				CacheHelper.setValue("menu", JSON.toJSONString(result.getData()));
 			}
 			flag = true;
 		} catch (Exception e) {

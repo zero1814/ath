@@ -3,8 +3,8 @@ package org.module.service.system.impl.user;
 import org.module.base.result.EntityResult;
 import org.module.base.service.impl.BaseServiceImpl;
 import org.module.cache.CacheKey;
-import org.module.cache.RedisString;
 import org.module.dto.system.user.SmUserDto;
+import org.module.helper.CacheHelper;
 import org.module.helper.CodeHelper;
 import org.module.helper.WebHelper;
 import org.module.mapper.system.user.SmUserMapper;
@@ -43,8 +43,7 @@ public class SmUserServiceImpl extends BaseServiceImpl<SmUser, SmUserMapper, SmU
 		EntityResult result = super.selectEntity(entity);
 		if (result.getCode() == 0) {
 			SmUser user = (SmUser) result.getEntity();
-			RedisString.instance().setValue(CacheKey.SESSION_USER_KEY + WebHelper.getSession().getId(),
-					JSON.toJSONString(user));
+			CacheHelper.setValue(CacheKey.SESSION_USER_KEY + WebHelper.getSession().getId(), JSON.toJSONString(user));
 			/**
 			 * 记录登录日志
 			 */
@@ -73,7 +72,7 @@ public class SmUserServiceImpl extends BaseServiceImpl<SmUser, SmUserMapper, SmU
 			/**
 			 * 注册成功后存储用户信息到redis中
 			 */
-			RedisString.instance().setValue(CacheKey.SESSION_USER_KEY + WebHelper.getSession().getId(),
+			CacheHelper.setValue(CacheKey.SESSION_USER_KEY + WebHelper.getSession().getId(),
 					JSON.toJSONString(result.getEntity()));
 		}
 		return result;

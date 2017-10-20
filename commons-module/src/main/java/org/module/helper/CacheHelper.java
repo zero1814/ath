@@ -2,15 +2,14 @@ package org.module.helper;
 
 import java.util.Map;
 
-import org.module.annotation.Inject;
 import org.module.base.BaseClass;
+import org.module.cache.RedisHash;
+import org.module.cache.RedisString;
 
-import redis.clients.jedis.JedisCluster;
+import com.alibaba.fastjson.JSONArray;
+import com.alibaba.fastjson.JSONObject;
 
 public class CacheHelper extends BaseClass {
-
-	@Inject
-	private JedisCluster cluster;
 
 	/**
 	 * ====================String操作====================
@@ -26,10 +25,8 @@ public class CacheHelper extends BaseClass {
 	 * @param key
 	 * @param value
 	 */
-	public void setValue(String key, String value) {
-		if (cluster != null) {
-			cluster.set(key, value);
-		}
+	public static void setValue(String key, String value) {
+		new RedisString().setValue(key, value);
 	}
 
 	/**
@@ -42,13 +39,8 @@ public class CacheHelper extends BaseClass {
 	 * @param key
 	 * @param value
 	 */
-	public void updateValue(String key, String value) {
-		if (cluster != null) {
-			if (cluster.exists(key)) {
-				cluster.del(key);
-			}
-			cluster.set(key, value);
-		}
+	public static void updateValue(String key, String value) {
+		new RedisString().updateValue(key, value);
 	}
 
 	/**
@@ -60,10 +52,8 @@ public class CacheHelper extends BaseClass {
 	 * 
 	 * @param key
 	 */
-	public void delValue(String key) {
-		if (cluster != null) {
-			cluster.del(key);
-		}
+	public static void delValue(String key) {
+		new RedisString().delValue(key);
 	}
 
 	/**
@@ -76,26 +66,15 @@ public class CacheHelper extends BaseClass {
 	 * @param key
 	 * @return
 	 */
-	public String getValue(String key) {
-		String value = "";
-		if (cluster != null) {
-			if (cluster.exists(key)) {
-				value = cluster.get(key);
-			}
-		}
-		return value;
+	public static String getValue(String key) {
+		return new RedisString().getValue(key);
 	}
 
 	/**
 	 * ====================hash操作====================
 	 */
-	public void setHash(String key, Map<String, String> hash) {
-		if (cluster != null) {
-			if (cluster.exists(key)) {
-				cluster.del(key);
-			}
-			cluster.hmset(key, hash);
-		}
+	public static void setHash(String key, Map<String, String> hash) {
+		new RedisHash().setHash(key, hash);
 	}
 
 	/**
@@ -108,12 +87,8 @@ public class CacheHelper extends BaseClass {
 	 * @param key
 	 * @return
 	 */
-	public Map<String, String> getHash(String key) {
-		Map<String, String> map = null;
-		if (cluster != null) {
-			cluster.hgetAll(key);
-		}
-		return map;
+	public static Map<String, String> getHash(String key) {
+		return new RedisHash().getHash(key);
 	}
 
 	/**
@@ -127,31 +102,8 @@ public class CacheHelper extends BaseClass {
 	 * @param field
 	 * @param value
 	 */
-	public void setFiledVal(String key, String field, String value) {
-		if (cluster != null) {
-			if (cluster.hexists(key, field)) {
-				cluster.hdel(key, field);
-			}
-			cluster.hset(key, field, value);
-		}
-	}
-
-	/**
-	 * 
-	 * 方法: updateValue <br>
-	 * 描述: 根据key修改存储值 <br>
-	 * 作者: zhy<br>
-	 * 时间: 2017年5月5日 下午4:24:46
-	 * 
-	 * @param key
-	 * @param value
-	 */
-	public void updateFiledVal(String key, String value) {
-		if (cluster != null) {
-			if (cluster.exists(key)) {
-				cluster.getSet(key, value);
-			}
-		}
+	public static void setFiledVal(String key, String field, String value) {
+		new RedisHash().setFiled(key, field, value);
 	}
 
 	/**
@@ -165,12 +117,8 @@ public class CacheHelper extends BaseClass {
 	 * @param field
 	 * @return
 	 */
-	public String getFiledVal(String key, String field) {
-		if (cluster != null) {
-			return cluster.hget(key, field);
-		} else {
-			return "";
-		}
+	public static String getFiledVal(String key, String field) {
+		return new RedisHash().getFiled(key, field);
 	}
 
 	/**
@@ -183,11 +131,31 @@ public class CacheHelper extends BaseClass {
 	 * @param key
 	 * @param field
 	 */
-	public void delFiledVal(String key, String field) {
-		if (cluster != null) {
-			if (cluster.hexists(key, field)) {
-				cluster.hdel(key, field);
-			}
-		}
+	public static void delFiledVal(String key, String field) {
+		new RedisHash().delFiled(key, field);
+	}
+	
+	/**
+	 * 
+	 * 方法: getJSONObject <br>
+	 * 作者: zhy<br>
+	 * 时间: 2017年10月20日 下午7:18:31
+	 * @param key
+	 * @return
+	 */
+	public static JSONObject getJSONObject(String key) {
+		return new RedisString().getJSONObject(key);
+	}
+	
+	/**
+	 * 
+	 * 方法: getJSONArray <br>
+	 * 作者: zhy<br>
+	 * 时间: 2017年10月20日 下午7:18:36
+	 * @param key
+	 * @return
+	 */
+	public static JSONArray getJSONArray(String key) {
+		return new RedisString().getJSONArray(key);
 	}
 }
