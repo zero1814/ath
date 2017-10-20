@@ -74,9 +74,13 @@ public class SmMenuServiceImpl extends BaseServiceImpl<SmMenu, SmMenuMapper, SmM
 					result.setCode(1);
 					result.setMessage("查询菜单成功");
 				} else {
+					result.setCode(1);
+					result.setMessage("查询菜单成功");
 					result = treeData();
 				}
 			} else {
+				result.setCode(1);
+				result.setMessage("查询菜单成功");
 				result = treeData();
 			}
 		} catch (Exception e) {

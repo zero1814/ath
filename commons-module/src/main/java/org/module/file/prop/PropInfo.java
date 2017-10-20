@@ -1,6 +1,6 @@
 package org.module.file.prop;
 
-import org.module.cache.RedisHash;
+import org.module.helper.CacheHelper;
 
 /**
  * 
@@ -22,6 +22,6 @@ public class PropInfo {
 	 * @return
 	 */
 	public static String getValue(String key) {
-		return RedisHash.instance().getFiled("info", key);
+		return new CacheHelper().getFiledVal("info", key);
 	}
 }

@@ -27,7 +27,9 @@ public class CacheHelper extends BaseClass {
 	 * @param value
 	 */
 	public void setValue(String key, String value) {
-		cluster.set(key, value);
+		if (cluster != null) {
+			cluster.set(key, value);
+		}
 	}
 
 	/**
@@ -41,10 +43,12 @@ public class CacheHelper extends BaseClass {
 	 * @param value
 	 */
 	public void updateValue(String key, String value) {
-		if (cluster.exists(key)) {
-			cluster.del(key);
+		if (cluster != null) {
+			if (cluster.exists(key)) {
+				cluster.del(key);
+			}
+			cluster.set(key, value);
 		}
-		cluster.set(key, value);
 	}
 
 	/**
@@ -57,7 +61,9 @@ public class CacheHelper extends BaseClass {
 	 * @param key
 	 */
 	public void delValue(String key) {
-		cluster.del(key);
+		if (cluster != null) {
+			cluster.del(key);
+		}
 	}
 
 	/**
@@ -72,8 +78,10 @@ public class CacheHelper extends BaseClass {
 	 */
 	public String getValue(String key) {
 		String value = "";
-		if (cluster.exists(key)) {
-			value = cluster.get(key);
+		if (cluster != null) {
+			if (cluster.exists(key)) {
+				value = cluster.get(key);
+			}
 		}
 		return value;
 	}
@@ -82,10 +90,12 @@ public class CacheHelper extends BaseClass {
 	 * ====================hash操作====================
 	 */
 	public void setHash(String key, Map<String, String> hash) {
-		if (cluster.exists(key)) {
-			cluster.del(key);
+		if (cluster != null) {
+			if (cluster.exists(key)) {
+				cluster.del(key);
+			}
+			cluster.hmset(key, hash);
 		}
-		cluster.hmset(key, hash);
 	}
 
 	/**
@@ -99,7 +109,11 @@ public class CacheHelper extends BaseClass {
 	 * @return
 	 */
 	public Map<String, String> getHash(String key) {
-		return cluster.hgetAll(key);
+		Map<String, String> map = null;
+		if (cluster != null) {
+			cluster.hgetAll(key);
+		}
+		return map;
 	}
 
 	/**
@@ -114,10 +128,12 @@ public class CacheHelper extends BaseClass {
 	 * @param value
 	 */
 	public void setFiledVal(String key, String field, String value) {
-		if (cluster.hexists(key, field)) {
-			cluster.hdel(key, field);
+		if (cluster != null) {
+			if (cluster.hexists(key, field)) {
+				cluster.hdel(key, field);
+			}
+			cluster.hset(key, field, value);
 		}
-		cluster.hset(key, field, value);
 	}
 
 	/**
@@ -131,8 +147,10 @@ public class CacheHelper extends BaseClass {
 	 * @param value
 	 */
 	public void updateFiledVal(String key, String value) {
-		if (cluster.exists(key)) {
-			cluster.getSet(key, value);
+		if (cluster != null) {
+			if (cluster.exists(key)) {
+				cluster.getSet(key, value);
+			}
 		}
 	}
 
@@ -148,7 +166,11 @@ public class CacheHelper extends BaseClass {
 	 * @return
 	 */
 	public String getFiledVal(String key, String field) {
-		return cluster.hget(key, field);
+		if (cluster != null) {
+			return cluster.hget(key, field);
+		} else {
+			return "";
+		}
 	}
 
 	/**
@@ -162,8 +184,10 @@ public class CacheHelper extends BaseClass {
 	 * @param field
 	 */
 	public void delFiledVal(String key, String field) {
-		if (cluster.hexists(key, field)) {
-			cluster.hdel(key, field);
+		if (cluster != null) {
+			if (cluster.hexists(key, field)) {
+				cluster.hdel(key, field);
+			}
 		}
 	}
 }
