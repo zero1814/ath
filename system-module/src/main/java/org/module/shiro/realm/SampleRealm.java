@@ -19,7 +19,13 @@ import org.module.model.system.user.SmUser;
 import org.module.service.system.user.ISmUserService;
 import org.module.shiro.token.ShiroToken;
 import org.springframework.beans.factory.annotation.Autowired;
-
+/**
+ * 
+ * 类: SampleRealm <br>
+ * 描述: 用户验证 <br>
+ * 作者: zhy<br>
+ * 时间: 2017年10月20日 下午3:12:00
+ */
 public class SampleRealm extends AuthorizingRealm {
 
 	@Autowired
