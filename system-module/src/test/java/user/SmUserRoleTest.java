@@ -19,6 +19,7 @@ public class SmUserRoleTest {
 	@Autowired
 	private ISmUserRoleService service;
 
+	@Test
 	public void insert() {
 		SmUserRole entity = new SmUserRole();
 		entity.setUserCode("1");
@@ -32,7 +33,6 @@ public class SmUserRoleTest {
 		System.out.println(JSON.toJSON(result));
 	}
 
-	@Test
 	public void del() {
 		BaseResult result = service.deleteByUserCode("1");
 		System.out.println(JSON.toJSON(result));

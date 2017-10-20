@@ -20,6 +20,7 @@ public class SmRoleTest {
 	@Autowired
 	private ISmRoleService service;
 
+	@Test
 	public void insert() {
 		SmRole entity = new SmRole();
 		entity.setCode(CodeHelper.getUniqueCode("SR"));
@@ -41,7 +42,6 @@ public class SmRoleTest {
 		System.out.println(JSON.toJSON(result));
 	}
 
-	@Test
 	public void del() {
 		BaseResult result = service.deleteByCode("SR869802533609009152");
 		System.out.println(JSON.toJSON(result));

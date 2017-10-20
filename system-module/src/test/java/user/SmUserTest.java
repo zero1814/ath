@@ -1,5 +1,6 @@
 package user;
 
+import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.module.base.BaseTest;
 import org.module.base.result.BaseResult;
@@ -22,6 +23,7 @@ public class SmUserTest extends BaseTest {
 	@Autowired
 	private ISmUserService service;
 
+	@Test
 	public void insert() {
 		SmUser entity = new SmUser();
 		entity.setCode(CodeHelper.getUniqueCode("SU"));

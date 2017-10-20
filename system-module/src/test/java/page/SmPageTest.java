@@ -20,6 +20,7 @@ public class SmPageTest {
 	@Autowired
 	private ISmPageService service;
 
+	@Test
 	public void insert() {
 		SmPage entity = new SmPage();
 		entity.setCode(CodeHelper.getUniqueCode("SP"));
@@ -75,7 +76,4 @@ public class SmPageTest {
 		System.out.println(JSON.toJSON(result));
 	}
 
-	@Test
-	public void all() {
-	}
 }

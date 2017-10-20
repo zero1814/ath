@@ -20,6 +20,7 @@ public class SmMenuTest {
 	@Autowired
 	private ISmMenuService service;
 
+	@Test
 	public void insert() {
 		SmMenu entity = new SmMenu();
 		entity.setCode(CodeHelper.getUniqueCode("SM"));
@@ -58,8 +59,4 @@ public class SmMenuTest {
 		System.out.println(JSON.toJSON(result));
 	}
 
-	@Test
-	public void findAll() {
-		
-	}
 }
