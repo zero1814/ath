@@ -2,10 +2,12 @@ package org.module.service.system.impl.menu;
 
 import java.util.List;
 
+import org.apache.commons.lang3.StringUtils;
 import org.module.base.result.BaseResult;
 import org.module.base.result.TreeResult;
 import org.module.base.service.impl.BaseServiceImpl;
 import org.module.dto.system.menu.SmMenuDto;
+import org.module.helper.CacheHelper;
 import org.module.helper.PropHelper;
 import org.module.mapper.system.menu.SmMenuMapper;
 import org.module.mapper.system.page.SmPageMapper;
@@ -14,6 +16,9 @@ import org.module.model.system.page.SmPage;
 import org.module.service.system.menu.ISmMenuService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONObject;
 
 /**
  * 
@@ -44,6 +49,40 @@ public class SmMenuServiceImpl extends BaseServiceImpl<SmMenu, SmMenuMapper, SmM
 			e.printStackTrace();
 			result.setCode(-1);
 			result.setMessage("查询菜单失败，失败原因:" + e.getMessage());
+		}
+		return result;
+	}
+
+	/**
+	 * 
+	 * 方法: getMenus <br>
+	 * 
+	 * @return
+	 * @see org.module.service.system.menu.ISmMenuService#getMenus()
+	 */
+	@SuppressWarnings("unchecked")
+	@Override
+	public TreeResult getMenus() {
+		TreeResult result = new TreeResult();
+		try {
+			String str = new CacheHelper().getValue("menu");
+			if (StringUtils.isNotBlank(str)) {
+				JSONObject obj = JSON.parseObject(str);
+				List<SmMenu> list = obj.toJavaObject(List.class);
+				if (list != null && list.size() > 0) {
+					result.setData(list);
+					result.setCode(1);
+					result.setMessage("查询菜单成功");
+				} else {
+					result = treeData();
+				}
+			} else {
+				result = treeData();
+			}
+		} catch (Exception e) {
+			result.setCode(-1);
+			result.setMessage("查询菜单列表报错");
+			e.printStackTrace();
 		}
 		return result;
 	}
@@ -101,5 +140,4 @@ public class SmMenuServiceImpl extends BaseServiceImpl<SmMenu, SmMenuMapper, SmM
 	public List<SmPage> pages() {
 		return pageMapper.findPages(null);
 	}
-
 }

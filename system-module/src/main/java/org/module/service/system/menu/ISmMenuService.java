@@ -29,6 +29,15 @@ public interface ISmMenuService extends IBaseService<SmMenu, SmMenuDto> {
 
 	/**
 	 * 
+	 * 方法: getMenus <br>
+	 * 描述: 获取菜单集合列表 <br>
+	 * 作者: zhy<br>
+	 * 时间: 2017年10月20日 下午6:11:00
+	 * @return
+	 */
+	TreeResult getMenus();
+	/**
+	 * 
 	 * 方法: pages <br>
 	 * 描述: 获取所有可用页面 <br>
 	 * 作者: zhy<br>

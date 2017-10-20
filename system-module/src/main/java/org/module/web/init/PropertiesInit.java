@@ -3,6 +3,7 @@ package org.module.web.init;
 import org.module.base.map.MStringMap;
 import org.module.cache.RedisHash;
 import org.module.file.prop.PropLoad;
+import org.module.helper.CacheHelper;
 
 public class PropertiesInit extends RootInit {
 
@@ -38,7 +39,7 @@ public class PropertiesInit extends RootInit {
 		logger.logInfo("开始加载config配置文件");
 		try {
 			MStringMap map = PropLoad.instance().getData("config");
-			RedisHash.instance().setHash("config", map);
+			new CacheHelper().setHash("config", map);
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {

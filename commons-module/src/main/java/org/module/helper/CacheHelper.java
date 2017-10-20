@@ -12,15 +12,6 @@ public class CacheHelper extends BaseClass {
 	@Inject
 	private JedisCluster cluster;
 
-	private static CacheHelper self;
-
-	public static CacheHelper instance() {
-		if (self == null) {
-			self = new CacheHelper();
-		}
-		return self;
-	}
-
 	/**
 	 * ====================String操作====================
 	 */
@@ -90,6 +81,13 @@ public class CacheHelper extends BaseClass {
 	/**
 	 * ====================hash操作====================
 	 */
+	public void setHash(String key, Map<String, String> hash) {
+		if (cluster.exists(key)) {
+			cluster.del(key);
+		}
+		cluster.hmset(key, hash);
+	}
+
 	/**
 	 * 
 	 * 方法: get <br>

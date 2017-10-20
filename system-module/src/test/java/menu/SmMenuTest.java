@@ -4,6 +4,7 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.module.base.result.BaseResult;
 import org.module.base.result.EntityResult;
+import org.module.base.result.TreeResult;
 import org.module.helper.CodeHelper;
 import org.module.model.system.menu.SmMenu;
 import org.module.service.system.menu.ISmMenuService;
@@ -20,7 +21,6 @@ public class SmMenuTest {
 	@Autowired
 	private ISmMenuService service;
 
-	@Test
 	public void insert() {
 		SmMenu entity = new SmMenu();
 		entity.setCode(CodeHelper.getUniqueCode("SM"));
@@ -59,4 +59,9 @@ public class SmMenuTest {
 		System.out.println(JSON.toJSON(result));
 	}
 
+	@Test
+	public void findAll() {
+		TreeResult result = service.treeData();
+		System.out.println(JSON.toJSON(result));
+	}
 }
