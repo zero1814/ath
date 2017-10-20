@@ -6,11 +6,10 @@ import org.module.base.result.BaseResult;
 import org.module.base.result.TreeResult;
 import org.module.base.service.impl.BaseServiceImpl;
 import org.module.dto.system.menu.SmMenuDto;
-import org.module.mapper.system.menu.SmMenuGroupMapper;
+import org.module.helper.PropHelper;
 import org.module.mapper.system.menu.SmMenuMapper;
 import org.module.mapper.system.page.SmPageMapper;
 import org.module.model.system.menu.SmMenu;
-import org.module.model.system.menu.SmMenuGroup;
 import org.module.model.system.page.SmPage;
 import org.module.service.system.menu.ISmMenuService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,26 +28,18 @@ public class SmMenuServiceImpl extends BaseServiceImpl<SmMenu, SmMenuMapper, SmM
 	@Autowired
 	private SmMenuMapper mapper;
 	@Autowired
-	private SmMenuGroupMapper groupMapper;
-	@Autowired
 	private SmPageMapper pageMapper;
 
 	@Override
-	public TreeResult treeData(String groupCode) {
+	public TreeResult treeData() {
 		TreeResult result = new TreeResult();
 		try {
-			SmMenuGroup group = groupMapper.selectByCode(groupCode);
-			if (group != null) {
-				result.setCode(0);
-				result.setTreeText(group.getName());
-				result.setTreeCode(group.getCode());
-				List<SmMenu> list = data("0", groupCode);
-				result.setData(list);
-				result.setMessage("查询菜单成功");
-			} else {
-				result.setCode(-1);
-				result.setMessage("菜单组下菜单信息为空");
-			}
+			result.setCode(0);
+			result.setTreeText(PropHelper.getConfig("system.menu.tree.text"));
+			result.setTreeCode("");
+			List<SmMenu> list = data("0");
+			result.setData(list);
+			result.setMessage("查询菜单成功");
 		} catch (Exception e) {
 			e.printStackTrace();
 			result.setCode(-1);
@@ -68,15 +59,13 @@ public class SmMenuServiceImpl extends BaseServiceImpl<SmMenu, SmMenuMapper, SmM
 	 * @param groupCode
 	 * @return
 	 */
-	private List<SmMenu> data(String parentCode, String groupCode) {
+	private List<SmMenu> data(String parentCode) {
 		SmMenuDto dto = new SmMenuDto();
-		dto.setGroupCode(groupCode);
 		dto.setParentCode(parentCode);
 		List<SmMenu> list = mapper.findDataAll(dto);
 		if (list != null && list.size() > 0) {
 			for (SmMenu m : list) {
 				SmMenuDto sbDto = new SmMenuDto();
-				sbDto.setGroupCode(groupCode);
 				sbDto.setParentCode(m.getCode());
 				List<SmMenu> sub = mapper.findDataAll(sbDto);
 				if (sub != null && sub.size() > 0) {

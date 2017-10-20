@@ -25,7 +25,7 @@ public interface ISmMenuService extends IBaseService<SmMenu, SmMenuDto> {
 	 * 
 	 * @return
 	 */
-	TreeResult treeData(String groupCode);
+	TreeResult treeData();
 
 	/**
 	 * 

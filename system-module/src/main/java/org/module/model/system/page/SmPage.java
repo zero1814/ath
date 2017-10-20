@@ -36,23 +36,12 @@ public class SmPage extends TreeModel {
 	@Attribute(name = "childs", description = "子级页面集合")
 	private List<SmPage> childs;
 
-	@Attribute(name = "group", description = "页面分组")
-	private SmPageGroup group;
-
 	public String getParentCode() {
 		return parentCode;
 	}
 
 	public void setParentCode(String parentCode) {
 		this.parentCode = parentCode;
-	}
-
-	public SmPageGroup getGroup() {
-		return group;
-	}
-
-	public void setGroup(SmPageGroup group) {
-		this.group = group;
 	}
 
 	public List<SmPage> getChilds() {

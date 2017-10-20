@@ -6,7 +6,6 @@
 		<result column="uid" property="uid" jdbcType="VARCHAR" />
 		<result column="code" property="code" jdbcType="VARCHAR" />
 		<result column="parent_code" property="parentCode" jdbcType="VARCHAR" />
-		<result column="group_code" property="groupCode" jdbcType="VARCHAR" />
 		<result column="name" property="name" jdbcType="VARCHAR" />
 		<result column="url" property="url" jdbcType="VARCHAR" />
 		<result column="param" property="param" jdbcType="VARCHAR" />
@@ -16,13 +15,9 @@
 		<result column="create_time" property="createTime" jdbcType="VARCHAR" />
 		<result column="update_user" property="updateUser" jdbcType="VARCHAR" />
 		<result column="update_time" property="updateTime" jdbcType="VARCHAR" />
-		<collection property="group"
-			ofType="org.module.model.system.page.SmPageGroup">
-			<result column="group_name" property="name" jdbcType="VARCHAR" />
-		</collection>
 	</resultMap>
 	<sql id="Base_Column_List">
-		id, uid,`code`,parent_code,group_code, `name`, url, param,
+		id, uid,`code`,parent_code, `name`, url, param,
 		flag_able,
 		is_deleted,
 		create_user,
@@ -54,9 +49,6 @@
 			<if test="parentCode != null and parentCode != ''">
 				parent_code,
 			</if>
-			<if test="groupCode != null and groupCode != ''">
-				group_code,
-			</if>
 			`name`,
 			url,
 			<if test="param != null and param != ''">
@@ -78,9 +70,6 @@
 			#{code,jdbcType=VARCHAR},
 			<if test="parentCode != null and parentCode != ''">
 				#{parentCode,jdbcType=VARCHAR},
-			</if>
-			<if test="groupCode != null and groupCode != ''">
-				#{groupCode,jdbcType=VARCHAR},
 			</if>
 			#{name,jdbcType=VARCHAR},
 			#{url,jdbcType=VARCHAR},
@@ -106,9 +95,6 @@
 		<set>
 			<if test="parentCode != null and parentCode != ''">
 				parent_code=#{parentCode,jdbcType=VARCHAR},
-			</if>
-			<if test="groupCode != null and groupCode != ''">
-				group_code=#{groupCode,jdbcType=VARCHAR},
 			</if>
 			<if test="name != null and name != ''">
 				`name` = #{name,jdbcType=VARCHAR},
@@ -137,21 +123,13 @@
 		sp.`code`,
 		sp.parent_code,
 		sp.`name`,
-		sp.group_code,
-		spg.`name` AS
-		group_name,
 		sp.url,
 		sp.param,
 		sp.flag_able
 		FROM
 		systemmodule.sm_page AS sp
-		LEFT JOIN systemmodule.sm_page_group AS spg ON sp.group_code =
-		spg.`code`
 		<where>
-			sp.parent_code = #{parentCode,jdbcType=VARCHAR}
-			and
-			sp.group_code =
-			#{groupCode,jdbcType=VARCHAR}
+			sp.group_code = #{groupCode,jdbcType=VARCHAR}
 		</where>
 	</select>
 	<!-- 判断是否包含子页面 -->
@@ -165,14 +143,13 @@
 		SELECT
 		p.`code`,
 		p.parent_code,
-		p.group_code,
-		CONCAT(g.`name`, '-', p.`name`) AS `name`,
+		CONCAT(g.`name`, '-', p.`name`) AS
+		`name`,
 		p.url,
 		p.param,
 		p.flag_able
 		FROM
 		systemmodule.sm_page AS p
-		LEFT JOIN systemmodule.sm_page_group AS g ON p.group_code = g.`code`
 		<where>
 			and p.is_deleted = 0
 			and p.url != ""

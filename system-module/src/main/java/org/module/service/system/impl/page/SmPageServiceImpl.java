@@ -6,10 +6,9 @@ import org.module.base.result.BaseResult;
 import org.module.base.result.TreeResult;
 import org.module.base.service.impl.BaseServiceImpl;
 import org.module.dto.system.page.SmPageDto;
-import org.module.mapper.system.page.SmPageGroupMapper;
+import org.module.helper.PropHelper;
 import org.module.mapper.system.page.SmPageMapper;
 import org.module.model.system.page.SmPage;
-import org.module.model.system.page.SmPageGroup;
 import org.module.service.system.page.ISmPageService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -27,24 +26,15 @@ public class SmPageServiceImpl extends BaseServiceImpl<SmPage, SmPageMapper, SmP
 	@Autowired
 	private SmPageMapper mapper;
 
-	@Autowired
-	private SmPageGroupMapper groupMapper;
-
 	@Override
 	public TreeResult treeData(String groupCode) {
 		TreeResult result = new TreeResult();
 		try {
-			SmPageGroup group = groupMapper.selectByCode(groupCode);
-			if (group != null) {
-				result.setTreeText(group.getName());
-				result.setTreeCode(group.getCode());
-				result.setCode(0);
-				result.setData(data("0", groupCode));
-				result.setMessage("查询成功");
-			} else {
-				result.setCode(-1);
-				result.setMessage("页面分组不存在");
-			}
+			result.setTreeText(PropHelper.getConfig("system.page.tree.text"));
+			result.setTreeCode("");
+			result.setCode(0);
+			result.setData(data("0", groupCode));
+			result.setMessage("查询成功");
 		} catch (Exception e) {
 			e.printStackTrace();
 			result.setCode(-1);

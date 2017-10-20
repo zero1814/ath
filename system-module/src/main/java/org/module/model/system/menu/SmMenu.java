@@ -19,14 +19,8 @@ public class SmMenu extends TreeModel {
 	@Column(name = "group_code", isNull = false, comment = "菜单分组编码")
 	private String groupCode;
 
-	@Attribute(name = "菜单分组")
-	private SmMenuGroup group;
-
 	@Column(name = "page_code", comment = "菜单对应页面编码")
 	private String pageCode;
-
-	@Attribute(name = "page", description = "菜单对应页面信息")
-	private SmPage page;
 
 	@Column(name = "name", isNull = false, comment = "菜单名称")
 	private String name;
@@ -40,6 +34,9 @@ public class SmMenu extends TreeModel {
 	@Column(name = "sort", defaultValue = "0", comment = "排序")
 	private Integer sort;
 
+	@Attribute(name = "page", description = "菜单对应页面信息")
+	private SmPage page;
+
 	@Attribute(name = "childs", description = "子级菜单集合")
 	private List<SmMenu> childs;
 
@@ -49,14 +46,6 @@ public class SmMenu extends TreeModel {
 
 	public void setSort(Integer sort) {
 		this.sort = sort;
-	}
-
-	public SmMenuGroup getGroup() {
-		return group;
-	}
-
-	public void setGroup(SmMenuGroup group) {
-		this.group = group;
 	}
 
 	public SmPage getPage() {

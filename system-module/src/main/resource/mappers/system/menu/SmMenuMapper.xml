@@ -6,7 +6,6 @@
 		<result column="uid" property="uid" jdbcType="VARCHAR" />
 		<result column="code" property="code" jdbcType="VARCHAR" />
 		<result column="parent_code" property="parentCode" jdbcType="VARCHAR" />
-		<result column="group_code" property="groupCode" jdbcType="VARCHAR" />
 		<result column="page_code" property="pageCode" jdbcType="VARCHAR" />
 		<result column="name" property="name" jdbcType="VARCHAR" />
 		<result column="icon" property="icon" jdbcType="VARCHAR" />
@@ -16,13 +15,9 @@
 		<result column="create_time" property="createTime" jdbcType="VARCHAR" />
 		<result column="update_user" property="updateUser" jdbcType="VARCHAR" />
 		<result column="update_time" property="updateTime" jdbcType="VARCHAR" />
-		<collection property="page" ofType="org.module.model.system.page.SmPage">
-			<result column="page_name" property="name" jdbcType="VARCHAR" />
-			<result column="url" property="url" jdbcType="VARCHAR" />
-		</collection>
 	</resultMap>
 	<sql id="Base_Column_List">
-		id, uid, code, parent_code, group_code, page_code, name,
+		id, uid, code, parent_code, page_code, name,
 		icon, flag_able,sort,
 		create_user,
 		DATE_FORMAT(create_time,'%Y-%m-%d
@@ -38,7 +33,6 @@
 		SELECT
 		m.`code`,
 		m.parent_code,
-		m.group_code,
 		m.page_code,
 		m.`name`,
 		m.icon,
@@ -79,7 +73,6 @@
 			<if test="parentCode != null and parentCode != ''">
 				parent_code,
 			</if>
-			group_code,
 			<if test="pageCode != null and pageCode != ''">
 				page_code,
 			</if>
@@ -104,7 +97,6 @@
 			<if test="parentCode != null and parentCode != ''">
 				#{parentCode,jdbcType=VARCHAR},
 			</if>
-			#{groupCode,jdbcType=VARCHAR},
 			<if test="pageCode != null and pageCode != ''">
 				#{pageCode,jdbcType=VARCHAR},
 			</if>
@@ -131,9 +123,6 @@
 		<set>
 			<if test="parentCode != null and parentCode != ''">
 				parent_code = #{parentCode,jdbcType=VARCHAR},
-			</if>
-			<if test="groupCode != null and groupCode != ''">
-				group_code = #{groupCode,jdbcType=VARCHAR},
 			</if>
 			<if test="pageCode != null and pageCode != ''">
 				page_code = #{pageCode,jdbcType=VARCHAR},
@@ -170,8 +159,6 @@
 		m.page_code = p.`code`
 		WHERE
 		m.flag_able=0
-		and m.group_code =
-		#{groupCode,jdbcType=VARCHAR}
 		and m.parent_code =
 		#{parentCode,jdbcType=VARCHAR}
 		order by m.sort desc,m.create_time asc

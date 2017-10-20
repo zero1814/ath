@@ -34,8 +34,8 @@ public class SmMenuController {
 
 	@RequestMapping("tree")
 	@ResponseBody
-	public TreeResult data(String groupCode) {
-		return service.treeData(groupCode);
+	public TreeResult data() {
+		return service.treeData();
 	}
 
 	@RequestMapping("detail")
