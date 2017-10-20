@@ -22,6 +22,6 @@ public class PropInfo {
 	 * @return
 	 */
 	public static String getValue(String key) {
-		return new CacheHelper().getFiledVal("info", key);
+		return CacheHelper.getFiledVal("info", key);
 	}
 }
