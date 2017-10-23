@@ -1,6 +1,7 @@
 package org.module.model.system.user;
 
 import org.module.base.model.BaseModel;
+
 /**
  * 
  * 类: SmRole <br>
@@ -14,8 +15,22 @@ public class SmRole extends BaseModel {
 
 	private String name;
 
+	private String enName;
+
 	private String status;
-	
+
+	public String getEnName() {
+		return enName;
+	}
+
+	public void setEnName(String enName) {
+		this.enName = enName;
+	}
+
+	public static long getSerialversionuid() {
+		return serialVersionUID;
+	}
+
 	public String getName() {
 		return name;
 	}
