@@ -1,5 +1,6 @@
 package org.module.service.system;
 
+import org.module.base.result.TreeResult;
 import org.module.base.service.IBaseService;
 import org.module.dto.system.SmDefineDto;
 import org.module.model.system.SmDefine;
@@ -12,5 +13,5 @@ import org.module.model.system.SmDefine;
  * 时间: 2017年10月23日 上午10:34:39
  */
 public interface ISmDefineService extends IBaseService<SmDefine, SmDefineDto> {
-
+	TreeResult tree();
 }

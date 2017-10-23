@@ -1,6 +1,9 @@
 package org.module.file.prop;
 
+import org.module.base.BaseClass;
+import org.module.base.map.MStringMap;
 import org.module.helper.CacheHelper;
+import org.module.util.StringUtils;
 
 /**
  * 
@@ -9,7 +12,7 @@ import org.module.helper.CacheHelper;
  * 作者: zhy<br>
  * 时间: 2016年9月22日 下午10:37:21
  */
-public class PropInfo {
+public class PropInfo extends BaseClass {
 
 	/**
 	 * 
@@ -22,6 +25,17 @@ public class PropInfo {
 	 * @return
 	 */
 	public static String getValue(String key) {
-		return CacheHelper.getFiledVal("info", key);
+		String value = "";
+		try {
+			value = CacheHelper.getFiledVal("info", key);
+		} catch (Exception e) {
+			logger.logError(PropInfo.class, "查询PropInfo 缓存数据失败");
+		} finally {
+			if (StringUtils.isBlank(value)) {
+				MStringMap map = PropLoad.instance().getData("info");
+				value = map.get(key);
+			}
+		}
+		return value;
 	}
 }

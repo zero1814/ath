@@ -13,7 +13,7 @@
 		<result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
 	</resultMap>
 	<sql id="Base_Column_List">
-		id, uid, code, parent_code, name, create_user,
+		id, uid, `code`, parent_code, `name`, create_user,
 		DATE_FORMAT(create_time,'%Y-%m-%d
 		%H:%i:%s') as
 		create_time,
@@ -28,6 +28,14 @@
 		<include refid="Base_Column_List" />
 		from systemmodule.sm_define
 		where `code` = #{code,jdbcType=VARCHAR}
+	</select>
+	<select id="selectByParentCode" resultMap="BaseResultMap"
+		parameterType="java.lang.String">
+		select
+		`code`,`name`
+		from systemmodule.sm_define
+		where `parent_code` =
+		#{parentCode,jdbcType=VARCHAR}
 	</select>
 	<delete id="deleteByCode" parameterType="java.lang.String">
 		delete from

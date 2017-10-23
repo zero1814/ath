@@ -2,6 +2,7 @@ package system;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.module.base.result.TreeResult;
 import org.module.model.system.SmDefine;
 import org.module.service.system.ISmCodeService;
 import org.module.service.system.ISmDefineService;
@@ -9,6 +10,8 @@ import org.module.util.DateUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+
+import com.alibaba.fastjson.JSON;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = { "classpath:spring/spring.xml", "classpath:spring/spring-mybatis.xml" })
@@ -19,7 +22,6 @@ public class SmDefineTest {
 	@Autowired
 	private ISmCodeService codeService;
 
-	@Test
 	public void insert() {
 		SmDefine entity1 = new SmDefine();
 		entity1.setCode(codeService.getCode("SD"));
@@ -75,5 +77,11 @@ public class SmDefineTest {
 		entity7.setCreateUser("system");
 		entity7.setCreateTime(DateUtil.getSysDateTime());
 		service.insertSelective(entity7);
+	}
+
+	@Test
+	public void tree() {
+		TreeResult result = service.tree();
+		System.out.println(JSON.toJSON(result));
 	}
 }

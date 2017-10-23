@@ -1,5 +1,7 @@
 package org.module.model.system;
 
+import java.util.List;
+
 import org.module.base.model.BaseModel;
 
 /**
@@ -16,6 +18,16 @@ public class SmDefine extends BaseModel {
 	private String parentCode;
 
 	private String name;
+
+	private List<SmDefine> childs;
+
+	public List<SmDefine> getChilds() {
+		return childs;
+	}
+
+	public void setChilds(List<SmDefine> childs) {
+		this.childs = childs;
+	}
 
 	public String getParentCode() {
 		return parentCode;
