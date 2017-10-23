@@ -1,16 +1,16 @@
 package org.module.init.system;
 
+import org.module.annotation.Inject;
 import org.module.base.result.TreeResult;
 import org.module.helper.CacheHelper;
 import org.module.root.WebRootInit;
 import org.module.service.system.ISmDefineService;
-import org.springframework.beans.factory.annotation.Autowired;
 
 import com.alibaba.fastjson.JSON;
 
 public class SmDefineInit extends WebRootInit {
 
-	@Autowired
+	@Inject
 	private ISmDefineService service;
 
 	@Override
