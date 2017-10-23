@@ -1,4 +1,4 @@
-package org.module.web.init;
+package org.module.root;
 
 import org.module.base.BaseClass;
 
@@ -8,9 +8,9 @@ import org.module.base.BaseClass;
  * @author HJY
  *
  */
-public abstract class RootInit extends BaseClass {
+public abstract class WebRootInit extends BaseClass {
 
-	public RootInit() {
+	public WebRootInit() {
 		logger.logInfo("init class : " + this.getClass().getName());
 	}
 

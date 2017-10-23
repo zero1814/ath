@@ -3,8 +3,8 @@ package org.module.helper;
 import java.util.Map;
 
 import org.module.base.BaseClass;
-import org.module.cache.RedisHash;
-import org.module.cache.RedisString;
+import org.module.cache.commons.RedisHash;
+import org.module.cache.commons.RedisString;
 
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;

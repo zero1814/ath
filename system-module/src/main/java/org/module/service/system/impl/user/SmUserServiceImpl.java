@@ -2,7 +2,7 @@ package org.module.service.system.impl.user;
 
 import org.module.base.result.EntityResult;
 import org.module.base.service.impl.BaseServiceImpl;
-import org.module.cache.CacheKey;
+import org.module.cache.system.CacheKey;
 import org.module.dto.system.user.SmUserDto;
 import org.module.helper.CacheHelper;
 import org.module.helper.WebHelper;

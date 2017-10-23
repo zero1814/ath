@@ -4,7 +4,9 @@ import org.module.base.result.BaseResult;
 import org.module.base.result.EntityResult;
 import org.module.base.result.PageResult;
 import org.module.dto.system.user.SmUserDto;
+import org.module.helper.PropHelper;
 import org.module.model.system.user.SmUser;
+import org.module.service.system.ISmCodeService;
 import org.module.service.system.user.ISmUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -17,8 +19,12 @@ public class SmUserController {
 
 	@Autowired
 	private ISmUserService service;
+	@Autowired
+	private ISmCodeService codeService;
 
 	public EntityResult register(SmUser entity) {
+		String code = codeService.getCode(PropHelper.getConfig("system.code.user"));
+		entity.setCode(code);
 		return service.insertSelective(entity);
 	}
 
@@ -46,6 +52,8 @@ public class SmUserController {
 	@RequestMapping("add")
 	@ResponseBody
 	public EntityResult add(SmUser entity) {
+		String code = codeService.getCode(PropHelper.getConfig("system.code.user"));
+		entity.setCode(code);
 		return service.insertSelective(entity);
 	}
 

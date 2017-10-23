@@ -1,10 +1,12 @@
-package org.module.web.init;
+package org.module.init.commons;
 
 import org.module.base.map.MStringMap;
+import org.module.cache.commons.CacheKey;
 import org.module.file.prop.PropLoad;
 import org.module.helper.CacheHelper;
+import org.module.root.WebRootInit;
 
-public class PropertiesInit extends RootInit {
+public class PropertiesInit extends WebRootInit {
 
 	@Override
 	public boolean onInit() {
@@ -38,7 +40,7 @@ public class PropertiesInit extends RootInit {
 		logger.logInfo("开始加载config配置文件");
 		try {
 			MStringMap map = PropLoad.instance().getData("config");
-			CacheHelper.setHash("config", map);
+			CacheHelper.setHash(CacheKey.PROP_CONFIG, map);
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
@@ -58,7 +60,7 @@ public class PropertiesInit extends RootInit {
 		logger.logInfo("开始加载info配置文件");
 		try {
 			MStringMap map = PropLoad.instance().getData("info");
-			CacheHelper.setHash("info", map);
+			CacheHelper.setHash(CacheKey.PROP_INFO, map);
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {

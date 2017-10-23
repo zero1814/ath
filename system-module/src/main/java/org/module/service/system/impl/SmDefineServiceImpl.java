@@ -2,15 +2,20 @@ package org.module.service.system.impl;
 
 import java.util.List;
 
+import org.module.base.result.EntityResult;
 import org.module.base.result.TreeResult;
 import org.module.base.service.impl.BaseServiceImpl;
+import org.module.cache.system.CacheKey;
 import org.module.dto.system.SmDefineDto;
+import org.module.helper.CacheHelper;
 import org.module.helper.PropHelper;
 import org.module.mapper.system.SmDefineMapper;
 import org.module.model.system.SmDefine;
 import org.module.service.system.ISmDefineService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import com.alibaba.fastjson.JSON;
 
 /**
  * 
@@ -25,6 +30,19 @@ public class SmDefineServiceImpl extends BaseServiceImpl<SmDefine, SmDefineMappe
 
 	@Autowired
 	private SmDefineMapper mapper;
+
+	@Override
+	public EntityResult insertSelective(SmDefine entity) {
+		EntityResult result = super.insertSelective(entity);
+		if (result.getCode() == 1) {
+			TreeResult treeResult = tree();
+			if (treeResult.getCode() == 1) {
+				CacheHelper.updateValue(CacheKey.DEFINE, JSON.toJSONString(treeResult.getData()));
+			}
+
+		}
+		return result;
+	}
 
 	@Override
 	public TreeResult tree() {

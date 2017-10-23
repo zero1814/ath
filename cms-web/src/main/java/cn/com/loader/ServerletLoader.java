@@ -1,28 +1,27 @@
-package org.module.web.loader;
+package cn.com.loader;
 
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 
+import org.module.init.commons.PropertiesInit;
+import org.module.init.system.SmDefineInit;
 import org.module.util.SpringContextUtil;
-import org.module.web.init.PropertiesInit;
-import org.module.web.listener.ServerletListener;
 import org.springframework.web.WebApplicationInitializer;
 import org.springframework.web.context.WebApplicationContext;
 import org.springframework.web.context.support.WebApplicationContextUtils;
 
 /**
- * Serverlet加载时调用
+ * 
+ * 类: ServerletLoader <br>
+ * 描述: * Serverlet加载时调用
  * 
  * 该类兼容两种调用模式 一种是由<br>
  * {@link ServerletListener#contextInitialized} 调用,<br>
  * 此调用模式需要在web.xml增加listener <br>
  * 另外一种是由继承{@link WebApplicationInitializer#onStartup}的调用<br>
  * 此调用模式支持spring的注解式调用<br>
- * 两种调用模式用{@linkplain #bFlagLoad}参数来防止重复调用
- * 
- * 
- * @author HJY
- * 
+ * 两种调用模式用{@linkplain #bFlagLoad}参数来防止重复调用 作者: zhy<br>
+ * 时间: 2017年10月23日 下午1:49:56
  */
 public class ServerletLoader {
 
@@ -42,15 +41,16 @@ public class ServerletLoader {
 		if (!bFlagLoad) {
 			bFlagLoad = true;
 			try {
-				servletContext.log("Initializing HJY web core");
+				servletContext.log("Initializing cms web core");
 				WebApplicationContext wac = WebApplicationContextUtils.getWebApplicationContext(servletContext);
 				SpringContextUtil.setApplicationContext(wac);
 				new PropertiesInit().init();
-				servletContext.log("Initializing HJY web core finished");
+				new SmDefineInit().init();
+				servletContext.log("Initializing cms web core finished");
 
 			} catch (RuntimeException ex) {
 				flag = false;
-				servletContext.log("Error occurs in initializing HJY web core" + ex.getMessage());
+				servletContext.log("Error occurs in initializing cms web core" + ex.getMessage());
 			}
 		}
 		return flag;
@@ -75,4 +75,5 @@ public class ServerletLoader {
 	public synchronized boolean destory(ServletContext servletContext) {
 		return true;
 	}
+
 }

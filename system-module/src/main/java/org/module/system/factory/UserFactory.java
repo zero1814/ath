@@ -3,7 +3,7 @@ package org.module.system.factory;
 import javax.servlet.http.HttpSession;
 
 import org.module.base.BaseClass;
-import org.module.cache.CacheKey;
+import org.module.cache.system.CacheKey;
 import org.module.helper.CacheHelper;
 import org.module.helper.WebHelper;
 import org.module.model.system.user.SmUser;
