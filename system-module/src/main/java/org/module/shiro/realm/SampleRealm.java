@@ -18,6 +18,7 @@ import org.module.helper.LoggerHelper;
 import org.module.model.system.user.SmUser;
 import org.module.service.system.user.ISmUserService;
 import org.module.shiro.token.ShiroToken;
+import org.module.system.util.Constants;
 import org.springframework.beans.factory.annotation.Autowired;
 /**
  * 
@@ -44,7 +45,7 @@ public class SampleRealm extends AuthorizingRealm {
 		EntityResult result = userService.login(token.getUsername(), token.getPswd());
 		if (result.getCode() == 0) {
 			SmUser user = (SmUser) result.getEntity();
-			if (!StringUtils.equals(user.getStatus(), SmUser.SUCCESS_STATUS)) {
+			if (!StringUtils.equals(user.getStatus(), Constants.SUCCESS_STATUS)) {
 				throw new DisabledAccountException("帐号已经禁止登录！");
 			} else {
 				/**

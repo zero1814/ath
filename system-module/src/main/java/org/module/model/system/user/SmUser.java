@@ -1,74 +1,35 @@
 package org.module.model.system.user;
 
-import java.util.List;
-
-import org.module.annotation.db.Column;
-import org.module.annotation.db.Table;
-import org.module.annotation.obj.Attribute;
 import org.module.base.model.BaseModel;
 
-@Table(name = "sm_user", database = "systemmodule", comment = "用户表")
-public class SmUser extends BaseModel {
+/**
+ * 
+ * 类: SmUser <br>
+ * 描述: 用户表 <br>
+ * 作者: zhy<br>
+ * 时间: 2017年10月23日 上午10:17:32
+ */
+public class SmUser extends BaseModel{
 
-	private static final long serialVersionUID = -4880208613160544086L;
+	private static final long serialVersionUID = -595306086465748400L;
 
-	public static final String SUCCESS_STATUS = "0";
-
-	@Column(name = "user_name", isNull = false, comment = "用户名")
 	private String userName;
 
-	@Column(name = "password", isNull = false, comment = "密码")
-	private String password;
+    private String password;
 
-	@Column(name = "real_name", isNull = false, comment = "真实姓名")
-	private String realName;
+    private String realName;
 
-	@Column(name = "head_pic", isNull = false, comment = "头像")
-	private String headPic;
+    private String headPic;
 
-	@Column(name = "phone", isNull = false, comment = "手机号")
-	private String phone;
+    private String phone;
 
-	@Column(name = "e_mail", isNull = false, comment = "电子邮箱")
-	private String eMail;
+    private String eMail;
 
-	@Column(name = "qq", comment = "qq号码")
-	private String qq;
+    private String qq;
 
-	@Column(name = "we_chat", comment = "微信号")
-	private String weChat;
+    private String weChat;
 
-	@Column(name = "status", comment = "用户状态")
-	private String status;
-
-	public SmUser() {
-	}
-
-	public SmUser(SmUser user) {
-		this.userName = user.getUserName();
-		this.password = user.getPassword();
-		this.realName = user.getRealName();
-		this.headPic = user.getHeadPic();
-		this.phone = user.getPhone();
-		this.eMail = user.geteMail();
-		this.qq = user.getQq();
-		this.weChat = user.getWeChat();
-		this.status = user.getStatus();
-	}
-
-	/**
-	 * 用户角色
-	 */
-	@Attribute(name = "roles", description = "用户角色列表")
-	private List<SmUserRole> roles;
-
-	public List<SmUserRole> getRoles() {
-		return roles;
-	}
-
-	public void setRoles(List<SmUserRole> roles) {
-		this.roles = roles;
-	}
+    private String status;
 
 	public String getUserName() {
 		return userName;

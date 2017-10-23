@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 
 	<groupId>cn.com</groupId>
@@ -13,8 +14,8 @@
 		<module>commons-module</module>
 		<module>system-module</module>
 		<module>shiro-module</module>
-    <module>cms-web</module>
-  </modules>
+		<module>cms-web</module>
+	</modules>
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<!-- jar版本 -->
@@ -33,6 +34,7 @@
 		<dom4j.version>1.6.1</dom4j.version>
 		<activemq.version>5.7.0</activemq.version>
 		<shiro.version>1.3.2</shiro.version>
+		<kafka.version>0.11.0.1</kafka.version>
 	</properties>
 
 	<dependencies>
@@ -261,6 +263,12 @@
 			<groupId>org.freemarker</groupId>
 			<artifactId>freemarker</artifactId>
 			<version>2.3.23</version>
+		</dependency>
+		<!-- kafka -->
+		<dependency>
+			<groupId>org.apache.kafka</groupId>
+			<artifactId>kafka-clients</artifactId>
+			<version>${kafka.version}</version>
 		</dependency>
 	</dependencies>
 	<build>
