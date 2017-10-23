@@ -3,8 +3,8 @@ package org.module.controller.system;
 import org.module.base.result.EntityResult;
 import org.module.base.result.TreeResult;
 import org.module.helper.PropHelper;
+import org.module.helper.system.CodeHelper;
 import org.module.model.system.SmDefine;
-import org.module.service.system.ISmCodeService;
 import org.module.service.system.ISmDefineService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -18,8 +18,6 @@ public class SmDefineController {
 
 	@Autowired
 	private ISmDefineService service;
-	@Autowired
-	private ISmCodeService codeService;
 
 	@RequestMapping("index")
 	public String index() {
@@ -40,7 +38,7 @@ public class SmDefineController {
 	@RequestMapping("add")
 	@ResponseBody
 	public EntityResult add(SmDefine entity) {
-		String code = codeService.getCode(PropHelper.getConfig("system.code.define"));
+		String code = CodeHelper.getCode(PropHelper.getConfig("system.code.define"));
 		entity.setCode(code);
 		return service.insertSelective(entity);
 	}

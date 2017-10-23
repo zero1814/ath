@@ -5,8 +5,8 @@ import org.module.base.result.EntityResult;
 import org.module.base.result.PageResult;
 import org.module.dto.system.user.SmRoleDto;
 import org.module.helper.PropHelper;
+import org.module.helper.system.CodeHelper;
 import org.module.model.system.user.SmRole;
-import org.module.service.system.ISmCodeService;
 import org.module.service.system.user.ISmRoleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -16,8 +16,6 @@ public class SmRoleController {
 
 	@Autowired
 	private ISmRoleService service;
-	@Autowired
-	private ISmCodeService codeService;
 
 	@RequestMapping("index")
 	public String inex() {
@@ -38,7 +36,7 @@ public class SmRoleController {
 	@RequestMapping("add")
 	@ResponseBody
 	public EntityResult add(SmRole entity) {
-		String code = codeService.getCode(PropHelper.getConfig("system.code.role"));
+		String code = CodeHelper.getCode(PropHelper.getConfig("system.code.role"));
 		entity.setCode(code);
 		return service.insertSelective(entity);
 	}
