@@ -1,5 +1,7 @@
 package org.module.shiro.realm;
 
+import java.util.Set;
+
 import org.apache.commons.codec.binary.StringUtils;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.AccountException;
@@ -16,10 +18,13 @@ import org.apache.shiro.subject.SimplePrincipalCollection;
 import org.module.base.result.EntityResult;
 import org.module.helper.LoggerHelper;
 import org.module.model.system.user.SmUser;
+import org.module.service.system.user.ISmRoleService;
 import org.module.service.system.user.ISmUserService;
 import org.module.shiro.token.ShiroToken;
+import org.module.shiro.token.TokenManager;
 import org.module.system.util.Constants;
 import org.springframework.beans.factory.annotation.Autowired;
+
 /**
  * 
  * 类: SampleRealm <br>
@@ -31,6 +36,8 @@ public class SampleRealm extends AuthorizingRealm {
 
 	@Autowired
 	private ISmUserService userService;
+	@Autowired
+	private ISmRoleService roleService;
 
 	public SampleRealm() {
 		super();
@@ -65,14 +72,13 @@ public class SampleRealm extends AuthorizingRealm {
 	@Override
 	protected AuthorizationInfo doGetAuthorizationInfo(PrincipalCollection principals) {
 
-		// String userCode = TokenManager.getUserCode();
+		String userCode = TokenManager.getUserCode();
 		SimpleAuthorizationInfo info = new SimpleAuthorizationInfo();
 		// 根据用户ID查询角色（role），放入到Authorization里。
-		// Set<String> roles = roleService.findRoleByUserId(userId);
-		// info.setRoles(roles);
-		// // 根据用户ID查询权限（permission），放入到Authorization里。
-		// Set<String> permissions =
-		// permissionService.findPermissionByUserId(userId);
+		Set<String> roles = roleService.findRoleByUserCode(userCode);
+		info.setRoles(roles);
+		// 根据用户ID查询权限（permission），放入到Authorization里。
+		// Set<String> permissions = permissionService.findPermissionByUserId(userId);
 		// info.setStringPermissions(permissions);
 		return info;
 	}

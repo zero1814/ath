@@ -1,5 +1,5 @@
-
 USE systemmodule;
+
 ############# 用户相关 ########################
 DROP TABLE
 IF EXISTS sm_user;
@@ -61,12 +61,28 @@ CREATE TABLE sm_role (
 	uid VARCHAR (50) NOT NULL COMMENT 'uuid',
 	`code` VARCHAR (50) NOT NULL UNIQUE COMMENT '编码',
 	`name` VARCHAR (50) NOT NULL COMMENT '名称',
+	en_name VARCHAR (50) NOT NULL COMMENT '英文简称',
 	`status` VARCHAR (50) NOT NULL COMMENT '状态',
 	create_user VARCHAR (50) NOT NULL COMMENT '创建人',
 	create_time datetime NOT NULL COMMENT '创建时间',
 	update_user VARCHAR (50) NOT NULL COMMENT '最后修改人',
 	update_time datetime NOT NULL COMMENT '最后修改时间'
 ) COMMENT '角色';
+
+DROP TABLE
+IF EXISTS sm_role_permissions;
+
+CREATE TABLE sm_role_permissions (
+	id INT PRIMARY KEY AUTO_INCREMENT COMMENT '主键',
+	uid VARCHAR (50) NOT NULL COMMENT 'uuid',
+	`code` VARCHAR (50) NOT NULL UNIQUE COMMENT '编码',
+	`name` VARCHAR (50) NOT NULL COMMENT '名称',
+	en_name VARCHAR (50) NOT NULL COMMENT '英文简称',
+	create_user VARCHAR (50) NOT NULL COMMENT '创建人',
+	create_time datetime NOT NULL COMMENT '创建时间',
+	update_user VARCHAR (50) NOT NULL COMMENT '最后修改人',
+	update_time datetime NOT NULL COMMENT '最后修改时间'
+) COMMENT '角色权限表';
 
 DROP TABLE
 IF EXISTS sm_user_role;

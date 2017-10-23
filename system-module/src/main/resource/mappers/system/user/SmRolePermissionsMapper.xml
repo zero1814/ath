@@ -1,20 +1,20 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="org.module.mapper.system.user.SmRoleMapper">
-	<resultMap id="BaseResultMap" type="org.module.model.system.user.SmRole">
+<mapper namespace="org.module.mapper.system.user.SmRolePermissionsMapper">
+	<resultMap id="BaseResultMap"
+		type="org.module.model.system.user.SmRolePermissions">
 		<id column="id" property="id" jdbcType="INTEGER" />
 		<result column="uid" property="uid" jdbcType="VARCHAR" />
 		<result column="code" property="code" jdbcType="VARCHAR" />
 		<result column="name" property="name" jdbcType="VARCHAR" />
 		<result column="en_name" property="enName" jdbcType="VARCHAR" />
-		<result column="status" property="status" jdbcType="VARCHAR" />
 		<result column="create_user" property="createUser" jdbcType="VARCHAR" />
 		<result column="create_time" property="createTime" jdbcType="VARCHAR" />
 		<result column="update_user" property="updateUser" jdbcType="VARCHAR" />
 		<result column="update_time" property="updateTime" jdbcType="VARCHAR" />
 	</resultMap>
 	<sql id="Base_Column_List">
-		id, uid, `code`, `name`,en_name,`status`, create_user,
+		id, uid, code, name, en_name, create_user,
 		DATE_FORMAT(create_time,'%Y-%m-%d
 		%H:%i:%s') as
 		create_time,
@@ -23,26 +23,25 @@
 		as
 		update_time
 	</sql>
-	<select id="selectByCode" resultMap="BaseResultMap"
+	<select id="selectByPrimaryKey" resultMap="BaseResultMap"
 		parameterType="java.lang.String">
 		select
 		<include refid="Base_Column_List" />
-		from systemmodule.sm_role
-		where `code`=#{code,jdbcType=VARCHAR}
+		from sm_role_permissions
+		where `code` = #{code,jdbcType=VARCHAR}
 	</select>
 	<delete id="deleteByCode" parameterType="java.lang.String">
 		delete from
-		systemmodule.sm_role
-		where `code`=#{code,jdbcType=VARCHAR}
+		sm_role_permissions
+		where `code` = #{code,jdbcType=VARCHAR}
 	</delete>
-	<insert id="insertSelective" parameterType="org.module.model.system.user.SmRole">
-		insert into systemmodule.sm_role
+	<insert id="insertSelective" parameterType="org.module.model.system.user.SmRolePermissions">
+		insert into sm_role_permissions
 		<trim prefix="(" suffix=")" suffixOverrides=",">
 			uid,
 			`code`,
 			`name`,
-			en_name
-			`status`,
+			en_name,
 			create_user,
 			create_time,
 			update_user,
@@ -53,7 +52,6 @@
 			#{code,jdbcType=VARCHAR},
 			#{name,jdbcType=VARCHAR},
 			#{enName,jdbcType=VARCHAR},
-			#{status,jdbcType=VARCHAR},
 			#{createUser,jdbcType=VARCHAR},
 			STR_TO_DATE(#{createTime,jdbcType=VARCHAR},'%Y-%m-%d
 			%H:%i:%s'),
@@ -62,22 +60,19 @@
 			%H:%i:%s'),
 		</trim>
 	</insert>
-	<update id="updateByCode" parameterType="org.module.model.system.user.SmRole">
-		update systemmodule.sm_role
+	<update id="updateByCode" parameterType="org.module.model.system.user.SmRolePermissions">
+		update sm_role_permissions
 		<set>
-			<if test="name != null and name!=''">
-				`name` = #{name,jdbcType=VARCHAR},
+			<if test="name != null and name != ''">
+				name = #{name,jdbcType=VARCHAR},
 			</if>
-			<if test="enName != null and enName != ''">
-				`en_name` = #{enName,jdbcType=VARCHAR},
-			</if>
-			<if test="status != null and status !=''">
-				`status` = #{status,jdbcType=VARCHAR},
+			<if test="enName != null and enName != '' ">
+				en_name = #{enName,jdbcType=VARCHAR},
 			</if>
 			update_user = #{updateUser,jdbcType=VARCHAR},
 			update_time =
 			STR_TO_DATE(#{updateTime,jdbcType=VARCHAR},'%Y-%m-%d %H:%i:%s'),
 		</set>
-		where `code`=#{code,jdbcType=VARCHAR}
+		where `code` = #{code,jdbcType=VARCHAR}
 	</update>
 </mapper>

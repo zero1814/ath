@@ -1,5 +1,7 @@
 package org.module.model.system.user;
 
+import java.util.List;
+
 import org.module.base.model.BaseModel;
 
 /**
@@ -9,27 +11,44 @@ import org.module.base.model.BaseModel;
  * 作者: zhy<br>
  * 时间: 2017年10月23日 上午10:17:32
  */
-public class SmUser extends BaseModel{
+public class SmUser extends BaseModel {
 
 	private static final long serialVersionUID = -595306086465748400L;
 
 	private String userName;
 
-    private String password;
+	private String password;
 
-    private String realName;
+	private String realName;
 
-    private String headPic;
+	private String headPic;
 
-    private String phone;
+	private String phone;
 
-    private String eMail;
+	private String eMail;
 
-    private String qq;
+	private String qq;
 
-    private String weChat;
+	private String weChat;
 
-    private String status;
+	private String status;
+
+	private List<SmRole> roles;
+
+	public SmUser() {
+	}
+
+	public SmUser(SmUser user) {
+
+	}
+
+	public List<SmRole> getRoles() {
+		return roles;
+	}
+
+	public void setRoles(List<SmRole> roles) {
+		this.roles = roles;
+	}
 
 	public String getUserName() {
 		return userName;

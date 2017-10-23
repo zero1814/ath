@@ -15,7 +15,7 @@ public class SmRole extends BaseModel {
 	private String name;
 
 	private String status;
-
+	
 	public String getName() {
 		return name;
 	}

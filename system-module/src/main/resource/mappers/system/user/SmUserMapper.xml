@@ -18,6 +18,10 @@
 		<result column="create_time" property="createTime" jdbcType="VARCHAR" />
 		<result column="update_user" property="updateUser" jdbcType="VARCHAR" />
 		<result column="update_time" property="updateTime" jdbcType="VARCHAR" />
+		<collection property="role" ofType="org.module.model.system.user.SmRole">
+			<result column="code" property="code" jdbcType="VARCHAR" />
+			<result column="name" property="name" jdbcType="VARCHAR" />
+		</collection>
 	</resultMap>
 	<sql id="Base_Column_List">
 		id, uid, code, user_name, password, real_name, head_pic,
@@ -131,7 +135,7 @@
 		</set>
 		where `code`=#{code,jdbcType=VARCHAR}
 	</update>
-	<select id="selectEntity" parameterType="org.module.dto.system.user.SmUserDto"
+	<select id="userLogin" parameterType="org.module.dto.system.user.SmUserDto"
 		resultMap="BaseResultMap">
 		select
 		<include refid="Base_Column_List" />

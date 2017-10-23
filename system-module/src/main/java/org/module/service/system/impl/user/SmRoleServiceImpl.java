@@ -1,5 +1,7 @@
 package org.module.service.system.impl.user;
 
+import java.util.Set;
+
 import org.module.base.service.impl.BaseServiceImpl;
 import org.module.dto.system.user.SmRoleDto;
 import org.module.mapper.system.user.SmRoleMapper;
@@ -16,5 +18,10 @@ import org.springframework.stereotype.Service;
  */
 @Service
 public class SmRoleServiceImpl extends BaseServiceImpl<SmRole, SmRoleMapper, SmRoleDto> implements ISmRoleService {
+
+	@Override
+	public Set<String> findRoleByUserCode(String userCode) {
+		return null;
+	}
 
 }
