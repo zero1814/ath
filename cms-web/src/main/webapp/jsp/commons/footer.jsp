@@ -2,6 +2,7 @@
     pageEncoding="UTF-8"%>
 	</body>
 <script src="assets/plugins/jquery/3.2.1/jquery-3.2.1.min.js"></script>
+<script src="assets/plugins/jquery/plugins/validate/jquery.validate.min.js"></script>
 <script src="assets/plugins/bootstrap/3.3.5/js/bootstrap.min.js"></script>
 <script src="assets/plugins/bootstrap/plugins/bootstrap-table/bootstrap-table.js"></script>
 <script src="assets/plugins/bootstrap/plugins/bootstrap-table/locale/bootstrap-table-zh-CN.min.js"></script>
