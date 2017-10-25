@@ -1,8 +1,23 @@
 package org.module.helper;
 
+import org.module.annotation.Inject;
+import org.module.base.BaseClass;
+import org.module.mapper.CodeMapper;
 import org.module.util.UniqueIdUtil;
 
-public class CodeHelper {
+public class CodeHelper extends BaseClass {
+
+	@Inject
+	private CodeMapper codeMapper;
+
+	public static String getCode(String prefix) {
+		String code = new CodeHelper().findCode(prefix);
+		return code;
+	}
+
+	public String findCode(String prefix) {
+		return codeMapper.getCode(prefix);
+	}
 
 	/**
 	 * 

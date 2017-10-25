@@ -36,7 +36,7 @@ public class SmRoleController {
 	@RequestMapping("add")
 	@ResponseBody
 	public EntityResult add(SmRole entity) {
-		String code = CodeHelper.getCode(PropHelper.getConfig("system.code.role"));
+		String code = CodeHelper.getCode(PropHelper.getConfig("system.role.code_prefix"));
 		entity.setCode(code);
 		return service.insertSelective(entity);
 	}

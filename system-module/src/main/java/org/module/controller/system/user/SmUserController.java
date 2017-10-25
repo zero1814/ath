@@ -21,7 +21,7 @@ public class SmUserController {
 	private ISmUserService service;
 
 	public EntityResult register(SmUser entity) {
-		String code = CodeHelper.getCode(PropHelper.getConfig("system.code.user"));
+		String code = CodeHelper.getCode(PropHelper.getConfig("system.user.code_prefix"));
 		entity.setCode(code);
 		return service.insertSelective(entity);
 	}

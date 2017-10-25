@@ -38,7 +38,7 @@ public class SmDefineController {
 	@RequestMapping("add")
 	@ResponseBody
 	public EntityResult add(SmDefine entity) {
-		String code = CodeHelper.getCode(PropHelper.getConfig("system.code.define"));
+		String code = CodeHelper.getCode(PropHelper.getConfig("system.define.code_prefix"));
 		entity.setCode(code);
 		return service.insertSelective(entity);
 	}
