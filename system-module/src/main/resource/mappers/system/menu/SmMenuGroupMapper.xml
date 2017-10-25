@@ -80,4 +80,7 @@
 			</if>
 		</where>
 	</select>
+	<select id="findDataAll" resultMap="BaseResultMap">
+		select `code`,`name` from systemmodule.sm_menu_group
+	</select>
 </mapper>

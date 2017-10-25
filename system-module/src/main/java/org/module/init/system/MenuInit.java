@@ -1,14 +1,16 @@
 package org.module.init.system;
 
-import org.module.base.result.TreeResult;
+import java.util.List;
+
+import org.module.base.result.DataResult;
 import org.module.cache.system.CacheKey;
 import org.module.helper.CacheHelper;
-import org.module.helper.PropHelper;
+import org.module.model.system.menu.SmMenuGroup;
 import org.module.root.WebRootInit;
 import org.module.service.system.menu.ISmMenuService;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONArray;
 
 /**
  * 
@@ -21,16 +23,19 @@ public class MenuInit extends WebRootInit {
 
 	@Autowired
 	private ISmMenuService service;
-	
+
+	@SuppressWarnings("unchecked")
 	@Override
 	public boolean onInit() {
 		logger.logInfo("开始加载参数列表");
 		boolean flag = false;
 		try {
-			String groupCode = PropHelper.getConfig("menu.groupcode");
-			TreeResult result = service.tree(groupCode);
+			DataResult result = service.findDataAll();
 			if (result.getCode() == 1) {
-				CacheHelper.setValue(CacheKey.DEFINE, JSON.toJSONString(result.getData()));
+				List<SmMenuGroup> list = (List<SmMenuGroup>) result.getData();
+				for (SmMenuGroup mg : list) {
+					CacheHelper.setFiledVal(CacheKey.MENU, mg.getCode(), JSONArray.toJSONString(mg.getMenus()));
+				}
 			}
 		} catch (Exception e) {
 			e.printStackTrace();

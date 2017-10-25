@@ -10,6 +10,7 @@ import org.module.mapper.system.user.SmUserMapper;
 import org.module.model.system.user.SmUser;
 import org.module.service.system.ISmCodeService;
 import org.module.service.system.user.ISmUserService;
+import org.module.util.Constant;
 import org.module.util.MD5Util;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -45,7 +46,7 @@ public class SmUserServiceImpl extends BaseServiceImpl<SmUser, SmUserMapper, SmU
 		entity.setUserName(userName);
 		entity.setPassword(password);
 		EntityResult result = super.selectEntity(entity);
-		if (result.getCode() == 0) {
+		if (result.getCode() == Constant.RESULT_SUCCESS) {
 			SmUser user = (SmUser) result.getEntity();
 			CacheHelper.setValue(CacheKey.SESSION_USER_KEY + WebHelper.getSession().getId(), JSON.toJSONString(user));
 			/**
@@ -65,7 +66,7 @@ public class SmUserServiceImpl extends BaseServiceImpl<SmUser, SmUserMapper, SmU
 		entity.setCreateUser(code);
 		entity.setPassword(MD5Util.md5Hex(entity.getPassword()));
 		EntityResult result = super.insertSelective(entity);
-		if (result.getCode() == 0) {
+		if (result.getCode() == Constant.RESULT_SUCCESS) {
 			/**
 			 * 注册成功后存储用户信息到redis中
 			 */

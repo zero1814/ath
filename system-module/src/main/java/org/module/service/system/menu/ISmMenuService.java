@@ -1,5 +1,6 @@
 package org.module.service.system.menu;
 
+import org.module.base.result.DataResult;
 import org.module.base.result.TreeResult;
 import org.module.base.service.IBaseService;
 import org.module.dto.system.menu.SmMenuDto;
@@ -18,4 +19,15 @@ public interface ISmMenuService extends IBaseService<SmMenu, SmMenuDto> {
 	 * @return
 	 */
 	TreeResult tree(String groupCode);
+
+	/**
+	 * 
+	 * 方法: cacheMenu <br>
+	 * 描述: 缓存菜单 <br>
+	 * 作者: zhy<br>
+	 * 时间: 2017年10月25日 下午1:35:42
+	 * 
+	 * @return
+	 */
+	DataResult cacheMenu();
 }

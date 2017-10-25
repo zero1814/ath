@@ -2,16 +2,24 @@ package org.module.service.system.impl.menu;
 
 import java.util.List;
 
+import org.module.base.result.DataResult;
+import org.module.base.result.EntityResult;
 import org.module.base.result.TreeResult;
 import org.module.base.service.impl.BaseServiceImpl;
+import org.module.cache.system.CacheKey;
 import org.module.dto.system.menu.SmMenuDto;
+import org.module.helper.CacheHelper;
 import org.module.mapper.system.menu.SmMenuGroupMapper;
 import org.module.mapper.system.menu.SmMenuMapper;
 import org.module.model.system.menu.SmMenu;
 import org.module.model.system.menu.SmMenuGroup;
 import org.module.service.system.menu.ISmMenuService;
+import org.module.util.Constant;
+import org.module.util.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import com.alibaba.fastjson.JSONArray;
 
 @Service
 public class SmMenuServiceImpl extends BaseServiceImpl<SmMenu, SmMenuMapper, SmMenuDto> implements ISmMenuService {
@@ -22,25 +30,52 @@ public class SmMenuServiceImpl extends BaseServiceImpl<SmMenu, SmMenuMapper, SmM
 	private SmMenuGroupMapper groupMapper;
 
 	@Override
+	public EntityResult insertSelective(SmMenu entity) {
+		EntityResult result = super.insertSelective(entity);
+		if (result.getCode() == Constant.RESULT_SUCCESS) {
+			cacheMenu();
+		}
+		return result;
+	}
+
+	@SuppressWarnings("unchecked")
+	@Override
 	public TreeResult tree(String groupCode) {
 		TreeResult result = new TreeResult();
+		String menus = "";
+		List<SmMenu> list = null;
 		try {
-			SmMenuGroup group = groupMapper.selectByCode(groupCode);
-			if (group != null) {
-				result.setCode(0);
-				result.setTreeText(group.getName());
-				result.setTreeCode(group.getCode());
-				List<SmMenu> list = data("0", groupCode);
-				result.setData(list);
-				result.setMessage("查询菜单成功");
-			} else {
-				result.setCode(-1);
-				result.setMessage("菜单组下菜单信息为空");
+			menus = CacheHelper.getFiledVal(CacheKey.MENU, groupCode);
+			if (StringUtils.isNotBlank(menus)) {
+				JSONArray array = JSONArray.parseArray(menus);
+				list = JSONArray.toJavaObject(array, List.class);
 			}
+			result.setData(list);
 		} catch (Exception e) {
 			e.printStackTrace();
-			result.setCode(-1);
-			result.setMessage("查询菜单失败，失败原因:" + e.getMessage());
+			result.setCode(Constant.RESULT_ERROR);
+			result.setMessage("缓存菜单失败，失败原因:" + e.getMessage());
+		} finally {
+			if (StringUtils.isBlank(menus) || list != null) {
+				try {
+					SmMenuGroup group = groupMapper.selectByCode(groupCode);
+					if (group != null) {
+						result.setCode(0);
+						result.setTreeText(group.getName());
+						result.setTreeCode(group.getCode());
+						list = data("0", groupCode);
+						result.setData(list);
+						result.setMessage("查询菜单成功");
+					} else {
+						result.setCode(Constant.RESULT_ERROR);
+						result.setMessage("菜单组下菜单信息为空");
+					}
+				} catch (Exception e2) {
+					e2.printStackTrace();
+					result.setCode(Constant.RESULT_ERROR);
+					result.setMessage("数据库查询菜单失败，失败原因:" + e2.getMessage());
+				}
+			}
 		}
 		return result;
 	}
@@ -74,4 +109,19 @@ public class SmMenuServiceImpl extends BaseServiceImpl<SmMenu, SmMenuMapper, SmM
 		}
 		return list;
 	}
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public DataResult cacheMenu() {
+		DataResult result = super.findDataAll();
+		if (result.getCode() == Constant.RESULT_SUCCESS) {
+			List<SmMenuGroup> list = (List<SmMenuGroup>) result.getData();
+			for (SmMenuGroup mg : list) {
+				List<SmMenu> menus = data("0", mg.getCode());
+				CacheHelper.setFiledVal(CacheKey.MENU, mg.getCode(), JSONArray.toJSONString(menus));
+			}
+		}
+		return result;
+	}
+
 }

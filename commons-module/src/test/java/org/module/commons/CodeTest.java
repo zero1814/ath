@@ -13,6 +13,6 @@ public class CodeTest extends BaseTest {
 
 	@Test
 	public void getCode() {
-		System.out.println(new CodeHelper().getCode("TEST"));
+		System.out.println(CodeHelper.getCode("TEST"));
 	}
 }

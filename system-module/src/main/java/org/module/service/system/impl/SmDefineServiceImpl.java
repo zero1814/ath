@@ -2,6 +2,7 @@ package org.module.service.system.impl;
 
 import java.util.List;
 
+import org.apache.commons.lang3.StringUtils;
 import org.module.base.result.EntityResult;
 import org.module.base.result.TreeResult;
 import org.module.base.service.impl.BaseServiceImpl;
@@ -12,10 +13,12 @@ import org.module.helper.PropHelper;
 import org.module.mapper.system.SmDefineMapper;
 import org.module.model.system.SmDefine;
 import org.module.service.system.ISmDefineService;
+import org.module.util.Constant;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONArray;
 
 /**
  * 
@@ -44,20 +47,28 @@ public class SmDefineServiceImpl extends BaseServiceImpl<SmDefine, SmDefineMappe
 		return result;
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public TreeResult tree() {
 		TreeResult result = new TreeResult();
+		List<SmDefine> list = null;
 		try {
 			String text = PropHelper.getConfig("system.define.tree.text");
 			result.setCode(0);
 			result.setTreeText(text);
 			result.setTreeCode("");
-			List<SmDefine> list = findDefineByParentCode("0");
+			String define = CacheHelper.getValue(CacheKey.DEFINE);
+			if (StringUtils.isNotBlank(define)) {
+				JSONArray array = JSONArray.parseArray(define);
+				list = JSONArray.toJavaObject(array, List.class);
+			} else {
+				list = findDefineByParentCode("0");
+			}
 			result.setData(list);
 			result.setMessage("查询菜单成功");
 		} catch (Exception e) {
 			e.printStackTrace();
-			result.setCode(-1);
+			result.setCode(Constant.RESULT_ERROR);
 			result.setMessage("查询参数列表失败，失败原因:" + e.getMessage());
 		}
 		return result;

@@ -113,4 +113,14 @@ public interface IBaseService<T extends BaseModel, DTO extends BaseDto> {
 	 * @return
 	 */
 	DataResult findDataAll(DTO dto);
+	
+	/**
+	 * 
+	 * 方法: findDataAll <br>
+	 * 描述: 查询所有数据 <br>
+	 * 作者: zhy<br>
+	 * 时间: 2017年10月25日 上午11:29:28
+	 * @return
+	 */
+	DataResult findDataAll();
 }

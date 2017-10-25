@@ -16,9 +16,9 @@ public class IndexController {
 
 	@RequestMapping("index")
 	private String index(ModelMap model) {
-		String groupCode = PropHelper.getConfig("com.menu.group");
+		String groupCode = PropHelper.getConfig("cms.menu.group");
 		TreeResult result = service.tree(groupCode);
-		if (result.getCode() == 1) {
+		if (result.getCode() == 0) {
 			model.addAttribute("menu", result.getData());
 			return "";
 		} else {

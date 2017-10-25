@@ -1,5 +1,7 @@
 package org.module.base.result;
 
+import org.module.util.Constant;
+
 /**
  * 
  * 类: RootResult <br>
@@ -12,7 +14,7 @@ public class BaseResult {
 	/**
 	 * 消息编码
 	 */
-	private Integer code = 0;
+	private Integer code = Constant.RESULT_SUCCESS;
 	/**
 	 * 消息信息
 	 */

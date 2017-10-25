@@ -9,6 +9,7 @@ import org.module.dto.system.user.SmUserRoleDto;
 import org.module.mapper.system.user.SmUserRoleMapper;
 import org.module.model.system.user.SmUserRole;
 import org.module.service.system.user.ISmUserRoleService;
+import org.module.util.Constant;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -40,16 +41,16 @@ public class SmUserRoleServiceImpl extends BaseServiceImpl<SmUserRole, SmUserRol
 		try {
 			List<SmUserRole> list = mapper.selectByUserCode(userCode);
 			if (list != null && list.size() > 0) {
-				result.setCode(0);
+				result.setCode(Constant.RESULT_SUCCESS);
 				result.setMessage("查询成功");
 				result.setData(list);
 			} else {
-				result.setCode(-1);
+				result.setCode(Constant.RESULT_NULL);
 				result.setMessage("查询用户角色列表为空");
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
-			result.setCode(-1);
+			result.setCode(Constant.RESULT_ERROR);
 			result.setMessage("查询用户角色列表失败，失败原因:" + e.getMessage());
 		}
 		return result;
@@ -68,11 +69,11 @@ public class SmUserRoleServiceImpl extends BaseServiceImpl<SmUserRole, SmUserRol
 		BaseResult result = new BaseResult();
 		try {
 			mapper.deleteByUserCode(userCode);
-			result.setCode(0);
+			result.setCode(Constant.RESULT_SUCCESS);
 			result.setMessage("删除成功");
 		} catch (Exception e) {
 			e.printStackTrace();
-			result.setCode(-1);
+			result.setCode(Constant.RESULT_ERROR);
 			result.setMessage("删除失败，失败原因:" + e.getMessage());
 		}
 		return result;
