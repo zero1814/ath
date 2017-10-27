@@ -50,16 +50,16 @@ public class BaseServiceImpl<T extends BaseModel, M extends BaseMapper<T, DTO>, 
 	public EntityResult insertSelective(T entity) {
 		logger.logInfo(this.getClass().getName() + "，开始执行insertSelective方法");
 		EntityResult result = new EntityResult();
+		if (entity.getUid() == null || "".equals(entity.getUid())) {
+			entity.setUid(UUID.randomUUID().toString().replace("-", ""));
+		}
+		if (entity.getCreateTime() == null || "".equals(entity.getCreateTime())) {
+			entity.setCreateTime(DateUtil.getSysDateTime());
+		}
+		entity.setUpdateUser(entity.getCreateUser());
+		entity.setUpdateTime(entity.getCreateTime());
 		BaseResult valResult = ValidationUtil.insert(entity);
 		if (valResult.getCode() == Constant.RESULT_SUCCESS) {
-			if (entity.getUid() == null || "".equals(entity.getUid())) {
-				entity.setUid(UUID.randomUUID().toString().replace("-", ""));
-			}
-			if (entity.getCreateTime() == null || "".equals(entity.getCreateTime())) {
-				entity.setCreateTime(DateUtil.getSysDateTime());
-			}
-                                                                                                                                                                                                			entity.setUpdateUser(entity.getCreateUser());
-			entity.setUpdateTime(entity.getCreateTime());
 			try {
 				mapper.insertSelective(entity);
 				result.setCode(Constant.RESULT_SUCCESS);
@@ -96,7 +96,7 @@ public class BaseServiceImpl<T extends BaseModel, M extends BaseMapper<T, DTO>, 
 			entity.setUpdateTime(DateUtil.getSysDateTime());
 		}
 		try {
-			BaseResult valResult = ValidationUtil.insert(entity);
+			BaseResult valResult = ValidationUtil.update(entity);
 			if (valResult.getCode() == Constant.RESULT_SUCCESS) {
 				T t = mapper.selectByCode(entity.getCode());
 				if (t != null) {

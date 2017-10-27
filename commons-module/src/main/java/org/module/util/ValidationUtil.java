@@ -15,13 +15,13 @@ public class ValidationUtil {
 			Class<?> clazz = obj.getClass();
 			List<Field> fields = BeanUtil.getFields(clazz);
 			for (Field field : fields) {
+				Object fieldVal = field.get(obj);
 				if (field.isAnnotationPresent(Insert.class)) {
 					field.setAccessible(true);
 					// 获取属性值
 					Insert insert = field.getAnnotation(Insert.class);
 					boolean flag = insert.notNull();
 					if (flag) {
-						Object fieldVal = field.get(obj);
 						if (fieldVal == null) {
 							result.setCode(Constant.RESULT_ERROR);
 							result.setMessage(insert.alert());
@@ -52,13 +52,16 @@ public class ValidationUtil {
 			Class<?> clazz = obj.getClass();
 			List<Field> fields = BeanUtil.getFields(clazz);
 			for (Field field : fields) {
+				if (StringUtils.equals(field.getName(), "serialVersionUID")) {
+					continue;
+				}
+				field.setAccessible(true);
+				// 获取属性值
+				Object fieldVal = field.get(obj);
 				if (field.isAnnotationPresent(Update.class)) {
 					Update update = field.getAnnotation(Update.class);
 					boolean flag = update.notNull();
 					if (flag) {
-						field.setAccessible(true);
-						// 获取属性值
-						Object fieldVal = field.get(obj);
 						if (fieldVal instanceof String) {
 							if (StringUtils.isBlank(fieldVal)) {
 								result.setCode(Constant.RESULT_ERROR);
@@ -72,6 +75,11 @@ public class ValidationUtil {
 						}
 					} else {
 						continue;
+					}
+				} else {
+					if (StringUtils.isNotBlank(fieldVal)) {
+						result.setCode(Constant.RESULT_ERROR);
+						result.setMessage("不可以更改" + field.getName() + "的数据信息");
 					}
 				}
 			}
