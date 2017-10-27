@@ -1,6 +1,10 @@
 package org.module.util;
 
+import java.lang.reflect.Field;
 import java.lang.reflect.Method;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 public class BeanUtil {
 
@@ -37,4 +41,14 @@ public class BeanUtil {
 		return false;
 	}
 
+	public static List<Field> getFields(Class<?> clazz) {
+		List<Field> list = new ArrayList<Field>();
+		Field[] fields = clazz.getDeclaredFields();
+		list.addAll(Arrays.asList(fields));
+		Class<?> parentClazz = clazz.getSuperclass();
+		if (parentClazz != null) {
+			list.addAll(getFields(clazz.getSuperclass()));
+		}
+		return list;
+	}
 }

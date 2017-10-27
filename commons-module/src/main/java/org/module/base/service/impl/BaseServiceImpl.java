@@ -58,7 +58,7 @@ public class BaseServiceImpl<T extends BaseModel, M extends BaseMapper<T, DTO>, 
 			if (entity.getCreateTime() == null || "".equals(entity.getCreateTime())) {
 				entity.setCreateTime(DateUtil.getSysDateTime());
 			}
-			entity.setUpdateUser(entity.getCreateUser());
+                                                                                                                                                                                                			entity.setUpdateUser(entity.getCreateUser());
 			entity.setUpdateTime(entity.getCreateTime());
 			try {
 				mapper.insertSelective(entity);
