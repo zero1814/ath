@@ -2,6 +2,9 @@ package org.module.base.model;
 
 import java.io.Serializable;
 
+import org.module.annotation.validation.Insert;
+import org.module.annotation.validation.Update;
+
 /**
  * 
  * 类: BaseModel <br>
@@ -17,14 +20,21 @@ public class BaseModel implements Serializable {
 
 	private String uid;
 
+	@Insert(alert = "编码不能为空", notNull = true)
 	private String code;
-	
+
+	@Insert(alert = "创建人不能为空", notNull = true)
 	private String createUser;
 
+	@Insert(alert = "创建时间不能为空", notNull = true)
 	private String createTime;
 
+	@Insert(alert = "修改人不能为空", notNull = true)
+	@Update(alert = "修改人不能为空", notNull = true)
 	private String updateUser;
 
+	@Insert(alert = "修改时间不能为空", notNull = true)
+	@Update(alert = "修改时间不能为空", notNull = true)
 	private String updateTime;
 
 	public Integer getId() {

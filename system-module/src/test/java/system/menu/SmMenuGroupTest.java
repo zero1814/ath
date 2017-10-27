@@ -2,8 +2,8 @@ package system.menu;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.module.helper.CodeHelper;
 import org.module.model.system.menu.SmMenuGroup;
-import org.module.service.system.ISmCodeService;
 import org.module.service.system.menu.ISmMenuGroupService;
 import org.module.util.DateUtil;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,13 +16,11 @@ public class SmMenuGroupTest {
 
 	@Autowired
 	private ISmMenuGroupService service;
-	@Autowired
-	private ISmCodeService codeService;
 
 	@Test
 	public void insert() {
 		SmMenuGroup entity = new SmMenuGroup();
-		entity.setCode(codeService.getCode("SMG"));
+		entity.setCode(CodeHelper.getCode("SMG"));
 		entity.setName("cms");
 		entity.setCreateUser("system");
 		entity.setCreateTime(DateUtil.getSysDateTime());
