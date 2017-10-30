@@ -2,8 +2,8 @@ package org.module.controller.system;
 
 import org.module.base.result.EntityResult;
 import org.module.base.result.TreeResult;
+import org.module.helper.CodeHelper;
 import org.module.helper.PropHelper;
-import org.module.helper.system.CodeHelper;
 import org.module.model.system.SmDefine;
 import org.module.service.system.ISmDefineService;
 import org.springframework.beans.factory.annotation.Autowired;
