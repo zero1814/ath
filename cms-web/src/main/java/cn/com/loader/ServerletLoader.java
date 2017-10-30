@@ -3,6 +3,7 @@ package cn.com.loader;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 
+import org.module.helper.LoggerHelper;
 import org.module.init.commons.PropertiesInit;
 import org.module.init.system.SmDefineInit;
 import org.module.util.SpringContextUtil;
@@ -41,16 +42,18 @@ public class ServerletLoader {
 		if (!bFlagLoad) {
 			bFlagLoad = true;
 			try {
+				LoggerHelper.info(getClass(), "开始初始化数据。。。。。。。。");
 				servletContext.log("Initializing cms web core");
 				WebApplicationContext wac = WebApplicationContextUtils.getWebApplicationContext(servletContext);
 				SpringContextUtil.setApplicationContext(wac);
 				new PropertiesInit().init();
 				new SmDefineInit().init();
 				servletContext.log("Initializing cms web core finished");
-
+				LoggerHelper.info(getClass(), "初始化数据完成。。。。。。。。");
 			} catch (RuntimeException ex) {
 				flag = false;
 				servletContext.log("Error occurs in initializing cms web core" + ex.getMessage());
+				LoggerHelper.error(getClass(), "初始化数据完成。。。。。。。。");
 			}
 		}
 		return flag;
