@@ -15,7 +15,7 @@
 
 		<!-- jdbc连接 -->
 		<jdbcConnection driverClass="com.mysql.jdbc.Driver"
-			connectionURL="jdbc:mysql://127.0.0.1:3306/webcore" userId="root"
+			connectionURL="jdbc:mysql://127.0.0.1:3306/systemmodule" userId="root"
 			password="" />
 
 		<!-- 类型转换 -->
@@ -25,7 +25,7 @@
 		</javaTypeResolver>
 
 		<!-- 生成实体类地址 -->
-		<javaModelGenerator targetPackage="com.hjy.entity.webcore"
+		<javaModelGenerator targetPackage="cn.com.ath.model.system"
 			targetProject="src">
 			<!-- 是否在当前路径下新加一层schema] -->
 			<property name="enableSubPackages" value="false" />
@@ -34,28 +34,68 @@
 		</javaModelGenerator>
 
 		<!-- 生成mapxml文件 -->
-		<sqlMapGenerator targetPackage="com.hjy.dao.webcore.xml"
+		<sqlMapGenerator targetPackage="cn.com.ath.mapper.xml"
 			targetProject="src">
 			<!-- 是否在当前路径下新加一层schema -->
 			<property name="enableSubPackages" value="false" />
 		</sqlMapGenerator>
 
 		<!-- 生成mapxml对应client，也就是接口dao -->
-		<javaClientGenerator targetPackage="com.hjy.dao.webcore"
+		<javaClientGenerator targetPackage="cn.com.ath.mapper.system"
 			targetProject="src" type="XMLMAPPER">
 			<!-- 是否在当前路径下新加一层schema,eg：fase -->
 			<property name="enableSubPackages" value="false" />
 		</javaClientGenerator>
 		<!-- 配置表信息 -->
-		<table tableName="wc_sellerinfo" domainObjectName="WcSellerinfo"
+		<table tableName="sm_role" domainObjectName="SmRole"
 			enableCountByExample="false" enableDeleteByExample="false"
 			enableSelectByExample="false" enableUpdateByExample="false">
 		</table>
-		<table tableName="wc_openapi" domainObjectName="WcOpenApi"
+		<table tableName="sm_menu" domainObjectName="SmMenu"
 			enableCountByExample="false" enableDeleteByExample="false"
 			enableSelectByExample="false" enableUpdateByExample="false">
 		</table>
-		<table tableName="wc_seller_api" domainObjectName="WcSellerApi"
+		<table tableName="sm_menu_role" domainObjectName="SmMenuRole"
+			enableCountByExample="false" enableDeleteByExample="false"
+			enableSelectByExample="false" enableUpdateByExample="false">
+		</table>
+		<table tableName="sm_user" domainObjectName="SmUser"
+			enableCountByExample="false" enableDeleteByExample="false"
+			enableSelectByExample="false" enableUpdateByExample="false">
+		</table>
+		<table tableName="sm_user_role" domainObjectName="SmUserRole"
+			enableCountByExample="false" enableDeleteByExample="false"
+			enableSelectByExample="false" enableUpdateByExample="false">
+		</table>
+		<table tableName="sm_page" domainObjectName="SmPage"
+			enableCountByExample="false" enableDeleteByExample="false"
+			enableSelectByExample="false" enableUpdateByExample="false">
+		</table>
+		<table tableName="sm_menu_page" domainObjectName="SmMenuPage"
+			enableCountByExample="false" enableDeleteByExample="false"
+			enableSelectByExample="false" enableUpdateByExample="false">
+		</table>
+		<table tableName="sm_button" domainObjectName="SmButton"
+			enableCountByExample="false" enableDeleteByExample="false"
+			enableSelectByExample="false" enableUpdateByExample="false">
+		</table>
+		<table tableName="sm_button_type" domainObjectName="SmButtonType"
+			enableCountByExample="false" enableDeleteByExample="false"
+			enableSelectByExample="false" enableUpdateByExample="false">
+		</table>
+		<table tableName="sm_button_area" domainObjectName="SmButtonArea"
+			enableCountByExample="false" enableDeleteByExample="false"
+			enableSelectByExample="false" enableUpdateByExample="false">
+		</table>
+		<table tableName="sm_button_page" domainObjectName="SmButtonPage"
+			enableCountByExample="false" enableDeleteByExample="false"
+			enableSelectByExample="false" enableUpdateByExample="false">
+		</table>
+		<table tableName="sm_code" domainObjectName="SmCode"
+			enableCountByExample="false" enableDeleteByExample="false"
+			enableSelectByExample="false" enableUpdateByExample="false">
+		</table>
+		<table tableName="sm_param_define" domainObjectName="SmParamDefine"
 			enableCountByExample="false" enableDeleteByExample="false"
 			enableSelectByExample="false" enableUpdateByExample="false">
 		</table>
