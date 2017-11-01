@@ -8,8 +8,8 @@
 		<artifactId>ath</artifactId>
 		<version>0.0.1-SNAPSHOT</version>
 	</parent>
-	<artifactId>cms-web</artifactId>
-	<name>cms-web</name>
+	<artifactId>service-module</artifactId>
+	<name>service-module</name>
 	<url>http://maven.apache.org</url>
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -28,15 +28,9 @@
 			<scope>test</scope>
 		</dependency>
 		<dependency>
-			<groupId>cn.com</groupId>
-			<artifactId>service-module</artifactId>
-			<version>0.0.1-SNAPSHOT</version>
-			<scope>test</scope>
-		</dependency>
-		<dependency>
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>
-			<version>4.12</version>
+			<version>3.8.1</version>
 			<scope>test</scope>
 		</dependency>
 	</dependencies>
