@@ -15,7 +15,6 @@ import org.module.base.result.PageResult;
 import org.module.base.service.IBaseService;
 import org.module.util.Constant;
 import org.module.util.DateUtil;
-import org.module.util.ValidationUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.github.pagehelper.PageHelper;
@@ -58,25 +57,20 @@ public class BaseServiceImpl<T extends BaseModel, M extends BaseMapper<T, DTO>, 
 		}
 		entity.setUpdateUser(entity.getCreateUser());
 		entity.setUpdateTime(entity.getCreateTime());
-		BaseResult valResult = ValidationUtil.insert(entity);
-		if (valResult.getCode() == Constant.RESULT_SUCCESS) {
-			try {
-				mapper.insertSelective(entity);
-				result.setCode(Constant.RESULT_SUCCESS);
-				result.setMessage("添加成功");
-				result.setEntity(entity);
-				logger.logInfo(this.getClass().getName() + "，执行insertSelective方法成功");
-			} catch (Exception e) {
-				e.printStackTrace();
-				result.setCode(Constant.RESULT_ERROR);
-				result.setMessage("添加失败，错误原因:" + e.getMessage());
-				logger.logError(this.getClass().getName() + "执行insertSelective方法失败，失败原因:" + e.getMessage());
-			}
-			logger.logInfo(this.getClass().getName() + "，执行insertSelective方法结束");
-		} else {
-			result.setCode(valResult.getCode());
-			result.setMessage(valResult.getMessage());
+		try {
+			mapper.insertSelective(entity);
+			result.setCode(Constant.RESULT_SUCCESS);
+			result.setMessage("添加成功");
+			result.setEntity(entity);
+			logger.logInfo(this.getClass().getName() + "，执行insertSelective方法成功");
+		} catch (Exception e) {
+			e.printStackTrace();
+			result.setCode(Constant.RESULT_ERROR);
+			result.setMessage("添加失败，错误原因:" + e.getMessage());
+			logger.logError(this.getClass().getName() + "执行insertSelective方法失败，失败原因:" + e.getMessage());
 		}
+		logger.logInfo(this.getClass().getName() + "，执行insertSelective方法结束");
+
 		return result;
 	}
 
@@ -96,20 +90,14 @@ public class BaseServiceImpl<T extends BaseModel, M extends BaseMapper<T, DTO>, 
 			entity.setUpdateTime(DateUtil.getSysDateTime());
 		}
 		try {
-			BaseResult valResult = ValidationUtil.update(entity);
-			if (valResult.getCode() == Constant.RESULT_SUCCESS) {
-				T t = mapper.selectByCode(entity.getCode());
-				if (t != null) {
-					mapper.updateByCode(entity);
-					result.setCode(Constant.RESULT_SUCCESS);
-					result.setMessage("编辑成功");
-				} else {
-					result.setCode(-1);
-					result.setMessage("编辑对象不存在");
-				}
+			T t = mapper.selectByCode(entity.getCode());
+			if (t != null) {
+				mapper.updateByCode(entity);
+				result.setCode(Constant.RESULT_SUCCESS);
+				result.setMessage("编辑成功");
 			} else {
-				result.setCode(valResult.getCode());
-				result.setMessage(valResult.getMessage());
+				result.setCode(-1);
+				result.setMessage("编辑对象不存在");
 			}
 			logger.logInfo(this.getClass().getName() + "，执行updateByCode方法成功");
 		} catch (Exception e) {

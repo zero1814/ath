@@ -2,7 +2,6 @@ package org.module.model.system.menu;
 
 import java.util.List;
 
-import org.module.annotation.validation.Insert;
 import org.module.base.model.TreeModel;
 
 public class SmMenu extends TreeModel {
@@ -11,7 +10,6 @@ public class SmMenu extends TreeModel {
 
 	private String parentCode;
 
-	@Insert(alert="分组编码不能为空",notNull=true)
 	private String groupCode;
 
 	private SmMenuGroup group;
@@ -20,7 +18,6 @@ public class SmMenu extends TreeModel {
 
 	private SmPage page;
 
-	@Insert(alert="名称不能为空",notNull=true)
 	private String name;
 
 	private String icon;

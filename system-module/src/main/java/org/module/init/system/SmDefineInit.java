@@ -4,12 +4,12 @@ import org.module.annotation.Inject;
 import org.module.base.result.TreeResult;
 import org.module.cache.system.CacheKey;
 import org.module.helper.CacheHelper;
-import org.module.root.WebRootInit;
+import org.module.init.RootInit;
 import org.module.service.system.ISmDefineService;
 
 import com.alibaba.fastjson.JSON;
 
-public class SmDefineInit extends WebRootInit {
+public class SmDefineInit extends RootInit {
 
 	@Inject
 	private ISmDefineService service;

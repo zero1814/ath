@@ -5,8 +5,8 @@ import java.util.List;
 import org.module.base.result.DataResult;
 import org.module.cache.system.CacheKey;
 import org.module.helper.CacheHelper;
+import org.module.init.RootInit;
 import org.module.model.system.menu.SmMenuGroup;
-import org.module.root.WebRootInit;
 import org.module.service.system.menu.ISmMenuService;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -19,7 +19,7 @@ import com.alibaba.fastjson.JSONArray;
  * 作者: zhy<br>
  * 时间: 2017年10月25日 上午11:12:24
  */
-public class MenuInit extends WebRootInit {
+public class MenuInit extends RootInit {
 
 	@Autowired
 	private ISmMenuService service;

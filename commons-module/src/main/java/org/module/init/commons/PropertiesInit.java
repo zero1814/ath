@@ -4,9 +4,9 @@ import org.module.base.map.MStringMap;
 import org.module.cache.commons.CacheKey;
 import org.module.file.prop.PropLoad;
 import org.module.helper.CacheHelper;
-import org.module.root.WebRootInit;
+import org.module.init.RootInit;
 
-public class PropertiesInit extends WebRootInit {
+public class PropertiesInit extends RootInit {
 
 	@Override
 	public boolean onInit() {
