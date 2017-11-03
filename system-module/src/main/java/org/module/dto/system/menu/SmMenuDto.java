@@ -4,8 +4,19 @@ import org.module.base.dto.BaseDto;
 
 public class SmMenuDto extends BaseDto {
 
+	private String name;
+
 	private String parentCode;
+
 	private String groupCode;
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
 
 	public String getParentCode() {
 		return parentCode;

@@ -214,17 +214,27 @@
 		m.update_time,
 		'%Y-%m-%d
 		%H:%i:%s'
-		) AS update_time
+		) AS
+		update_time
 		FROM
 		systemmodule.sm_menu AS m,
 		systemmodule.sm_menu as pm,
 		systemmodule.sm_menu_group AS mg,
 		systemmodule.sm_page AS p
-		WHERE
-		m.group_code = mg.`code`
-		AND m.page_code
-		= p.`code`
-		AND
-		m.parent_code=pm.`code`
+		<where>
+			m.group_code = mg.`code`
+			AND m.page_code
+			= p.`code`
+			AND
+			m.parent_code=pm.`code`
+			<if test="name != null and name != ''">
+				AND m.name like CONCAT('%',#{name,jdbcType=VARCHAR},'%')
+			</if>
+			<if test="groupCode != null and groupCode != '' ">
+				AND m.group_code = #{groupCode,jdbcType=VARCHAR}
+			</if>
+		</where>
+
+
 	</select>
 </mapper>
