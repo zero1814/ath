@@ -1,14 +1,14 @@
 package org.module.controller.system.menu;
 
 import org.module.base.result.BaseResult;
+import org.module.base.result.DataResult;
 import org.module.base.result.EntityResult;
 import org.module.base.result.PageResult;
 import org.module.dto.system.menu.SmMenuDto;
-import org.module.dto.system.menu.SmPageDto;
 import org.module.model.system.menu.SmMenu;
 import org.module.service.system.menu.ISmMenuGroupService;
 import org.module.service.system.menu.ISmMenuService;
-import org.module.service.system.menu.ISmPageService;
+import org.module.util.Constant;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -22,11 +22,13 @@ public class SmMenuController {
 	private ISmMenuService service;
 	@Autowired
 	private ISmMenuGroupService groupService;
-	@Autowired
-	private ISmPageService pageService;
 
 	@RequestMapping("index")
 	public String index(ModelMap model) {
+		DataResult result = groupService.findDataAll();
+		if (result.getCode() == Constant.RESULT_SUCCESS) {
+			model.addAttribute("groups", result.getData());
+		}
 		return "jsp/system/menu/index";
 	}
 
@@ -36,20 +38,22 @@ public class SmMenuController {
 		return service.findEntityToPage(dto);
 	}
 
-	@RequestMapping("add_index")
+	@RequestMapping("addindex")
 	public String addIndex() {
 		return "jsp/system/menu/add";
 	}
+
 	@RequestMapping("add")
 	@ResponseBody
 	public EntityResult add(SmMenu entity) {
 		return service.insertSelective(entity);
 	}
 
-	@RequestMapping("edit_index")
+	@RequestMapping("editindex")
 	public String editIndex() {
 		return "jsp/system/menu/edit";
 	}
+
 	@RequestMapping("edit")
 	@ResponseBody
 	public EntityResult edit(SmMenu entity) {

@@ -4,6 +4,7 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.module.base.BaseTest;
 import org.module.base.result.EntityResult;
+import org.module.base.result.TreeResult;
 import org.module.helper.CodeHelper;
 import org.module.model.system.menu.SmMenu;
 import org.module.service.system.menu.ISmMenuService;
@@ -33,12 +34,17 @@ public class SmMenuTest extends BaseTest {
 		System.out.println(JSON.toJSON(result));
 	}
 
-	@Test
 	public void update() {
 		SmMenu entity = new SmMenu();
 		entity.setIcon("55");
 		entity.setUpdateUser("ts");
 		EntityResult result = service.updateByCode(entity);
+		System.out.println(JSON.toJSON(result));
+	}
+
+	@Test
+	public void tree() {
+		TreeResult result = service.tree("SMG1000");
 		System.out.println(JSON.toJSON(result));
 	}
 }

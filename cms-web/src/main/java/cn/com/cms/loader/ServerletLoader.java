@@ -5,8 +5,6 @@ import javax.servlet.ServletException;
 
 import org.module.helper.LoggerHelper;
 import org.module.init.commons.PropertiesInit;
-import org.module.init.system.MenuInit;
-import org.module.init.system.SmDefineInit;
 import org.module.util.SpringContextUtil;
 import org.springframework.web.WebApplicationInitializer;
 import org.springframework.web.context.WebApplicationContext;
@@ -48,7 +46,6 @@ public class ServerletLoader {
 				WebApplicationContext wac = WebApplicationContextUtils.getWebApplicationContext(servletContext);
 				SpringContextUtil.setApplicationContext(wac);
 				new PropertiesInit().init();
-				new MenuInit().init();
 				servletContext.log("Initializing cms web core finished");
 				LoggerHelper.info(getClass(), "初始化数据完成。。。。。。。。");
 			} catch (RuntimeException ex) {

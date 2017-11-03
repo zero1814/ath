@@ -19,7 +19,7 @@ public class IndexController {
 		String groupCode = PropHelper.getConfig("cms.menu.group");
 		TreeResult result = service.tree(groupCode);
 		if (result.getCode() == 0) {
-			model.addAttribute("menu", result.getData());
+			model.addAttribute("menus", result.getData());
 			return "index";
 		} else {
 			return PropHelper.getConfig("cmsweb.404");

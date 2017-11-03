@@ -37,7 +37,7 @@ var MenuGroup = {
 		MenuGroup.data();
 	},
 	data: function() {
-		Table.init("table", "./data/system/menu/menu.group.json", MenuGroup.columns, MenuGroup.searchParam());
+		Table.init("table", "system/menu/group/data.htm", MenuGroup.columns, MenuGroup.searchParam());
 	},
 	searchParam: function() {
 		var temp = {

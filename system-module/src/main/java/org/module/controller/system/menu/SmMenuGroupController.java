@@ -7,16 +7,18 @@ import org.module.dto.system.menu.SmMenuGroupDto;
 import org.module.model.system.menu.SmMenuGroup;
 import org.module.service.system.menu.ISmMenuGroupService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
-
+@Controller
+@RequestMapping("/system/menu/group")
 public class SmMenuGroupController {
 	@Autowired
 	private ISmMenuGroupService service;
 
 	@RequestMapping("index")
 	public String index() {
-		return null;
+		return "jsp/system/menu/group/index";
 	}
 
 	@RequestMapping("data")

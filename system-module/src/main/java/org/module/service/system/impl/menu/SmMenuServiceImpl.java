@@ -1,5 +1,6 @@
 package org.module.service.system.impl.menu;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.module.base.result.DataResult;
@@ -18,7 +19,6 @@ import org.module.model.system.menu.SmMenuGroup;
 import org.module.model.system.menu.SmPage;
 import org.module.service.system.menu.ISmMenuService;
 import org.module.util.Constant;
-import org.module.util.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -43,45 +43,29 @@ public class SmMenuServiceImpl extends BaseServiceImpl<SmMenu, SmMenuMapper, SmM
 		return result;
 	}
 
-	@SuppressWarnings("unchecked")
 	@Override
 	public TreeResult tree(String groupCode) {
 		TreeResult result = new TreeResult();
-		String menus = "";
-		List<SmMenu> list = null;
+		List<SmMenu> list = new ArrayList<SmMenu>();
 		try {
-			menus = CacheHelper.getFiledVal(CacheKey.MENU, groupCode);
-			if (StringUtils.isNotBlank(menus)) {
-				JSONArray array = JSONArray.parseArray(menus);
-				list = JSONArray.toJavaObject(array, List.class);
+			SmMenuGroup group = groupMapper.selectByCode(groupCode);
+			if (group != null) {
+				result.setCode(0);
+				result.setTreeText(group.getName());
+				result.setTreeCode(group.getCode());
+				list = data("0", groupCode);
+				result.setData(list);
+				result.setMessage("查询菜单成功");
+			} else {
+				result.setCode(Constant.RESULT_ERROR);
+				result.setMessage("菜单组下菜单信息为空");
 			}
-			result.setData(list);
-		} catch (Exception e) {
-			e.printStackTrace();
+		} catch (Exception e2) {
+			e2.printStackTrace();
 			result.setCode(Constant.RESULT_ERROR);
-			result.setMessage("缓存菜单失败，失败原因:" + e.getMessage());
-		} finally {
-			if (StringUtils.isBlank(menus) || list != null) {
-				try {
-					SmMenuGroup group = groupMapper.selectByCode(groupCode);
-					if (group != null) {
-						result.setCode(0);
-						result.setTreeText(group.getName());
-						result.setTreeCode(group.getCode());
-						list = data("0", groupCode);
-						result.setData(list);
-						result.setMessage("查询菜单成功");
-					} else {
-						result.setCode(Constant.RESULT_ERROR);
-						result.setMessage("菜单组下菜单信息为空");
-					}
-				} catch (Exception e2) {
-					e2.printStackTrace();
-					result.setCode(Constant.RESULT_ERROR);
-					result.setMessage("数据库查询菜单失败，失败原因:" + e2.getMessage());
-				}
-			}
+			result.setMessage("数据库查询菜单失败，失败原因:" + e2.getMessage());
 		}
+
 		return result;
 	}
 
@@ -109,12 +93,13 @@ public class SmMenuServiceImpl extends BaseServiceImpl<SmMenu, SmMenuMapper, SmM
 				List<SmMenu> sub = mapper.findDataAll(sbDto);
 				if (sub != null && sub.size() > 0) {
 					m.setNodes(sub);
+					m.setChilds(sub);
 				}
 			}
 		}
 		return list;
 	}
-
+	
 	@SuppressWarnings("unchecked")
 	@Override
 	public DataResult cacheMenu() {

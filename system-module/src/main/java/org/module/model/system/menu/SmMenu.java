@@ -12,11 +12,7 @@ public class SmMenu extends TreeModel {
 
 	private String groupCode;
 
-	private SmMenuGroup group;
-
 	private String pageCode;
-
-	private SmPage page;
 
 	private String name;
 
@@ -26,7 +22,21 @@ public class SmMenu extends TreeModel {
 
 	private Integer sort;
 
+	private SmMenu parent;
+
+	private SmMenuGroup group;
+
+	private SmPage page;
+
 	private List<SmMenu> childs;
+
+	public SmMenu getParent() {
+		return parent;
+	}
+
+	public void setParent(SmMenu parent) {
+		this.parent = parent;
+	}
 
 	public Integer getSort() {
 		return sort;

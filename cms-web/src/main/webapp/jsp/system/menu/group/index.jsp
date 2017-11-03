@@ -30,5 +30,11 @@
 		</div>
 	</div>
 </div>
+<script type="text/javascript" src="assets/commons/js/table.js"></script>
 <script type="text/javascript" src="assets/module/system/menu.group.js"></script>
+<script type="text/javascript">
+$(function(){
+	MenuGroup.init();
+});
+</script>
 <%@ include file="/jsp/commons/footer.jsp" %>

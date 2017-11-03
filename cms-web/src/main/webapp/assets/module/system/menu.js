@@ -11,16 +11,16 @@ var Menu = {
 		field: 'name',
 		title: '名称'
 	}, {
-		field: 'parentCode',
-		title: '父级编码'
+		field: 'parent.name',
+		title: '父级名称'
 	}, {
-		field: 'groupCode',
-		title: '分组编码'
+		field: 'group.name',
+		title: '分组名称'
 	}, {
 		field: 'icon',
 		title: '图标'
 	}, {
-		field: 'status',
+		field: 'flagAble',
 		title: '状态',
 		formatter: function(value, row, index) {
 			var html = "";
@@ -54,7 +54,7 @@ var Menu = {
 		field: 'operate',
 		title: '操作',
 		formatter: function(value, row, index) {
-			var html = "<a target='_self' href='./html/system/menu/edit.html'>修改</a>  |  ";
+			var html = "<a target='_self' href='system/menu/editindex.htm'>修改</a>  |  ";
 			html += "<a href='javascript:Menu.del();'>删除</a>";
 			return html;
 		}
@@ -63,7 +63,7 @@ var Menu = {
 		Menu.data();
 	},
 	data: function() {
-		Table.init("table", "./data/system/menu/menu.json", Menu.columns, Menu.searchParam());
+		Table.init("table", "system/menu/data.htm", Menu.columns, Menu.searchParam());
 	},
 	searchParam: function() {
 		var temp = {

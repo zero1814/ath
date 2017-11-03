@@ -54,8 +54,9 @@ var Page = {
 		field: 'operate',
 		title: '操作',
 		formatter: function(value, row, index) {
-			var html = "<a target='_self' href='./html/system/menu/page/edit.html'>修改</a>  |  ";
-			html += "<a href='javascript:Page.del();'>删除</a>";
+			var code = row.code;
+			var html = "<a target='_self' href='system/menu/page/editindex.htm?code="+code+"'>修改</a>  |  ";
+			html += "<a href='javascript:Page.del(\""+code+"\");'>删除</a>";
 			return html;
 		}
 	}],
@@ -63,7 +64,7 @@ var Page = {
 		Page.data();
 	},
 	data: function() {
-		Table.init("table", "./data/system/menu/page.json", Page.columns, Page.searchParam());
+		Table.init("table", "system/menu/page/data.htm", Page.columns, Page.searchParam());
 	},
 	searchParam: function() {
 		var temp = {

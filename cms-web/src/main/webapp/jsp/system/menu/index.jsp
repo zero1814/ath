@@ -12,6 +12,17 @@
 					</div>
 				</div>
 				<div class="form-group">
+					<label class="col-sm-4 control-label">分组名称</label>
+					<div class="col-sm-4">
+						<select id="groupCode" name="groupCode" class="form-control">
+							<option value=''>--请选择--</option>
+							<c:forEach var="group" items="${groups }">
+								<option value="${group.code }">${group.name }</option>
+							</c:forEach>
+						</select>
+					</div>
+				</div>
+				<div class="form-group">
 					<label class="col-sm-4 control-label"></label>
 					<div class="col-sm-4">
 						<a style="float: right;" href="javascript:void(0)" onclick="Menu.search();" class="btn btn-w-m btn-info">查询</a>
@@ -30,5 +41,11 @@
 		</div>
 	</div>
 </div>
+<script type="text/javascript" src="assets/commons/js/table.js"></script>
 <script type="text/javascript" src="assets/module/system/menu.js"></script>
+<script type="text/javascript">
+$(function(){
+	Menu.init();
+})
+</script>
 <%@ include file="/jsp/commons/footer.jsp" %>

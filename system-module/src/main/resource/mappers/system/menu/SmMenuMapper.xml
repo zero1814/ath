@@ -16,6 +16,13 @@
 		<result column="create_time" property="createTime" jdbcType="VARCHAR" />
 		<result column="update_user" property="updateUser" jdbcType="VARCHAR" />
 		<result column="update_time" property="updateTime" jdbcType="VARCHAR" />
+		<collection property="parent" ofType="org.module.model.system.menu.SmMenu">
+			<result column="parent_name" property="name" jdbcType="VARCHAR" />
+		</collection>
+		<collection property="group"
+			ofType="org.module.model.system.menu.SmMenuGroup">
+			<result column="group_name" property="name" jdbcType="VARCHAR" />
+		</collection>
 		<collection property="page" ofType="org.module.model.system.menu.SmPage">
 			<result column="page_name" property="name" jdbcType="VARCHAR" />
 			<result column="url" property="url" jdbcType="VARCHAR" />
@@ -183,5 +190,41 @@
 		resultType="java.lang.Integer">
 		select count(1) from systemmodule.sm_menu where parent_code
 		= #{parentCode,jdbcType=VARCHAR}
+	</select>
+	<select id="findEntityAllToPage" parameterType="org.module.dto.system.menu.SmMenuDto"
+		resultMap="BaseResultMap">
+		SELECT
+		m.`code`,
+		m.`name`,
+		m.flag_able,
+		m.sort,
+		pm.`name` as
+		parent_name,
+		p.`name` AS page_name,
+		mg.`name` AS group_name,
+		m.create_user,
+		DATE_FORMAT(
+		m.create_time,
+		'%Y-%m-%d
+		%H:%i:%s'
+		) AS
+		create_time,
+		m.update_user,
+		DATE_FORMAT(
+		m.update_time,
+		'%Y-%m-%d
+		%H:%i:%s'
+		) AS update_time
+		FROM
+		systemmodule.sm_menu AS m,
+		systemmodule.sm_menu as pm,
+		systemmodule.sm_menu_group AS mg,
+		systemmodule.sm_page AS p
+		WHERE
+		m.group_code = mg.`code`
+		AND m.page_code
+		= p.`code`
+		AND
+		m.parent_code=pm.`code`
 	</select>
 </mapper>
