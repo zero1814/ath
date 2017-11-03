@@ -20,11 +20,11 @@ var Page = {
 		field: 'param',
 		title: '参数信息'
 	}, {
-		field: 'status',
+		field: 'flagAble',
 		title: '状态',
 		formatter: function(value, row, index) {
 			var html = "";
-			if(row.status == 0) {
+			if(value == 0) {
 				html = "可用";
 			} else {
 				html = "不可用";
@@ -47,7 +47,8 @@ var Page = {
 		field: 'detail',
 		title: '查看',
 		formatter: function(value, row, index) {
-			var html = "<a href='./html/system/menu/page/detail.html'>查看</a>";
+			var code = row.code;
+			var html = "<a target='_self' href='system/menu/page/detail.htm?code="+code+"'>查看</a>";
 			return html;
 		}
 	}, {
@@ -78,30 +79,88 @@ var Page = {
 		$("#table").bootstrapTable('refresh');
 	},
 	add: function() {
-		layer.alert('执行添加方法');
+		var param = $("#add").serializeArray();
+		$.ajax({
+			url: "system/menu/page/add.htm",
+			type: "POST",
+			data: param,
+			dataType: "json",
+			success: function(result) {
+				if(result.code == UsePublic.SUCCESS){
+					layer.alert(result.message,function(index){
+						window.location.href = "system/menu/page/index.htm";
+						layer.close(index);
+					});
+				}else if(result.code == UsePublic.NULL){
+					window.parent.location.href = UsePublic.NULL_URL;
+				}else{
+					window.parent.location.href = UsePublic.ERROR_URL;
+				}
+			},
+			error: function(result) {
+				window.parent.location.href = UsePublic.ERROR_URL;
+			}
+		});
 	},
 	edit: function() {
 		layer.confirm("是否确认编辑?", {
 			btn: ['确认', '取消']
-		}, function() {
-			layer.msg('执行编辑方法', {
-				icon: 1
+		}, function(index) {
+			layer.close(index);
+			var param = $("#edit").serializeArray();
+			$.ajax({
+				url: "system/menu/page/edit.htm",
+				type: "POST",
+				data: param,
+				dataType: "json",
+				success: function(result) {
+					if(result.code == UsePublic.SUCCESS){
+						layer.alert(result.message,function(index){
+							window.location.href = "system/menu/page/index.htm";
+							layer.close(index);
+						});
+					}else if(result.code == UsePublic.NULL){
+						window.parent.location.href = UsePublic.NULL_URL;
+					}else{
+						window.parent.location.href = UsePublic.ERROR_URL;
+					}
+				},
+				error: function(result) {
+					window.parent.location.href = UsePublic.ERROR_URL;
+				}
 			});
-			layer.close();
-		}, function() {
-			layer.close();
+		}, function(index) {
+			layer.close(index);
 		});
 	},
-	del: function() {
+	del: function(code) {
+		var param = {"code":code};
 		layer.confirm("是否确认删除?", {
 			btn: ['确认', '取消']
-		}, function() {
-			layer.alert('执行删除方法', {
-				icon: 1
+		}, function(index) {
+			$.ajax({
+				url: "system/menu/page/del.htm",
+				type: "POST",
+				data: param,
+				dataType: "json",
+				success: function(result) {
+					if(result.code == UsePublic.SUCCESS){
+						layer.alert(result.message,function(index){
+							$("#table").bootstrapTable('refresh');
+							layer.close(index);
+						});
+					}else if(result.code == UsePublic.NULL){
+						window.parent.location.href = UsePublic.NULL_URL;
+					}else{
+						window.parent.location.href = UsePublic.ERROR_URL;
+					}
+				},
+				error: function(result) {
+					window.parent.location.href = UsePublic.ERROR_URL;
+				}
 			});
-			layer.close();
-		}, function() {
-			layer.close();
+		}, function(index) {
+			layer.close(index);
 		});
 	}
 };

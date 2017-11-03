@@ -33,6 +33,20 @@ public class SmPageController extends BaseController {
 		return service.findEntityToPage(dto);
 	}
 
+	@RequestMapping("detail")
+	public String detail(String code, ModelMap model) {
+		EntityResult result = service.selectByCode(code);
+		if (result.getCode() == Constant.RESULT_SUCCESS) {
+			model.addAttribute("entity", result.getEntity());
+			return "jsp/system/menu/page/detail";
+		}
+		if (result.getCode() == Constant.RESULT_NULL) {
+			return NULL_URL;
+		} else {
+			return ERROR_URL;
+		}
+	}
+
 	@RequestMapping("addindex")
 	public String addIndex() {
 		return "jsp/system/menu/page/add";
@@ -50,7 +64,8 @@ public class SmPageController extends BaseController {
 	public String editIndex(String code, ModelMap model) {
 		EntityResult result = service.selectByCode(code);
 		if (result.getCode() == Constant.RESULT_SUCCESS) {
-			return "jsp/system/menu/page/index";
+			model.addAttribute("entity", result.getEntity());
+			return "jsp/system/menu/page/edit";
 		} else if (result.getCode() == Constant.RESULT_NULL) {
 			return NULL_URL;
 		} else {

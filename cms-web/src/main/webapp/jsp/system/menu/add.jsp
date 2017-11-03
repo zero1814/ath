@@ -50,7 +50,7 @@
 				<div class="form-group">
 					<label class="col-sm-3 control-label">是否可用：</label>
 					<div class="col-sm-8">
-						<select id="status" name="status" class="form-control">
+						<select id="flagAble" name="flagAble" class="form-control">
 							<option value="">--请选择--</option>
 							<option value="0">可用</option>
 							<option value="1">不可用</option>
