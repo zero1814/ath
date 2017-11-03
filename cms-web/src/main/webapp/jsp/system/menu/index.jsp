@@ -34,7 +34,7 @@
 	<div class="row">
 		<div class="col-sm-12">
 			<div class="btn-group hidden-xs" role="table">
-				<a href="/system/menu/addindex.htm" class="btn btn-w-m btn-info">添加</a>
+				<a href="system/menu/addindex.htm" class="btn btn-w-m btn-info">添加</a>
 			</div>
 			<table id="table" data-height="400" data-mobile-responsive="true">
 			</table>

@@ -21,4 +21,5 @@
 		</div>
 	</div>
 </div>
+<script type="text/javascript" src="assets/module/system/menu.group.js"></script>
 <%@ include file="/jsp/commons/footer.jsp" %>

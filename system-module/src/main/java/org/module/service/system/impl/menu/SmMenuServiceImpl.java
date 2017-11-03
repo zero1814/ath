@@ -84,13 +84,13 @@ public class SmMenuServiceImpl extends BaseServiceImpl<SmMenu, SmMenuMapper, SmM
 		SmMenuDto dto = new SmMenuDto();
 		dto.setGroupCode(groupCode);
 		dto.setParentCode(parentCode);
-		List<SmMenu> list = mapper.findDataAll(dto);
+		List<SmMenu> list = mapper.findEntityAll(dto);
 		if (list != null && list.size() > 0) {
 			for (SmMenu m : list) {
 				SmMenuDto sbDto = new SmMenuDto();
 				sbDto.setGroupCode(groupCode);
 				sbDto.setParentCode(m.getCode());
-				List<SmMenu> sub = mapper.findDataAll(sbDto);
+				List<SmMenu> sub = mapper.findEntityAll(sbDto);
 				if (sub != null && sub.size() > 0) {
 					m.setNodes(sub);
 					m.setChilds(sub);
@@ -99,7 +99,7 @@ public class SmMenuServiceImpl extends BaseServiceImpl<SmMenu, SmMenuMapper, SmM
 		}
 		return list;
 	}
-	
+
 	@SuppressWarnings("unchecked")
 	@Override
 	public DataResult cacheMenu() {
@@ -123,7 +123,7 @@ public class SmMenuServiceImpl extends BaseServiceImpl<SmMenu, SmMenuMapper, SmM
 	 */
 	@Override
 	public List<SmMenuGroup> getMenuGroups() {
-		return groupMapper.findDataAll();
+		return groupMapper.findEntityAll();
 	}
 
 	/**
@@ -136,6 +136,8 @@ public class SmMenuServiceImpl extends BaseServiceImpl<SmMenu, SmMenuMapper, SmM
 	@Override
 	public List<SmPage> getPages() {
 		SmPageDto dto = new SmPageDto();
+		dto.setIsDeleted(0);
+		dto.setFlagAble(0);
 		return pageMapper.findEntityAll(dto);
 	}
 

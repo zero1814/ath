@@ -28,7 +28,7 @@ var MenuGroup = {
 		title: '操作',
 		formatter: function(value, row, index) {
 			var code = row.code;
-			var html = "<a href='javascript:MenuGroup.openLayer(\"edit\");'>修改</a>  |  ";
+			var html = "<a href='javascript:MenuGroup.openLayer(\"edit\",\""+code+"\");'>修改</a>  |  ";
 			html += "<a href='javascript:MenuGroup.del(\""+code+"\")'>删除</a>";
 			return html;
 		}
@@ -49,12 +49,12 @@ var MenuGroup = {
 		Table.param = MenuGroup.searchParam();
 		$("#table").bootstrapTable('refresh');
 	},
-	openLayer: function(type) {
+	openLayer: function(type,code) {
 		var url = "";
 		if(type == 'add'){
 			url="system/menu/group/addindex.htm";
 		}else if(type =='edit'){
-			url="system/menu/group/editindex.htm";
+			url="system/menu/group/editindex.htm?code="+code;
 		}
 		MenuGroup.Layer = layer.open({
 			type: 2,
@@ -65,20 +65,29 @@ var MenuGroup = {
 		});
 	},
 	closeLayer:function(){
-		layer.close(MenuGroup.Layer);
+		if(parent.MenuGroup.Layer) {
+			parent.layer.close(parent.MenuGroup.Layer);
+		}
 	},
 	add: function() {
-		layer.close(MenuGroup.Layer);
 		var param = $("#add").serializeArray();
 		$.ajax({
-			url: urlVal,
+			url: "system/menu/group/add.htm",
 			type: "POST",
 			data: param,
 			dataType: "json",
 			success: function(result) {
-				layer.alert(result.message,function(){
-					layer.close();
-				});
+				if(result.code == UsePublic.SUCCESS){
+					layer.alert(result.message,function(index){
+						MenuGroup.closeLayer();
+						layer.close(index);
+					});	
+					parent.$("#table").bootstrapTable('refresh');
+				}else if(result.code == UsePublic.NULL){
+					window.parent.location.href = UsePublic.NULL_URL;
+				}else{
+					window.parent.location.href = UsePublic.ERROR_URL;
+				}
 			},
 			error: function(result) {
 				window.parent.location.href = UsePublic.ERROR_URL;
@@ -88,48 +97,63 @@ var MenuGroup = {
 	edit: function() {
 		layer.confirm("是否确认编辑?", {
 			btn: ['确认', '取消']
-		}, function() {
-			layer.close(MenuGroup.Layer);
+		}, function(index) {
+			layer.close(index);
 			var param = $("#edit").serializeArray();
 			$.ajax({
-				url: urlVal,
+				url: "system/menu/group/edit.htm",
 				type: "POST",
 				data: param,
 				dataType: "json",
 				success: function(result) {
-					layer.alert(result.message,function(){
-						layer.close();
-					});
+					if(result.code == UsePublic.SUCCESS){
+						layer.alert(result.message,function(index){
+							MenuGroup.closeLayer();
+							layer.close(index);
+						});
+						parent.$("#table").bootstrapTable('refresh');
+					}else if(result.code == UsePublic.NULL){
+						window.parent.location.href = UsePublic.NULL_URL;
+					}else{
+						window.parent.location.href = UsePublic.ERROR_URL;
+					}
 				},
 				error: function(result) {
 					window.parent.location.href = UsePublic.ERROR_URL;
 				}
 			});
-		}, function() {
-			layer.close();
+		}, function(index) {
+			layer.close(index);
 		});
 	},
 	del: function(code) {
 		var param = {"code":code};
 		layer.confirm("是否确认删除?", {
 			btn: ['确认', '取消']
-		}, function() {
+		}, function(index) {
 			$.ajax({
-				url: urlVal,
+				url: "system/menu/group/del.htm",
 				type: "POST",
 				data: param,
 				dataType: "json",
 				success: function(result) {
-					layer.alert(result.message,function(){
-						layer.close();
-					});
+					if(result.code == UsePublic.SUCCESS){
+						layer.alert(result.message,function(index){
+							$("#table").bootstrapTable('refresh');
+							layer.close(index);
+						});
+					}else if(result.code == UsePublic.NULL){
+						window.parent.location.href = UsePublic.NULL_URL;
+					}else{
+						window.parent.location.href = UsePublic.ERROR_URL;
+					}
 				},
 				error: function(result) {
 					window.parent.location.href = UsePublic.ERROR_URL;
 				}
 			});
-		}, function() {
-			layer.close();
+		}, function(index) {
+			layer.close(index);
 		});
 	}
 };

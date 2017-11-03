@@ -5,11 +5,11 @@
 	<div class="row">
 		<div class="col-sm-12">
 			<form class="form-horizontal m-t" id="edit">
-				<input type="hidden" id="code" name="code" value="${group.code }">
+				<input type="hidden" id="code" name="code" value="${entity.code }">
 				<div class="form-group">
 					<label class="col-sm-3 control-label">名称：</label>
 					<div class="col-sm-8">
-						<input value="${group.name }" id="name" name="name" class="form-control" type="text">
+						<input value="${entity.name }" id="name" name="name" class="form-control" type="text">
 					</div>
 				</div>
 				<div class="form-group">
@@ -22,4 +22,5 @@
 		</div>
 	</div>
 </div>
+<script type="text/javascript" src="assets/module/system/menu.group.js"></script>
 <%@ include file="/jsp/commons/footer.jsp" %>

@@ -54,8 +54,9 @@ var Menu = {
 		field: 'operate',
 		title: '操作',
 		formatter: function(value, row, index) {
-			var html = "<a target='_self' href='system/menu/editindex.htm'>修改</a>  |  ";
-			html += "<a href='javascript:Menu.del();'>删除</a>";
+			var code = row.code;
+			var html = "<a target='_self' href='system/menu/editindex.htm?code="+code+"'>修改</a>  |  ";
+			html += "<a href='javascript:Menu.del(\""+code+"\");'>删除</a>";
 			return html;
 		}
 	}],
@@ -76,87 +77,89 @@ var Menu = {
 		Table.param = Menu.searchParam();
 		$("#table").bootstrapTable('refresh');
 	},
-	menuInit: function() {
-		$.ajax({
-			url: './data/system/menu/menu.json',
-			type: "GET",
-			dataType: "json",
-			success: function(result) {
-				var html = "<option value=''>--请选择--</option>";
-				for(var key in result) {
-					var obj = result[key];
-					html += "<option value='" + obj.code + "'>" + obj.name + "</option>";
-				}
-				$("#parentCode").html(html);
-			},
-			error: function(result) {
-				window.parent.location.href = UsePublic.ERROR_URL;
-			}
-		});
-	},
-	groupInit: function() {
-		$.ajax({
-			url: './data/system/menu/menu.group.json',
-			type: "GET",
-			dataType: "json",
-			success: function(result) {
-				var html = "<option value=''>--请选择--</option>";
-				for(var key in result) {
-					var obj = result[key];
-					html += "<option value='" + obj.code + "'>" + obj.name + "</option>";
-				}
-				$("#groupCode").html(html);
-			},
-			error: function(result) {
-				window.parent.location.href = UsePublic.ERROR_URL;
-			}
-		});
-	},
-	pageInit: function() {
-		$.ajax({
-			url: './data/system/menu/page.json',
-			type: "GET",
-			dataType: "json",
-			success: function(result) {
-				var html = "<option value=''>--请选择--</option>";
-				for(var key in result) {
-					var obj = result[key];
-					html += "<option value='" + obj.code + "'>" + obj.name + "</option>";
-				}
-				$("#pageCode").html(html);
-			},
-			error: function(result) {
-				window.parent.location.href = UsePublic.ERROR_URL;
-			}
-		});
-	},
 	add: function() {
-		layer.alert('执行添加方法');
+		var param = $("#add").serializeArray();
+		$.ajax({
+			url: "system/menu/add.htm",
+			type: "POST",
+			data: param,
+			dataType: "json",
+			success: function(result) {
+				if(result.code == UsePublic.SUCCESS){
+					layer.alert(result.message,function(index){
+						window.location.href = "system/menu/index.htm";
+						layer.close(index);
+					});
+				}else if(result.code == UsePublic.NULL){
+					window.parent.location.href = UsePublic.NULL_URL;
+				}else{
+					window.parent.location.href = UsePublic.ERROR_URL;
+				}
+			},
+			error: function(result) {
+				window.parent.location.href = UsePublic.ERROR_URL;
+			}
+		});
 	},
 	edit: function() {
 		layer.confirm("是否确认编辑?", {
 			btn: ['确认', '取消']
-		}, function() {
-			layer.close();
-			layer.alert("编辑成功",function(){
-				window.location.href='./html/system/menu/index.html';
+		}, function(index) {
+			layer.close(index);
+			var param = $("#edit").serializeArray();
+			$.ajax({
+				url: "system/menu/edit.htm",
+				type: "POST",
+				data: param,
+				dataType: "json",
+				success: function(result) {
+					if(result.code == UsePublic.SUCCESS){
+						layer.alert(result.message,function(index){
+							window.location.href = "system/menu/index.htm";
+							layer.close(index);
+						});
+					}else if(result.code == UsePublic.NULL){
+						window.parent.location.href = UsePublic.NULL_URL;
+					}else{
+						window.parent.location.href = UsePublic.ERROR_URL;
+					}
+				},
+				error: function(result) {
+					window.parent.location.href = UsePublic.ERROR_URL;
+				}
 			});
-		}, function() {
-			layer.close();
+		}, function(index) {
+			layer.close(index);
 		});
 	},
-	del: function() {
+	del: function(code) {
+		var param = {"code":code};
 		layer.confirm("是否确认删除?", {
 			btn: ['确认', '取消']
-		}, function() {
-			layer.close();
-			layer.alert('执行删除方法', {
-				icon: 1
-			},function(){
-				window.location.href='./html/system/menu/index.html';
+		}, function(index) {
+			$.ajax({
+				url: "system/menu/del.htm",
+				type: "POST",
+				data: param,
+				dataType: "json",
+				success: function(result) {
+					if(result.code == UsePublic.SUCCESS){
+						layer.alert(result.message,function(index){
+							$("#table").bootstrapTable('refresh');
+							layer.close(index);
+						});
+					}else if(result.code == UsePublic.NULL){
+						window.parent.location.href = UsePublic.NULL_URL;
+					}else{
+						window.parent.location.href = UsePublic.ERROR_URL;
+					}
+				},
+				error: function(result) {
+					window.parent.location.href = UsePublic.ERROR_URL;
+				}
 			});
-		}, function() {
-			layer.close();
+		}, function(index) {
+			layer.close(index);
 		});
 	}
 };

@@ -6,6 +6,24 @@ public class SmPageDto extends BaseDto {
 
 	private String code;
 	private String name;
+	private Integer isDeleted;
+	private Integer flagAble;
+
+	public Integer getIsDeleted() {
+		return isDeleted;
+	}
+
+	public void setIsDeleted(Integer isDeleted) {
+		this.isDeleted = isDeleted;
+	}
+
+	public Integer getFlagAble() {
+		return flagAble;
+	}
+
+	public void setFlagAble(Integer flagAble) {
+		this.flagAble = flagAble;
+	}
 
 	public String getCode() {
 		return code;

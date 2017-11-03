@@ -163,7 +163,7 @@
 		</set>
 		where `code`=#{code,jdbcType=VARCHAR}
 	</update>
-	<select id="findDataAll" parameterType="org.module.dto.system.menu.SmMenuDto"
+	<select id="findEntityAll" parameterType="org.module.dto.system.menu.SmMenuDto"
 		resultMap="BaseResultMap">
 		SELECT
 		m.`code`,
@@ -198,35 +198,28 @@
 		m.`name`,
 		m.flag_able,
 		m.sort,
-		pm.`name` as
-		parent_name,
-		p.`name` AS page_name,
-		mg.`name` AS group_name,
+		IFNULL(pm.`name`,'--') AS parent_name,
+		IFNULL(p.`name`,'--') AS page_name,
+		IFNULL(mg.`name`,'--') AS group_name,
 		m.create_user,
 		DATE_FORMAT(
 		m.create_time,
 		'%Y-%m-%d
 		%H:%i:%s'
-		) AS
-		create_time,
+		) AS create_time,
 		m.update_user,
 		DATE_FORMAT(
 		m.update_time,
 		'%Y-%m-%d
 		%H:%i:%s'
-		) AS
-		update_time
+		) AS update_time
 		FROM
-		systemmodule.sm_menu AS m,
-		systemmodule.sm_menu as pm,
-		systemmodule.sm_menu_group AS mg,
-		systemmodule.sm_page AS p
+		systemmodule.sm_menu AS m LEFT OUTER JOIN systemmodule.sm_menu AS pm ON
+		m.parent_code=pm.`code`
+		LEFT OUTER JOIN systemmodule.sm_menu_group AS mg ON m.group_code=mg.`code`
+		LEFT OUTER JOIN systemmodule.sm_page AS p ON m.page_code=p.`code`
 		<where>
-			m.group_code = mg.`code`
-			AND m.page_code
-			= p.`code`
-			AND
-			m.parent_code=pm.`code`
+			1=1
 			<if test="name != null and name != ''">
 				AND m.name like CONCAT('%',#{name,jdbcType=VARCHAR},'%')
 			</if>

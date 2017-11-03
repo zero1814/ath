@@ -24,7 +24,7 @@
 					<div class="col-sm-8">
 						<select id="groupCode" name="groupCode" class="form-control">
 							<option value="">--请选择--</option>
-							<c:forEach var="group" items="${group }">
+							<c:forEach var="group" items="${groups }">
 								<option value="${group.code }">${group.name}</option>
 							</c:forEach>
 						</select>
@@ -66,14 +66,14 @@
 				<div class="form-group">
 					<div class="col-sm-12" style="text-align: center;">
 						<a href="javascript:Menu.add();" class="btn btn-info">提交</a>
-						<a href="/system/menu/index.htm" class="btn btn-default">取消</a>
+						<a href="system/menu/index.htm" class="btn btn-default">取消</a>
 					</div>
 				</div>
 			</form>
 		</div>
 	</div>
 </div>
-<script src="assets/commons/js/system/menu/menu.js"></script>
+<script type="text/javascript" src="assets/module/system/menu.js"></script>
 <script type="text/javascript">
  function checkVal(obj){
 	 var v = $(obj).val();

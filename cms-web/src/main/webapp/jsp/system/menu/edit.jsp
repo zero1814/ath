@@ -14,12 +14,13 @@
 				</div>
 				<div class="form-group">
 					<div class="col-sm-12" style="text-align: center;">
-						<a href="javascript:MenuGroup.edit();" class="btn btn-info">提交</a>
-						<a href="/system/menu/group/index.htm" class="btn btn-default">取消</a>
+						<a href="javascript:Menu.edit();" class="btn btn-info">提交</a>
+						<a href="system/menu/index.htm" class="btn btn-default">取消</a>
 					</div>
 				</div>
 			</form>
 		</div>
 	</div>
 </div>
+<script type="text/javascript" src="assets/module/system/menu.js"></script>
 <%@ include file="/jsp/commons/footer.jsp" %>

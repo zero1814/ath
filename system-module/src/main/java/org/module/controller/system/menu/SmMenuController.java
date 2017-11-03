@@ -1,14 +1,13 @@
 package org.module.controller.system.menu;
 
 import org.module.base.result.BaseResult;
-import org.module.base.result.DataResult;
 import org.module.base.result.EntityResult;
 import org.module.base.result.PageResult;
+import org.module.controller.BaseController;
 import org.module.dto.system.menu.SmMenuDto;
+import org.module.helper.CodeHelper;
 import org.module.model.system.menu.SmMenu;
-import org.module.service.system.menu.ISmMenuGroupService;
 import org.module.service.system.menu.ISmMenuService;
-import org.module.util.Constant;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -17,18 +16,13 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
 @RequestMapping("/system/menu/")
-public class SmMenuController {
+public class SmMenuController extends BaseController {
 	@Autowired
 	private ISmMenuService service;
-	@Autowired
-	private ISmMenuGroupService groupService;
 
 	@RequestMapping("index")
 	public String index(ModelMap model) {
-		DataResult result = groupService.findDataAll();
-		if (result.getCode() == Constant.RESULT_SUCCESS) {
-			model.addAttribute("groups", result.getData());
-		}
+		model.addAttribute("groups", service.getMenuGroups());
 		return "jsp/system/menu/index";
 	}
 
@@ -39,13 +33,17 @@ public class SmMenuController {
 	}
 
 	@RequestMapping("addindex")
-	public String addIndex() {
+	public String addIndex(ModelMap model) {
+		model.addAttribute("groups", service.getMenuGroups());
+		model.addAttribute("pages", service.getPages());
 		return "jsp/system/menu/add";
 	}
 
 	@RequestMapping("add")
 	@ResponseBody
 	public EntityResult add(SmMenu entity) {
+		entity.setCode(CodeHelper.getCode("SM"));
+		entity.setCreateUser("admin");
 		return service.insertSelective(entity);
 	}
 
@@ -57,6 +55,7 @@ public class SmMenuController {
 	@RequestMapping("edit")
 	@ResponseBody
 	public EntityResult edit(SmMenu entity) {
+		entity.setUpdateUser("test");
 		return service.updateByCode(entity);
 	}
 
