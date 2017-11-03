@@ -2,13 +2,13 @@ package org.module.init.system;
 
 import java.util.List;
 
+import org.module.annotation.Inject;
 import org.module.base.result.DataResult;
 import org.module.cache.system.CacheKey;
 import org.module.helper.CacheHelper;
 import org.module.init.RootInit;
 import org.module.model.system.menu.SmMenuGroup;
 import org.module.service.system.menu.ISmMenuService;
-import org.springframework.beans.factory.annotation.Autowired;
 
 import com.alibaba.fastjson.JSONArray;
 
@@ -21,7 +21,7 @@ import com.alibaba.fastjson.JSONArray;
  */
 public class MenuInit extends RootInit {
 
-	@Autowired
+	@Inject
 	private ISmMenuService service;
 
 	@SuppressWarnings("unchecked")

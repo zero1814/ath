@@ -8,11 +8,14 @@ import org.module.base.result.TreeResult;
 import org.module.base.service.impl.BaseServiceImpl;
 import org.module.cache.system.CacheKey;
 import org.module.dto.system.menu.SmMenuDto;
+import org.module.dto.system.menu.SmPageDto;
 import org.module.helper.CacheHelper;
 import org.module.mapper.system.menu.SmMenuGroupMapper;
 import org.module.mapper.system.menu.SmMenuMapper;
+import org.module.mapper.system.menu.SmPageMapper;
 import org.module.model.system.menu.SmMenu;
 import org.module.model.system.menu.SmMenuGroup;
+import org.module.model.system.menu.SmPage;
 import org.module.service.system.menu.ISmMenuService;
 import org.module.util.Constant;
 import org.module.util.StringUtils;
@@ -28,6 +31,8 @@ public class SmMenuServiceImpl extends BaseServiceImpl<SmMenu, SmMenuMapper, SmM
 	private SmMenuMapper mapper;
 	@Autowired
 	private SmMenuGroupMapper groupMapper;
+	@Autowired
+	private SmPageMapper pageMapper;
 
 	@Override
 	public EntityResult insertSelective(SmMenu entity) {
@@ -122,6 +127,31 @@ public class SmMenuServiceImpl extends BaseServiceImpl<SmMenu, SmMenuMapper, SmM
 			}
 		}
 		return result;
+	}
+
+	/**
+	 * 
+	 * 方法: getMenuGroups <br>
+	 * 
+	 * @return
+	 * @see org.module.service.system.menu.ISmMenuService#getMenuGroups()
+	 */
+	@Override
+	public List<SmMenuGroup> getMenuGroups() {
+		return groupMapper.findDataAll();
+	}
+
+	/**
+	 * 
+	 * 方法: getPages <br>
+	 * 
+	 * @return
+	 * @see org.module.service.system.menu.ISmMenuService#getPages()
+	 */
+	@Override
+	public List<SmPage> getPages() {
+		SmPageDto dto = new SmPageDto();
+		return pageMapper.findEntityAll(dto);
 	}
 
 }

@@ -48,7 +48,7 @@
 	</listener>
 	<listener>
 		<listener-class>
-			cn.com.listener.ServerletListener
+			cn.com.cms.listener.ServerletListener
 		</listener-class>
 	</listener>
 	<!-- 防止spring内存溢出监听器 -->
@@ -65,6 +65,6 @@
 		<location>/jsp/error/500.jsp</location>
 	</error-page>
 	<welcome-file-list>
-		<welcome-file>login.htm</welcome-file>
+		<welcome-file>index.htm</welcome-file>
 	</welcome-file-list>
 </web-app>

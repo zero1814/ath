@@ -5,7 +5,6 @@
 		<id column="id" property="id" jdbcType="INTEGER" />
 		<result column="uid" property="uid" jdbcType="VARCHAR" />
 		<result column="code" property="code" jdbcType="VARCHAR" />
-		<result column="parent_code" property="parentCode" jdbcType="VARCHAR" />
 		<result column="name" property="name" jdbcType="VARCHAR" />
 		<result column="url" property="url" jdbcType="VARCHAR" />
 		<result column="param" property="param" jdbcType="VARCHAR" />
@@ -17,7 +16,7 @@
 		<result column="update_time" property="updateTime" jdbcType="VARCHAR" />
 	</resultMap>
 	<sql id="Base_Column_List">
-		id, uid,`code`,parent_code, `name`, url, param,
+		id, uid,`code`, `name`, url, param,
 		flag_able,
 		is_deleted,
 		create_user,
@@ -46,9 +45,6 @@
 		<trim prefix="(" suffix=")" suffixOverrides=",">
 			uid,
 			`code`,
-			<if test="parentCode != null and parentCode != ''">
-				parent_code,
-			</if>
 			`name`,
 			<if test="url != null and url != ''">
 				url,
@@ -70,9 +66,6 @@
 		<trim prefix="values (" suffix=")" suffixOverrides=",">
 			#{uid,jdbcType=VARCHAR},
 			#{code,jdbcType=VARCHAR},
-			<if test="parentCode != null and parentCode != ''">
-				#{parentCode,jdbcType=VARCHAR},
-			</if>
 			#{name,jdbcType=VARCHAR},
 			<if test="url != null and url != ''">
 				#{url,jdbcType=VARCHAR},
@@ -97,9 +90,6 @@
 	<update id="updateByCode" parameterType="org.module.model.system.menu.SmPage">
 		update systemmodule.sm_page
 		<set>
-			<if test="parentCode != null and parentCode != ''">
-				parent_code=#{parentCode,jdbcType=VARCHAR},
-			</if>
 			<if test="name != null and name != ''">
 				`name` = #{name,jdbcType=VARCHAR},
 			</if>
@@ -126,5 +116,13 @@
 		resultType="java.lang.Integer">
 		select count(1) from systemmodule.sm_page where parent_code
 		= #{parentCode,jdbcType=VARCHAR}
+	</select>
+	<select id="findEntityAll" parameterType="org.module.dto.system.menu.SmPageDto"
+		resultMap="BaseResultMap">
+		select `code`,`name` from systemmodule.sm_page
+		<where>
+			is_deleted=0
+			AND flag_able=0
+		</where>
 	</select>
 </mapper>

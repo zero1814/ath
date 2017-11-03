@@ -1,54 +1,76 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ include file="/jsp/commons/header.jsp" %>
-<div  class="wrapper wrapper-content animated fadeInRight">
+<div class="wrapper wrapper-content">
 	<div class="row">
-		<form id="addFrm" method="post" class="form-horizontal">
-			<input type="hidden" name="parentCode" id="parentCode" value="${parentCode }">
-			<input type="hidden" name="groupCode" id="groupCode" value="${groupCode }">
-			<div class="form-group">
-				<label class="col-sm-4 control-label">名称</label>
-				<div class="col-sm-4">
-					<input name="name" id="name" value="" type="text" class="form-control">
+		<div class="col-sm-12">
+			<form class="form-horizontal m-t" id="add">
+				<div class="form-group">
+					<label class="col-sm-3 control-label">名称：</label>
+					<div class="col-sm-8">
+						<input id="name" name="name" class="form-control" type="text">
+					</div>
 				</div>
-			</div>
-			<div class="form-group">
-				<label class="col-sm-4 control-label">链接页面</label>
-				<div class="col-sm-4">
-					<select class="form-control m-b" name="pageCode">
-						<option value="">请选择</option>
-						<c:forEach var="page" items="${pages }">
+				<div class="form-group">
+					<label class="col-sm-3 control-label">父级菜单：</label>
+					<div class="col-sm-8">
+						<select id="parentCode" name="parentCode" class="form-control">
+							<option value="">--请选择--</option>
+						</select>
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="col-sm-3 control-label">所属分组：</label>
+					<div class="col-sm-8">
+						<select id="groupCode" name="groupCode" class="form-control">
+							<option value="">--请选择--</option>
+							<c:forEach var="group" items="${group }">
+								<option value="${group.code }">${group.name}</option>
+							</c:forEach>
+						</select>
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="col-sm-3 control-label">图标：</label>
+					<div class="col-sm-8">
+						<input id="icon" name="icon" class="form-control" type="text">
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="col-sm-3 control-label">关联页面：</label>
+					<div class="col-sm-8">
+						<select id="pageCode" name="pageCode" class="form-control">
+							<option value="">--请选择--</option>
+							<c:forEach var="page" items="${pages }">
 							<option value="${page.code }">${page.name }</option>
-						</c:forEach>
-					</select>
+							</c:forEach>
+						</select>
+					</div>
 				</div>
-			</div>
-			<div class="form-group">
-				<label class="col-sm-4 control-label">图标</label>
-				<div class="col-sm-4">
-					<input name="icon" id="icon" value="" type="text" class="form-control">
+				<div class="form-group">
+					<label class="col-sm-3 control-label">是否可用：</label>
+					<div class="col-sm-8">
+						<select id="status" name="status" class="form-control">
+							<option value="">--请选择--</option>
+							<option value="0">可用</option>
+							<option value="1">不可用</option>
+						</select>
+					</div>
 				</div>
-			</div>
-			<div class="form-group">
-				<label class="col-sm-4 control-label">是否可用</label>
-				<div class="col-sm-4">
-					<select class="form-control m-b" name="flagAble">
-						<option value="0">可用</option>
-						<option value="1">不可用</option>					
-					</select>
+				<div class="form-group">
+					<label class="col-sm-3 control-label">排序：</label>
+					<div class="col-sm-8">
+						<input id="sort" name="sort" class="form-control" type="text">
+					</div>
 				</div>
-			</div>
-			<div class="form-group">
-				<label class="col-sm-4 control-label">排序</label>
-				<div class="col-sm-4">
-					<input name="sort" id="sort" onkeyup="checkVal(this);" value="" type="text" class="form-control">
+				<div class="form-group">
+					<div class="col-sm-12" style="text-align: center;">
+						<a href="javascript:Menu.add();" class="btn btn-info">提交</a>
+						<a href="/system/menu/index.htm" class="btn btn-default">取消</a>
+					</div>
 				</div>
-			</div>
-			<div style="text-align: center;" class="form-group">
-				<a href="javascript:void(0)" class="btn btn-w-m btn-info" onclick="Menu.add('${groupCode}')">保存</a>
-				<a href="index.htm?groupCode=${groupCode }" class="btn btn-w-m btn-default">取消</a>
-			</div>
-		</form>
+			</form>
+		</div>
 	</div>
 </div>
 <script src="assets/commons/js/system/menu/menu.js"></script>

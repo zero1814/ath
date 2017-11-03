@@ -1,10 +1,14 @@
 package org.module.service.system.menu;
 
+import java.util.List;
+
 import org.module.base.result.DataResult;
 import org.module.base.result.TreeResult;
 import org.module.base.service.IBaseService;
 import org.module.dto.system.menu.SmMenuDto;
 import org.module.model.system.menu.SmMenu;
+import org.module.model.system.menu.SmMenuGroup;
+import org.module.model.system.menu.SmPage;
 
 public interface ISmMenuService extends IBaseService<SmMenu, SmMenuDto> {
 
@@ -30,4 +34,26 @@ public interface ISmMenuService extends IBaseService<SmMenu, SmMenuDto> {
 	 * @return
 	 */
 	DataResult cacheMenu();
+
+	/**
+	 * 
+	 * 方法: getMenuGroups <br>
+	 * 描述: 获取所有分组 <br>
+	 * 作者: zhy<br>
+	 * 时间: 2017年11月3日 上午10:42:46
+	 * 
+	 * @return
+	 */
+	List<SmMenuGroup> getMenuGroups();
+
+	/**
+	 * 
+	 * 方法: getPages <br>
+	 * 描述: 获取所有可用页面 <br>
+	 * 作者: zhy<br>
+	 * 时间: 2017年11月3日 上午10:42:54
+	 * 
+	 * @return
+	 */
+	List<SmPage> getPages();
 }
