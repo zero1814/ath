@@ -15,6 +15,16 @@ public class SmUserDto extends BaseDto {
 
 	private String password;
 
+	private String vertifyCode;
+
+	public String getVertifyCode() {
+		return vertifyCode;
+	}
+
+	public void setVertifyCode(String vertifyCode) {
+		this.vertifyCode = vertifyCode;
+	}
+
 	public String getUserName() {
 		return userName;
 	}
