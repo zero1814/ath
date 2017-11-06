@@ -6,6 +6,7 @@ import javax.servlet.http.HttpServletResponse;
 import org.module.base.BaseLog;
 import org.module.controller.LoginController;
 import org.module.controller.VerificationCodeController;
+import org.module.helper.PropHelper;
 import org.module.model.system.user.SmUser;
 import org.module.system.factory.UserFactory;
 import org.springframework.web.method.HandlerMethod;
@@ -42,7 +43,7 @@ public class LoginInterceptor extends HandlerInterceptorAdapter {
 				SmUser user = UserFactory.userInfo();
 				if (user == null) {
 					logger.logDebug("-----------未登录访问   跳回登录页面----");
-					request.getRequestDispatcher("/jsp/login.jsp").forward(request, response);
+					request.getRequestDispatcher(PropHelper.getConfig("web.login")).forward(request, response);
 					return false;
 				}
 			}

@@ -2,6 +2,7 @@ package org.module.controller;
 
 import javax.servlet.http.HttpServletRequest;
 
+import org.module.annotation.SKipAuthPassport;
 import org.module.base.result.BaseResult;
 import org.module.dto.system.user.SmUserDto;
 import org.module.service.system.user.ISmUserService;
@@ -21,6 +22,7 @@ public class LoginController extends BaseController {
 	@Autowired
 	private ISmUserService service;
 
+	@SKipAuthPassport
 	@RequestMapping("login")
 	@ResponseBody
 	public BaseResult login(SmUserDto dto, HttpServletRequest request) {
