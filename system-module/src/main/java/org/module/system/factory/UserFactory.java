@@ -13,15 +13,6 @@ import com.alibaba.fastjson.JSONObject;
 
 public class UserFactory extends BaseClass {
 
-	private static UserFactory self;
-
-	public static UserFactory instance() {
-		if (self == null) {
-			self = new UserFactory();
-		}
-		return self;
-	}
-
 	/**
 	 * 
 	 * 方法: userInfo <br>
@@ -31,8 +22,8 @@ public class UserFactory extends BaseClass {
 	 * 
 	 * @return
 	 */
-	public SmUser userInfo() {
-		SmUser user = new SmUser();
+	public static SmUser userInfo() {
+		SmUser user = null;
 		HttpSession session = WebHelper.getSession();
 		if (session != null) {
 			String key = CacheKey.SESSION_USER_KEY + session.getId();

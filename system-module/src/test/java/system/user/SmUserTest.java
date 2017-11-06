@@ -4,7 +4,6 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.module.base.BaseTest;
 import org.module.base.result.BaseResult;
-import org.module.base.result.EntityResult;
 import org.module.helper.CodeHelper;
 import org.module.model.system.user.SmUser;
 import org.module.service.system.user.ISmUserService;
@@ -47,11 +46,6 @@ public class SmUserTest extends BaseTest {
 		entity.setPhone("13522231552");
 		entity.setUpdateUser("update");
 		service.updateByCode(entity);
-	}
-
-	public void sel() {
-		EntityResult result = service.login("test", "123456");
-		System.out.println(JSON.toJSON(result));
 	}
 
 	public void del() {

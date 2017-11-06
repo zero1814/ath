@@ -18,7 +18,7 @@
 		<result column="create_time" property="createTime" jdbcType="VARCHAR" />
 		<result column="update_user" property="updateUser" jdbcType="VARCHAR" />
 		<result column="update_time" property="updateTime" jdbcType="VARCHAR" />
-		<collection property="role" ofType="org.module.model.system.user.SmRole">
+		<collection property="roles" ofType="org.module.model.system.user.SmRole">
 			<result column="code" property="code" jdbcType="VARCHAR" />
 			<result column="name" property="name" jdbcType="VARCHAR" />
 		</collection>
@@ -135,7 +135,7 @@
 		</set>
 		where `code`=#{code,jdbcType=VARCHAR}
 	</update>
-	<select id="userLogin" parameterType="org.module.dto.system.user.SmUserDto"
+	<select id="selectEntity" parameterType="org.module.dto.system.user.SmUserDto"
 		resultMap="BaseResultMap">
 		select
 		<include refid="Base_Column_List" />

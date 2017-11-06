@@ -16,6 +16,7 @@ import org.apache.shiro.realm.AuthorizingRealm;
 import org.apache.shiro.subject.PrincipalCollection;
 import org.apache.shiro.subject.SimplePrincipalCollection;
 import org.module.base.result.EntityResult;
+import org.module.dto.system.user.SmUserDto;
 import org.module.helper.LoggerHelper;
 import org.module.model.system.user.SmUser;
 import org.module.service.system.user.ISmRoleService;
@@ -49,7 +50,10 @@ public class SampleRealm extends AuthorizingRealm {
 	protected AuthenticationInfo doGetAuthenticationInfo(AuthenticationToken authcToken)
 			throws AuthenticationException {
 		ShiroToken token = (ShiroToken) authcToken;
-		EntityResult result = userService.login(token.getUsername(), token.getPswd());
+		SmUserDto dto = new SmUserDto();
+		dto.setUserName(token.getUsername());
+		dto.setPassword(token.getPswd());
+		EntityResult result = userService.login(dto);
 		if (result.getCode() == 0) {
 			SmUser user = (SmUser) result.getEntity();
 			if (!StringUtils.equals(user.getStatus(), Constants.SUCCESS_STATUS)) {

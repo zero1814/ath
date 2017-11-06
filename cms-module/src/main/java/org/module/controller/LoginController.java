@@ -16,7 +16,7 @@ import com.google.code.kaptcha.Constants;
 
 @Controller
 @RequestMapping("/user/")
-public class UserController extends BaseController {
+public class LoginController extends BaseController {
 
 	@Autowired
 	private ISmUserService service;
@@ -45,8 +45,7 @@ public class UserController extends BaseController {
 				return result;
 			}
 		}
-		result = service.login(dto.getUserName(), dto.getPassword());
-		System.out.println(result);
+		result = service.login(dto);
 		return result;
 	}
 }

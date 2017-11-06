@@ -34,18 +34,15 @@ public class SmUserServiceImpl extends BaseServiceImpl<SmUser, SmUserMapper, SmU
 	 * 
 	 * 方法: login <br>
 	 * 
-	 * @param username
-	 * @param password
+	 * @param dto
 	 * @return
 	 * @see org.module.service.system.user.ISmUserService#login(java.lang.String,
 	 *      java.lang.String)
 	 */
 	@Override
-	public EntityResult login(String userName, String password) {
-		SmUserDto entity = new SmUserDto();
-		entity.setUserName(userName);
-		entity.setPassword(password);
-		EntityResult result = super.selectEntity(entity);
+	public EntityResult login(SmUserDto dto) {
+		dto.setPassword(MD5Util.md5Hex(dto.getPassword()));
+		EntityResult result = super.selectEntity(dto);
 		if (result.getCode() == Constant.RESULT_SUCCESS) {
 			SmUser user = (SmUser) result.getEntity();
 			CacheHelper.setValue(CacheKey.SESSION_USER_KEY + WebHelper.getSession().getId(), JSON.toJSONString(user));

@@ -20,10 +20,9 @@ public interface ISmUserService extends IBaseService<SmUser, SmUserDto> {
 	 * 描述: 用户登录 <br>
 	 * 作者: zhy<br>
 	 * 时间: 2017年6月22日 上午10:45:33
-	 * @param username
-	 * @param password
+	 * @param dto
 	 * @return
 	 */
-	EntityResult login(String userName,String password);
+	EntityResult login(SmUserDto dto);
 	
 }

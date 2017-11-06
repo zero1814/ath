@@ -134,6 +134,7 @@ public class BaseServiceImpl<T extends BaseModel, M extends BaseMapper<T, DTO>, 
 			}
 			logger.logInfo(this.getClass().getName() + "，执行selectByEntity方法成功");
 		} catch (Exception e) {
+			e.printStackTrace();
 			result.setCode(Constant.RESULT_ERROR);
 			result.setMessage("查询数据失败");
 			logger.logError(this.getClass().getName() + "执行selectByEntity方法失败，失败原因:" + e.getMessage());

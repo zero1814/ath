@@ -47,7 +47,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<script src="assets/commons/js/usepublic.js"></script>
 	<script type="text/javascript">
 	$(function(){
-		 $('#verify_code').click(function() {$(this).attr('src','verification/code.htm?' + Math.floor(Math.random() * 100));}); 
+		 $('#verify_code').click(function() {$(this).attr('src','/verification/code.htm?' + Math.floor(Math.random() * 100));}); 
 	});
 	function login(){
 		var userName = $("#userName").val();
@@ -76,13 +76,14 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					window.location.href = "index.htm";
 				}else{
 					layer.alert(result.message,function(index){
+						$("#verify_code").attr('src','/verification/code.htm?' + Math.floor(Math.random() * 100));
 						layer.close(index);
 					});
 				}
 			},
 			error: function(result) {
-				alert(result);
-				//window.location.href = UsePublic.ERROR_URL;
+				alert(JSON.stringify(result));
+				window.location.href = UsePublic.ERROR_URL;
 			}
 		});
 	

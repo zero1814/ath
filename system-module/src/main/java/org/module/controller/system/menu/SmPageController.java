@@ -8,6 +8,7 @@ import org.module.dto.system.menu.SmPageDto;
 import org.module.helper.CodeHelper;
 import org.module.model.system.menu.SmPage;
 import org.module.service.system.menu.ISmPageService;
+import org.module.system.factory.UserFactory;
 import org.module.util.Constant;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -56,7 +57,7 @@ public class SmPageController extends BaseController {
 	@ResponseBody
 	public EntityResult add(SmPage entity) {
 		entity.setCode(CodeHelper.getCode("SP"));
-		entity.setCreateUser("admin");
+		entity.setCreateUser(UserFactory.userInfo().getCode());
 		return service.insertSelective(entity);
 	}
 
@@ -76,7 +77,7 @@ public class SmPageController extends BaseController {
 	@RequestMapping("edit")
 	@ResponseBody
 	public EntityResult edit(SmPage entity) {
-		entity.setUpdateUser("test");
+		entity.setUpdateUser(UserFactory.userInfo().getCode());
 		return service.updateByCode(entity);
 	}
 

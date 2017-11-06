@@ -8,6 +8,7 @@ import org.module.dto.system.menu.SmMenuGroupDto;
 import org.module.helper.CodeHelper;
 import org.module.model.system.menu.SmMenuGroup;
 import org.module.service.system.menu.ISmMenuGroupService;
+import org.module.system.factory.UserFactory;
 import org.module.util.Constant;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -41,7 +42,7 @@ public class SmMenuGroupController extends BaseController {
 	@ResponseBody
 	public EntityResult add(SmMenuGroup entity) {
 		entity.setCode(CodeHelper.getCode("SMG"));
-		entity.setCreateUser("admin");
+		entity.setCreateUser(UserFactory.userInfo().getCode());
 		return service.insertSelective(entity);
 	}
 
@@ -61,7 +62,7 @@ public class SmMenuGroupController extends BaseController {
 	@RequestMapping("edit")
 	@ResponseBody
 	public EntityResult edit(SmMenuGroup entity) {
-		entity.setUpdateUser("test");
+		entity.setUpdateUser(UserFactory.userInfo().getCode());
 		return service.updateByCode(entity);
 	}
 
