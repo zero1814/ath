@@ -16,6 +16,9 @@
 					<div class="col-sm-8">
 						<select id="parentCode" name="parentCode" class="form-control">
 							<option value="">--请选择--</option>
+							<c:forEach var="menu" items="${menus }">
+								<option value="${menu.code }">${menu.name}</option>
+							</c:forEach>
 						</select>
 					</div>
 				</div>

@@ -1,5 +1,7 @@
 package system.menu;
 
+import java.util.List;
+
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.module.base.BaseTest;
@@ -42,9 +44,16 @@ public class SmMenuTest extends BaseTest {
 		System.out.println(JSON.toJSON(result));
 	}
 
-	@Test
 	public void tree() {
 		TreeResult result = service.tree("SMG1000");
 		System.out.println(JSON.toJSON(result));
+	}
+
+	@Test
+	public void sel() {
+		List<SmMenu> list = service.findAbleAddChildMenu();
+		System.out.println("------------>");
+		System.out.println(JSON.toJSON(list));
+		System.out.println("------------>");
 	}
 }

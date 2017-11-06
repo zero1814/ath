@@ -198,9 +198,11 @@
 		m.`name`,
 		m.flag_able,
 		m.sort,
-		IFNULL(pm.`name`,'--') AS parent_name,
+		IFNULL(pm.`name`,'--') AS
+		parent_name,
 		IFNULL(p.`name`,'--') AS page_name,
-		IFNULL(mg.`name`,'--') AS group_name,
+		IFNULL(mg.`name`,'--')
+		AS group_name,
 		m.create_user,
 		DATE_FORMAT(
 		m.create_time,
@@ -214,9 +216,11 @@
 		%H:%i:%s'
 		) AS update_time
 		FROM
-		systemmodule.sm_menu AS m LEFT OUTER JOIN systemmodule.sm_menu AS pm ON
+		systemmodule.sm_menu AS m LEFT
+		OUTER JOIN systemmodule.sm_menu AS pm ON
 		m.parent_code=pm.`code`
-		LEFT OUTER JOIN systemmodule.sm_menu_group AS mg ON m.group_code=mg.`code`
+		LEFT
+		OUTER JOIN systemmodule.sm_menu_group AS mg ON m.group_code=mg.`code`
 		LEFT OUTER JOIN systemmodule.sm_page AS p ON m.page_code=p.`code`
 		<where>
 			1=1
@@ -227,7 +231,17 @@
 				AND m.group_code = #{groupCode,jdbcType=VARCHAR}
 			</if>
 		</where>
-
-
+		ORDER BY create_time DESC,sort ASC
+	</select>
+	<!-- 查询所有可以添加子级菜单的菜单菜单名称 -->
+	<select id="findAbleAddChildMenu" parameterType="java.lang.String"
+		resultMap="BaseResultMap">
+		select `code`,`name` from systemmodule.sm_menu
+		<where>
+			page_code = ''
+			<if test="_parameter != null and _parameter != '' ">
+				AND parent_code = #{_parameter,jdbcType=VARCHAR}
+			</if>
+		</where>
 	</select>
 </mapper>

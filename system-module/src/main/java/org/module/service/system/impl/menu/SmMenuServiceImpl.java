@@ -69,37 +69,6 @@ public class SmMenuServiceImpl extends BaseServiceImpl<SmMenu, SmMenuMapper, SmM
 		return result;
 	}
 
-	/**
-	 * 
-	 * 方法: data <br>
-	 * 描述: 根据菜单分组编码和父级编码查询菜单列表 <br>
-	 * 作者: zhy<br>
-	 * 时间: 2017年6月1日 上午10:47:22
-	 * 
-	 * @param parentCode
-	 * @param groupCode
-	 * @return
-	 */
-	private List<SmMenu> data(String parentCode, String groupCode) {
-		SmMenuDto dto = new SmMenuDto();
-		dto.setGroupCode(groupCode);
-		dto.setParentCode(parentCode);
-		List<SmMenu> list = mapper.findEntityAll(dto);
-		if (list != null && list.size() > 0) {
-			for (SmMenu m : list) {
-				SmMenuDto sbDto = new SmMenuDto();
-				sbDto.setGroupCode(groupCode);
-				sbDto.setParentCode(m.getCode());
-				List<SmMenu> sub = mapper.findEntityAll(sbDto);
-				if (sub != null && sub.size() > 0) {
-					m.setNodes(sub);
-					m.setChilds(sub);
-				}
-			}
-		}
-		return list;
-	}
-
 	@SuppressWarnings("unchecked")
 	@Override
 	public DataResult cacheMenu() {
@@ -141,4 +110,59 @@ public class SmMenuServiceImpl extends BaseServiceImpl<SmMenu, SmMenuMapper, SmM
 		return pageMapper.findEntityAll(dto);
 	}
 
+	/**
+	 * 
+	 * 方法: findAbleAddChildMenu <br>
+	 * 
+	 * @return
+	 * @see org.module.service.system.menu.ISmMenuService#findAbleAddChildMenu()
+	 */
+	@Override
+	public List<SmMenu> findAbleAddChildMenu() {
+		return findAbleAddChildMenu("0");
+	}
+
+	private List<SmMenu> findAbleAddChildMenu(String code) {
+		List<SmMenu> menus = mapper.findAbleAddChildMenu(code);
+		if (!menus.isEmpty()) {
+			for (SmMenu menu : menus) {
+				List<SmMenu> sub = findAbleAddChildMenu(menu.getCode());
+				if (!sub.isEmpty()) {
+					menu.setChilds(sub);
+				}
+			}
+		}
+		return menus;
+	}
+
+	/**
+	 * 
+	 * 方法: data <br>
+	 * 描述: 根据菜单分组编码和父级编码查询菜单列表 <br>
+	 * 作者: zhy<br>
+	 * 时间: 2017年6月1日 上午10:47:22
+	 * 
+	 * @param parentCode
+	 * @param groupCode
+	 * @return
+	 */
+	private List<SmMenu> data(String parentCode, String groupCode) {
+		SmMenuDto dto = new SmMenuDto();
+		dto.setGroupCode(groupCode);
+		dto.setParentCode(parentCode);
+		List<SmMenu> list = mapper.findEntityAll(dto);
+		if (list != null && list.size() > 0) {
+			for (SmMenu m : list) {
+				SmMenuDto sbDto = new SmMenuDto();
+				sbDto.setGroupCode(groupCode);
+				sbDto.setParentCode(m.getCode());
+				List<SmMenu> sub = mapper.findEntityAll(sbDto);
+				if (sub != null && sub.size() > 0) {
+					m.setNodes(sub);
+					m.setChilds(sub);
+				}
+			}
+		}
+		return list;
+	}
 }

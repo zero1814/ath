@@ -17,6 +17,16 @@
 					<div class="col-sm-8">
 						<select id="parentCode" name="parentCode" class="form-control">
 							<option value="">--请选择--</option>
+							<c:forEach var="menu" items="${menus }">
+								<c:choose>
+									<c:when test="${entity.parentCode==menu.code }">
+										<option selected="selected" value="${menu.code }">${menu.name}</option>
+									</c:when>
+									<c:otherwise>
+										<option value="${menu.code }">${menu.name}</option>
+									</c:otherwise>
+								</c:choose>
+							</c:forEach>
 						</select>
 					</div>
 				</div>
@@ -51,7 +61,7 @@
 							<option value="">--请选择--</option>
 							<c:forEach var="page" items="${pages }">
 								<c:choose>
-									<c:when test="${entity.pageCode=page.code }">
+									<c:when test="${entity.pageCode==page.code }">
 										<option selected="selected"  value="${page.code }">${page.name }</option>									
 									</c:when>
 									<c:otherwise>
@@ -67,8 +77,16 @@
 					<div class="col-sm-8">
 						<select id="flagAble" name="flagAble" class="form-control">
 							<option value="">--请选择--</option>
-							<option value="0">可用</option>
-							<option value="1">不可用</option>
+							<c:choose>
+								<c:when test="${entity.flagAble == 1 }">
+									<option value="0">可用</option>
+									<option selected="selected" value="1">不可用</option>								
+								</c:when>
+								<c:otherwise>
+									<option selected="selected" value="0">可用</option>
+									<option value="1">不可用</option>								
+								</c:otherwise>
+							</c:choose>
 						</select>
 					</div>
 				</div>

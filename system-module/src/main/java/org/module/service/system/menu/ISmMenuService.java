@@ -56,4 +56,15 @@ public interface ISmMenuService extends IBaseService<SmMenu, SmMenuDto> {
 	 * @return
 	 */
 	List<SmPage> getPages();
+
+	/**
+	 * 
+	 * 方法: findAbleAddChildMenu <br>
+	 * 描述: 查询可以添加子级菜单的菜单列表 <br>
+	 * 作者: zhy<br>
+	 * 时间: 2017年11月6日 上午9:55:15
+	 * 
+	 * @return
+	 */
+	List<SmMenu> findAbleAddChildMenu();
 }

@@ -8,6 +8,7 @@ import org.module.dto.system.menu.SmMenuDto;
 import org.module.helper.CodeHelper;
 import org.module.model.system.menu.SmMenu;
 import org.module.service.system.menu.ISmMenuService;
+import org.module.util.Constant;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -34,8 +35,18 @@ public class SmMenuController extends BaseController {
 
 	@RequestMapping("addindex")
 	public String addIndex(ModelMap model) {
+		/**
+		 * 分组
+		 */
 		model.addAttribute("groups", service.getMenuGroups());
+		/**
+		 * 可用页面
+		 */
 		model.addAttribute("pages", service.getPages());
+		/**
+		 * 父级菜单
+		 */
+		model.addAttribute("menus", service.findAbleAddChildMenu());
 		return "jsp/system/menu/add";
 	}
 
@@ -48,8 +59,28 @@ public class SmMenuController extends BaseController {
 	}
 
 	@RequestMapping("editindex")
-	public String editIndex() {
-		return "jsp/system/menu/edit";
+	public String editIndex(String code, ModelMap model) {
+		EntityResult result = service.selectByCode(code);
+		if (result.getCode() == Constant.RESULT_SUCCESS) {
+			model.addAttribute("entity", result.getEntity());
+			/**
+			 * 分组
+			 */
+			model.addAttribute("groups", service.getMenuGroups());
+			/**
+			 * 可用页面
+			 */
+			model.addAttribute("pages", service.getPages());
+			/**
+			 * 父级菜单
+			 */
+			model.addAttribute("menus", service.findAbleAddChildMenu());
+			return "jsp/system/menu/edit";
+		} else if (result.getCode() == Constant.RESULT_NULL) {
+			return NULL_URL;
+		} else {
+			return ERROR_URL;
+		}
 	}
 
 	@RequestMapping("edit")
