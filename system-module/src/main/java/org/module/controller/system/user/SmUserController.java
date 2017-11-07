@@ -1,28 +1,36 @@
 package org.module.controller.system.user;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.module.base.result.BaseResult;
 import org.module.base.result.EntityResult;
+import org.module.base.result.FileResult;
 import org.module.base.result.PageResult;
+import org.module.controller.BaseController;
 import org.module.dto.system.user.SmUserDto;
 import org.module.helper.CodeHelper;
+import org.module.helper.FileHelper;
 import org.module.helper.PropHelper;
 import org.module.model.system.user.SmUser;
 import org.module.service.system.user.ISmUserService;
+import org.module.system.factory.UserFactory;
+import org.module.util.Constant;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
 @RequestMapping("system/user/")
-public class SmUserController {
+public class SmUserController extends BaseController {
 
 	@Autowired
 	private ISmUserService service;
 
 	@RequestMapping("index")
 	public String inex() {
-		return "";
+		return "jsp/system/user/index";
 	}
 
 	@RequestMapping("data")
@@ -31,9 +39,9 @@ public class SmUserController {
 		return service.findEntityToPage(dto);
 	}
 
-	@RequestMapping("add_index")
+	@RequestMapping("addindex")
 	public String addIndex() {
-		return null;
+		return "jsp/system/user/add";
 	}
 
 	@RequestMapping("add")
@@ -44,18 +52,48 @@ public class SmUserController {
 		return service.insertSelective(entity);
 	}
 
-	@RequestMapping("edit_index")
-	public String editIndex() {
-		return null;
+	@RequestMapping("editindex")
+	public String editIndex(String code, ModelMap model) {
+		EntityResult result = service.selectByCode(code);
+		if (result.getCode() == Constant.RESULT_SUCCESS) {
+			model.addAttribute("entity", result.getEntity());
+			return "jsp/system/user/edit";
+		} else if (result.getCode() == Constant.RESULT_NULL) {
+			return NULL_URL;
+		} else {
+			return ERROR_URL;
+		}
 	}
 
 	@RequestMapping("edit")
 	@ResponseBody
 	public EntityResult edit(SmUser entity) {
+		entity.setUpdateUser(UserFactory.userInfo().getCode());
 		return service.updateByCode(entity);
 	}
 
+	@RequestMapping("del")
+	@ResponseBody
 	public BaseResult del(String code) {
 		return service.deleteByCode(code);
+	}
+
+	/**
+	 * 
+	 * 方法: uploadHeadPic <br>
+	 * 描述: 头像上传 <br>
+	 * 作者: zhy<br>
+	 * 时间: 2017年11月7日 下午3:45:48
+	 * 
+	 * @param request
+	 * @return
+	 */
+	@RequestMapping("upload")
+	@ResponseBody
+	public FileResult uploadHeadPic(HttpServletRequest request) {
+		String path = PropHelper.getConfig("web.user_pic_path");
+		String url = PropHelper.getConfig("web.user_pic_url");
+		FileResult result = FileHelper.instance().upload(request, path, url, 0);
+		return result;
 	}
 }

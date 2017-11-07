@@ -146,4 +146,27 @@
 			#{password,jdbcType=VARCHAR}
 		</where>
 	</select>
+	<select id="findEntityAllToPage" parameterType="org.module.dto.system.user.SmUserDto"
+		resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from systemmodule.sm_user
+		<where>
+			1=1
+			<if test="userName != null and userName != ''">
+				AND user_name like
+				CONCAT('%',#{userName,jdbcType=VARCHAR},'%')
+			</if>
+			<if test="realName != null and realName != '' ">
+				AND real_name like
+				CONCAT('%',#{realName,jdbcType=VARCHAR},'%')
+			</if>
+			<if test="phone != null and phone != '' ">
+				AND phone = #{phone,jdbcType=VARCHAR}
+			</if>
+			<if test="status != null">
+				AND status = #{status,jdbcType=VARCHAR}
+			</if>
+		</where>
+	</select>
 </mapper>

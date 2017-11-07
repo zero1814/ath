@@ -2,6 +2,7 @@ package org.module.helper;
 
 import java.net.InetAddress;
 import java.net.UnknownHostException;
+import java.util.UUID;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -41,5 +42,18 @@ public class WebHelper {
 	public static HttpSession getSession() {
 		HttpSession session = getRequest().getSession();
 		return session;
+	}
+
+	/**
+	 * 
+	 * 方法: genUuid <br>
+	 * 描述: 获取uuid <br>
+	 * 作者: zhy<br>
+	 * 时间: 2016年10月26日 下午9:45:41
+	 * 
+	 * @return
+	 */
+	public static String genUuid() {
+		return UUID.randomUUID().toString().replace("-", "");
 	}
 }

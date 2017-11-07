@@ -54,8 +54,9 @@ var User = {
 		field: 'operate',
 		title: '操作',
 		formatter: function(value, row, index) {
-			var html = "<a target='_self' href='javascript:User.edit();'>修改</a>  |  ";
-			html += "<a href='javascript:User.del();'>删除</a>";
+			var code = row.code;
+			var html = "<a target='_self' href='system/user/editindex.htm?code="+code+"'>修改</a>  |  ";
+			html += "<a href='javascript:User.del(\""+code+"\");'>删除</a>";
 			return html;
 		}
 	}],
@@ -67,8 +68,10 @@ var User = {
 	},
 	searchParam: function() {
 		var temp = {
-			name: $("#name").val(),
-			groupCode: $("#groupCode").val()
+			name: $("#userName").val(),
+			phone: $("#phone").val(),
+			status: $("#status").val(),
+			realName:$("#realName").val()
 		};
 		return temp;
 	},
@@ -77,28 +80,88 @@ var User = {
 		$("#table").bootstrapTable('refresh');
 	},
 	add: function() {
-		layer.alert('执行添加方法');
+		var param = $("#add").serializeArray();
+		$.ajax({
+			url: "system/user/add.htm",
+			type: "POST",
+			data: param,
+			dataType: "json",
+			success: function(result) {
+				if(result.code == UsePublic.SUCCESS){
+					layer.alert(result.message,function(index){
+						window.location.href = "system/user/index.htm";
+						layer.close(index);
+					});
+				}else if(result.code == UsePublic.NULL){
+					window.parent.location.href = UsePublic.NULL_URL;
+				}else{
+					window.parent.location.href = UsePublic.ERROR_URL;
+				}
+			},
+			error: function(result) {
+				window.parent.location.href = UsePublic.ERROR_URL;
+			}
+		});
 	},
 	edit: function() {
 		layer.confirm("是否确认编辑?", {
 			btn: ['确认', '取消']
-		}, function() {
-			layer.close();
-			window.location.href='./html/system/user/edit.html';
-		}, function() {
-			layer.close();
+		}, function(index) {
+			layer.close(index);
+			var param = $("#edit").serializeArray();
+			$.ajax({
+				url: "system/user/edit.htm",
+				type: "POST",
+				data: param,
+				dataType: "json",
+				success: function(result) {
+					if(result.code == UsePublic.SUCCESS){
+						layer.alert(result.message,function(index){
+							window.location.href = "system/user/index.htm";
+							layer.close(index);
+						});
+					}else if(result.code == UsePublic.NULL){
+						window.parent.location.href = UsePublic.NULL_URL;
+					}else{
+						window.parent.location.href = UsePublic.ERROR_URL;
+					}
+				},
+				error: function(result) {
+					window.parent.location.href = UsePublic.ERROR_URL;
+				}
+			});
+		}, function(index) {
+			layer.close(index);
 		});
 	},
 	del: function() {
+		var param = {"code":code};
 		layer.confirm("是否确认删除?", {
 			btn: ['确认', '取消']
-		}, function() {
-			layer.close();
-			layer.alert('执行删除方法',function(){
-				window.location.href='./html/system/user/edit.html';
+		}, function(index) {
+			$.ajax({
+				url: "system/user/del.htm",
+				type: "POST",
+				data: param,
+				dataType: "json",
+				success: function(result) {
+					if(result.code == UsePublic.SUCCESS){
+						layer.alert(result.message,function(index){
+							$("#table").bootstrapTable('refresh');
+							layer.close(index);
+						});
+					}else if(result.code == UsePublic.NULL){
+						window.parent.location.href = UsePublic.NULL_URL;
+					}else{
+						window.parent.location.href = UsePublic.ERROR_URL;
+					}
+				},
+				error: function(result) {
+					window.parent.location.href = UsePublic.ERROR_URL;
+				}
 			});
-		}, function() {
-			layer.close();
+		}, function(index) {
+			layer.close(index);
 		});
 	}
 };

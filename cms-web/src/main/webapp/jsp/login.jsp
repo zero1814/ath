@@ -76,7 +76,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					window.location.href = "index.htm";
 				}else{
 					layer.alert(result.message,function(index){
-						$("#verify_code").attr('src','/verification/code.htm?' + Math.floor(Math.random() * 100));
+						$("#verify_code").attr('src','verification/code.htm?' + Math.floor(Math.random() * 100));
 						layer.close(index);
 					});
 				}

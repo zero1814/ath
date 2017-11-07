@@ -5,14 +5,13 @@ import org.module.base.service.impl.BaseServiceImpl;
 import org.module.cache.system.CacheKey;
 import org.module.dto.system.user.SmUserDto;
 import org.module.helper.CacheHelper;
+import org.module.helper.CodeHelper;
 import org.module.helper.WebHelper;
 import org.module.mapper.system.user.SmUserMapper;
 import org.module.model.system.user.SmUser;
-import org.module.service.system.ISmCodeService;
 import org.module.service.system.user.ISmUserService;
 import org.module.util.Constant;
 import org.module.util.MD5Util;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.alibaba.fastjson.JSON;
@@ -26,9 +25,6 @@ import com.alibaba.fastjson.JSON;
  */
 @Service
 public class SmUserServiceImpl extends BaseServiceImpl<SmUser, SmUserMapper, SmUserDto> implements ISmUserService {
-
-	@Autowired
-	private ISmCodeService codeService;
 
 	/**
 	 * 
@@ -58,7 +54,7 @@ public class SmUserServiceImpl extends BaseServiceImpl<SmUser, SmUserMapper, SmU
 
 	@Override
 	public EntityResult insertSelective(SmUser entity) {
-		String code = codeService.getCode("SU");
+		String code = CodeHelper.getCode("SU");
 		entity.setCode(code);
 		entity.setCreateUser(code);
 		entity.setPassword(MD5Util.md5Hex(entity.getPassword()));
