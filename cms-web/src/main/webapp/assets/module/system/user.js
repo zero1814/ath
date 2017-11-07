@@ -13,7 +13,10 @@ var User = {
 	}, {
 		field: 'realName',
 		title: '真实姓名'
-	}, {
+	},{
+		field: 'phone',
+		title: '手机号'
+	},  {
 		field: 'email',
 		title: '邮箱'
 	}, {
@@ -60,7 +63,7 @@ var User = {
 		User.data();
 	},
 	data: function() {
-		Table.init("table", "./data/system/user/user.json", User.columns, User.searchParam());
+		Table.init("table", "system/user/data.htm", User.columns, User.searchParam());
 	},
 	searchParam: function() {
 		var temp = {

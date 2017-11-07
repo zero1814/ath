@@ -50,4 +50,6 @@
 			</bean>
 		</property>
 	</bean>
+	<import resource="spring-mybatis.xml"/>
+	<import resource="spring-redis.xml"/>
 </beans>
