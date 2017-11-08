@@ -25,7 +25,7 @@ public interface ISmUserRoleService extends IBaseService<SmUserRole, SmUserRoleD
 	 * @param userCode
 	 * @return
 	 */
-	DataResult selectByUserCode(String userCode);
+	DataResult findUserRoleData(SmUserRoleDto dto);
 
 	/**
 	 * 
@@ -38,4 +38,15 @@ public interface ISmUserRoleService extends IBaseService<SmUserRole, SmUserRoleD
 	 * @return
 	 */
 	BaseResult deleteByUserCode(String userCode);
+	
+	/**
+	 * 
+	 * 方法: deleteUserRole <br>
+	 * 描述: 删除用户角色 <br>
+	 * 作者: zhy<br>
+	 * 时间: 2017年11月8日 上午11:41:47
+	 * @param dto
+	 * @return
+	 */
+	BaseResult deleteUserRole(SmUserRoleDto dto);
 }

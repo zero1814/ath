@@ -7,6 +7,7 @@ import org.module.base.result.DataResult;
 import org.module.base.service.impl.BaseServiceImpl;
 import org.module.dto.system.user.SmUserRoleDto;
 import org.module.mapper.system.user.SmUserRoleMapper;
+import org.module.model.system.user.SmRole;
 import org.module.model.system.user.SmUserRole;
 import org.module.service.system.user.ISmUserRoleService;
 import org.module.util.Constant;
@@ -29,35 +30,6 @@ public class SmUserRoleServiceImpl extends BaseServiceImpl<SmUserRole, SmUserRol
 
 	/**
 	 * 
-	 * 方法: selectByUserCode <br>
-	 * 
-	 * @param userCode
-	 * @return
-	 * @see org.module.service.system.user.ISmUserRoleService#selectByUserCode(java.lang.String)
-	 */
-	@Override
-	public DataResult selectByUserCode(String userCode) {
-		DataResult result = new DataResult();
-		try {
-			List<SmUserRole> list = mapper.selectByUserCode(userCode);
-			if (list != null && list.size() > 0) {
-				result.setCode(Constant.RESULT_SUCCESS);
-				result.setMessage("查询成功");
-				result.setData(list);
-			} else {
-				result.setCode(Constant.RESULT_NULL);
-				result.setMessage("查询用户角色列表为空");
-			}
-		} catch (Exception e) {
-			e.printStackTrace();
-			result.setCode(Constant.RESULT_ERROR);
-			result.setMessage("查询用户角色列表失败，失败原因:" + e.getMessage());
-		}
-		return result;
-	}
-
-	/**
-	 * 
 	 * 方法: deleteByUserCode <br>
 	 * 
 	 * @param userCode
@@ -77,6 +49,53 @@ public class SmUserRoleServiceImpl extends BaseServiceImpl<SmUserRole, SmUserRol
 			result.setMessage("删除失败，失败原因:" + e.getMessage());
 		}
 		return result;
+	}
+
+	/**
+	 * 
+	 * 方法: deleteUserRole <br>
+	 * 
+	 * @param dto
+	 * @return
+	 * @see org.module.service.system.user.ISmUserRoleService#deleteUserRole(org.module.dto.system.user.SmUserRoleDto)
+	 */
+	@Override
+	public BaseResult deleteUserRole(SmUserRoleDto dto) {
+		BaseResult result = new BaseResult();
+		try {
+			mapper.deleteUserRole(dto);
+			result.setCode(Constant.RESULT_SUCCESS);
+			result.setMessage("删除成功");
+		} catch (Exception e) {
+			e.printStackTrace();
+			result.setCode(Constant.RESULT_ERROR);
+			result.setMessage("删除报错，错误原因:" + e.getMessage());
+		}
+		return result;
+	}
+
+	/**
+	 * 
+	 * 方法: findUserRoleData <br>
+	 * 
+	 * @param userCode
+	 * @return
+	 * @see org.module.service.system.user.ISmUserRoleService#findUserRoleData(java.lang.String)
+	 */
+	@Override
+	public DataResult findUserRoleData(SmUserRoleDto dto) {
+		DataResult result = new DataResult();
+		try {
+			List<SmRole> list = mapper.findUserRoleData(dto);
+			result.setData(list);
+			result.setCode(Constant.RESULT_SUCCESS);
+			result.setMessage("查询用户角色列表成功");
+		} catch (Exception e) {
+			e.printStackTrace();
+			result.setCode(Constant.RESULT_ERROR);
+			result.setMessage("查询用户角色列表报错，错误原因:" + e.getMessage());
+		}
+		return null;
 	}
 
 }

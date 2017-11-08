@@ -6,27 +6,21 @@
 		<div class="col-sm-12">
 			<form method="get" class="form-horizontal">
 				<div class="form-group">
-					<label class="col-sm-4 control-label">用户名</label>
+					<label class="col-sm-4 control-label">编码</label>
 					<div class="col-sm-4">
-						<input name="userName" id="userName" value="" type="text" class="form-control">
+						<input name="code" id="code" value="" type="text" class="form-control">
 					</div>
 				</div>
 				<div class="form-group">
-					<label class="col-sm-4 control-label">真实姓名</label>
+					<label class="col-sm-4 control-label">名称</label>
 					<div class="col-sm-4">
-						<input name="realName" id="realName" value="" type="text" class="form-control">
-					</div>
-				</div>
-				<div class="form-group">
-					<label class="col-sm-4 control-label">手机号</label>
-					<div class="col-sm-4">
-						<input name="phone" id="phone" value="" type="text" class="form-control">
+						<input name="name" id="name" value="" type="text" class="form-control">
 					</div>
 				</div>
 				<div class="form-group">
 					<label class="col-sm-4 control-label"></label>
 					<div class="col-sm-4">
-						<a style="float: right;" href="javascript:void(0)" onclick="User.search();" class="btn btn-w-m btn-info">查询</a>
+						<a style="float: right;" href="javascript:void(0)" onclick="Role.search();" class="btn btn-w-m btn-info">查询</a>
 					</div>
 				</div>
 			</form>
@@ -35,7 +29,7 @@
 	<div class="row">
 		<div class="col-sm-12">
 			<div class="btn-group hidden-xs" role="table">
-				<a href="system/user/role/addindex.htm?userCode=${userCode }" class="btn btn-w-m btn-info">添加</a>
+				<a href="javascript:Role.openLayer('add')" class="btn btn-w-m btn-info">添加</a>
 			</div>
 			<table id="table" data-height="400" data-mobile-responsive="true">
 			</table>
@@ -43,10 +37,10 @@
 	</div>
 </div>
 <script type="text/javascript" src="assets/commons/js/table.js"></script>
-<script type="text/javascript" src="assets/module/system/user.role.js"></script>
+<script type="text/javascript" src="assets/module/system/role.js"></script>
 <script type="text/javascript">
 $(function(){
-	UserRole.init();
-})
+	Role.init();
+});
 </script>
 <%@ include file="/jsp/commons/footer.jsp" %>

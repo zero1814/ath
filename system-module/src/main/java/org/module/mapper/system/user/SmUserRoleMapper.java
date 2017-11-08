@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.module.base.mapper.BaseMapper;
 import org.module.dto.system.user.SmUserRoleDto;
+import org.module.model.system.user.SmRole;
 import org.module.model.system.user.SmUserRole;
 
 /**
@@ -17,18 +18,6 @@ public interface SmUserRoleMapper extends BaseMapper<SmUserRole, SmUserRoleDto> 
 
 	/**
 	 * 
-	 * 方法: selectByUserCode <br>
-	 * 描述: 根据用户编号查询角色列表 <br>
-	 * 作者: zhy<br>
-	 * 时间: 2017年5月31日 下午2:40:49
-	 * 
-	 * @param userCode
-	 * @return
-	 */
-	List<SmUserRole> selectByUserCode(String userCode);
-
-	/**
-	 * 
 	 * 方法: deleteByUserCode <br>
 	 * 描述: 根据用户编号删除角色 <br>
 	 * 作者: zhy<br>
@@ -38,4 +27,28 @@ public interface SmUserRoleMapper extends BaseMapper<SmUserRole, SmUserRoleDto> 
 	 * @return
 	 */
 	int deleteByUserCode(String userCode);
+
+	/**
+	 * 
+	 * 方法: deleteUserRole <br>
+	 * 描述: 删除用户角色信息 <br>
+	 * 作者: zhy<br>
+	 * 时间: 2017年11月8日 上午11:29:25
+	 * 
+	 * @param dto
+	 * @return
+	 */
+	int deleteUserRole(SmUserRoleDto dto);
+
+	/**
+	 * 
+	 * 方法: findUserRoleData <br>
+	 * 描述: 根据用户编码查询角色列表 <br>
+	 * 作者: zhy<br>
+	 * 时间: 2017年11月8日 上午11:45:05
+	 * 
+	 * @param dto
+	 * @return
+	 */
+	List<SmRole> findUserRoleData(SmUserRoleDto dto);
 }

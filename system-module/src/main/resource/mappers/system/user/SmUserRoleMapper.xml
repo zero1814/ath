@@ -15,18 +15,19 @@
 		%H:%i:%s') as
 		create_time
 	</sql>
-	<select id="selectByUserCode" resultMap="BaseResultMap"
-		parameterType="java.lang.String">
-		select
-		<include refid="Base_Column_List" />
-		from systemmodule.sm_user_role
-		where
-		`user_code`=#{userCode,jdbcType=VARCHAR}
-	</select>
 	<delete id="deleteByUserCode" parameterType="java.lang.String">
 		delete from
 		systemmodule.sm_user_role where user_code =
 		#{userCode,jdbcType=VARCHAR}
+	</delete>
+	<delete id="deleteUserRole" parameterType="org.module.dto.system.user.SmUserRoleDto">
+		delete from
+		systemmodule.sm_user_role
+		<where>
+			user_code = #{userCode,jdbcType=VARCHAR}
+			AND role_code
+			=#{roleCode,jdbcType=VARCHAR}
+		</where>
 	</delete>
 	<insert id="insertSelective" parameterType="org.module.model.system.user.SmUserRole">
 		insert into systemmodule.sm_user_role
@@ -46,4 +47,20 @@
 			%H:%i:%s'),
 		</trim>
 	</insert>
+	<!-- 查询用户所有角色信息 -->
+	<select id="findUserRoleData" parameterType="org.module.dto.system.user.SmUserRoleDto"
+		resultMap="BaseResultMap">
+		SELECT
+		r.`name`,
+		r.en_name,
+		r.`status`
+		FROM
+		sm_user_role AS ur
+		LEFT JOIN
+		sm_role AS r ON
+		ur.role_code = r.`code`
+		<where>
+			ur.user_code=#{userCode,jdbcType=VARCHAR}
+		</where>
+	</select>
 </mapper>

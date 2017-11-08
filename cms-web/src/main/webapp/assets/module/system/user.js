@@ -44,6 +44,13 @@ var User = {
 		field: 'updateTime',
 		title: '修改时间'
 	}, {
+		field: 'role',
+		title: '角色',
+		formatter: function(value, row, index) {
+			var html = "<a href='system/user/role/index.htm?code="+row.code+"'>设置</a>";
+			return html;
+		}
+	},{
 		field: 'detail',
 		title: '查看',
 		formatter: function(value, row, index) {

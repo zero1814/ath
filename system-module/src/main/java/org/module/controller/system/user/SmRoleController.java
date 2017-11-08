@@ -18,7 +18,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
-@RequestMapping("/system/user/role/")
+@RequestMapping("/system/role/")
 public class SmRoleController extends BaseController {
 
 	@Autowired
@@ -26,7 +26,7 @@ public class SmRoleController extends BaseController {
 
 	@RequestMapping("index")
 	public String inex() {
-		return "jsp/system/user/role/index";
+		return "jsp/system/role/index";
 	}
 
 	@RequestMapping("data")
@@ -37,7 +37,7 @@ public class SmRoleController extends BaseController {
 
 	@RequestMapping("addindex")
 	public String addIndex() {
-		return "jsp/system/user/role/add";
+		return "jsp/system/role/add";
 	}
 
 	@RequestMapping("add")
@@ -54,7 +54,7 @@ public class SmRoleController extends BaseController {
 		EntityResult result = service.selectByCode(code);
 		if (result.getCode() == Constant.RESULT_SUCCESS) {
 			model.addAttribute("entity", result.getEntity());
-			return "jsp/system/user/role/edit";
+			return "jsp/system/role/edit";
 		} else if (result.getCode() == Constant.RESULT_NULL) {
 			return NULL_URL;
 		} else {

@@ -50,7 +50,7 @@ var Role = {
 			Role.data();
 		},
 		data: function() {
-			Table.init("table", "system/user/role/data.htm", Role.columns, Role.searchParam());
+			Table.init("table", "system/role/data.htm", Role.columns, Role.searchParam());
 		},
 		searchParam: function() {
 			var temp = {
@@ -66,9 +66,9 @@ var Role = {
 		openLayer: function(type,code) {
 			var url = "";
 			if(type == 'add'){
-				url="system/user/role/addindex.htm";
+				url="system/role/addindex.htm";
 			}else if(type =='edit'){
-				url="system/user/role/editindex.htm?code="+code;
+				url="system/role/editindex.htm?code="+code;
 			}
 			Role.Layer = layer.open({
 				type: 2,
@@ -86,7 +86,7 @@ var Role = {
 		add: function() {
 			var param = $("#add").serializeArray();
 			$.ajax({
-				url: "system/user/role/add.htm",
+				url: "system/role/add.htm",
 				type: "POST",
 				data: param,
 				dataType: "json",
@@ -115,7 +115,7 @@ var Role = {
 				layer.close(index);
 				var param = $("#edit").serializeArray();
 				$.ajax({
-					url: "system/user/role/edit.htm",
+					url: "system/role/edit.htm",
 					type: "POST",
 					data: param,
 					dataType: "json",
@@ -146,7 +146,7 @@ var Role = {
 				btn: ['确认', '取消']
 			}, function(index) {
 				$.ajax({
-					url: "system/user/role/del.htm",
+					url: "system/role/del.htm",
 					type: "POST",
 					data: param,
 					dataType: "json",
