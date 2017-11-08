@@ -2,7 +2,6 @@ package org.module.dto.system.user;
 
 import org.module.base.dto.BaseDto;
 
-
 /**
  * 
  * 类: SmUserDto <br>
@@ -19,10 +18,20 @@ public class SmUserDto extends BaseDto {
 	private String vertifyCode;
 
 	private String realName;
-	
+
 	private String phone;
-	
+
 	private String status;
+
+	private Integer isAuto;
+
+	public Integer getIsAuto() {
+		return isAuto;
+	}
+
+	public void setIsAuto(Integer isAuto) {
+		this.isAuto = isAuto;
+	}
 
 	public String getRealName() {
 		return realName;

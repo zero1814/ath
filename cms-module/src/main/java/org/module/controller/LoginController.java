@@ -1,9 +1,11 @@
 package org.module.controller;
 
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import org.module.annotation.SKipAuthPassport;
-import org.module.base.result.BaseResult;
+import org.module.base.result.EntityResult;
 import org.module.dto.system.user.SmUserDto;
 import org.module.service.system.user.ISmUserService;
 import org.module.util.Constant;
@@ -13,6 +15,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.alibaba.fastjson.JSONObject;
 import com.google.code.kaptcha.Constants;
 
 @Controller
@@ -25,8 +28,8 @@ public class LoginController extends BaseController {
 	@SKipAuthPassport
 	@RequestMapping("login")
 	@ResponseBody
-	public BaseResult login(SmUserDto dto, HttpServletRequest request) {
-		BaseResult result = new BaseResult();
+	public EntityResult login(SmUserDto dto, HttpServletRequest request, HttpServletResponse response) {
+		EntityResult result = new EntityResult();
 		if (StringUtils.isBlank(dto.getUserName())) {
 			result.setCode(Constant.RESULT_ERROR);
 			result.setMessage("用户名不能为空");
@@ -48,6 +51,11 @@ public class LoginController extends BaseController {
 			}
 		}
 		result = service.login(dto);
+		if (result.getCode() == Constant.RESULT_SUCCESS) {
+			String userJson = JSONObject.toJSONString(result);
+			Cookie user = new Cookie("user", userJson);
+			response.addCookie(user);
+		}
 		return result;
 	}
 }

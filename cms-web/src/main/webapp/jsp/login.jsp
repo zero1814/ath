@@ -47,7 +47,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<script src="assets/commons/js/usepublic.js"></script>
 	<script type="text/javascript">
 	$(function(){
-		 $('#verify_code').click(function() {$(this).attr('src','/verification/code.htm?' + Math.floor(Math.random() * 100));}); 
+		 $('#verify_code').click(function() {$(this).attr('src','verification/code.htm?' + Math.floor(Math.random() * 100));}); 
 	});
 	function login(){
 		var userName = $("#userName").val();

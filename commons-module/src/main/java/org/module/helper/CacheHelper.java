@@ -17,7 +17,7 @@ public class CacheHelper extends BaseClass {
 
 	/**
 	 * 
-	 * 方法: addCache <br>
+	 * 方法: setValue <br>
 	 * 描述: 添加缓存 <br>
 	 * 作者: zhy<br>
 	 * 时间: 2017年2月6日 下午5:19:34
@@ -27,6 +27,21 @@ public class CacheHelper extends BaseClass {
 	 */
 	public static void setValue(String key, String value) {
 		new RedisString().setValue(key, value);
+	}
+
+	/**
+	 * 
+	 * 方法: setValue <br>
+	 * 描述: 添加缓存 设置存储时间 <br>
+	 * 作者: zhy<br>
+	 * 时间: 2017年2月6日 下午5:19:34
+	 * 
+	 * @param key
+	 * @param value
+	 */
+	public static void setValue(String key, String value, int seconds) {
+		new RedisString().setValue(key, value, seconds);
+		;
 	}
 
 	/**
@@ -134,24 +149,26 @@ public class CacheHelper extends BaseClass {
 	public static void delFiledVal(String key, String field) {
 		new RedisHash().delFiled(key, field);
 	}
-	
+
 	/**
 	 * 
 	 * 方法: getJSONObject <br>
 	 * 作者: zhy<br>
 	 * 时间: 2017年10月20日 下午7:18:31
+	 * 
 	 * @param key
 	 * @return
 	 */
 	public static JSONObject getJSONObject(String key) {
 		return new RedisString().getJSONObject(key);
 	}
-	
+
 	/**
 	 * 
 	 * 方法: getJSONArray <br>
 	 * 作者: zhy<br>
 	 * 时间: 2017年10月20日 下午7:18:36
+	 * 
 	 * @param key
 	 * @return
 	 */

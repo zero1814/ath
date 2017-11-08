@@ -42,6 +42,25 @@ public class RedisString extends BaseClass {
 
 	/**
 	 * 
+	 * 方法: setValue <br>
+	 * 描述: 设置存储时间 <br>
+	 * 作者: zhy<br>
+	 * 时间: 2017年11月8日 上午9:33:37
+	 * @param key
+	 * @param value
+	 * @param seconds
+	 */
+	public void setValue(String key, String value, int seconds) {
+		if (jedisCluster != null) {
+			if (jedisCluster.exists(key)) {
+				jedisCluster.del(key);
+			}
+			jedisCluster.setex(key, seconds, value);
+		}
+	}
+
+	/**
+	 * 
 	 * 方法: updateValue <br>
 	 * 描述: 根据key修改存储值 <br>
 	 * 作者: zhy<br>
