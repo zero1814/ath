@@ -2,6 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ include file="/jsp/commons/header.jsp" %>
 <div class="wrapper wrapper-content">
+	<input type="hidden" id="userCode" name="userCode" value="${userCode }">
 	<div class="row">
 		<div class="col-sm-12">
 			<form method="get" class="form-horizontal">
@@ -31,13 +32,12 @@
 			<div class="btn-group hidden-xs" role="table">
 				<a href="javascript:UserRole.batchAdd();" class="btn btn-w-m btn-info">添加</a>
 			</div>
-			<table id="table" data-height="400" data-mobile-responsive="true">
+			<table id="role" data-height="400" data-mobile-responsive="true">
 			</table>
 		</div>
 	</div>
 </div>
 <script type="text/javascript" src="assets/commons/js/table.js"></script>
-<script type="text/javascript" src="assets/module/system/role.js"></script>
 <script type="text/javascript" src="assets/module/system/user.role.js"></script>
 <script type="text/javascript">
 $(function(){

@@ -47,13 +47,47 @@
 			%H:%i:%s'),
 		</trim>
 	</insert>
+	<insert id="batchInsert" parameterType="java.util.List">
+		insert into systemmodule.sm_user_role
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			uid,
+			user_code,
+			role_code,
+			create_user,
+			create_time,
+		</trim>
+		values
+		<foreach collection="list" item="item" index="index"
+			separator=",">
+			<trim prefix=" (" suffix=")" suffixOverrides=",">
+				#{item.uid,jdbcType=VARCHAR},
+				#{item.userCode,jdbcType=VARCHAR},
+				#{item.roleCode,jdbcType=VARCHAR},
+				#{item.createUser,jdbcType=VARCHAR},
+				STR_TO_DATE(#{item.createTime,jdbcType=VARCHAR},'%Y-%m-%d
+				%H:%i:%s'),
+			</trim>
+		</foreach>
+	</insert>
 	<!-- 查询用户所有角色信息 -->
-	<select id="findUserRoleData" parameterType="org.module.dto.system.user.SmUserRoleDto"
-		resultMap="BaseResultMap">
+	<resultMap id="RoleResultMap" type="org.module.model.system.user.SmRole">
+		<result column="code" property="code" jdbcType="VARCHAR" />
+		<result column="name" property="name" jdbcType="VARCHAR" />
+		<result column="en_name" property="enName" jdbcType="VARCHAR" />
+		<result column="status" property="status" jdbcType="VARCHAR" />
+		<result column="create_user" property="createUser" jdbcType="VARCHAR" />
+		<result column="create_time" property="createTime" jdbcType="VARCHAR" />
+	</resultMap>
+	<select id="findEntityAllToPage" parameterType="org.module.dto.system.user.SmUserRoleDto"
+		resultMap="RoleResultMap">
 		SELECT
 		r.`name`,
 		r.en_name,
-		r.`status`
+		r.`status`,
+		r.create_user,
+		DATE_FORMAT(r.create_time,'%Y-%m-%d
+		%H:%i:%s') as
+		create_time
 		FROM
 		sm_user_role AS ur
 		LEFT JOIN
@@ -62,5 +96,6 @@
 		<where>
 			ur.user_code=#{userCode,jdbcType=VARCHAR}
 		</where>
+		ORDER BY ur.create_time DESC
 	</select>
 </mapper>

@@ -2,31 +2,14 @@
     pageEncoding="UTF-8"%>
 <%@ include file="/jsp/commons/header.jsp" %>
 <div class="wrapper wrapper-content">
+	<input type="hidden" id="userCode" name="userCode" value="${userCode }">
 	<div class="row">
 		<div class="col-sm-12">
 			<form method="get" class="form-horizontal">
 				<div class="form-group">
 					<label class="col-sm-4 control-label">用户名</label>
 					<div class="col-sm-4">
-						<input name="userName" id="userName" value="" type="text" class="form-control">
-					</div>
-				</div>
-				<div class="form-group">
-					<label class="col-sm-4 control-label">真实姓名</label>
-					<div class="col-sm-4">
-						<input name="realName" id="realName" value="" type="text" class="form-control">
-					</div>
-				</div>
-				<div class="form-group">
-					<label class="col-sm-4 control-label">手机号</label>
-					<div class="col-sm-4">
-						<input name="phone" id="phone" value="" type="text" class="form-control">
-					</div>
-				</div>
-				<div class="form-group">
-					<label class="col-sm-4 control-label"></label>
-					<div class="col-sm-4">
-						<a style="float: right;" href="javascript:void(0)" onclick="User.search();" class="btn btn-w-m btn-info">查询</a>
+						<input name="name" id="name" value="" type="text" class="form-control">
 					</div>
 				</div>
 			</form>

@@ -183,7 +183,7 @@
 		#{groupCode,jdbcType=VARCHAR}
 		and m.parent_code =
 		#{parentCode,jdbcType=VARCHAR}
-		order by m.sort desc,m.create_time asc
+		order by m.sort asc,m.create_time asc
 	</select>
 	<!-- 判断是否包含子菜单 -->
 	<select id="isExistsChildMenu" parameterType="java.lang.String"
@@ -243,5 +243,6 @@
 				AND parent_code = #{_parameter,jdbcType=VARCHAR}
 			</if>
 		</where>
+		ORDER BY sort ASC,create_time DESC
 	</select>
 </mapper>

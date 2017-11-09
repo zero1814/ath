@@ -1,10 +1,10 @@
 package org.module.controller.system.user;
 
 import org.module.base.result.BaseResult;
-import org.module.base.result.DataResult;
 import org.module.base.result.PageResult;
 import org.module.dto.system.user.SmRoleDto;
 import org.module.dto.system.user.SmUserRoleDto;
+import org.module.model.system.user.SmUserRole;
 import org.module.service.system.user.ISmRoleService;
 import org.module.service.system.user.ISmUserRoleService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,6 +12,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+
+import com.alibaba.fastjson.JSON;
 
 @Controller
 @RequestMapping("system/user/role/")
@@ -30,8 +32,10 @@ public class SmUserRoleController {
 
 	@RequestMapping("data")
 	@ResponseBody
-	public DataResult data(SmUserRoleDto dto) {
-		return service.findUserRoleData(dto);
+	public PageResult data(SmUserRoleDto dto) {
+		PageResult result = service.findEntityToPage(dto);
+		System.out.println(JSON.toJSON(result));
+		return result;
 	}
 
 	@RequestMapping("addindex")
@@ -43,13 +47,14 @@ public class SmUserRoleController {
 	@RequestMapping("add/data")
 	@ResponseBody
 	public PageResult addData(SmRoleDto dto) {
-		return roleService.findEntityToPage(dto);
+		PageResult result = roleService.findEntityToPage(dto);
+		return result;
 	}
 
 	@RequestMapping("add")
 	@ResponseBody
-	public BaseResult add() {
-		return null;
+	public BaseResult add(SmUserRole entity) {
+		return service.batchInsert(entity);
 	}
 
 	@RequestMapping("del")

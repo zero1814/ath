@@ -51,4 +51,16 @@ public interface SmUserRoleMapper extends BaseMapper<SmUserRole, SmUserRoleDto> 
 	 * @return
 	 */
 	List<SmRole> findUserRoleData(SmUserRoleDto dto);
+
+	/**
+	 * 
+	 * 方法: batchInsert <br>
+	 * 描述: 批量添加 <br>
+	 * 作者: zhy<br>
+	 * 时间: 2017年11月9日 上午11:41:11
+	 * 
+	 * @param list
+	 * @return
+	 */
+	int batchInsert(List<SmUserRole> list);
 }

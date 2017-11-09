@@ -1,39 +1,19 @@
 var UserRole={
 		columns: [{
-			checkbox: true
-		},{
 			field: 'name',
 			title: '名称'
 		}, {
 			field: 'enName',
 			title: '英文简称'
+		},{
+			field: 'createUser',
+			title: '创建人'
 		}, {
-			field: 'status',
-			title: '状态',
-			formatter: function(value, row, index) {
-				var html = "";
-				if(row.status == 0) {
-					html = "可用";
-				} else {
-					html = "不可用";
-				}
-				return html;
-			}
+			field: 'createTime',
+			title: '创建时间'
 		},{
-			field: 'detail',
-			title: '查看',
-			formatter: function(value, row, index) {
-				var html = "<a href=''>查看</a>";
-				return html;
-			}
-		},{
-			field: 'operate',
-			title: '操作',
-			formatter: function(value, row, index) {
-				var code = row.code;
-				html += "<a href='javascript:UserRole.del(\""+code+"\");'>删除</a>";
-				return html;
-			}
+			field:'operate',
+			title:'操作'
 		}],
 		init: function() {
 			UserRole.data();
@@ -43,7 +23,8 @@ var UserRole={
 		},
 		searchParam: function() {
 			var temp = {
-				name: $("#name").val()
+				name: $("#name").val(),
+				userCode:$("#userCode").val()
 			};
 			return temp;
 		},
@@ -62,7 +43,10 @@ var UserRole={
 					codes.push(rows[key].code);
 				}
 			}
-			return;
+			var param = {
+					userCode:$("#userCode").val(),
+					roleCode:codes.join(",")
+			}
 			$.ajax({
 				url: "system/user/role/add.htm",
 				type: "POST",
@@ -71,7 +55,7 @@ var UserRole={
 				success: function(result) {
 					if(result.code == UsePublic.SUCCESS){
 						layer.alert(result.message,function(index){
-							window.location.href = "system/user/index.htm";
+							window.location.href = "system/user/role/index.htm";
 							layer.close(index);
 						});
 					}else if(result.code == UsePublic.NULL){
@@ -115,5 +99,36 @@ var UserRole={
 				layer.close(index);
 			});
 		}
-
+}
+var Role = {
+		columns: [{
+			checkbox: true
+		}, {
+			field: 'code',
+			title: '编码'
+		}, {
+			field: 'enName',
+			title: '英文简称'
+		}, {
+			field: 'name',
+			title: '名称'
+		}],
+		init: function() {
+			Role.data();
+		},
+		data: function() {
+			Table.init("role", "system/user/role/add/data.htm", Role.columns, Role.searchParam());
+		},
+		searchParam: function() {
+			var temp = {
+				code: $("#code").val(),
+				name: $("#name").val(),
+				status:"0"
+			};
+			return temp;
+		},
+		search: function() {
+			Table.param = Role.searchParam();
+			$("#role").bootstrapTable('refresh');
+		}
 }

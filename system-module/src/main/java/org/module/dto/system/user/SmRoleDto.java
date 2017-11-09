@@ -12,8 +12,18 @@ import org.module.base.dto.BaseDto;
 public class SmRoleDto extends BaseDto {
 
 	private String code;
-	
+
 	private String name;
+
+	private String status;
+
+	public String getStatus() {
+		return status;
+	}
+
+	public void setStatus(String status) {
+		this.status = status;
+	}
 
 	public String getCode() {
 		return code;
