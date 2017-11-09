@@ -2,10 +2,12 @@ package org.module.controller.system;
 
 import org.module.base.result.EntityResult;
 import org.module.base.result.TreeResult;
+import org.module.controller.BaseController;
 import org.module.helper.CodeHelper;
 import org.module.helper.PropHelper;
 import org.module.model.system.SmDefine;
 import org.module.service.system.ISmDefineService;
+import org.module.util.Constant;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -13,8 +15,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
-@RequestMapping("system/code/")
-public class SmDefineController {
+@RequestMapping("system/define/")
+public class SmDefineController extends BaseController{
 
 	@Autowired
 	private ISmDefineService service;
@@ -30,7 +32,7 @@ public class SmDefineController {
 		return service.tree();
 	}
 
-	@RequestMapping("add_index")
+	@RequestMapping("addindex")
 	public String addIndex() {
 		return "";
 	}
@@ -43,13 +45,16 @@ public class SmDefineController {
 		return service.insertSelective(entity);
 	}
 
+	@RequestMapping
 	public String editIndex(String code, ModelMap model) {
 		EntityResult result = service.selectByCode(code);
-		if (result.getCode() == 1) {
+		if (result.getCode() == Constant.RESULT_SUCCESS) {
 			model.addAttribute("entity", result.getEntity());
 			return "";
-		} else {
-			return "404";
+		} else if(result.getCode() == Constant.RESULT_NULL) {
+			return NULL_URL;
+		}else {
+			return ERROR_URL;
 		}
 
 	}
