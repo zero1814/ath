@@ -27,6 +27,11 @@
 		</dependency>
 		<dependency>
 			<groupId>cn.com</groupId>
+			<artifactId>shiro-module</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
+		</dependency>
+		<dependency>
+			<groupId>cn.com</groupId>
 			<artifactId>cms-module</artifactId>
 			<version>0.0.1-SNAPSHOT</version>
 		</dependency>
