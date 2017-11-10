@@ -19,7 +19,7 @@ public class RedisHash extends BaseClass {
 			cluster.hmset(key, hash);
 		}
 	}
-
+	
 	/**
 	 * 
 	 * 方法: get <br>

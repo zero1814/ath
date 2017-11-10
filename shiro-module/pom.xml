@@ -19,6 +19,13 @@
 			<groupId>cn.com</groupId>
 			<artifactId>commons-module</artifactId>
 			<version>0.0.1-SNAPSHOT</version>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>cn.com</groupId>
+			<artifactId>system-module</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
+			<scope>test</scope>
 		</dependency>
 		<dependency>
 			<groupId>junit</groupId>

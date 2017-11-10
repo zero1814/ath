@@ -39,7 +39,16 @@ public class SmUser extends BaseModel {
 	}
 
 	public SmUser(SmUser user) {
-
+		this.userName = user.getUserName();
+		this.password = user.getPassword();
+		this.realName = user.getRealName();
+		this.headPic = user.getHeadPic();
+		this.phone = user.getPhone();
+		this.eMail = user.geteMail();
+		this.qq = user.getQq();
+		this.weChat = user.getWeChat();
+		this.status = user.getStatus();
+		this.roles = user.getRoles();
 	}
 
 	public List<SmRole> getRoles() {

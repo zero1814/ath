@@ -41,7 +41,6 @@ public class CacheHelper extends BaseClass {
 	 */
 	public static void setValue(String key, String value, int seconds) {
 		new RedisString().setValue(key, value, seconds);
-		;
 	}
 
 	/**
