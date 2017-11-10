@@ -25,7 +25,7 @@
 	<bean id="sessionValidationScheduler"
 		class="org.apache.shiro.session.mgt.ExecutorServiceSessionValidationScheduler">
 		<!-- 间隔多少时间检查，不配置是60分钟 -->
-		<property name="interval" value="${session.validate.timespan}" />
+		<property name="interval" value="18000000" />
 		<property name="sessionManager" ref="sessionManager" />
 	</bean>
 	<!-- 用户信息记住我功能的相关配置 -->
@@ -49,7 +49,6 @@
 		<property name="realm" ref="userAuthRealm" />
 		<property name="sessionManager" ref="sessionManager" />
 		<property name="rememberMeManager" ref="rememberMeManager" />
-		<property name="cacheManager" ref="customShiroCacheManager" />
 	</bean>
 	<!-- Session Manager -->
 	<bean id="sessionManager"
@@ -74,19 +73,23 @@
 		<!-- 会话Cookie模板 -->
 		<property name="sessionIdCookie" ref="sessionIdCookie" />
 	</bean>
+	<!-- Shiro生命周期处理器 -->
+	<bean id="lifecycleBeanPostProcessor" class="org.apache.shiro.spring.LifecycleBeanPostProcessor" />
 	<bean id="shiroFilter" class="org.apache.shiro.spring.web.ShiroFilterFactoryBean">
-		<property name="securityManager" ref="securityManager" />
-		<property name="loginUrl" value="/login.htm" />
-		<!-- TODO 待提取 -->
-		<property name="successUrl" value="/" />
-		<property name="unauthorizedUrl" value="/login.htm" />
-		<!-- 初始配置，现采用自定义 -->
+
+		<!--shiro 核心安全接口 -->
+		<property name="securityManager" ref="securityManager"></property>
+		<!--登录时的连接 -->
+		<property name="loginUrl" value="/login.htm"></property>
+		<!--登录成功之后要跳转的连接 -->
+		<property name="successUrl" value="/index.htm"></property>
+		<!--未授权时跳转的连接 -->
+		<property name="unauthorizedUrl" value="/login.htm"></property>
+		<!--filterChainDefinitions -->
 		<property name="filterChainDefinitions">
 			<value>
 				/** = anon
 			</value>
 		</property>
 	</bean>
-	<!-- Shiro生命周期处理器 -->
-	<bean id="lifecycleBeanPostProcessor" class="org.apache.shiro.spring.LifecycleBeanPostProcessor" />
 </beans>
