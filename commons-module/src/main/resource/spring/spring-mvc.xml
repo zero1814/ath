@@ -12,9 +12,9 @@
 	http://www.springframework.org/schema/mvc/spring-mvc.xsd"
 	default-lazy-init="true">
 	<tx:annotation-driven />
-	<context:component-scan base-package="org.module.controller" />
+	<context:component-scan base-package="org.module.service,org.module.controller" />
 	<!-- 注解支持 -->
-	<context:annotation-config /> 
+	<context:annotation-config />
 	<!--避免IE执行AJAX时，返回JSON出现下载文件 -->
 	<bean id="mappingJackson2HttpMessageConverter"
 		class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter">
