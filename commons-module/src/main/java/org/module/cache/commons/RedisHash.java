@@ -19,7 +19,16 @@ public class RedisHash extends BaseClass {
 			cluster.hmset(key, hash);
 		}
 	}
-	
+
+	public void setHash(byte[] key, Map<byte[], byte[]> hash) {
+		if (cluster != null) {
+			if (cluster.exists(key)) {
+				cluster.del(key);
+			}
+			cluster.hmset(key, hash);
+		}
+	}
+
 	/**
 	 * 
 	 * 方法: get <br>
@@ -31,6 +40,14 @@ public class RedisHash extends BaseClass {
 	 * @return
 	 */
 	public Map<String, String> getHash(String key) {
+		if (cluster != null) {
+			return cluster.hgetAll(key);
+		} else {
+			return null;
+		}
+	}
+
+	public Map<byte[], byte[]> getHash(byte[] key) {
 		if (cluster != null) {
 			return cluster.hgetAll(key);
 		} else {
@@ -58,6 +75,15 @@ public class RedisHash extends BaseClass {
 		}
 	}
 
+	public void setFiled(byte[] key, byte[] field, byte[] value) {
+		if (cluster != null) {
+			if (cluster.hexists(key, field)) {
+				cluster.hdel(key, field);
+			}
+			cluster.hset(key, field, value);
+		}
+	}
+
 	/**
 	 * 
 	 * 方法: getFiled <br>
@@ -71,6 +97,14 @@ public class RedisHash extends BaseClass {
 	 */
 	public String getFiled(String key, String field) {
 		String value = "";
+		if (cluster != null) {
+			value = cluster.hget(key, field);
+		}
+		return value;
+	}
+
+	public byte[] getFiled(byte[] key, byte[] field) {
+		byte[] value = null;
 		if (cluster != null) {
 			value = cluster.hget(key, field);
 		}
@@ -93,6 +127,12 @@ public class RedisHash extends BaseClass {
 		}
 	}
 
+	public void delFiled(byte[] key, byte[] field) {
+		if (cluster != null) {
+			cluster.hdel(key, field);
+		}
+	}
+
 	/**
 	 * 
 	 * 方法: del <br>
@@ -104,6 +144,12 @@ public class RedisHash extends BaseClass {
 	 * @return
 	 */
 	public void del(String key) {
+		if (cluster != null) {
+			cluster.del(key);
+		}
+	}
+
+	public void del(byte[] key) {
 		if (cluster != null) {
 			cluster.del(key);
 		}

@@ -1,5 +1,6 @@
 package org.module.helper;
 
+import org.apache.commons.lang3.StringUtils;
 import org.module.base.BaseClass;
 import org.module.base.BaseLog;
 
@@ -28,6 +29,16 @@ public class LoggerHelper extends BaseClass {
 		logger.logInfo(clazz, info);
 	}
 
+	public static void info(Class<?> clazz, String info, Object... param) {
+		if (StringUtils.isBlank(info)) {
+			return;
+		}
+		if (null != param && param.length != 0) {
+			info = String.format(info, param);
+		}
+		logger.logInfo(clazz, info);
+	}
+
 	/**
 	 * 
 	 * 方法: debug <br>
@@ -39,6 +50,16 @@ public class LoggerHelper extends BaseClass {
 	 * @param debug
 	 */
 	public static void debug(Class<?> clazz, String debug) {
+		logger.logDebug(clazz, debug);
+	}
+
+	public static void debug(Class<?> clazz, String debug, Object... param) {
+		if (StringUtils.isBlank(debug)) {
+			return;
+		}
+		if (null != param && param.length != 0) {
+			debug = String.format(debug, param);
+		}
 		logger.logDebug(clazz, debug);
 	}
 
@@ -57,6 +78,16 @@ public class LoggerHelper extends BaseClass {
 		logger.logWarn(clazz, warn);
 	}
 
+	public static void warn(Class<?> clazz, String warn, Object... param) {
+		if (StringUtils.isBlank(warn)) {
+			return;
+		}
+		if (null != param && param.length != 0) {
+			warn = String.format(warn, param);
+		}
+		logger.logWarn(clazz, warn);
+	}
+
 	/**
 	 * 
 	 * 方法: error <br>
@@ -68,6 +99,16 @@ public class LoggerHelper extends BaseClass {
 	 * @param error
 	 */
 	public static void error(Class<?> clazz, String error) {
+		logger.logError(clazz, error);
+	}
+
+	public static void error(Class<?> clazz, String error, Object... param) {
+		if (StringUtils.isBlank(error)) {
+			return;
+		}
+		if (null != param && param.length != 0) {
+			error = String.format(error, param);
+		}
 		logger.logError(clazz, error);
 	}
 

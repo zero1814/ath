@@ -3,6 +3,7 @@ package org.module.helper;
 import java.util.Map;
 
 import org.module.base.BaseClass;
+import org.module.cache.commons.RedisByte;
 import org.module.cache.commons.RedisHash;
 import org.module.cache.commons.RedisString;
 
@@ -41,6 +42,21 @@ public class CacheHelper extends BaseClass {
 	 */
 	public static void setValue(String key, String value, int seconds) {
 		new RedisString().setValue(key, value, seconds);
+	}
+
+	/**
+	 * 
+	 * 方法: setValue <br>
+	 * 描述: 添加缓存 设置存储时间 <br>
+	 * 作者: zhy<br>
+	 * 时间: 2017年11月14日 上午9:33:40
+	 * 
+	 * @param key
+	 * @param value
+	 * @param seconds
+	 */
+	public static void setValue(byte[] key, byte[] value, int seconds) {
+		new RedisByte().setValue(key, value, seconds);
 	}
 
 	/**
@@ -85,9 +101,27 @@ public class CacheHelper extends BaseClass {
 	}
 
 	/**
+	 * 
+	 * 方法: getValue <br>
+	 * 描述: 获取缓存值信息 <br>
+	 * 作者: zhy<br>
+	 * 时间: 2017年11月14日 上午9:43:24
+	 * 
+	 * @param key
+	 * @return
+	 */
+	public static byte[] getValue(byte[] key) {
+		return new RedisByte().getValue(key);
+	}
+
+	/**
 	 * ====================hash操作====================
 	 */
 	public static void setHash(String key, Map<String, String> hash) {
+		new RedisHash().setHash(key, hash);
+	}
+
+	public static void setHash(byte[] key, Map<byte[], byte[]> hash) {
 		new RedisHash().setHash(key, hash);
 	}
 
@@ -102,6 +136,10 @@ public class CacheHelper extends BaseClass {
 	 * @return
 	 */
 	public static Map<String, String> getHash(String key) {
+		return new RedisHash().getHash(key);
+	}
+
+	public static Map<byte[], byte[]> getHash(byte[] key) {
 		return new RedisHash().getHash(key);
 	}
 
@@ -120,6 +158,10 @@ public class CacheHelper extends BaseClass {
 		new RedisHash().setFiled(key, field, value);
 	}
 
+	public static void setFiledVal(byte[] key, byte[] field, byte[] value) {
+		new RedisHash().setFiled(key, field, value);
+	}
+
 	/**
 	 * 
 	 * 方法: getFiled <br>
@@ -135,6 +177,10 @@ public class CacheHelper extends BaseClass {
 		return new RedisHash().getFiled(key, field);
 	}
 
+	public static byte[] getFiledVal(byte[] key, byte[] field) {
+		return new RedisHash().getFiled(key, field);
+	}
+
 	/**
 	 * 
 	 * 方法: delFiledVal <br>
@@ -146,6 +192,10 @@ public class CacheHelper extends BaseClass {
 	 * @param field
 	 */
 	public static void delFiledVal(String key, String field) {
+		new RedisHash().delFiled(key, field);
+	}
+
+	public static void delFiledVal(byte[] key, byte[] field) {
 		new RedisHash().delFiled(key, field);
 	}
 
