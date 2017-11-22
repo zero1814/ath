@@ -13,8 +13,8 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import redis.clients.jedis.JedisCluster;
 
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(locations = { "classpath:spring/spring.xml", "classpath:spring/spring-redis.xml" })
-public class RedisTest {
+@ContextConfiguration(locations = {"classpath:spring/spring-redis.xml" })
+public class RedisTest extends BaseTest{
 
 	@Autowired
 	private JedisCluster cluster;
