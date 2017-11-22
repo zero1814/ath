@@ -1,6 +1,6 @@
 package org.module.mapper.system;
 
-import org.module.base.mapper.BaseMapper;
+import org.module.commons.mapper.BaseMapper;
 import org.module.dto.system.SmCodeDto;
 import org.module.model.system.SmCode;
 

@@ -1,6 +1,6 @@
 package org.module.controller;
 
-import org.module.base.result.BaseResult;
+import org.module.commons.result.BaseResult;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 

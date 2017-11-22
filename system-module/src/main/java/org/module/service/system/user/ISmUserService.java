@@ -1,7 +1,7 @@
 package org.module.service.system.user;
 
-import org.module.base.result.EntityResult;
-import org.module.base.service.IBaseService;
+import org.module.commons.result.EntityResult;
+import org.module.commons.service.IBaseService;
 import org.module.dto.system.user.SmUserDto;
 import org.module.model.system.user.SmUser;
 

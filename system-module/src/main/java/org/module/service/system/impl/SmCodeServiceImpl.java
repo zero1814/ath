@@ -1,6 +1,6 @@
 package org.module.service.system.impl;
 
-import org.module.base.service.impl.BaseServiceImpl;
+import org.module.commons.service.impl.BaseServiceImpl;
 import org.module.dto.system.SmCodeDto;
 import org.module.mapper.system.SmCodeMapper;
 import org.module.model.system.SmCode;

@@ -2,8 +2,8 @@ package org.module.commons;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.module.base.BaseTest;
-import org.module.helper.CodeHelper;
+import org.module.commons.BaseTest;
+import org.module.commons.helper.CodeHelper;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 

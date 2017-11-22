@@ -2,9 +2,9 @@ package system.user;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.module.base.result.BaseResult;
-import org.module.base.result.EntityResult;
-import org.module.helper.CodeHelper;
+import org.module.commons.helper.CodeHelper;
+import org.module.commons.result.BaseResult;
+import org.module.commons.result.EntityResult;
 import org.module.model.system.user.SmRole;
 import org.module.service.system.user.ISmRoleService;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -1,6 +1,6 @@
 package org.module.dto.system;
 
-import org.module.base.dto.BaseDto;
+import org.module.commons.dto.BaseDto;
 
 public class SmDefineDto extends BaseDto{
 

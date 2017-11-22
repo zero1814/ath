@@ -2,9 +2,9 @@ package org.module.service.system.menu;
 
 import java.util.List;
 
-import org.module.base.result.DataResult;
-import org.module.base.result.TreeResult;
-import org.module.base.service.IBaseService;
+import org.module.commons.result.DataResult;
+import org.module.commons.result.TreeResult;
+import org.module.commons.service.IBaseService;
 import org.module.dto.system.menu.SmMenuDto;
 import org.module.model.system.menu.SmMenu;
 import org.module.model.system.menu.SmMenuGroup;

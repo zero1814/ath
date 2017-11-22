@@ -1,6 +1,6 @@
 package org.module.dto.system.menu;
 
-import org.module.base.dto.BaseDto;
+import org.module.commons.dto.BaseDto;
 
 public class SmPageDto extends BaseDto {
 

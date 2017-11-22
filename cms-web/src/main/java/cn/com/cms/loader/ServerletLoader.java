@@ -3,9 +3,9 @@ package cn.com.cms.loader;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 
-import org.module.helper.LoggerHelper;
-import org.module.init.commons.PropertiesInit;
-import org.module.util.SpringContextUtil;
+import org.module.commons.helper.LoggerHelper;
+import org.module.commons.init.PropertiesInit;
+import org.module.commons.util.SpringContextUtil;
 import org.springframework.web.WebApplicationInitializer;
 import org.springframework.web.context.WebApplicationContext;
 import org.springframework.web.context.support.WebApplicationContextUtils;

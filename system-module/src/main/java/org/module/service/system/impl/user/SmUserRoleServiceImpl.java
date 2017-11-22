@@ -4,16 +4,16 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.commons.lang3.StringUtils;
-import org.module.base.result.BaseResult;
-import org.module.base.service.impl.BaseServiceImpl;
+import org.module.commons.helper.WebHelper;
+import org.module.commons.result.BaseResult;
+import org.module.commons.service.impl.BaseServiceImpl;
+import org.module.commons.util.Constant;
+import org.module.commons.util.DateUtil;
 import org.module.dto.system.user.SmUserRoleDto;
-import org.module.helper.WebHelper;
 import org.module.mapper.system.user.SmUserRoleMapper;
 import org.module.model.system.user.SmUserRole;
 import org.module.service.system.user.ISmUserRoleService;
 import org.module.system.factory.UserFactory;
-import org.module.util.Constant;
-import org.module.util.DateUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

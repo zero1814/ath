@@ -2,7 +2,7 @@ package org.module.model.system.menu;
 
 import java.util.List;
 
-import org.module.base.model.BaseModel;
+import org.module.commons.model.BaseModel;
 
 public class SmMenuGroup extends BaseModel {
 

@@ -3,10 +3,10 @@ package org.module.interceptor;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.module.base.BaseLog;
+import org.module.commons.BaseLog;
+import org.module.commons.helper.PropHelper;
 import org.module.controller.LoginController;
 import org.module.controller.VerificationCodeController;
-import org.module.helper.PropHelper;
 import org.module.model.system.user.SmUser;
 import org.module.system.factory.UserFactory;
 import org.springframework.web.method.HandlerMethod;

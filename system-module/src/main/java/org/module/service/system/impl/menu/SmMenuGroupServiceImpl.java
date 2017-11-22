@@ -1,6 +1,6 @@
 package org.module.service.system.impl.menu;
 
-import org.module.base.service.impl.BaseServiceImpl;
+import org.module.commons.service.impl.BaseServiceImpl;
 import org.module.dto.system.menu.SmMenuGroupDto;
 import org.module.mapper.system.menu.SmMenuGroupMapper;
 import org.module.model.system.menu.SmMenuGroup;

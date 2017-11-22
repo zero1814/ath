@@ -3,8 +3,8 @@ package org.module.interceptor;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.module.annotation.SKipAuthPassport;
-import org.module.helper.PropHelper;
+import org.module.commons.annotation.SKipAuthPassport;
+import org.module.commons.helper.PropHelper;
 import org.module.model.system.user.SmUser;
 import org.module.system.factory.UserFactory;
 import org.springframework.web.method.HandlerMethod;

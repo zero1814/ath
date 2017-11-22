@@ -1,13 +1,13 @@
 package org.module.controller.system;
 
-import org.module.base.result.EntityResult;
-import org.module.base.result.TreeResult;
-import org.module.controller.BaseController;
-import org.module.helper.CodeHelper;
-import org.module.helper.PropHelper;
+import org.module.commons.controller.BaseController;
+import org.module.commons.helper.CodeHelper;
+import org.module.commons.helper.PropHelper;
+import org.module.commons.result.EntityResult;
+import org.module.commons.result.TreeResult;
+import org.module.commons.util.Constant;
 import org.module.model.system.SmDefine;
 import org.module.service.system.ISmDefineService;
-import org.module.util.Constant;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;

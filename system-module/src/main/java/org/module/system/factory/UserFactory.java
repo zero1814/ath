@@ -2,10 +2,10 @@ package org.module.system.factory;
 
 import javax.servlet.http.HttpSession;
 
-import org.module.base.BaseClass;
 import org.module.cache.system.CacheKey;
-import org.module.helper.CacheHelper;
-import org.module.helper.WebHelper;
+import org.module.commons.BaseClass;
+import org.module.commons.helper.CacheHelper;
+import org.module.commons.helper.WebHelper;
 import org.module.model.system.user.SmUser;
 
 import com.alibaba.fastjson.JSON;

@@ -4,12 +4,13 @@ import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.module.annotation.SKipAuthPassport;
-import org.module.base.result.EntityResult;
+import org.module.commons.annotation.SKipAuthPassport;
+import org.module.commons.controller.BaseController;
+import org.module.commons.result.EntityResult;
+import org.module.commons.util.Constant;
+import org.module.commons.util.StringUtils;
 import org.module.dto.system.user.SmUserDto;
 import org.module.service.system.user.ISmUserService;
-import org.module.util.Constant;
-import org.module.util.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;

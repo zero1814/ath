@@ -2,10 +2,10 @@ package system.menu;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.module.helper.CodeHelper;
+import org.module.commons.helper.CodeHelper;
+import org.module.commons.util.DateUtil;
 import org.module.model.system.menu.SmMenuGroup;
 import org.module.service.system.menu.ISmMenuGroupService;
-import org.module.util.DateUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;

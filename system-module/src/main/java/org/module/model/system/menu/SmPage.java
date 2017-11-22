@@ -2,7 +2,7 @@ package org.module.model.system.menu;
 
 import java.util.List;
 
-import org.module.base.model.TreeModel;
+import org.module.commons.model.TreeModel;
 
 public class SmPage extends TreeModel {
 

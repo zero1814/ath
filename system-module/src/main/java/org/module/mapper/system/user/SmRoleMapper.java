@@ -2,7 +2,7 @@ package org.module.mapper.system.user;
 
 import java.util.List;
 
-import org.module.base.mapper.BaseMapper;
+import org.module.commons.mapper.BaseMapper;
 import org.module.dto.system.user.SmRoleDto;
 import org.module.model.system.user.SmRole;
 

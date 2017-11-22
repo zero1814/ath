@@ -8,12 +8,12 @@ import org.apache.shiro.authc.UnknownAccountException;
 import org.apache.shiro.authz.AuthorizationInfo;
 import org.apache.shiro.realm.AuthorizingRealm;
 import org.apache.shiro.subject.PrincipalCollection;
-import org.module.annotation.Inject;
-import org.module.base.result.EntityResult;
+import org.module.commons.annotation.Inject;
+import org.module.commons.result.EntityResult;
+import org.module.commons.util.Constant;
 import org.module.dto.system.user.SmUserDto;
 import org.module.model.system.user.SmUser;
 import org.module.service.system.user.ISmUserService;
-import org.module.util.Constant;
 import org.springframework.stereotype.Component;
 
 /**

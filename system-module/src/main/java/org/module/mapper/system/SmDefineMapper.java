@@ -2,7 +2,7 @@ package org.module.mapper.system;
 
 import java.util.List;
 
-import org.module.base.mapper.BaseMapper;
+import org.module.commons.mapper.BaseMapper;
 import org.module.dto.system.SmDefineDto;
 import org.module.model.system.SmDefine;
 

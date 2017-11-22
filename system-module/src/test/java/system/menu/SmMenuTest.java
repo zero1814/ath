@@ -4,13 +4,13 @@ import java.util.List;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.module.base.BaseTest;
-import org.module.base.result.EntityResult;
-import org.module.base.result.TreeResult;
-import org.module.helper.CodeHelper;
+import org.module.commons.BaseTest;
+import org.module.commons.helper.CodeHelper;
+import org.module.commons.result.EntityResult;
+import org.module.commons.result.TreeResult;
+import org.module.commons.util.DateUtil;
 import org.module.model.system.menu.SmMenu;
 import org.module.service.system.menu.ISmMenuService;
-import org.module.util.DateUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;

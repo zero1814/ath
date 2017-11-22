@@ -1,7 +1,7 @@
 package org.module.controller;
 
-import org.module.base.result.TreeResult;
-import org.module.helper.PropHelper;
+import org.module.commons.helper.PropHelper;
+import org.module.commons.result.TreeResult;
 import org.module.service.system.menu.ISmMenuService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;

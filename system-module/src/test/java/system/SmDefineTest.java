@@ -2,11 +2,11 @@ package system;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.module.base.result.TreeResult;
-import org.module.helper.CodeHelper;
+import org.module.commons.helper.CodeHelper;
+import org.module.commons.result.TreeResult;
+import org.module.commons.util.DateUtil;
 import org.module.model.system.SmDefine;
 import org.module.service.system.ISmDefineService;
-import org.module.util.DateUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;

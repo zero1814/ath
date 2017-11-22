@@ -2,7 +2,7 @@ package system.user;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.module.base.result.BaseResult;
+import org.module.commons.result.BaseResult;
 import org.module.model.system.user.SmUserRole;
 import org.module.service.system.user.ISmUserRoleService;
 import org.springframework.beans.factory.annotation.Autowired;

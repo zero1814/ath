@@ -2,7 +2,7 @@ package org.module.service.system.user;
 
 import java.util.Set;
 
-import org.module.base.service.IBaseService;
+import org.module.commons.service.IBaseService;
 import org.module.dto.system.user.SmRoleDto;
 import org.module.model.system.user.SmRole;
 

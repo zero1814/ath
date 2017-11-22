@@ -1,6 +1,6 @@
 package org.module.service.system;
 
-import org.module.base.service.IBaseService;
+import org.module.commons.service.IBaseService;
 import org.module.dto.system.SmCodeDto;
 import org.module.model.system.SmCode;
 

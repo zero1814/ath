@@ -1,7 +1,7 @@
 package org.module.controller.system.user;
 
-import org.module.base.result.BaseResult;
-import org.module.base.result.PageResult;
+import org.module.commons.result.BaseResult;
+import org.module.commons.result.PageResult;
 import org.module.dto.system.user.SmRoleDto;
 import org.module.dto.system.user.SmUserRoleDto;
 import org.module.model.system.user.SmUserRole;

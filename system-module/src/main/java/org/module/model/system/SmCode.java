@@ -1,6 +1,6 @@
 package org.module.model.system;
 
-import org.module.base.model.BaseModel;
+import org.module.commons.model.BaseModel;
 
 public class SmCode extends BaseModel {
 

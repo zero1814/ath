@@ -2,12 +2,12 @@ package system.user;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.module.base.BaseTest;
-import org.module.base.result.BaseResult;
-import org.module.helper.CodeHelper;
+import org.module.commons.BaseTest;
+import org.module.commons.helper.CodeHelper;
+import org.module.commons.result.BaseResult;
+import org.module.commons.util.MD5Util;
 import org.module.model.system.user.SmUser;
 import org.module.service.system.user.ISmUserService;
-import org.module.util.MD5Util;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;

@@ -1,15 +1,15 @@
 package org.module.controller.system.menu;
 
-import org.module.base.result.BaseResult;
-import org.module.base.result.EntityResult;
-import org.module.base.result.PageResult;
-import org.module.controller.BaseController;
+import org.module.commons.controller.BaseController;
+import org.module.commons.helper.CodeHelper;
+import org.module.commons.result.BaseResult;
+import org.module.commons.result.EntityResult;
+import org.module.commons.result.PageResult;
+import org.module.commons.util.Constant;
 import org.module.dto.system.menu.SmMenuDto;
-import org.module.helper.CodeHelper;
 import org.module.model.system.menu.SmMenu;
 import org.module.service.system.menu.ISmMenuService;
 import org.module.system.factory.UserFactory;
-import org.module.util.Constant;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;

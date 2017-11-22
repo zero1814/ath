@@ -2,7 +2,7 @@ package org.module.service.system.impl.user;
 
 import java.util.Set;
 
-import org.module.base.service.impl.BaseServiceImpl;
+import org.module.commons.service.impl.BaseServiceImpl;
 import org.module.dto.system.user.SmRoleDto;
 import org.module.mapper.system.user.SmRoleMapper;
 import org.module.model.system.user.SmRole;
